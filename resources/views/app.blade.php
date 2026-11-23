@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ asset('images/logo/logo-icon.png') }}">
     @routes
-    @vite(['resources/css/app.css', 'resources/js/app.jsx'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @inertiaHead
 </head>
 <body class="antialiased bg-[#F8FAFC] text-slate-900 font-sans selection:bg-[#DBF6FF] selection:text-[#FF2E3A]">

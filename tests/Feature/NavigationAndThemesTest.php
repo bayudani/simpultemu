@@ -1545,12 +1545,22 @@ class NavigationAndThemesTest extends TestCase
     {
         $response = $this->get('/');
         $response->assertStatus(200);
-
-        $response->assertInertia(fn (Assert $page) => $page
-            ->component('Home')
-            ->has('themes')
-            ->where('auth.user', null)
-        );
+        $response->assertViewIs('home');
+        $response->assertViewHas('themes');
+        $response->assertSee('Daftar Sekarang');
+        $response->assertSee('Login');
+        $response->assertSee('Bersama dalam Setiap');
+        $response->assertSee('id="typewriter-text"', false);
+        $response->assertSee('hero-3d-phones.png');
+        $response->assertSee('Lihat Demo Live');
+        $response->assertSee('Pilihan Tema');
+        $response->assertSee('Koleksi Desain Pernikahan');
+        $response->assertSee('Semua Kebutuhan Acara dalam');
+        $response->assertSee('Unlimited Share');
+        $response->assertSee('Mengapa <span class="text-[#FF2E3A]">Memilih</span> Kami?', false);
+        $response->assertSee('Harga Terjangkau');
+        $response->assertSee('Siap Membagikan Kebahagiaan Anda');
+        $response->assertSee('blue-geometric-mesh.svg');
     }
 
     public function test_home_page_navbar_shares_authenticated_user_auth_state(): void
@@ -1562,14 +1572,11 @@ class NavigationAndThemesTest extends TestCase
 
         $response = $this->actingAs($user)->get('/');
         $response->assertStatus(200);
-
-        $response->assertInertia(fn (Assert $page) => $page
-            ->component('Home')
-            ->has('themes')
-            ->where('auth.user.id', $user->id)
-            ->where('auth.user.name', 'Cahya Dwi Saputra')
-            ->where('auth.user.email', 'cahya@simpultemu.test')
-        );
+        $response->assertViewIs('home');
+        $response->assertViewHas('themes');
+        $response->assertSee('Dashboard');
+        $response->assertSee('Logout');
+        $response->assertSee('Ke Dashboard Saya');
     }
 
     public function test_invitation_preview_action_updates_data_and_redirects_to_preview_route(): void

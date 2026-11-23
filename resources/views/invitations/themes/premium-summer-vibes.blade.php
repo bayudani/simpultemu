@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allison&family=Allura&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Infant:ital,wght@0,400;0,600;1,400&family=DM+Serif+Display:ital@0;1&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Inter:wght@300;400;500;600&family=Italianno&family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=Marcellus&family=Mea+Culpa&family=Montserrat:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;600&family=Outfit:wght@300;400;500;600&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&family=Prata&family=Raleway:wght@300;400;500;600&family=Rochester&family=Shrikhand&family=Sniglet:wght@800&family=Space+Grotesk:wght@300;400;500;600&family=Syne:wght@400;600;700&family=Tangerine:wght@700&family=Titan+One&family=Urbanist:wght@300;400;600&display=swap" rel="stylesheet">
 
-    @vite(['resources/css/app.css', 'resources/js/app.jsx'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @php
         // 1. Identify active theme data from model

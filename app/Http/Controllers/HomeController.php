@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Theme;
-use Inertia\Inertia;
 
 class HomeController extends Controller
 {
@@ -29,19 +28,7 @@ class HomeController extends Controller
                 ];
             });
 
-        return Inertia::render('Home', [
-            'themes' => $themes,
-            'auth' => [
-                'user' => auth()->user() ? [
-                    'id' => auth()->user()->id,
-                    'name' => auth()->user()->name,
-                    'email' => auth()->user()->email,
-                    'role' => auth()->user()->role,
-                    'avatar' => auth()->user()->avatar,
-                    'is_premium' => (bool) auth()->user()->is_premium,
-                ] : null,
-            ],
-        ]);
+        return view('home', compact('themes'));
     }
 
     public function pricing()

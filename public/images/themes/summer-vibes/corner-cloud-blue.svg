@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 466 298" fill="none">
+    <!-- Blue Cloud Drop Shadow -->
+    <defs>
+        <filter id="cloudShadow" x="-10%" y="-10%" width="120%" height="130%">
+            <feDropShadow dx="-2" dy="6" stdDeviation="8" flood-color="#1D63B8" flood-opacity="0.25"/>
+        </filter>
+    </defs>
+    <!-- Light Blue Outer Cloud Layer -->
+    <path d="M 466 0 L 12 0 L 12 14 L 16 18 L 20 21 L 24 24 L 28 27 L 32 30 L 36 33 L 40 35 L 44 38 L 48 40 L 52 40 L 56 45 L 60 47 L 64 49 L 68 51 L 72 53 L 76 55 L 80 57 L 84 59 L 88 61 L 92 62 L 96 64 L 100 65 L 104 67 L 108 68 L 112 70 L 116 71 L 120 72 L 124 73 L 128 74 L 132 75 L 136 76 L 140 77 L 144 77 L 148 78 L 152 78 L 156 79 L 160 79 L 164 79 L 168 79 L 172 78 L 176 78 L 180 76 L 184 75 L 188 75 L 192 88 L 196 95 L 200 100 L 204 105 L 208 108 L 212 111 L 216 114 L 220 116 L 224 118 L 228 120 L 232 121 L 236 122 L 240 123 L 244 124 L 248 125 L 252 125 L 256 126 L 260 126 L 264 126 L 268 126 L 272 125 L 276 125 L 280 124 L 284 123 L 288 122 L 292 121 L 296 126 L 300 131 L 304 134 L 308 137 L 312 138 L 316 140 L 320 141 L 324 142 L 328 142 L 332 143 L 336 143 L 340 143 L 344 143 L 348 143 L 352 169 L 356 178 L 360 185 L 364 190 L 368 195 L 372 198 L 376 202 L 380 205 L 384 208 L 388 210 L 392 213 L 396 214 L 400 217 L 404 218 L 408 219 L 412 221 L 416 222 L 420 222 L 424 223 L 428 223 L 432 223 L 436 223 L 440 223 L 444 223 L 448 223 L 452 223 L 456 86 L 460 86 L 464 87 L 466 298 Z" fill="#5B96D5" opacity="0.85" filter="url(#cloudShadow)"/>
+    <!-- Image Overlay with natural texture -->
+    <image href="corner-cloud-blue.png" x="0" y="0" width="466" height="298"/>
+</svg>

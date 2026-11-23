@@ -1,0 +1,107 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .diag-bg-outer {
+        fill: #DBF6FF;
+        fill-opacity: 0.35;
+        stroke: #0284C7;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .diag-primary {
+        fill: none;
+        stroke: #0284C7;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        opacity: 0.90;
+      }
+      .diag-secondary {
+        fill: #DBF6FF;
+        fill-opacity: 0.65;
+        stroke: #0284C7;
+        stroke-width: 1.25;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .diag-dashed {
+        fill: #DBF6FF;
+        fill-opacity: 0.90;
+        stroke: #0284C7;
+        stroke-width: 1.0;
+        stroke-dasharray: 2.5 3;
+      }
+      .diag-star {
+        fill: #0284C7;
+        opacity: 0.95;
+      }
+    </style>
+  </defs>
+
+  <!-- 0. Light Blue Diamond Base Fills (#DBF6FF inside, #0284C7 outline) -->
+  <!-- Center Main Diamond -->
+  <polygon points="40,0 80,40 40,80 0,40" class="diag-bg-outer" />
+
+  <!-- Corner Quarter Diamonds -->
+  <polygon points="0,0 40,0 0,40" class="diag-bg-outer" />
+  <polygon points="80,0 40,0 80,40" class="diag-bg-outer" />
+  <polygon points="0,80 40,80 0,40" class="diag-bg-outer" />
+  <polygon points="80,80 40,80 80,40" class="diag-bg-outer" />
+
+  <!-- 1. Primary Continuous 45-Degree Diagonal Lines -->
+  <line x1="0" y1="0" x2="80" y2="80" class="diag-primary" />
+  <line x1="0" y1="80" x2="80" y2="0" class="diag-primary" />
+
+  <!-- 2. Concentric Inner Diagonal Diamonds (Bright #DBF6FF inside, #0284C7 border) -->
+  <polygon points="40,12 68,40 40,68 12,40" class="diag-secondary" />
+
+  <!-- Corner Quarter Inner Diamonds -->
+  <polygon points="0,0 28,0 0,28" class="diag-secondary" />
+  <polygon points="80,0 52,0 80,28" class="diag-secondary" />
+  <polygon points="0,80 28,80 0,52" class="diag-secondary" />
+  <polygon points="80,80 52,80 80,52" class="diag-secondary" />
+
+  <!-- 3. Fine Inner Dashed Accent Diamonds -->
+  <polygon points="40,22 58,40 40,58 22,40" class="diag-dashed" />
+  
+  <polygon points="0,0 18,0 0,18" class="diag-dashed" />
+  <polygon points="80,0 62,0 80,18" class="diag-dashed" />
+  <polygon points="0,80 18,80 0,62" class="diag-dashed" />
+  <polygon points="80,80 62,80 80,62" class="diag-dashed" />
+
+  <!-- 4. Eight-Point Star Rosettes at Diagonal Intersections (#0284C7) -->
+  <!-- Center Star at (40, 40) -->
+  <polygon points="40,28 43,40 40,52 37,40" class="diag-star" />
+  <polygon points="28,40 40,37 52,40 40,43" class="diag-star" />
+  <polygon points="32,32 40,38 48,48 38,40" class="diag-star" />
+  <polygon points="48,32 40,38 32,48 38,40" class="diag-star" />
+  <circle cx="40" cy="40" r="3" class="diag-star" />
+
+  <!-- Outer Diagonal Intersections: (40,0), (80,40), (40,80), (0,40) -->
+  <!-- Top Node (40, 0) -->
+  <polygon points="40,-7 42.5,0 40,7 37.5,0" class="diag-star" />
+  <polygon points="33,0 40,-2.5 47,0 40,2.5" class="diag-star" />
+  <circle cx="40" cy="0" r="2.5" class="diag-star" />
+
+  <!-- Bottom Node (40, 80) -->
+  <polygon points="40,73 42.5,80 40,87 37.5,80" class="diag-star" />
+  <polygon points="33,80 40,77.5 47,80 40,82.5" class="diag-star" />
+  <circle cx="40" cy="80" r="2.5" class="diag-star" />
+
+  <!-- Left Node (0, 40) -->
+  <polygon points="0,33 2.5,40 0,47 -2.5,40" class="diag-star" />
+  <polygon points="-7,40 0,37.5 7,40 0,42.5" class="diag-star" />
+  <circle cx="0" cy="40" r="2.5" class="diag-star" />
+
+  <!-- Right Node (80, 40) -->
+  <polygon points="80,33 82.5,40 80,47 77.5,40" class="diag-star" />
+  <polygon points="73,40 80,37.5 87,40 80,42.5" class="diag-star" />
+  <circle cx="80" cy="40" r="2.5" class="diag-star" />
+
+  <!-- Corner Star Nodes (0,0), (80,0), (0,80), (80,80) -->
+  <circle cx="0" cy="0" r="3" class="diag-star" />
+  <circle cx="80" cy="0" r="3" class="diag-star" />
+  <circle cx="0" cy="80" r="3" class="diag-star" />
+  <circle cx="80" cy="80" r="3" class="diag-star" />
+</svg>

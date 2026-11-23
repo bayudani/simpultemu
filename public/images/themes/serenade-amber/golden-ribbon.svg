@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 80" preserveAspectRatio="none" fill="none">
+  <defs>
+    <linearGradient id="goldRibbonGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C59132" stop-opacity="0.3"/>
+      <stop offset="20%" stop-color="#E8C37D" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#DDA74F" stop-opacity="0.5"/>
+      <stop offset="80%" stop-color="#F2D59B" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#C59132" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="goldRibbonGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9A6E20" stop-opacity="0.8"/>
+      <stop offset="15%" stop-color="#DDA74F"/>
+      <stop offset="35%" stop-color="#F5DBA3"/>
+      <stop offset="50%" stop-color="#D69A3B"/>
+      <stop offset="70%" stop-color="#FCE6B8"/>
+      <stop offset="88%" stop-color="#DDA74F"/>
+      <stop offset="100%" stop-color="#8C631A" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="goldRibbonGrad3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFF0D0" stop-opacity="0.1"/>
+      <stop offset="30%" stop-color="#FFF5E0" stop-opacity="0.7"/>
+      <stop offset="50%" stop-color="#FFF0D0" stop-opacity="0.3"/>
+      <stop offset="70%" stop-color="#FFF5E0" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#FFF0D0" stop-opacity="0.1"/>
+    </linearGradient>
+    <filter id="goldGlow" x="-10%" y="-30%" width="120%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Back Wave (Translucent silk) -->
+  <path d="M0,32 Q200,10 400,28 T800,22 Q1000,38 1200,24 L1200,56 Q1000,70 800,52 T400,58 Q200,42 0,54 Z" fill="url(#goldRibbonGrad1)"/>
+
+  <!-- Main Solid Golden Ribbon -->
+  <path d="M0,38 Q220,18 420,34 T820,28 Q1020,44 1200,30 L1200,48 Q1020,62 820,46 T420,52 Q220,36 0,48 Z" fill="url(#goldRibbonGrad2)" filter="url(#goldGlow)"/>
+
+  <!-- Golden Silk Highlight / Sheen Ribbon -->
+  <path d="M0,41 Q220,21 420,36 T820,30 Q1020,46 1200,32 L1200,36 Q1020,50 820,34 T420,40 Q220,25 0,37 Z" fill="url(#goldRibbonGrad3)"/>
+</svg>

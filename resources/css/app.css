@@ -1,0 +1,366 @@
+@import 'tailwindcss';
+
+@source '../views/**/*.blade.php';
+@source '../js/**/*.{jsx,js}';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    /* 2 Standard System Fonts: Clean, Modern, No Over-the-top AI Aesthetic */
+    --font-heading: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-serif: var(--font-heading);
+    
+    /* Modern Palette: Machine Red (#FF2E3A) & Glacier Blue (#DBF6FF) */
+    --color-machine-red: #FF2E3A;
+    --color-machine-red-hover: #E01E2A;
+    --color-machine-red-active: #C71722;
+    --color-machine-red-light: #FFF0F1;
+    --color-machine-red-ring: rgba(255, 46, 58, 0.2);
+
+    --color-glacier: #DBF6FF;
+    --color-glacier-50: #F4FBFE;
+    --color-glacier-100: #E6F7FD;
+    --color-glacier-200: #DBF6FF;
+    --color-glacier-300: #BAEAF8;
+    --color-glacier-400: #7CD6F7;
+    --color-glacier-500: #2BBCEB;
+    --color-glacier-600: #0E9FD1;
+    --color-glacier-700: #0284C7;
+
+    --color-primary: #FF2E3A;
+    --color-primary-hover: #E01E2A;
+    --color-primary-light: #FFF0F1;
+    --color-secondary: #DBF6FF;
+    --color-secondary-dark: #0284C7;
+
+    /* Seamless backward-compatibility token mappings */
+    --color-champagne-50: #F8FAFC;
+    --color-champagne-100: #DBF6FF;
+    --color-champagne-200: #BAEAF8;
+    --color-champagne-300: #7CD6F7;
+    --color-champagne-400: #0E9FD1;
+    --color-champagne-500: #FF2E3A;
+    --color-champagne-600: #E01E2A;
+    --color-champagne-700: #C71722;
+
+    --color-terracotta-50: #FFF0F1;
+    --color-terracotta-100: #DBF6FF;
+    --color-terracotta-500: #FF2E3A;
+    --color-terracotta-600: #E01E2A;
+
+    --color-sage-50: #F4FBFE;
+    --color-sage-100: #DBF6FF;
+    --color-sage-500: #0E9FD1;
+    --color-sage-600: #0284C7;
+
+    --color-purple-500: #FF2E3A;
+    --color-purple-600: #E01E2A;
+    --color-purple-400: #FF545E;
+    --color-purple-300: #DBF6FF;
+    --color-pink-100: #DBF6FF;
+}
+
+@layer base {
+    body {
+        font-family: var(--font-sans);
+        color: #0f172a;
+        background-color: #f8fafc;
+    }
+
+    h1, h2, h3, h4, h5, h6, .font-heading, .font-serif {
+        font-family: var(--font-heading);
+        letter-spacing: -0.02em;
+    }
+}
+
+@layer utilities {
+    .animate-fade-in {
+        animation: fadeIn 0.8s ease-in;
+    }
+    
+    .animate-slide-up {
+        animation: slideUp 0.8s ease-out;
+    }
+    
+    .animate-blink {
+        animation: blink 0.9s infinite;
+    }
+    
+    @keyframes blink {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+    }
+    
+    .bg-grid-pattern {
+        background-image: 
+            linear-gradient(rgba(2, 132, 199, 0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(2, 132, 199, 0.08) 1px, transparent 1px);
+        background-size: 50px 50px;
+    }
+    
+    .bg-pattern {
+        background-image: radial-gradient(circle, rgba(219, 246, 255, 0.4) 1px, transparent 1px);
+        background-size: 20px 20px;
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-float {
+        animation: floatSlow 6s ease-in-out infinite;
+    }
+
+    .animate-float-delayed {
+        animation: floatSlow 6s ease-in-out 3s infinite;
+    }
+
+    .animate-float-fast {
+        animation: floatSlow 4.5s ease-in-out 1.5s infinite;
+    }
+
+    @keyframes floatSlow {
+        0%, 100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    /* 3D Realistic Phone Mockup Keyframes & Utilities */
+    .perspective-1400 {
+        perspective: 1400px;
+    }
+    .preserve-3d {
+        transform-style: preserve-3d;
+    }
+
+    @keyframes float-phone-left {
+        0%, 100% {
+            transform: rotateY(-18deg) rotateX(12deg) rotateZ(-5deg) translateY(0px) translateZ(0px);
+        }
+        50% {
+            transform: rotateY(-16deg) rotateX(10deg) rotateZ(-4deg) translateY(-16px) translateZ(8px);
+        }
+    }
+
+    @keyframes float-phone-right {
+        0%, 100% {
+            transform: rotateY(-14deg) rotateX(10deg) rotateZ(-2deg) translateY(0px) translateZ(35px);
+        }
+        50% {
+            transform: rotateY(-12deg) rotateX(8deg) rotateZ(-1deg) translateY(-20px) translateZ(45px);
+        }
+    }
+
+    @keyframes shadow-breathe-left {
+        0%, 100% {
+            transform: scale(1);
+            opacity: 0.55;
+        }
+        50% {
+            transform: scale(0.85);
+            opacity: 0.35;
+        }
+    }
+
+    @keyframes shadow-breathe-right {
+        0%, 100% {
+            transform: scale(1);
+            opacity: 0.65;
+        }
+        50% {
+            transform: scale(0.86);
+            opacity: 0.45;
+        }
+    }
+
+    .animate-float-phone-left {
+        animation: float-phone-left 6.5s ease-in-out infinite;
+    }
+
+    .animate-float-phone-right {
+        animation: float-phone-right 7s ease-in-out 0.8s infinite;
+    }
+
+    .animate-shadow-left {
+        animation: shadow-breathe-left 6.5s ease-in-out infinite;
+    }
+
+    .animate-shadow-right {
+        animation: shadow-breathe-right 7s ease-in-out 0.8s infinite;
+    }
+
+    .phone-chassis-rosegold {
+        background: linear-gradient(135deg, #fce0d2 0%, #e8aa91 32%, #cd8266 54%, #fae2d7 78%, #b8694a 100%);
+    }
+
+    .phone-shadow-3d-left {
+        box-shadow: 
+            -1px 2px 0px #c37b60,
+            -2px 4px 0px #b26c53,
+            -3px 6px 0px #a15d45,
+            -4px 8px 0px #8f4d36,
+            -5px 10px 0px #7d3e29,
+            -10px 20px 35px rgba(0, 0, 0, 0.55),
+            -20px 40px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .phone-shadow-3d-right {
+        box-shadow: 
+            -1px 2px 0px #c37b60,
+            -2px 4px 0px #b26c53,
+            -3px 6px 0px #a15d45,
+            -4px 8px 0px #8f4d36,
+            -5px 10px 0px #7d3e29,
+            -12px 24px 40px rgba(0, 0, 0, 0.6),
+            -24px 48px 70px rgba(0, 0, 0, 0.4);
+    }
+
+    .scrollbar-none::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scrollbar-none {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    #typewriter-text,
+    #typewriter-text-blade {
+        animation: blink-caret 0.75s step-end infinite;
+    }
+    @keyframes blink-caret {
+        from, to { border-color: transparent; }
+        50% { border-color: #FF2E3A; }
+    }
+
+    /* ========================================================
+       PREMIUM SCROLL REVEAL ANIMATIONS (SILKY SMOOTH & ELEGANT)
+       ======================================================== */
+    .reveal-init {
+        opacity: 0;
+        transition-property: opacity, transform !important;
+        transition-duration: 1100ms !important;
+        transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1) !important;
+        will-change: opacity, transform;
+        backface-visibility: hidden;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .reveal-up {
+        transform: translate3d(0, 48px, 0);
+    }
+
+    .reveal-down {
+        transform: translate3d(0, -40px, 0);
+    }
+
+    .reveal-left {
+        transform: translate3d(-52px, 0, 0);
+    }
+
+    .reveal-right {
+        transform: translate3d(52px, 0, 0);
+    }
+
+    .reveal-scale {
+        transform: scale(0.92) translate3d(0, 28px, 0);
+    }
+
+    .reveal-active {
+        opacity: 1 !important;
+        transform: translate3d(0, 0, 0) scale(1) !important;
+    }
+
+    /* Seamless interactive hover response once revealed */
+    .reveal-active:hover {
+        transition-duration: 400ms !important;
+        transition-delay: 0ms !important;
+        transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    /* Fine-grained Stagger Delays for Sequential Flow */
+    .delay-50 { transition-delay: 50ms !important; }
+    .delay-100 { transition-delay: 100ms !important; }
+    .delay-150 { transition-delay: 150ms !important; }
+    .delay-200 { transition-delay: 200ms !important; }
+    .delay-250 { transition-delay: 250ms !important; }
+    .delay-300 { transition-delay: 300ms !important; }
+    .delay-350 { transition-delay: 350ms !important; }
+    .delay-400 { transition-delay: 400ms !important; }
+    .delay-450 { transition-delay: 450ms !important; }
+    .delay-500 { transition-delay: 500ms !important; }
+    .delay-550 { transition-delay: 550ms !important; }
+    .delay-600 { transition-delay: 600ms !important; }
+    .delay-650 { transition-delay: 650ms !important; }
+    .delay-700 { transition-delay: 700ms !important; }
+    .delay-750 { transition-delay: 750ms !important; }
+    .delay-800 { transition-delay: 800ms !important; }
+    .delay-900 { transition-delay: 900ms !important; }
+    .delay-1000 { transition-delay: 1000ms !important; }
+
+    @media (prefers-reduced-motion: reduce) {
+        .reveal-init {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+    }
+
+    /* Responsive Phone Mockup Scaler for 4-Column Grid */
+    .catalog-phone-mockup {
+        transform-origin: top center;
+        transition: transform 0.3s ease;
+        transform: scale(0.68);
+        margin-bottom: -115px;
+    }
+    @media (min-width: 640px) {
+        .catalog-phone-mockup {
+            transform: scale(0.78);
+            margin-bottom: -78px;
+        }
+    }
+    @media (min-width: 768px) {
+        .catalog-phone-mockup {
+            transform: scale(0.72);
+            margin-bottom: -100px;
+        }
+    }
+    @media (min-width: 1024px) {
+        .catalog-phone-mockup {
+            transform: scale(0.82);
+            margin-bottom: -65px;
+        }
+    }
+    @media (min-width: 1280px) {
+        .catalog-phone-mockup {
+            transform: scale(0.88);
+            margin-bottom: -43px;
+        }
+    }
+}

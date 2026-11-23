@@ -1,0 +1,63 @@
+<svg viewBox="0 0 240 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-xs">
+    <!-- Center delicate stem vines -->
+    <path d="M120 20 Q150 14 180 20 Q205 24 230 18" stroke="#7A1C28" stroke-width="1.2" stroke-linecap="round" opacity="0.75"/>
+    <path d="M120 20 Q90 14 60 20 Q35 24 10 18" stroke="#7A1C28" stroke-width="1.2" stroke-linecap="round" opacity="0.75"/>
+    <path d="M120 20 Q145 23 175 18" stroke="#D4AF37" stroke-width="0.8" stroke-linecap="round" opacity="0.7"/>
+    <path d="M120 20 Q95 23 65 18" stroke="#D4AF37" stroke-width="0.8" stroke-linecap="round" opacity="0.7"/>
+
+    <!-- Left side leaves -->
+    <path d="M102 18 C95 12 88 12 85 15 C90 18 97 19 102 18Z" fill="#7A1C28" opacity="0.85"/>
+    <path d="M82 20 C76 26 70 26 68 23 C72 20 78 19 82 20Z" fill="#8B2635" opacity="0.85"/>
+    <path d="M58 19 C52 14 46 14 43 17 C48 19 54 20 58 19Z" fill="#7A1C28" opacity="0.85"/>
+    <path d="M38 21 C32 26 26 25 24 22 C28 20 34 20 38 21Z" fill="#8B2635" opacity="0.85"/>
+    <path d="M92 21 C90 25 86 26 84 24 C87 22 90 21 92 21Z" fill="#D4AF37" opacity="0.8"/>
+    <path d="M50 21 C48 25 44 26 42 24 C45 22 48 21 50 21Z" fill="#D4AF37" opacity="0.8"/>
+
+    <!-- Right side leaves -->
+    <path d="M138 18 C145 12 152 12 155 15 C150 18 143 19 138 18Z" fill="#7A1C28" opacity="0.85"/>
+    <path d="M158 20 C164 26 170 26 172 23 C168 20 162 19 158 20Z" fill="#8B2635" opacity="0.85"/>
+    <path d="M182 19 C188 14 194 14 197 17 C192 19 186 20 182 19Z" fill="#7A1C28" opacity="0.85"/>
+    <path d="M202 21 C208 26 214 25 216 22 C212 20 206 20 202 21Z" fill="#8B2635" opacity="0.85"/>
+    <path d="M148 21 C150 25 154 26 156 24 C153 22 150 21 148 21Z" fill="#D4AF37" opacity="0.8"/>
+    <path d="M190 21 C192 25 196 26 198 24 C195 22 192 21 190 21Z" fill="#D4AF37" opacity="0.8"/>
+
+    <!-- Left floret (at x=74, y=19) -->
+    <g transform="translate(74, 19)">
+        <circle cx="0" cy="-3.5" r="2.2" fill="#8B2635"/>
+        <circle cx="3.3" cy="-1.1" r="2.2" fill="#8B2635"/>
+        <circle cx="2" cy="2.8" r="2.2" fill="#8B2635"/>
+        <circle cx="-2" cy="2.8" r="2.2" fill="#8B2635"/>
+        <circle cx="-3.3" cy="-1.1" r="2.2" fill="#8B2635"/>
+        <circle cx="0" cy="0" r="1.3" fill="#E5C378"/>
+    </g>
+
+    <!-- Right floret (at x=166, y=19) -->
+    <g transform="translate(166, 19)">
+        <circle cx="0" cy="-3.5" r="2.2" fill="#8B2635"/>
+        <circle cx="3.3" cy="-1.1" r="2.2" fill="#8B2635"/>
+        <circle cx="2" cy="2.8" r="2.2" fill="#8B2635"/>
+        <circle cx="-2" cy="2.8" r="2.2" fill="#8B2635"/>
+        <circle cx="-3.3" cy="-1.1" r="2.2" fill="#8B2635"/>
+        <circle cx="0" cy="0" r="1.3" fill="#E5C378"/>
+    </g>
+
+    <!-- Center prominent floret (at x=120, y=20) -->
+    <g transform="translate(120, 20)">
+        <circle cx="0" cy="-5" r="3.4" fill="#7A1C28"/>
+        <circle cx="4.8" cy="-1.5" r="3.4" fill="#7A1C28"/>
+        <circle cx="3" cy="4" r="3.4" fill="#7A1C28"/>
+        <circle cx="-3" cy="4" r="3.4" fill="#7A1C28"/>
+        <circle cx="-4.8" cy="-1.5" r="3.4" fill="#7A1C28"/>
+        <circle cx="0" cy="0" r="2" fill="#E5C378"/>
+        <circle cx="0" cy="0" r="1" fill="#D4AF37"/>
+    </g>
+
+    <!-- Golden berries -->
+    <circle cx="110" cy="14" r="1.4" fill="#D4AF37"/>
+    <circle cx="130" cy="14" r="1.4" fill="#D4AF37"/>
+    <circle cx="95" cy="24" r="1.3" fill="#D4AF37"/>
+    <circle cx="145" cy="24" r="1.3" fill="#D4AF37"/>
+    <circle cx="30" cy="16" r="1.3" fill="#D4AF37"/>
+    <circle cx="210" cy="16" r="1.3" fill="#D4AF37"/>
+</svg>
+

@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('invitations', function (Blueprint $table) {
+            if (! Schema::hasColumn('invitations', 'story_photo_3')) {
+                $table->string('story_photo_3')->nullable()->after('story_photo_2');
+            }
+            if (! Schema::hasColumn('invitations', 'story_photo_4')) {
+                $table->string('story_photo_4')->nullable()->after('story_photo_3');
+            }
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('invitations', function (Blueprint $table) {
+            $table->dropColumn(['story_photo_3', 'story_photo_4']);
+        });
+    }
+};

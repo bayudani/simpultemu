@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+    <!-- Graceful Purple Butterflies for Theme 19 Corner Accents -->
+    <defs>
+        <linearGradient id="bfGrad1" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#846B9C"/>
+            <stop offset="100%" stop-color="#C5B2DD"/>
+        </linearGradient>
+        <linearGradient id="bfGrad2" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#9B84BA"/>
+            <stop offset="100%" stop-color="#EADBFA"/>
+        </linearGradient>
+    </defs>
+
+    <!-- Main Butterfly -->
+    <g transform="translate(55, 45) rotate(-22) scale(1.1)">
+        <!-- Top Left Forewing -->
+        <path d="M0,0 C-14,-18 -26,-10 -12,6 C-5,13 0,6 0,0 Z" fill="url(#bfGrad1)"/>
+        <!-- Bottom Left Hindwing -->
+        <path d="M0,0 C-12,7 -17,20 -6,16 C0,13 0,4 0,0 Z" fill="#7A6193" fill-opacity="0.9"/>
+        <!-- Top Right Forewing -->
+        <path d="M0,0 C14,-18 26,-10 12,6 C5,13 0,6 0,0 Z" fill="url(#bfGrad2)"/>
+        <!-- Bottom Right Hindwing -->
+        <path d="M0,0 C12,7 17,20 6,16 C0,13 0,4 0,0 Z" fill="url(#bfGrad1)"/>
+        <!-- Body -->
+        <ellipse cx="0" cy="3" rx="1.8" ry="9" fill="#3D2752"/>
+        <circle cx="0" cy="-6" r="1.6" fill="#3D2752"/>
+        <path d="M-1,-7 C-5,-13 -10,-16 -13,-14" stroke="#3D2752" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <path d="M1,-7 C5,-13 10,-16 13,-14" stroke="#3D2752" stroke-width="1" fill="none" stroke-linecap="round"/>
+    </g>
+
+    <!-- Small Companion Butterfly -->
+    <g transform="translate(22, 20) rotate(15) scale(0.65)">
+        <path d="M0,0 C-12,-16 -22,-8 -10,5 C-4,11 0,5 0,0 Z" fill="url(#bfGrad1)"/>
+        <path d="M0,0 C12,-16 22,-8 10,5 C4,11 0,5 0,0 Z" fill="url(#bfGrad2)"/>
+        <path d="M0,0 C-10,6 -14,16 -5,13 C0,11 0,3 0,0 Z" fill="#7A6193"/>
+        <path d="M0,0 C10,6 14,16 5,13 C0,11 0,3 0,0 Z" fill="url(#bfGrad1)"/>
+        <ellipse cx="0" cy="2" rx="1.4" ry="7" fill="#3D2752"/>
+    </g>
+
+    <!-- Delicate sparkle dots -->
+    <circle cx="78" cy="18" r="1.8" fill="#D8C8EC" opacity="0.8"/>
+    <circle cx="86" cy="32" r="1.2" fill="#C5B2DD" opacity="0.7"/>
+    <circle cx="35" cy="62" r="1.4" fill="#C5B2DD" opacity="0.6"/>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" fill="none">
+    <!-- Center Jewel / Diamond -->
+    <path d="M120 18 L126 26 L120 34 L114 26 Z" fill="#E2E8F0" />
+    <circle cx="120" cy="26" r="2" fill="#1E3A5F" />
+    
+    <!-- Upper Crown / Leaf Flourish -->
+    <path d="M120 10 C122 14 125 18 128 20 C125 21 122 21 120 18 C118 21 115 21 112 20 C115 18 118 14 120 10 Z" fill="#E2E8F0" />
+    
+    <!-- Left Wing / S-Curves -->
+    <path d="M110 26 C95 24 80 20 65 24 C55 26 48 32 40 38 C46 36 54 32 62 30 C75 27 90 29 105 31 Z" fill="#E2E8F0" fill-opacity="0.9" />
+    <path d="M98 22 C85 18 72 17 58 20 C68 22 78 24 88 27 Z" fill="#E2E8F0" fill-opacity="0.6" />
+    <path d="M85 34 C72 37 58 42 45 48 C55 44 68 40 80 37 Z" fill="#E2E8F0" fill-opacity="0.5" />
+    
+    <!-- Right Wing / S-Curves (Symmetrical) -->
+    <path d="M130 26 C145 24 160 20 175 24 C185 26 192 32 200 38 C194 36 186 32 178 30 C165 27 150 29 135 31 Z" fill="#E2E8F0" fill-opacity="0.9" />
+    <path d="M142 22 C155 18 168 17 182 20 C172 22 162 24 152 27 Z" fill="#E2E8F0" fill-opacity="0.6" />
+    <path d="M155 34 C168 37 182 42 195 48 C185 44 172 40 160 37 Z" fill="#E2E8F0" fill-opacity="0.5" />
+    
+    <!-- Delicate dots -->
+    <circle cx="36" cy="39" r="1.5" fill="#E2E8F0" fill-opacity="0.8" />
+    <circle cx="204" cy="39" r="1.5" fill="#E2E8F0" fill-opacity="0.8" />
+</svg>

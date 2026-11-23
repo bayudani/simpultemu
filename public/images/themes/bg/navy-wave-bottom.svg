@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 180" fill="none" preserveAspectRatio="none">
+    <!-- Solid Deep Oceanic Navy at top -->
+    <!-- Layer 1: Solid Deep Oceanic Navy Wave -->
+    <path d="M0,0 L1440,0 L1440,70 C1280,130 1100,50 820,110 C540,170 320,60 0,120 Z" fill="#1E3A5F" />
+    <!-- Layer 2: Mid Slate Blue Wave -->
+    <path d="M0,0 L1440,0 L1440,95 C1360,70 1200,160 880,100 C560,40 260,150 0,90 Z" fill="#2E4D71" fill-opacity="0.55" />
+    <!-- Layer 3: Soft Pale Slate Blue Wave -->
+    <path d="M0,0 L1440,0 L1440,110 C1380,60 1240,130 960,80 C620,20 360,120 0,60 Z" fill="#4B6B94" fill-opacity="0.3" />
+</svg>

@@ -1,0 +1,203 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 90" fill="none">
+    <!-- Gentle Lavender Wildflower Meadow Border for Theme 19 (Soft Lavender Mist) -->
+    <defs>
+        <linearGradient id="lavenderGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#7B619B" stop-opacity="0.9"/>
+            <stop offset="60%" stop-color="#9B84BA" stop-opacity="0.95"/>
+            <stop offset="100%" stop-color="#C5B2DD" stop-opacity="1"/>
+        </linearGradient>
+        <linearGradient id="lavenderLight" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#9A82B8" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="#DFD3EE" stop-opacity="0.95"/>
+        </linearGradient>
+        <linearGradient id="stemGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#736087" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#9584A8" stop-opacity="0.8"/>
+        </linearGradient>
+    </defs>
+
+    <!-- Stems and Grasses -->
+    <path d="M15 90 C 20 65, 18 45, 22 25" stroke="url(#stemGrad)" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M42 90 C 40 70, 48 50, 45 32" stroke="url(#stemGrad)" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M78 90 C 75 60, 85 40, 82 18" stroke="url(#stemGrad)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M110 90 C 112 65, 105 45, 108 28" stroke="url(#stemGrad)" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M145 90 C 142 68, 150 48, 148 22" stroke="url(#stemGrad)" stroke-width="1.9" stroke-linecap="round"/>
+    <path d="M180 90 C 182 62, 175 42, 178 15" stroke="url(#stemGrad)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M215 90 C 218 68, 222 46, 220 30" stroke="url(#stemGrad)" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M255 90 C 250 62, 260 38, 258 12" stroke="url(#stemGrad)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M290 90 C 292 65, 288 45, 290 26" stroke="url(#stemGrad)" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M330 90 C 328 62, 335 38, 332 14" stroke="url(#stemGrad)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M370 90 C 372 66, 368 46, 370 28" stroke="url(#stemGrad)" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M410 90 C 408 60, 418 38, 415 15" stroke="url(#stemGrad)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M450 90 C 452 68, 448 48, 452 30" stroke="url(#stemGrad)" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M485 90 C 482 62, 492 40, 490 18" stroke="url(#stemGrad)" stroke-width="1.9" stroke-linecap="round"/>
+    <path d="M525 90 C 528 66, 522 45, 526 26" stroke="url(#stemGrad)" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M560 90 C 558 60, 565 38, 562 16" stroke="url(#stemGrad)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M585 90 C 588 70, 584 50, 586 35" stroke="url(#stemGrad)" stroke-width="1.4" stroke-linecap="round"/>
+
+    <!-- Lavender Flower Spikes (Pairs of florets) -->
+    <!-- Spike 1 (x: 22) -->
+    <g transform="translate(22, 25)">
+        <ellipse cx="-4" cy="-2" rx="3.5" ry="2" fill="url(#lavenderGrad)" transform="rotate(-25)"/>
+        <ellipse cx="4" cy="-3" rx="3.5" ry="2" fill="url(#lavenderLight)" transform="rotate(25)"/>
+        <ellipse cx="-3" cy="-8" rx="3.2" ry="1.8" fill="url(#lavenderGrad)" transform="rotate(-20)"/>
+        <ellipse cx="3" cy="-9" rx="3.2" ry="1.8" fill="url(#lavenderLight)" transform="rotate(20)"/>
+        <ellipse cx="0" cy="-14" rx="2.5" ry="3" fill="url(#lavenderLight)"/>
+    </g>
+
+    <!-- Spike 2 (x: 45) -->
+    <g transform="translate(45, 32)">
+        <ellipse cx="-3.5" cy="-2" rx="3" ry="1.8" fill="url(#lavenderLight)" transform="rotate(-20)"/>
+        <ellipse cx="3.5" cy="-3" rx="3" ry="1.8" fill="url(#lavenderGrad)" transform="rotate(20)"/>
+        <ellipse cx="-2.5" cy="-7" rx="2.8" ry="1.6" fill="url(#lavenderGrad)"/>
+        <ellipse cx="2.5" cy="-8" rx="2.8" ry="1.6" fill="url(#lavenderLight)"/>
+        <ellipse cx="0" cy="-12" rx="2" ry="2.5" fill="url(#lavenderLight)"/>
+    </g>
+
+    <!-- Spike 3 (Tall, x: 82) -->
+    <g transform="translate(82, 18)">
+        <ellipse cx="-4.5" cy="0" rx="4" ry="2.2" fill="url(#lavenderGrad)" transform="rotate(-30)"/>
+        <ellipse cx="4.5" cy="-1" rx="4" ry="2.2" fill="url(#lavenderLight)" transform="rotate(30)"/>
+        <ellipse cx="-4" cy="-6" rx="3.6" ry="2" fill="url(#lavenderLight)" transform="rotate(-25)"/>
+        <ellipse cx="4" cy="-7" rx="3.6" ry="2" fill="url(#lavenderGrad)" transform="rotate(25)"/>
+        <ellipse cx="-3" cy="-12" rx="3.2" ry="1.8" fill="url(#lavenderGrad)" transform="rotate(-20)"/>
+        <ellipse cx="3" cy="-13" rx="3.2" ry="1.8" fill="url(#lavenderLight)" transform="rotate(20)"/>
+        <ellipse cx="0" cy="-18" rx="2.5" ry="3.5" fill="url(#lavenderLight)"/>
+    </g>
+
+    <!-- Spike 4 (x: 108) -->
+    <g transform="translate(108, 28)">
+        <ellipse cx="-3.5" cy="-2" rx="3.2" ry="1.8" fill="url(#lavenderGrad)" transform="rotate(-20)"/>
+        <ellipse cx="3.5" cy="-3" rx="3.2" ry="1.8" fill="url(#lavenderLight)" transform="rotate(20)"/>
+        <ellipse cx="-3" cy="-8" rx="2.8" ry="1.6" fill="url(#lavenderLight)"/>
+        <ellipse cx="3" cy="-9" rx="2.8" ry="1.6" fill="url(#lavenderGrad)"/>
+        <ellipse cx="0" cy="-14" rx="2.2" ry="2.8" fill="url(#lavenderLight)"/>
+    </g>
+
+    <!-- Spike 5 (x: 148) -->
+    <g transform="translate(148, 22)">
+        <ellipse cx="-4" cy="-1" rx="3.6" ry="2" fill="url(#lavenderGrad)" transform="rotate(-25)"/>
+        <ellipse cx="4" cy="-2" rx="3.6" ry="2" fill="url(#lavenderLight)" transform="rotate(25)"/>
+        <ellipse cx="-3.5" cy="-7" rx="3.2" ry="1.8" fill="url(#lavenderLight)" transform="rotate(-20)"/>
+        <ellipse cx="3.5" cy="-8" rx="3.2" ry="1.8" fill="url(#lavenderGrad)" transform="rotate(20)"/>
+        <ellipse cx="0" cy="-14" rx="2.5" ry="3" fill="url(#lavenderLight)"/>
+    </g>
+
+    <!-- Spike 6 (Tall, x: 178) -->
+    <g transform="translate(178, 15)">
+        <ellipse cx="-4.5" cy="0" rx="4" ry="2.2" fill="url(#lavenderGrad)" transform="rotate(-30)"/>
+        <ellipse cx="4.5" cy="-1" rx="4" ry="2.2" fill="url(#lavenderLight)" transform="rotate(30)"/>
+        <ellipse cx="-4" cy="-6" rx="3.6" ry="2" fill="url(#lavenderLight)" transform="rotate(-25)"/>
+        <ellipse cx="4" cy="-7" rx="3.6" ry="2" fill="url(#lavenderGrad)" transform="rotate(25)"/>
+        <ellipse cx="-3" cy="-12" rx="3.2" ry="1.8" fill="url(#lavenderGrad)" transform="rotate(-20)"/>
+        <ellipse cx="3" cy="-13" rx="3.2" ry="1.8" fill="url(#lavenderLight)" transform="rotate(20)"/>
+        <ellipse cx="0" cy="-18" rx="2.5" ry="3.5" fill="url(#lavenderLight)"/>
+    </g>
+
+    <!-- Spike 7 (x: 220) -->
+    <g transform="translate(220, 30)">
+        <ellipse cx="-3.5" cy="-2" rx="3" ry="1.8" fill="url(#lavenderLight)" transform="rotate(-20)"/>
+        <ellipse cx="3.5" cy="-3" rx="3" ry="1.8" fill="url(#lavenderGrad)" transform="rotate(20)"/>
+        <ellipse cx="0" cy="-10" rx="2.5" ry="3" fill="url(#lavenderLight)"/>
+    </g>
+
+    <!-- Spike 8 (Tall, Center-Left, x: 258) -->
+    <g transform="translate(258, 12)">
+        <ellipse cx="-4.5" cy="0" rx="4.2" ry="2.2" fill="url(#lavenderGrad)" transform="rotate(-30)"/>
+        <ellipse cx="4.5" cy="-1" rx="4.2" ry="2.2" fill="url(#lavenderLight)" transform="rotate(30)"/>
+        <ellipse cx="-4" cy="-6" rx="3.8" ry="2" fill="url(#lavenderLight)" transform="rotate(-25)"/>
+        <ellipse cx="4" cy="-7" rx="3.8" ry="2" fill="url(#lavenderGrad)" transform="rotate(25)"/>
+        <ellipse cx="-3.5" cy="-12" rx="3.2" ry="1.8" fill="url(#lavenderGrad)" transform="rotate(-20)"/>
+        <ellipse cx="3.5" cy="-13" rx="3.2" ry="1.8" fill="url(#lavenderLight)" transform="rotate(20)"/>
+        <ellipse cx="0" cy="-19" rx="2.6" ry="3.6" fill="url(#lavenderLight)"/>
+    </g>
+
+    <!-- Spike 9 (x: 290) -->
+    <g transform="translate(290, 26)">
+        <ellipse cx="-3.5" cy="-2" rx="3.2" ry="1.8" fill="url(#lavenderGrad)" transform="rotate(-20)"/>
+        <ellipse cx="3.5" cy="-3" rx="3.2" ry="1.8" fill="url(#lavenderLight)" transform="rotate(20)"/>
+        <ellipse cx="-3" cy="-7" rx="2.8" ry="1.6" fill="url(#lavenderLight)"/>
+        <ellipse cx="3" cy="-8" rx="2.8" ry="1.6" fill="url(#lavenderGrad)"/>
+        <ellipse cx="0" cy="-13" rx="2.2" ry="2.8" fill="url(#lavenderLight)"/>
+    </g>
+
+    <!-- Spike 10 (Tall, Center-Right, x: 332) -->
+    <g transform="translate(332, 14)">
+        <ellipse cx="-4.5" cy="0" rx="4.2" ry="2.2" fill="url(#lavenderGrad)" transform="rotate(-30)"/>
+        <ellipse cx="4.5" cy="-1" rx="4.2" ry="2.2" fill="url(#lavenderLight)" transform="rotate(30)"/>
+        <ellipse cx="-4" cy="-6" rx="3.8" ry="2" fill="url(#lavenderLight)" transform="rotate(-25)"/>
+        <ellipse cx="4" cy="-7" rx="3.8" ry="2" fill="url(#lavenderGrad)" transform="rotate(25)"/>
+        <ellipse cx="-3.5" cy="-12" rx="3.2" ry="1.8" fill="url(#lavenderGrad)" transform="rotate(-20)"/>
+        <ellipse cx="3.5" cy="-13" rx="3.2" ry="1.8" fill="url(#lavenderLight)" transform="rotate(20)"/>
+        <ellipse cx="0" cy="-19" rx="2.6" ry="3.6" fill="url(#lavenderLight)"/>
+    </g>
+
+    <!-- Spike 11 (x: 370) -->
+    <g transform="translate(370, 28)">
+        <ellipse cx="-3.5" cy="-2" rx="3.2" ry="1.8" fill="url(#lavenderGrad)" transform="rotate(-20)"/>
+        <ellipse cx="3.5" cy="-3" rx="3.2" ry="1.8" fill="url(#lavenderLight)" transform="rotate(20)"/>
+        <ellipse cx="0" cy="-11" rx="2.4" ry="3" fill="url(#lavenderLight)"/>
+    </g>
+
+    <!-- Spike 12 (Tall, x: 415) -->
+    <g transform="translate(415, 15)">
+        <ellipse cx="-4.5" cy="0" rx="4" ry="2.2" fill="url(#lavenderGrad)" transform="rotate(-30)"/>
+        <ellipse cx="4.5" cy="-1" rx="4" ry="2.2" fill="url(#lavenderLight)" transform="rotate(30)"/>
+        <ellipse cx="-4" cy="-6" rx="3.6" ry="2" fill="url(#lavenderLight)" transform="rotate(-25)"/>
+        <ellipse cx="4" cy="-7" rx="3.6" ry="2" fill="url(#lavenderGrad)" transform="rotate(25)"/>
+        <ellipse cx="-3" cy="-12" rx="3.2" ry="1.8" fill="url(#lavenderGrad)" transform="rotate(-20)"/>
+        <ellipse cx="3" cy="-13" rx="3.2" ry="1.8" fill="url(#lavenderLight)" transform="rotate(20)"/>
+        <ellipse cx="0" cy="-18" rx="2.5" ry="3.5" fill="url(#lavenderLight)"/>
+    </g>
+
+    <!-- Spike 13 (x: 452) -->
+    <g transform="translate(452, 30)">
+        <ellipse cx="-3.5" cy="-2" rx="3" ry="1.8" fill="url(#lavenderLight)" transform="rotate(-20)"/>
+        <ellipse cx="3.5" cy="-3" rx="3" ry="1.8" fill="url(#lavenderGrad)" transform="rotate(20)"/>
+        <ellipse cx="0" cy="-10" rx="2.2" ry="2.8" fill="url(#lavenderLight)"/>
+    </g>
+
+    <!-- Spike 14 (x: 490) -->
+    <g transform="translate(490, 18)">
+        <ellipse cx="-4" cy="-1" rx="3.6" ry="2" fill="url(#lavenderGrad)" transform="rotate(-25)"/>
+        <ellipse cx="4" cy="-2" rx="3.6" ry="2" fill="url(#lavenderLight)" transform="rotate(25)"/>
+        <ellipse cx="-3.5" cy="-7" rx="3.2" ry="1.8" fill="url(#lavenderLight)" transform="rotate(-20)"/>
+        <ellipse cx="3.5" cy="-8" rx="3.2" ry="1.8" fill="url(#lavenderGrad)" transform="rotate(20)"/>
+        <ellipse cx="0" cy="-14" rx="2.5" ry="3" fill="url(#lavenderLight)"/>
+    </g>
+
+    <!-- Spike 15 (x: 526) -->
+    <g transform="translate(526, 26)">
+        <ellipse cx="-3.5" cy="-2" rx="3" ry="1.8" fill="url(#lavenderGrad)" transform="rotate(-20)"/>
+        <ellipse cx="3.5" cy="-3" rx="3" ry="1.8" fill="url(#lavenderLight)" transform="rotate(20)"/>
+        <ellipse cx="0" cy="-11" rx="2.2" ry="2.8" fill="url(#lavenderLight)"/>
+    </g>
+
+    <!-- Spike 16 (Tall, x: 562) -->
+    <g transform="translate(562, 16)">
+        <ellipse cx="-4" cy="0" rx="3.8" ry="2.2" fill="url(#lavenderGrad)" transform="rotate(-25)"/>
+        <ellipse cx="4" cy="-1" rx="3.8" ry="2.2" fill="url(#lavenderLight)" transform="rotate(25)"/>
+        <ellipse cx="-3.5" cy="-6" rx="3.4" ry="1.9" fill="url(#lavenderLight)" transform="rotate(-20)"/>
+        <ellipse cx="3.5" cy="-7" rx="3.4" ry="1.9" fill="url(#lavenderGrad)" transform="rotate(20)"/>
+        <ellipse cx="0" cy="-14" rx="2.4" ry="3" fill="url(#lavenderLight)"/>
+    </g>
+
+    <!-- Floating Lavender Butterflies -->
+    <!-- Butterfly 1 (Left) -->
+    <g transform="translate(95, 12) scale(0.7) rotate(-15)">
+        <path d="M0,0 C-8,-10 -14,-4 -6,4 C-2,8 0,4 0,0 Z" fill="#B497D6" fill-opacity="0.9"/>
+        <path d="M0,0 C8,-10 14,-4 6,4 C2,8 0,4 0,0 Z" fill="#D3C0EB" fill-opacity="0.95"/>
+        <path d="M0,0 C-7,4 -10,12 -3,10 C0,8 0,2 0,0 Z" fill="#8F72B5" fill-opacity="0.85"/>
+        <path d="M0,0 C7,4 10,12 3,10 C0,8 0,2 0,0 Z" fill="#A88BCF" fill-opacity="0.9"/>
+        <line x1="0" y1="-6" x2="0" y2="8" stroke="#503572" stroke-width="1.2" stroke-linecap="round"/>
+    </g>
+
+    <!-- Butterfly 2 (Center-Right) -->
+    <g transform="translate(435, 10) scale(0.85) rotate(20)">
+        <path d="M0,0 C-8,-10 -14,-4 -6,4 C-2,8 0,4 0,0 Z" fill="#C5ADE0" fill-opacity="0.95"/>
+        <path d="M0,0 C8,-10 14,-4 6,4 C2,8 0,4 0,0 Z" fill="#E4D6F7" fill-opacity="0.95"/>
+        <path d="M0,0 C-7,4 -10,12 -3,10 C0,8 0,2 0,0 Z" fill="#987CBD" fill-opacity="0.85"/>
+        <path d="M0,0 C7,4 10,12 3,10 C0,8 0,2 0,0 Z" fill="#B59BD9" fill-opacity="0.9"/>
+        <line x1="0" y1="-6" x2="0" y2="8" stroke="#503572" stroke-width="1.2" stroke-linecap="round"/>
+    </g>
+</svg>

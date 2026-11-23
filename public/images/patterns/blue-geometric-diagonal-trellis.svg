@@ -1,0 +1,132 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .diag-line-primary {
+        stroke: #0284C7;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        opacity: 0.95;
+      }
+      .diag-diamond-inner {
+        fill: #DBF6FF;
+        fill-opacity: 0.65;
+        stroke: #0284C7;
+        stroke-width: 1.25;
+        stroke-linejoin: round;
+      }
+      .diag-dashed-inner {
+        fill: #DBF6FF;
+        fill-opacity: 0.85;
+        stroke: #0284C7;
+        stroke-width: 1.0;
+        stroke-dasharray: 2.5 2.5;
+        stroke-linejoin: round;
+      }
+      .diag-accent-line {
+        stroke: #0284C7;
+        stroke-width: 1.25;
+        stroke-linecap: round;
+      }
+      .diag-accent-dash {
+        stroke: #0284C7;
+        stroke-width: 1.0;
+        stroke-dasharray: 2.5 2.5;
+        stroke-linecap: round;
+      }
+      .diag-star-node {
+        fill: #0284C7;
+        opacity: 0.95;
+      }
+    </style>
+  </defs>
+
+  <!-- 1. Seamless Diamond Base Fills (No horizontal/vertical stroke edges) -->
+  <polygon points="40,0 80,40 40,80 0,40" fill="#DBF6FF" fill-opacity="0.38" stroke="none" />
+  <polygon points="0,0 40,0 0,40" fill="#DBF6FF" fill-opacity="0.38" stroke="none" />
+  <polygon points="80,0 40,0 80,40" fill="#DBF6FF" fill-opacity="0.38" stroke="none" />
+  <polygon points="0,80 40,80 0,40" fill="#DBF6FF" fill-opacity="0.38" stroke="none" />
+  <polygon points="80,80 40,80 80,40" fill="#DBF6FF" fill-opacity="0.38" stroke="none" />
+
+  <!-- 2. Primary 45-Degree Continuous Diagonal Grid Lines (Pure Diagonal, ZERO horizontal/vertical lines) -->
+  <!-- Diagonal slope +1 (Top-Left to Bottom-Right) -->
+  <line x1="0" y1="0" x2="80" y2="80" class="diag-line-primary" />
+  <line x1="0" y1="40" x2="40" y2="80" class="diag-line-primary" />
+  <line x1="40" y1="0" x2="80" y2="40" class="diag-line-primary" />
+
+  <!-- Diagonal slope -1 (Bottom-Left to Top-Right) -->
+  <line x1="0" y1="80" x2="80" y2="0" class="diag-line-primary" />
+  <line x1="0" y1="40" x2="40" y2="0" class="diag-line-primary" />
+  <line x1="40" y1="80" x2="80" y2="40" class="diag-line-primary" />
+
+  <!-- 3. Concentric Diagonal Diamonds in Center Cell (Center: 40, 40) -->
+  <!-- Outer concentric diamond (radius 26, 45-degree diamond) -->
+  <polygon points="40,14 66,40 40,66 14,40" class="diag-diamond-inner" />
+
+  <!-- Fine dashed inner diamond (radius 17, 45-degree diamond) -->
+  <polygon points="40,23 57,40 40,57 23,40" class="diag-dashed-inner" />
+
+  <!-- 4. Corner Diagonal Inset Lines (Connecting seamlessly across adjacent tiles) -->
+  <!-- Radius 26 diagonal lines -->
+  <line x1="0" y1="26" x2="26" y2="0" class="diag-accent-line" />
+  <line x1="54" y1="0" x2="80" y2="26" class="diag-accent-line" />
+  <line x1="0" y1="54" x2="26" y2="80" class="diag-accent-line" />
+  <line x1="54" y1="80" x2="80" y2="54" class="diag-accent-line" />
+
+  <!-- Radius 17 dashed diagonal lines -->
+  <line x1="0" y1="17" x2="17" y2="0" class="diag-accent-dash" />
+  <line x1="63" y1="0" x2="80" y2="17" class="diag-accent-dash" />
+  <line x1="0" y1="63" x2="17" y2="80" class="diag-accent-dash" />
+  <line x1="63" y1="80" x2="80" y2="63" class="diag-accent-dash" />
+
+  <!-- 5. Elegant Star Rosettes at Intersections -->
+  <!-- Center Star at (40, 40) -->
+  <polygon points="40,30 42.5,40 40,50 37.5,40" class="diag-star-node" />
+  <polygon points="30,40 40,37.5 50,40 40,42.5" class="diag-star-node" />
+  <polygon points="33,33 40,38.5 47,47 38.5,40" class="diag-star-node" opacity="0.75" />
+  <polygon points="47,33 40,38.5 33,47 38.5,40" class="diag-star-node" opacity="0.75" />
+  <circle cx="40" cy="40" r="3" class="diag-star-node" />
+  <circle cx="40" cy="40" r="1.5" fill="#DBF6FF" />
+
+  <!-- Diagonal Intersection Nodes: (40,0), (80,40), (40,80), (0,40) -->
+  <!-- Top Node (40, 0) -->
+  <polygon points="40,-7 42,0 40,7 38,0" class="diag-star-node" />
+  <polygon points="33,0 40,-2 47,0 40,2" class="diag-star-node" />
+  <circle cx="40" cy="0" r="2.5" class="diag-star-node" />
+
+  <!-- Bottom Node (40, 80) -->
+  <polygon points="40,73 42,80 40,87 38,80" class="diag-star-node" />
+  <polygon points="33,80 40,78 47,80 40,82" class="diag-star-node" />
+  <circle cx="40" cy="80" r="2.5" class="diag-star-node" />
+
+  <!-- Left Node (0, 40) -->
+  <polygon points="0,33 2,40 0,47 -2,40" class="diag-star-node" />
+  <polygon points="-7,40 0,38 7,40 0,42" class="diag-star-node" />
+  <circle cx="0" cy="40" r="2.5" class="diag-star-node" />
+
+  <!-- Right Node (80, 40) -->
+  <polygon points="80,33 82,40 80,47 78,40" class="diag-star-node" />
+  <polygon points="73,40 80,38 87,40 80,42" class="diag-star-node" />
+  <circle cx="80" cy="40" r="2.5" class="diag-star-node" />
+
+  <!-- Corner Star Nodes: (0,0), (80,0), (0,80), (80,80) -->
+  <!-- Top-Left (0, 0) -->
+  <polygon points="0,-6 1.8,0 0,6 -1.8,0" class="diag-star-node" />
+  <polygon points="-6,0 0,-1.8 6,0 0,1.8" class="diag-star-node" />
+  <circle cx="0" cy="0" r="2.2" class="diag-star-node" />
+
+  <!-- Top-Right (80, 0) -->
+  <polygon points="80,-6 81.8,0 80,6 78.2,0" class="diag-star-node" />
+  <polygon points="74,0 80,-1.8 86,0 80,1.8" class="diag-star-node" />
+  <circle cx="80" cy="0" r="2.2" class="diag-star-node" />
+
+  <!-- Bottom-Left (0, 80) -->
+  <polygon points="0,74 1.8,80 0,86 -1.8,80" class="diag-star-node" />
+  <polygon points="-6,80 0,78.2 6,80 0,81.8" class="diag-star-node" />
+  <circle cx="0" cy="80" r="2.2" class="diag-star-node" />
+
+  <!-- Bottom-Right (80, 80) -->
+  <polygon points="80,74 81.8,80 80,86 78.2,80" class="diag-star-node" />
+  <polygon points="74,80 80,78.2 86,80 80,81.8" class="diag-star-node" />
+  <circle cx="80" cy="80" r="2.2" class="diag-star-node" />
+</svg>

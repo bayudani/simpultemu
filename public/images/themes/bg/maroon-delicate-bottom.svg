@@ -1,0 +1,51 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-xs">
+    <!-- Gentle curving vine stems -->
+    <path d="M95 88 Q75 90 55 82 Q18 65 15 25" stroke="#7A1C28" stroke-width="1.2" stroke-linecap="round" opacity="0.75"/>
+    <path d="M60 84 Q25 70 20 40" stroke="#D4AF37" stroke-width="0.9" stroke-linecap="round" opacity="0.7"/>
+
+    <!-- Slender Botanical Leaves (Maroon & Soft Gold) -->
+    <path d="M70 86 C78 90 82 88 84 85 C80 82 74 84 70 86Z" fill="#7A1C28" opacity="0.85"/>
+    <path d="M44 84 C42 92 36 94 33 92 C35 86 41 84 44 84Z" fill="#7A1C28" opacity="0.85"/>
+    <path d="M18 76 C12 82 6 82 4 78 C8 74 14 74 18 76Z" fill="#8B2635" opacity="0.85"/>
+    <path d="M12 52 C5 52 2 48 3 44 C8 44 12 48 12 52Z" fill="#7A1C28" opacity="0.85"/>
+    <path d="M13 18 C7 16 6 12 8 9 C12 10 14 14 13 18Z" fill="#7A1C28" opacity="0.85"/>
+    <path d="M52 76 C48 72 44 72 45 75 C48 78 52 76 52 76Z" fill="#D4AF37" opacity="0.8"/>
+    <path d="M22 48 C16 44 14 40 16 39 C19 41 22 45 22 48Z" fill="#D4AF37" opacity="0.8"/>
+
+    <!-- Dainty Flower 1 (Corner Shoulder - Diameter ~15px) -->
+    <g transform="translate(36, 70)">
+        <circle cx="0" cy="-5" r="3.2" fill="#7A1C28"/>
+        <circle cx="4.8" cy="-1.5" r="3.2" fill="#7A1C28"/>
+        <circle cx="3" cy="4" r="3.2" fill="#7A1C28"/>
+        <circle cx="-3" cy="4" r="3.2" fill="#7A1C28"/>
+        <circle cx="-4.8" cy="-1.5" r="3.2" fill="#7A1C28"/>
+        <circle cx="0" cy="0" r="1.8" fill="#E5C378"/>
+    </g>
+
+    <!-- Dainty Flower 2 (Bottom Curve - Diameter ~12px) -->
+    <g transform="translate(68, 85)">
+        <circle cx="0" cy="-4" r="2.5" fill="#8B2635"/>
+        <circle cx="3.8" cy="-1.2" r="2.5" fill="#8B2635"/>
+        <circle cx="2.4" cy="3.2" r="2.5" fill="#8B2635"/>
+        <circle cx="-2.4" cy="3.2" r="2.5" fill="#8B2635"/>
+        <circle cx="-3.8" cy="-1.2" r="2.5" fill="#8B2635"/>
+        <circle cx="0" cy="0" r="1.4" fill="#E5C378"/>
+    </g>
+
+    <!-- Dainty Flower 3 (Left Upward Curve - Diameter ~9px) -->
+    <g transform="translate(20, 42)">
+        <circle cx="0" cy="-3" r="2" fill="#7A1C28"/>
+        <circle cx="2.8" cy="-1" r="2" fill="#7A1C28"/>
+        <circle cx="1.8" cy="2.5" r="2" fill="#7A1C28"/>
+        <circle cx="-1.8" cy="2.5" r="2" fill="#7A1C28"/>
+        <circle cx="-2.8" cy="-1" r="2" fill="#7A1C28"/>
+        <circle cx="0" cy="0" r="1.1" fill="#E5C378"/>
+    </g>
+
+    <!-- Golden Berry Accents -->
+    <circle cx="80" cy="82" r="1.5" fill="#D4AF37"/>
+    <circle cx="42" cy="88" r="1.5" fill="#D4AF37"/>
+    <circle cx="8" cy="62" r="1.8" fill="#D4AF37"/>
+    <circle cx="6" cy="26" r="1.5" fill="#D4AF37"/>
+</svg>
+

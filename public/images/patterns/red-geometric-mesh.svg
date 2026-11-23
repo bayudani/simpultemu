@@ -1,0 +1,56 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .mesh-circle {
+        fill: #DBF6FF;
+        fill-opacity: 0.35;
+        stroke: #0284C7;
+        stroke-width: 1.4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .mesh-inner {
+        fill: #DBF6FF;
+        fill-opacity: 0.65;
+        stroke: #0284C7;
+        stroke-width: 1.1;
+        stroke-dasharray: 2 3;
+      }
+      .mesh-accent {
+        fill: #0284C7;
+        opacity: 0.95;
+      }
+    </style>
+  </defs>
+  
+  <!-- Interlocking circles / petals forming the classic Shippo geometric floral lattice -->
+  <!-- Centers -->
+  <circle cx="32" cy="32" r="32" class="mesh-circle" />
+  
+  <!-- Corner circles -->
+  <circle cx="0" cy="0" r="32" class="mesh-circle" />
+  <circle cx="64" cy="0" r="32" class="mesh-circle" />
+  <circle cx="0" cy="64" r="32" class="mesh-circle" />
+  <circle cx="64" cy="64" r="32" class="mesh-circle" />
+  
+  <!-- Secondary inner petals / geometric rings with bright #DBF6FF fill -->
+  <circle cx="32" cy="32" r="16" class="mesh-inner" />
+  <circle cx="0" cy="0" r="16" class="mesh-inner" />
+  <circle cx="64" cy="0" r="16" class="mesh-inner" />
+  <circle cx="0" cy="64" r="16" class="mesh-inner" />
+  <circle cx="64" cy="64" r="16" class="mesh-inner" />
+  
+  <!-- Diamond star centers at petal intersections -->
+  <polygon points="32,27 35,32 32,37 29,32" class="mesh-accent" />
+  <polygon points="0,27 3,32 0,37 -3,32" class="mesh-accent" />
+  <polygon points="64,27 67,32 64,37 61,32" class="mesh-accent" />
+  <polygon points="32,-5 35,0 32,5 29,0" class="mesh-accent" />
+  <polygon points="32,59 35,64 32,69 29,64" class="mesh-accent" />
+  
+  <!-- Center four-dot floral pistil -->
+  <circle cx="32" cy="32" r="2.5" class="mesh-accent" />
+  <circle cx="0" cy="0" r="2.5" class="mesh-accent" />
+  <circle cx="64" cy="0" r="2.5" class="mesh-accent" />
+  <circle cx="0" cy="64" r="2.5" class="mesh-accent" />
+  <circle cx="64" cy="64" r="2.5" class="mesh-accent" />
+</svg>

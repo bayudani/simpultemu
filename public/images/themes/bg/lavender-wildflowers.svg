@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80" fill="none">
+    <!-- Gentle Botanical Lavender Sprigs & Butterfly Divider for Theme 19 -->
+    <defs>
+        <linearGradient id="lavPetal" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#8E75AC"/>
+            <stop offset="100%" stop-color="#CBB7E2"/>
+        </linearGradient>
+        <linearGradient id="lavPetalLight" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#A58EC1"/>
+            <stop offset="100%" stop-color="#EBE0F7"/>
+        </linearGradient>
+    </defs>
+
+    <!-- Center Soft Butterfly -->
+    <g transform="translate(120, 26) scale(0.95)">
+        <!-- Left Wings -->
+        <path d="M0,0 C-10,-12 -18,-5 -8,5 C-3,10 0,5 0,0 Z" fill="url(#lavPetal)"/>
+        <path d="M0,0 C-9,5 -12,14 -4,12 C0,10 0,3 0,0 Z" fill="#7E639E" fill-opacity="0.9"/>
+        <!-- Right Wings -->
+        <path d="M0,0 C10,-12 18,-5 8,5 C3,10 0,5 0,0 Z" fill="url(#lavPetalLight)"/>
+        <path d="M0,0 C9,5 12,14 4,12 C0,10 0,3 0,0 Z" fill="url(#lavPetal)"/>
+        <!-- Body & Antennae -->
+        <ellipse cx="0" cy="2" rx="1.2" ry="7" fill="#4A3366"/>
+        <path d="M0,-4 C-3,-9 -6,-11 -8,-10" stroke="#4A3366" stroke-width="0.8" fill="none"/>
+        <path d="M0,-4 C3,-9 6,-11 8,-10" stroke="#4A3366" stroke-width="0.8" fill="none"/>
+    </g>
+
+    <!-- Left Floral Sprig (arching left) -->
+    <path d="M102 36 C 80 40, 50 38, 20 46" stroke="#9E8BB3" stroke-width="1.4" stroke-linecap="round"/>
+    <g transform="translate(45, 40) rotate(-15)">
+        <ellipse cx="-4" cy="-2" rx="3.5" ry="1.8" fill="url(#lavPetal)" transform="rotate(-30)"/>
+        <ellipse cx="4" cy="-2" rx="3.5" ry="1.8" fill="url(#lavPetalLight)" transform="rotate(30)"/>
+        <ellipse cx="-3" cy="-7" rx="3" ry="1.6" fill="url(#lavPetal)" transform="rotate(-20)"/>
+        <ellipse cx="3" cy="-7" rx="3" ry="1.6" fill="url(#lavPetalLight)" transform="rotate(20)"/>
+        <ellipse cx="0" cy="-12" rx="2" ry="2.6" fill="url(#lavPetalLight)"/>
+    </g>
+    <g transform="translate(25, 45) rotate(-25)">
+        <ellipse cx="-3" cy="-1" rx="2.8" ry="1.5" fill="url(#lavPetal)"/>
+        <ellipse cx="3" cy="-1" rx="2.8" ry="1.5" fill="url(#lavPetalLight)"/>
+        <ellipse cx="0" cy="-6" rx="1.8" ry="2.2" fill="url(#lavPetalLight)"/>
+    </g>
+    <!-- Left Leaves -->
+    <path d="M75 39 C 68 34, 60 38, 55 37" stroke="#7A6891" stroke-width="1.1" stroke-linecap="round"/>
+    <ellipse cx="62" cy="36" rx="4" ry="1.5" fill="#A896BE" transform="rotate(-15 62 36)"/>
+
+    <!-- Right Floral Sprig (arching right) -->
+    <path d="M138 36 C 160 40, 190 38, 220 46" stroke="#9E8BB3" stroke-width="1.4" stroke-linecap="round"/>
+    <g transform="translate(195, 40) rotate(15)">
+        <ellipse cx="-4" cy="-2" rx="3.5" ry="1.8" fill="url(#lavPetal)" transform="rotate(-30)"/>
+        <ellipse cx="4" cy="-2" rx="3.5" ry="1.8" fill="url(#lavPetalLight)" transform="rotate(30)"/>
+        <ellipse cx="-3" cy="-7" rx="3" ry="1.6" fill="url(#lavPetal)" transform="rotate(-20)"/>
+        <ellipse cx="3" cy="-7" rx="3" ry="1.6" fill="url(#lavPetalLight)" transform="rotate(20)"/>
+        <ellipse cx="0" cy="-12" rx="2" ry="2.6" fill="url(#lavPetalLight)"/>
+    </g>
+    <g transform="translate(215, 45) rotate(25)">
+        <ellipse cx="-3" cy="-1" rx="2.8" ry="1.5" fill="url(#lavPetal)"/>
+        <ellipse cx="3" cy="-1" rx="2.8" ry="1.5" fill="url(#lavPetalLight)"/>
+        <ellipse cx="0" cy="-6" rx="1.8" ry="2.2" fill="url(#lavPetalLight)"/>
+    </g>
+    <!-- Right Leaves -->
+    <path d="M165 39 C 172 34, 180 38, 185 37" stroke="#7A6891" stroke-width="1.1" stroke-linecap="round"/>
+    <ellipse cx="178" cy="36" rx="4" ry="1.5" fill="#A896BE" transform="rotate(15 178 36)"/>
+</svg>

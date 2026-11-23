@@ -1,0 +1,79 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .lattice-bg {
+        fill: #DBF6FF;
+        fill-opacity: 0.40;
+        stroke: #0284C7;
+        stroke-width: 1.4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .lattice-line {
+        fill: #DBF6FF;
+        fill-opacity: 0.70;
+        stroke: #0284C7;
+        stroke-width: 1.25;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .lattice-dash {
+        fill: #DBF6FF;
+        fill-opacity: 0.95;
+        stroke: #0284C7;
+        stroke-width: 1;
+        stroke-dasharray: 2 3;
+      }
+      .lattice-accent {
+        fill: #0284C7;
+        opacity: 0.95;
+      }
+    </style>
+  </defs>
+
+  <!-- Primary Diamond Grid Structure with #DBF6FF Light Blue fill and #0284C7 Outline -->
+  <!-- Center Main Diamond -->
+  <polygon points="32,0 64,32 32,64 0,32" class="lattice-bg" />
+
+  <!-- Corner Quarter-Diamonds -->
+  <polygon points="0,0 32,0 0,32" class="lattice-bg" />
+  <polygon points="64,0 32,0 64,32" class="lattice-bg" />
+  <polygon points="0,64 32,64 0,32" class="lattice-bg" />
+  <polygon points="64,64 32,64 64,32" class="lattice-bg" />
+
+  <!-- Inner Concentric Diamond Trellis -->
+  <polygon points="32,12 52,32 32,52 12,32" class="lattice-line" />
+  <polygon points="0,0 16,0 0,16" class="lattice-line" />
+  <polygon points="64,0 48,0 64,16" class="lattice-line" />
+  <polygon points="0,64 16,64 0,48" class="lattice-line" />
+  <polygon points="64,64 48,64 64,48" class="lattice-line" />
+
+  <!-- Fine Inner Dashed Geometric Accents -->
+  <polygon points="32,20 44,32 32,44 20,32" class="lattice-dash" />
+  <line x1="32" y1="0" x2="32" y2="12" class="lattice-dash" />
+  <line x1="32" y1="52" x2="32" y2="64" class="lattice-dash" />
+  <line x1="0" y1="32" x2="12" y2="32" class="lattice-dash" />
+  <line x1="52" y1="32" x2="64" y2="32" class="lattice-dash" />
+
+  <!-- Eight-Point Diamond Star Accents at Center -->
+  <polygon points="32,24 35,32 32,40 29,32" class="lattice-accent" />
+  <polygon points="24,32 32,29 40,32 32,35" class="lattice-accent" />
+  <circle cx="32" cy="32" r="2.5" class="lattice-accent" />
+
+  <!-- Corner Star Intersections -->
+  <polygon points="0,-8 3,0 0,8 -3,0" class="lattice-accent" />
+  <polygon points="-8,0 0,-3 8,0 0,3" class="lattice-accent" />
+  <circle cx="0" cy="0" r="2.5" class="lattice-accent" />
+
+  <polygon points="64,-8 67,0 64,8 61,0" class="lattice-accent" />
+  <polygon points="56,0 64,-3 72,0 64,3" class="lattice-accent" />
+  <circle cx="64" cy="0" r="2.5" class="lattice-accent" />
+
+  <polygon points="0,56 3,64 0,72 -3,64" class="lattice-accent" />
+  <polygon points="-8,64 0,61 8,64 0,67" class="lattice-accent" />
+  <circle cx="0" cy="64" r="2.5" class="lattice-accent" />
+
+  <polygon points="64,56 67,64 64,72 61,64" class="lattice-accent" />
+  <polygon points="56,64 64,61 72,64 64,67" class="lattice-accent" />
+  <circle cx="64" cy="64" r="2.5" class="lattice-accent" />
+</svg>

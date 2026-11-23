@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 180" fill="none" preserveAspectRatio="none">
+    <!-- Layer 1: Soft Pale Ice / Slate Blue Wave (30% opacity) -->
+    <path d="M0,60 C320,130 540,20 820,70 C1100,120 1280,40 1440,90 L1440,180 L0,180 Z" fill="#4B6B94" fill-opacity="0.3" />
+    <!-- Layer 2: Mid Slate Blue Wave (55% opacity) -->
+    <path d="M0,90 C260,30 560,140 880,80 C1200,20 1360,110 1440,85 L1440,180 L0,180 Z" fill="#2E4D71" fill-opacity="0.55" />
+    <!-- Layer 3: Solid Deep Oceanic Navy Wave (100% opacity) -->
+    <path d="M0,120 C360,60 620,160 960,100 C1240,50 1380,120 1440,110 L1440,180 L0,180 Z" fill="#1E3A5F" />
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 28" fill="none">
+    <defs>
+        <linearGradient id="ringGold" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#F7EED3" />
+            <stop offset="30%" stop-color="#DEBA65" />
+            <stop offset="60%" stop-color="#C59B3F" />
+            <stop offset="85%" stop-color="#E9CD7E" />
+            <stop offset="100%" stop-color="#A57A22" />
+        </linearGradient>
+    </defs>
+    <!-- Left Thin Horizontal Extended Bar -->
+    <line x1="10" y1="14" x2="100" y2="14" stroke="url(#ringGold)" stroke-width="1.2" stroke-linecap="round"/>
+    <circle cx="10" cy="14" r="1.5" fill="url(#ringGold)" />
+    <circle cx="98" cy="14" r="1.5" fill="url(#ringGold)" />
+
+    <!-- Right Thin Horizontal Extended Bar -->
+    <line x1="140" y1="14" x2="230" y2="14" stroke="url(#ringGold)" stroke-width="1.2" stroke-linecap="round"/>
+    <circle cx="142" cy="14" r="1.5" fill="url(#ringGold)" />
+    <circle cx="230" cy="14" r="1.5" fill="url(#ringGold)" />
+
+    <!-- Center Interlocking Double Wedding Rings -->
+    <!-- Left Ring -->
+    <ellipse cx="114" cy="14" rx="8" ry="9" stroke="url(#ringGold)" stroke-width="1.8" fill="none"/>
+    <ellipse cx="114" cy="14" rx="6" ry="7" stroke="url(#ringGold)" stroke-width="0.8" opacity="0.6" fill="none"/>
+
+    <!-- Right Ring -->
+    <ellipse cx="126" cy="14" rx="8" ry="9" stroke="url(#ringGold)" stroke-width="1.8" fill="none"/>
+    <ellipse cx="126" cy="14" rx="6" ry="7" stroke="url(#ringGold)" stroke-width="0.8" opacity="0.6" fill="none"/>
+
+    <!-- Diamond / Gem accent on top of left ring -->
+    <polygon points="114,3.5 116.5,6 114,8.5 111.5,6" fill="url(#ringGold)"/>
+</svg>

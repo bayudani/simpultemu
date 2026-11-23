@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 56" fill="none">
+    <defs>
+        <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#F3E7C4" />
+            <stop offset="25%" stop-color="#DFBA68" />
+            <stop offset="50%" stop-color="#C59B3F" />
+            <stop offset="75%" stop-color="#E2C172" />
+            <stop offset="100%" stop-color="#A67C24" />
+        </linearGradient>
+        <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="1" stdDeviation="1" flood-color="#84621A" flood-opacity="0.35"/>
+        </filter>
+    </defs>
+    <g filter="url(#goldGlow)" fill="url(#goldGrad)">
+        <!-- Center Crown Arch Dome -->
+        <path d="M80 8C75 14 71 19 65 21C64 16 67 11 72 8C75 6 78 5 80 5C82 5 85 6 88 8C93 11 96 16 95 21C89 19 85 14 80 8Z" />
+        <circle cx="80" cy="4" r="2.5" />
+        
+        <!-- Center Jewels & Scrollwork -->
+        <path d="M80 18C77 22 73 24 68 25C70 29 74 32 80 34C86 32 90 29 92 25C87 24 83 22 80 18Z" opacity="0.95" />
+        <circle cx="80" cy="26" r="2" />
+        
+        <!-- Left Flourish Wings -->
+        <path d="M64 21C58 22 52 20 48 16C46 14 44 11 41 12C38 13 38 17 41 20C45 24 51 26 58 26C60 26 62 25 64 24V21Z" />
+        <path d="M56 28C48 29 41 26 36 21C34 19 32 17 30 18C28 19 28 22 31 24C36 29 44 32 53 32C55 32 57 31 59 30L56 28Z" />
+        <path d="M46 34C38 35 32 32 27 27C24 24 21 21 18 24C16 26 17 29 20 31C26 36 34 39 44 38C46 38 48 37 50 36L46 34Z" />
+        <circle cx="17" cy="24" r="2" />
+        <circle cx="28" cy="18" r="1.5" />
+
+        <!-- Right Flourish Wings (Mirrored) -->
+        <path d="M96 21C102 22 108 20 112 16C114 14 116 11 119 12C122 13 122 17 119 20C115 24 109 26 102 26C100 26 98 25 96 24V21Z" />
+        <path d="M104 28C112 29 119 26 124 21C126 19 128 17 130 18C132 19 132 22 129 24C124 29 116 32 107 32C105 32 103 31 101 30L104 28Z" />
+        <path d="M114 34C122 35 128 32 133 27C136 24 139 21 142 24C144 26 143 29 140 31C134 36 126 39 116 38C114 38 112 37 110 36L114 34Z" />
+        <circle cx="143" cy="24" r="2" />
+        <circle cx="132" cy="18" r="1.5" />
+
+        <!-- Bottom Base Swirls -->
+        <path d="M80 37C73 37 66 35 60 33C58 35 61 38 65 39C70 41 75 42 80 42C85 42 90 41 95 39C99 38 102 35 100 33C94 35 87 37 80 37Z" />
+        <path d="M80 44C76 44 72 45 68 47C66 48 67 50 70 50C73 49 76 48 80 48C84 48 87 49 90 50C93 50 94 48 92 47C88 45 84 44 80 44Z" />
+        <circle cx="80" cy="51" r="1.5" />
+    </g>
+</svg>

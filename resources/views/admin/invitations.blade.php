@@ -1,6 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title', 'Daftar Seluruh Undangan - Admin')
+@section('container_max_width', 'max-w-[1720px] w-full')
 
 @section('content')
 <div class="space-y-6">
@@ -55,30 +56,30 @@
 
     <!-- Invitations Table Card -->
     <div class="bg-white rounded-2xl border border-slate-200/80 shadow-xs overflow-hidden">
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto relative">
             <table class="w-full text-left text-sm">
                 <thead>
-                    <tr class="bg-slate-50/75 border-b border-slate-200 text-slate-500 text-xs font-bold uppercase tracking-wider">
-                        <th class="py-3.5 px-5">Undangan &amp; Pasangan</th>
-                        <th class="py-3.5 px-4">Pemilik Akun</th>
-                        <th class="py-3.5 px-4">Tema Digunakan</th>
-                        <th class="py-3.5 px-4">Tanggal Acara</th>
-                        <th class="py-3.5 px-4">Status</th>
-                        <th class="py-3.5 px-4 text-center">Ucapan</th>
-                        <th class="py-3.5 px-5 text-right">Aksi</th>
+                    <tr class="bg-slate-50/90 border-b border-slate-100 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                        <th class="py-3.5 px-4 sm:px-5">Undangan &amp; Pasangan</th>
+                        <th class="py-3.5 px-3">Pemilik Akun</th>
+                        <th class="py-3.5 px-3">Tema Digunakan</th>
+                        <th class="py-3.5 px-3">Tanggal Acara</th>
+                        <th class="py-3.5 px-3">Status</th>
+                        <th class="py-3.5 px-3 text-center">Ucapan</th>
+                        <th class="py-3.5 px-4 text-right whitespace-nowrap sticky right-0 bg-slate-50/95 backdrop-blur-xs z-10 shadow-[-6px_0_10px_-4px_rgba(0,0,0,0.06)]">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
                     @forelse($invitations as $inv)
-                    <tr class="hover:bg-slate-50/80 transition">
+                    <tr class="hover:bg-slate-50/70 transition group">
                         <!-- Invitation Title & Couple -->
-                        <td class="py-4 px-5">
+                        <td class="py-3 px-4 sm:px-5">
                             <div class="font-bold text-slate-900">{{ $inv->title ?? ($inv->groom_name . ' & ' . $inv->bride_name) }}</div>
                             <div class="text-xs text-slate-500 font-mono mt-0.5">/undangan/{{ $inv->slug }}</div>
                         </td>
 
                         <!-- Creator -->
-                        <td class="py-4 px-4 whitespace-nowrap">
+                        <td class="py-3 px-3 whitespace-nowrap">
                             @if($inv->user)
                             <div class="font-semibold text-slate-800 text-xs">{{ $inv->user->name }}</div>
                             <div class="text-[11px] text-slate-400">{{ $inv->user->email }}</div>
@@ -88,10 +89,10 @@
                         </td>
 
                         <!-- Theme -->
-                        <td class="py-4 px-4 whitespace-nowrap">
+                        <td class="py-3 px-3 whitespace-nowrap">
                             @if($inv->theme)
                             <div class="flex items-center gap-1.5">
-                                <span class="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase {{ $inv->theme->tier === 'premium' ? 'bg-amber-100 text-amber-800' : 'bg-slate-100 text-slate-700' }}">
+                                <span class="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase {{ $inv->theme->tier === 'premium' ? 'bg-amber-100 text-amber-800 border border-amber-200' : 'bg-slate-100 text-slate-700' }}">
                                     {{ $inv->theme->tier }}
                                 </span>
                                 <span class="text-xs font-medium text-slate-800">{{ $inv->theme->name }}</span>
@@ -102,34 +103,34 @@
                         </td>
 
                         <!-- Event Date -->
-                        <td class="py-4 px-4 whitespace-nowrap text-xs text-slate-600">
+                        <td class="py-3 px-3 whitespace-nowrap text-xs text-slate-600">
                             <div>{{ $inv->event_date ? date('d M Y', strtotime($inv->event_date)) : '-' }}</div>
-                            <div class="text-[11px] text-slate-400 truncate max-w-[140px]">{{ $inv->venue ?? '-' }}</div>
+                            <div class="text-[11px] text-slate-400 truncate max-w-[160px]">{{ $inv->venue ?? '-' }}</div>
                         </td>
 
                         <!-- Status Badge -->
-                        <td class="py-4 px-4 whitespace-nowrap">
+                        <td class="py-3 px-3 whitespace-nowrap">
                             @if($inv->status === 'published')
-                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
+                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
                                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                                 Published
                             </span>
                             @else
-                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600">
+                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600">
                                 Draft
                             </span>
                             @endif
                         </td>
 
                         <!-- Comments Count -->
-                        <td class="py-4 px-4 text-center whitespace-nowrap">
-                            <span class="inline-block px-2 py-0.5 rounded-lg bg-slate-100 text-slate-700 font-semibold text-xs">
+                        <td class="py-3 px-3 text-center whitespace-nowrap">
+                            <span class="inline-block px-2.5 py-0.5 rounded-lg bg-slate-100 text-slate-700 font-semibold text-xs">
                                 {{ $inv->comments_count }}
                             </span>
                         </td>
 
                         <!-- Actions -->
-                        <td class="py-4 px-5 text-right whitespace-nowrap">
+                        <td class="py-3 px-4 text-right whitespace-nowrap sticky right-0 bg-white group-hover:bg-slate-50/90 transition z-10 shadow-[-6px_0_10px_-4px_rgba(0,0,0,0.06)]">
                             <div class="flex items-center justify-end gap-1.5">
                                 <!-- Preview Link -->
                                 <a href="{{ route('invitation.show', $inv->slug) }}" target="_blank" class="p-1.5 rounded-lg border border-slate-200 text-slate-600 hover:text-blue-600 hover:bg-blue-50 transition" title="Lihat Undangan">

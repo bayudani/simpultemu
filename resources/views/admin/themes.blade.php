@@ -1,6 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title', 'Manajemen Tema & Musik - Admin')
+@section('container_max_width', 'max-w-[1720px] w-full')
 
 @section('content')
 <div class="space-y-6">
@@ -69,71 +70,71 @@
         </form>
     </div>
 
-    <!-- Themes Grid Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <!-- Themes Grid Cards (5 Kolom Desktop & 3 Kolom Smartphone Sesuai Permintaan) -->
+    <div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3.5 lg:gap-4 xl:gap-5">
         @forelse($themes as $theme)
-        <div class="bg-white rounded-2xl border border-slate-200/80 shadow-xs overflow-hidden flex flex-col justify-between hover:shadow-md transition-all group">
+        <div class="bg-white rounded-xl sm:rounded-2xl border border-slate-200/80 shadow-xs overflow-hidden flex flex-col justify-between hover:shadow-md transition-all group">
             <!-- Top Part -->
             <div>
                 <!-- Mockup Preview Banner Header -->
-                <div class="relative h-44 bg-slate-100 overflow-hidden flex items-center justify-center border-b border-slate-100">
-                    <div class="w-24 h-40 transform scale-90 -translate-y-2 pointer-events-none">
+                <div class="relative h-28 sm:h-36 md:h-40 lg:h-44 bg-slate-100 overflow-hidden flex items-center justify-center border-b border-slate-100">
+                    <div class="w-20 h-32 sm:w-24 sm:h-40 transform scale-75 sm:scale-80 lg:scale-90 -translate-y-1 sm:-translate-y-2 pointer-events-none">
                         @include('partials.theme-phone-mockup', ['theme' => $theme])
                     </div>
                     
                     <!-- Top Badges -->
-                    <div class="absolute top-3 left-3 flex items-center gap-1.5">
-                        <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider {{ $theme->tier === 'premium' ? 'bg-amber-500 text-white shadow-xs' : 'bg-slate-800 text-white' }}">
+                    <div class="absolute top-1.5 sm:top-2.5 left-1.5 sm:left-2.5 flex items-center gap-1 sm:gap-1.5">
+                        <span class="px-1.5 sm:px-2 py-0.5 rounded-full text-[8px] sm:text-[10px] font-bold uppercase tracking-wider {{ $theme->tier === 'premium' ? 'bg-amber-500 text-white shadow-xs' : 'bg-slate-800 text-white' }}">
                             {{ $theme->tier }}
                         </span>
-                        <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-white/90 backdrop-blur-xs text-slate-700 shadow-2xs">
+                        <span class="px-1 sm:px-1.5 py-0.5 rounded-full text-[8px] sm:text-[10px] font-semibold bg-white/90 backdrop-blur-xs text-slate-700 shadow-2xs">
                             ID: {{ $theme->id }}
                         </span>
                     </div>
 
                     <!-- Status Toggle Badge (Top Right) -->
-                    <div class="absolute top-3 right-3">
+                    <div class="absolute top-1.5 sm:top-2.5 right-1.5 sm:right-2.5">
                         @if($theme->is_active)
-                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 shadow-xs">
+                        <span class="inline-flex items-center gap-1 px-1.5 sm:px-2 py-0.5 rounded-full text-[8px] sm:text-[10px] font-bold bg-emerald-100 text-emerald-800 shadow-xs">
                             <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                            Aktif
+                            <span>Aktif</span>
                         </span>
                         @else
-                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-slate-200 text-slate-700 shadow-xs">
+                        <span class="inline-flex items-center gap-1 px-1.5 sm:px-2 py-0.5 rounded-full text-[8px] sm:text-[10px] font-bold bg-slate-200 text-slate-700 shadow-xs">
                             <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
-                            Nonaktif
+                            <span>Nonaktif</span>
                         </span>
                         @endif
                     </div>
                 </div>
 
                 <!-- Theme Info -->
-                <div class="p-4 sm:p-5">
-                    <div class="flex items-start justify-between gap-2">
-                        <div>
-                            <h3 class="font-bold text-slate-900 text-base group-hover:text-[#FF2E3A] transition-colors">{{ $theme->name }}</h3>
-                            <p class="text-xs text-slate-400 font-mono mt-0.5">{{ $theme->slug }}</p>
+                <div class="p-2 sm:p-3.5 lg:p-4">
+                    <div class="flex items-start justify-between gap-1 sm:gap-2">
+                        <div class="min-w-0">
+                            <h3 class="font-bold text-slate-900 text-xs sm:text-sm lg:text-base group-hover:text-[#FF2E3A] transition-colors truncate" title="{{ $theme->name }}">{{ $theme->name }}</h3>
+                            <p class="text-[10px] sm:text-xs text-slate-400 font-mono mt-0.5 truncate hidden sm:block">{{ $theme->slug }}</p>
                         </div>
                         <div class="text-right shrink-0">
-                            <span class="text-sm font-bold text-slate-900">
+                            <span class="text-[11px] sm:text-xs lg:text-sm font-bold text-slate-900">
                                 {{ $theme->price > 0 ? 'Rp ' . number_format($theme->price, 0, ',', '.') : 'Gratis' }}
                             </span>
                         </div>
                     </div>
 
-                    <p class="text-xs text-slate-500 mt-2 line-clamp-2 leading-relaxed">
+                    <p class="text-[10px] sm:text-xs text-slate-500 mt-1 sm:mt-1.5 line-clamp-1 sm:line-clamp-2 leading-tight sm:leading-relaxed hidden sm:block">
                         {{ $theme->description ?? 'Tema undangan pernikahan digital dengan desain modern dan responsif.' }}
                     </p>
 
                     <!-- Template Lagu (Musik Preset) Section -->
-                    <div class="mt-3.5 p-3 bg-slate-50 border border-slate-200/80 rounded-xl flex items-center justify-between gap-2.5">
+                    <div class="mt-2 sm:mt-3 p-1.5 sm:p-2 bg-slate-50 border border-slate-200/80 rounded-xl flex items-center justify-between gap-1 sm:gap-1.5">
                         <div class="flex items-center gap-2.5 min-w-0">
-                            <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
+                            <div class="w-5 h-5 sm:w-6 sm:h-6 rounded-md bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
                             </div>
                             <div class="min-w-0">
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block leading-tight">Musik Preset (Template Lagu)</span>
-                                <span class="text-xs font-bold text-slate-800 truncate block mt-0.5" title="{{ $theme->preset_music_label }}">
+                                <span class="text-[7px] sm:text-[8px] font-bold uppercase tracking-wider text-slate-400 block leading-tight truncate">Lagu Preset</span>
+                                <span class="text-[9px] sm:text-[11px] font-bold text-slate-800 truncate block leading-tight" title="{{ $theme->preset_music_label }}">
                                     {{ $theme->preset_music_label }}
                                 </span>
                             </div>
@@ -142,7 +143,7 @@
                             @if($theme->default_music && $theme->default_music->audio_url)
                             <button type="button" 
                                     onclick="toggleCardAudioPreview('{{ $theme->default_music->audio_url }}', this)" 
-                                    class="w-7 h-7 rounded-lg bg-white border border-slate-200 hover:border-amber-400 text-slate-600 hover:text-amber-600 flex items-center justify-center transition shadow-2xs" 
+                                    class="w-5 h-5 sm:w-6 sm:h-6 rounded-md bg-white border border-slate-200 hover:border-amber-400 text-slate-600 hover:text-amber-600 flex items-center justify-center transition shadow-2xs" 
                                     title="Putar Cuplikan Lagu">
                                 <svg class="w-3.5 h-3.5 play-icon" fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                                 <svg class="w-3.5 h-3.5 pause-icon hidden" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
@@ -150,7 +151,7 @@
                             @endif
                             <button type="button" 
                                     onclick="openQuickMusicModal({{ $theme->id }}, '{{ addslashes($theme->name) }}', {{ $theme->default_music_id ?? 'null' }})" 
-                                    class="px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 hover:border-amber-500 hover:text-amber-600 text-slate-700 text-[11px] font-bold transition shadow-2xs flex items-center gap-1 cursor-pointer"
+                                    class="px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md bg-white border border-slate-200 hover:border-amber-500 hover:text-amber-600 text-slate-700 text-[9px] sm:text-[11px] font-bold transition shadow-2xs flex items-center gap-0.5 cursor-pointer"
                                     title="Ganti Template Lagu">
                                 <svg class="w-3 h-3 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
                                 <span>Ganti</span>
@@ -158,10 +159,10 @@
                         </div>
                     </div>
 
-                    <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                        <span>Digunakan: <strong class="text-slate-800 font-semibold">{{ $theme->invitations_count }}</strong> undangan</span>
-                        <a href="{{ route('themes.demo', $theme->slug) }}" target="_blank" class="inline-flex items-center gap-1 text-[#FF2E3A] hover:underline font-semibold">
-                            <span>Preview Demo</span>
+                    <div class="mt-2 sm:mt-2.5 pt-1.5 sm:pt-2 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-0.5 sm:gap-1 text-[9px] sm:text-xs text-slate-500">
+                        <span class="truncate">Pakai: <strong class="text-slate-800 font-semibold">{{ $theme->invitations_count }}</strong></span>
+                        <a href="{{ route('themes.demo', $theme->slug) }}" target="_blank" class="inline-flex items-center gap-0.5 text-[#FF2E3A] hover:underline font-semibold shrink-0">
+                            <span>Demo</span>
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                         </a>
                     </div>
@@ -169,18 +170,18 @@
             </div>
 
             <!-- Bottom Actions -->
-            <div class="p-4 pt-0 flex items-center gap-2">
+            <div class="p-2 sm:p-3 lg:p-4 pt-0 flex items-center gap-1 sm:gap-1.5">
                 <!-- Toggle Status Button -->
                 <form method="POST" action="{{ route('admin.themes.toggleActive', $theme) }}" class="flex-1">
                     @csrf
-                    <button type="submit" class="w-full py-2 px-3 rounded-xl border text-xs font-bold transition {{ $theme->is_active ? 'border-slate-200 text-slate-700 hover:bg-slate-100' : 'border-emerald-300 bg-emerald-50 text-emerald-800 hover:bg-emerald-100' }}">
-                        {{ $theme->is_active ? 'Nonaktifkan' : 'Aktifkan Tema' }}
+                    <button type="submit" class="w-full py-1 sm:py-1.5 px-1 sm:px-2 rounded-lg border text-[9px] sm:text-xs font-bold transition {{ $theme->is_active ? 'border-slate-200 text-slate-700 hover:bg-slate-100' : 'border-emerald-300 bg-emerald-50 text-emerald-800 hover:bg-emerald-100' }}">
+                        {{ $theme->is_active ? 'Nonaktif' : 'Aktifkan' }}
                     </button>
                 </form>
 
                 <!-- Edit Button (Opens Modal) -->
                 <button type="button" onclick="openEditThemeModal({{ $theme->id }}, '{{ addslashes($theme->name) }}', '{{ $theme->tier }}', {{ $theme->price }}, '{{ addslashes($theme->description ?? '') }}', {{ $theme->default_music_id ?? 'null' }})" 
-                        class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition flex items-center gap-1 cursor-pointer">
+                        class="px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-[9px] sm:text-xs font-bold transition flex items-center justify-center gap-0.5 sm:gap-1 cursor-pointer shrink-0">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
                     <span>Edit</span>
                 </button>

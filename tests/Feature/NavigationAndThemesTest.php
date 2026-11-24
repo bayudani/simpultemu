@@ -1549,8 +1549,9 @@ class NavigationAndThemesTest extends TestCase
         $response->assertViewHas('themes');
         $response->assertSee('Daftar Sekarang');
         $response->assertSee('Login');
-        $response->assertSee('Bersama dalam Setiap');
-        $response->assertSee('id="typewriter-text"', false);
+        $response->assertSee('Bersama Dalam Setiap Momen');
+        $response->assertSee('Platform Undangan Digital');
+        $response->assertSee('Modern & Praktis', false);
         $response->assertSee('hero-3d-phones.png');
         $response->assertSee('Lihat Demo Live');
         $response->assertSee('Pilihan Tema');

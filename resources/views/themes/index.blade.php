@@ -89,11 +89,13 @@
     @include('partials.side-diagonal-ornament')
 
     <!-- Top Curved Hero Banner (Matches Beranda dark atmosphere with custom smooth crescent curve boundary) -->
-    <section class="relative z-10 pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-18 md:pb-20 text-center overflow-hidden">
-        <!-- Clipped Dark Hero Background -->
+    <section class="relative z-10 pt-24 sm:pt-28 md:pt-32 pb-24 sm:pb-28 md:pb-32 min-h-[460px] sm:min-h-[500px] md:min-h-[540px] flex flex-col justify-center text-center overflow-hidden">
+        <!-- Clipped Dark Hero Background with Couple Photo & Navy Atmosphere -->
         <div class="absolute inset-0 pointer-events-none -z-10" style="clip-path: url(#katalog-banner-curve); -webkit-clip-path: url(#katalog-banner-curve);">
-            <div class="absolute inset-0 bg-[#0B132B] bg-cover bg-[center_35%] sm:bg-center" style="background-image: url('/images/hero-banner.png');"></div>
-            <div class="absolute inset-0 bg-gradient-to-br from-[#0B132B]/95 via-[#1E293B]/90 to-[#0F172A]/95"></div>
+            <div class="absolute inset-0 bg-[#0B132B] bg-cover" style="background-image: url('{{ asset('images/catalog-couple.jpg') }}'); background-position: center 88%;"></div>
+            <!-- Enhanced Dark Navy Atmosphere Overlay -->
+            <div class="absolute inset-0 bg-[#0B132B]/50"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-[#0B132B]/65 via-[#0B132B]/35 to-[#0B132B]/60"></div>
         </div>
 
         <!-- Glowing Decorative Curved Border Lines along the exact boundary (Crescent Arc) -->

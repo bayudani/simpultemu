@@ -4,31 +4,34 @@
 @section('description', 'Rayakan momen berharga pernikahan Anda dengan undangan digital eksklusif yang dirancang elegan, interaktif, dan mudah dibagikan kepada keluarga serta kerabat tercinta.')
 
 @section('content')
-    <!-- Hero Section - Dark Navy Atmosphere & Triple Smartphone Mockup -->
+    <!-- Hero Section - Landscape Couple & Smartphone Mockup -->
     <section
         id="beranda"
-        class="relative overflow-hidden pt-16 pb-14 sm:pt-20 sm:pb-20 md:pt-20 md:pb-24 lg:pt-20 lg:pb-28 xl:pt-24 xl:pb-32 bg-[#0B132B] bg-cover bg-[center_35%] sm:bg-center min-h-[460px] sm:min-h-[520px] lg:min-h-[580px] xl:min-h-[620px] flex items-center"
-        style="background-image: url('{{ asset('images/hero-banner.png') }}'); background-size: cover;"
+        class="relative overflow-hidden pt-16 pb-14 sm:pt-20 sm:pb-20 md:pt-20 md:pb-24 lg:pt-20 lg:pb-28 xl:pt-24 xl:pb-32 bg-[#0B132B] bg-cover min-h-[480px] sm:min-h-[540px] lg:min-h-[600px] xl:min-h-[640px] flex items-center w-full"
+        style="background-image: url('{{ asset('images/hero-couple.jpg') }}'); background-size: cover; background-position: center 85%;"
     >
-        <!-- Multi-layer Dark Gradient Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-br from-[#0B132B]/95 via-[#1E293B]/85 to-[#0F172A]/90 z-0 pointer-events-none"></div>
+        <!-- Enhanced Navy Atmosphere Overlay (Rona Navy Khas SimpulTemu Ditingkatkan Lebih Terasa) -->
+        <div class="absolute inset-0 bg-[#0B132B]/55 z-0 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#0B132B]/80 via-[#0B132B]/45 to-[#0B132B]/35 z-0 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0B132B]/50 via-transparent to-[#0B132B]/40 z-0 pointer-events-none"></div>
 
         <div class="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 xl:gap-8 items-center">
                 <!-- Left Column: Slogan, Typewriter, Description, CTAs -->
                 <div class="lg:col-span-7 text-center lg:text-left space-y-4 sm:space-y-5 z-10 lg:pr-2 xl:pr-4">
-                    <!-- Platform Badge (Persegi) -->
+                    <!-- Slogan Badge: Bersama Dalam Setiap Momen (Italic & Kapital di Awal Kata) -->
                     <div class="reveal-init reveal-down delay-100">
-                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-[#FF2E3A]/10 border border-[#FF2E3A]/40 text-white text-xs sm:text-sm font-semibold shadow-[0_0_18px_rgba(255,46,58,0.2)] backdrop-blur-md">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-[#FF2E3A]/10 border border-[#FF2E3A]/40 text-white text-xs sm:text-sm shadow-[0_0_18px_rgba(255,46,58,0.2)] backdrop-blur-md">
                             <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FF2E3A] shrink-0" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z" />
                             </svg>
-                            <span>Platform Undangan Digital Modern</span>
+                            <span class="italic font-medium text-slate-100 tracking-wide">Bersama Dalam Setiap Momen</span>
                         </div>
                     </div>
 
-                    <h1 class="reveal-init reveal-up delay-250 text-white font-heading font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[35px] xl:text-[41px] 2xl:text-[45px] leading-tight lg:whitespace-nowrap min-h-[2.8rem] sm:min-h-[3.6rem] lg:min-h-[1.3em]">
-                        Bersama dalam Setiap <span id="typewriter-text" class="text-[#FF2E3A] border-r-2 border-[#FF2E3A] pr-1">Momen.</span>
+                    <!-- Main Heading: Platform Undangan Digital Modern & Praktis (Kapital di Awal Kata) -->
+                    <h1 class="reveal-init reveal-up delay-250 text-white font-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[40px] xl:text-[46px] 2xl:text-[50px] leading-[1.18] tracking-tight">
+                        Platform Undangan Digital <span class="text-[#FF2E3A]">Modern & Praktis</span>
                     </h1>
 
                     <p class="reveal-init reveal-up delay-400 font-sans text-slate-300 text-xs sm:text-base lg:text-lg xl:text-xl font-normal leading-relaxed max-w-xl mx-auto lg:mx-0">
@@ -90,7 +93,7 @@
 
                 <!-- Right Column: 3D Dual-Phone Mockup (Official User Asset) - Balanced Center Position -->
                 <div class="lg:col-span-5 relative w-full flex items-center justify-center lg:justify-center z-20 mt-6 lg:mt-0 pt-2 sm:pt-4">
-                    <div class="reveal-init reveal-scale delay-200 relative w-full max-w-[280px] sm:max-w-[330px] md:max-w-[360px] lg:max-w-[380px] xl:max-w-[405px] group">
+                    <div class="reveal-init reveal-scale delay-200 relative w-full max-w-[350px] sm:max-w-[450px] md:max-w-[520px] lg:max-w-[550px] xl:max-w-[600px] 2xl:max-w-[650px] group">
                         <!-- Soft Ambient Radial Glow Behind Phones -->
                         <div class="absolute inset-0 bg-gradient-to-tr from-[#FF2E3A]/25 via-[#DBF6FF]/15 to-amber-500/10 rounded-full blur-3xl -z-10 transform scale-95 pointer-events-none"></div>
 
@@ -102,9 +105,9 @@
                                 title="Buka Demo Undangan SimpulTemu"
                             >
                                 <img
-                                    src="{{ asset('images/hero-3d-phones.png') }}"
+                                    src="{{ asset('images/hero-3d-phones.png') }}?v=20261124_04"
                                     alt="Model 3D Undangan Digital SimpulTemu"
-                                    class="w-full h-auto max-h-[370px] sm:max-h-[400px] lg:max-h-[420px] xl:max-h-[440px] object-contain drop-shadow-[0_16px_30px_rgba(0,0,0,0.55)] select-none"
+                                    class="w-full h-auto max-h-[470px] sm:max-h-[540px] lg:max-h-[580px] xl:max-h-[630px] 2xl:max-h-[680px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.6)] select-none"
                                     loading="eager"
                                 />
                             </a>
@@ -383,47 +386,3 @@
     </section>
 @endsection
 
-@push('scripts')
-<script>
-    (function() {
-        const WORDS = ['Momen.', 'Kisah.', 'Langkah.', 'Kenangan.', 'Impian.'];
-        let wordIndex = 0;
-        let displayedText = WORDS[0];
-        let isDeleting = true;
-        let timer = null;
-
-        const el = document.getElementById('typewriter-text');
-        if (!el) return;
-
-        function tick() {
-            const currentWord = WORDS[wordIndex];
-
-            if (!isDeleting) {
-                if (displayedText.length < currentWord.length) {
-                    displayedText = currentWord.slice(0, displayedText.length + 1);
-                    el.textContent = displayedText;
-                    timer = setTimeout(tick, 120);
-                } else {
-                    timer = setTimeout(function() {
-                        isDeleting = true;
-                        tick();
-                    }, 1800);
-                }
-            } else {
-                if (displayedText.length > 0) {
-                    displayedText = currentWord.slice(0, displayedText.length - 1);
-                    el.textContent = displayedText;
-                    timer = setTimeout(tick, 60);
-                } else {
-                    isDeleting = false;
-                    wordIndex = (wordIndex + 1) % WORDS.length;
-                    timer = setTimeout(tick, 200);
-                }
-            }
-        }
-
-        // Wait initial 1.8s then start deletion / loop
-        timer = setTimeout(tick, 1800);
-    })();
-</script>
-@endpush

@@ -1,6 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title', 'Moderasi Ucapan & Doa - Admin')
+@section('container_max_width', 'max-w-[1720px] w-full')
 
 @section('content')
 <div class="space-y-6">
@@ -56,32 +57,32 @@
 
     <!-- Comments List / Table Card -->
     <div class="bg-white rounded-2xl border border-slate-200/80 shadow-xs overflow-hidden">
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto relative">
             <table class="w-full text-left text-sm">
                 <thead>
-                    <tr class="bg-slate-50/75 border-b border-slate-200 text-slate-500 text-xs font-bold uppercase tracking-wider">
-                        <th class="py-3.5 px-5">Pengirim</th>
-                        <th class="py-3.5 px-4">Undangan</th>
-                        <th class="py-3.5 px-4">Pesan Ucapan</th>
-                        <th class="py-3.5 px-4">Status</th>
-                        <th class="py-3.5 px-4">Waktu</th>
-                        <th class="py-3.5 px-5 text-right">Aksi Moderasi</th>
+                    <tr class="bg-slate-50/90 border-b border-slate-100 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                        <th class="py-3.5 px-4 sm:px-5">Pengirim</th>
+                        <th class="py-3.5 px-3">Undangan</th>
+                        <th class="py-3.5 px-4 min-w-[240px]">Pesan Ucapan</th>
+                        <th class="py-3.5 px-3">Status</th>
+                        <th class="py-3.5 px-3 whitespace-nowrap">Waktu</th>
+                        <th class="py-3.5 px-4 text-right whitespace-nowrap sticky right-0 bg-slate-50/95 backdrop-blur-xs z-10 shadow-[-6px_0_10px_-4px_rgba(0,0,0,0.06)]">Aksi Moderasi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
                     @forelse($comments as $comment)
-                    <tr class="hover:bg-slate-50/80 transition">
+                    <tr class="hover:bg-slate-50/70 transition group">
                         <!-- Sender Name -->
-                        <td class="py-4 px-5">
+                        <td class="py-3 px-4 sm:px-5">
                             <div class="font-bold text-slate-900">{{ $comment->name }}</div>
                             <div class="text-[11px] text-slate-400">ID #{{ $comment->id }}</div>
                         </td>
 
                         <!-- Invitation Link -->
-                        <td class="py-4 px-4 whitespace-nowrap">
+                        <td class="py-3 px-3 whitespace-nowrap">
                             @if($comment->invitation)
                             <a href="{{ route('invitation.show', $comment->invitation->slug) }}" target="_blank" class="font-semibold text-blue-600 hover:underline text-xs flex items-center gap-1">
-                                <span>{{ Str::limit($comment->invitation->title ?? ($comment->invitation->groom_name . ' & ' . $comment->invitation->bride_name), 22) }}</span>
+                                <span>{{ Str::limit($comment->invitation->title ?? ($comment->invitation->groom_name . ' & ' . $comment->invitation->bride_name), 26) }}</span>
                                 <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                             </a>
                             @else
@@ -90,26 +91,26 @@
                         </td>
 
                         <!-- Message -->
-                        <td class="py-4 px-4 max-w-xs md:max-w-md">
-                            <p class="text-xs text-slate-700 leading-relaxed italic line-clamp-3">
+                        <td class="py-3 px-4">
+                            <p class="text-xs text-slate-700 leading-relaxed italic line-clamp-2 md:line-clamp-3">
                                 "{{ $comment->message }}"
                             </p>
                         </td>
 
                         <!-- Status Badge -->
-                        <td class="py-4 px-4 whitespace-nowrap">
+                        <td class="py-3 px-3 whitespace-nowrap">
                             @if($comment->status === 'approved')
-                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
+                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
                                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                                 Disetujui
                             </span>
                             @elseif($comment->status === 'rejected')
-                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-red-100 text-red-700">
+                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-100 text-red-700">
                                 <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
                                 Ditolak
                             </span>
                             @else
-                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">
+                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800">
                                 <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
                                 Pending
                             </span>
@@ -117,12 +118,12 @@
                         </td>
 
                         <!-- Created Time -->
-                        <td class="py-4 px-4 text-xs text-slate-500 whitespace-nowrap">
+                        <td class="py-3 px-3 text-xs text-slate-500 whitespace-nowrap">
                             {{ $comment->created_at ? $comment->created_at->format('d M Y, H:i') : '-' }}
                         </td>
 
                         <!-- Actions -->
-                        <td class="py-4 px-5 text-right whitespace-nowrap">
+                        <td class="py-3 px-4 text-right whitespace-nowrap sticky right-0 bg-white group-hover:bg-slate-50/90 transition z-10 shadow-[-6px_0_10px_-4px_rgba(0,0,0,0.06)]">
                             <div class="flex items-center justify-end gap-1.5">
                                 <!-- Approve Button -->
                                 @if($comment->status !== 'approved')

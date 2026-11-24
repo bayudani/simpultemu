@@ -1,6 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title', 'Admin Dashboard')
+@section('container_max_width', 'max-w-[1720px] w-full')
 
 @section('content')
 <div class="space-y-6">

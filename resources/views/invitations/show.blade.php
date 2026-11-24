@@ -1111,6 +1111,12 @@
         $t14FloralCornerBR = asset('images/themes/fairytale-castle/floral-corner-br.png');
         $t14FloralDivider = asset('images/themes/fairytale-castle/floral-divider.png');
         $t14OrnateFrame = asset('images/themes/fairytale-castle/ornate-pink-frame.png');
+        $t14RoseBlossom = asset('images/themes/fairytale-castle/rose-blossom.png');
+        $t14RoseBudLeaf = asset('images/themes/fairytale-castle/rose-bud-leaf.png');
+        $t14RoseGreenLeaf = asset('images/themes/fairytale-castle/rose-green-leaf.png');
+        $t14RoseVineVertical = asset('images/themes/fairytale-castle/rose-vine-vertical.png');
+        $t14RoseVineHorizontal = asset('images/themes/fairytale-castle/rose-vine-horizontal.png');
+        $t14FloralDamask = asset('images/themes/fairytale-castle/floral-damask-pattern.svg');
 
         // Aliases for legacy references
         $t14BgVertical = $t14BgPinkGradient;
@@ -3147,11 +3153,16 @@
                 width: 42% !important;
                 max-width: none !important;
                 box-shadow: -15px 0 45px rgba(180, 50, 85, 0.35) !important;
-                background-color: #F8B8C8 !important;
-                background-image: url('{{ $t14BgPinkGradient }}') !important;
-                background-size: cover !important;
-                background-position: top center !important;
-                background-repeat: repeat-y !important;
+                background-color: #FDF0F3 !important;
+                background-image:
+                    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.75) 0%, transparent 65%),
+                    radial-gradient(ellipse at 50% 100%, rgba(244, 184, 202, 0.35) 0%, transparent 60%),
+                    url('{{ asset("images/themes/fairytale-castle/floral-damask-pattern.svg") }}'),
+                    url('{{ $t14BgPinkGradient }}') !important;
+                background-size: 100% 700px, 100% 700px, 160px 160px, cover !important;
+                background-position: top center, bottom center, 0 0, top center !important;
+                background-repeat: no-repeat, no-repeat, repeat, repeat-y !important;
+                position: relative !important;
             }
             [data-theme-id="14"] #floating-nav-container,
             [data-theme-id="14"] #floating-bottom-nav-wrapper,
@@ -3206,13 +3217,18 @@
         [data-theme-id="14"] #invitation-main-content,
         [data-theme-slug="premium-fairytale-castle"] #invitation-main-content,
         [data-theme-slug="premium-night-sky-clouds"] #invitation-main-content {
-            background-color: #F8B8C8 !important;
-            background-image: url('{{ $t14BgPinkGradient }}') !important;
-            background-size: cover !important;
-            background-position: top center !important;
-            background-repeat: repeat-y !important;
+            background-color: #FDF0F3 !important;
+            background-image:
+                radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.75) 0%, transparent 65%),
+                radial-gradient(ellipse at 50% 100%, rgba(244, 184, 202, 0.35) 0%, transparent 60%),
+                url('{{ asset("images/themes/fairytale-castle/floral-damask-pattern.svg") }}'),
+                url('{{ $t14BgPinkGradient }}') !important;
+            background-size: 100% 700px, 100% 700px, 160px 160px, cover !important;
+            background-position: top center, bottom center, 0 0, top center !important;
+            background-repeat: no-repeat, no-repeat, repeat, repeat-y !important;
             color: #8A1538 !important;
             padding-bottom: 0 !important;
+            position: relative !important;
         }
 
         /* Buka Undangan Button (Deep Pink & White High Contrast) */
@@ -3436,6 +3452,147 @@
         .anim-fairydust { animation: fairydust-float 3s ease-in-out infinite; }
         .anim-fairytale-slide-r { animation: fairytale-slide-r 0.8s ease-out forwards; }
         .anim-fairytale-slide-l { animation: fairytale-slide-l 0.8s ease-out forwards; }
+
+        /* ================= THEME 14: FAIRYTALE ROSE & LEAF FLYING PARTICLES ================= */
+        @keyframes fairytale-rose-drift-1 {
+            0% {
+                transform: translate3d(-10vw, -10vh, 0px) rotate(0deg) rotateX(0deg) rotateY(0deg);
+                opacity: 0;
+            }
+            8% { opacity: 0.9; }
+            35% {
+                transform: translate3d(35vw, 25vh, 50px) rotate(140deg) rotateX(45deg) rotateY(25deg);
+            }
+            70% {
+                transform: translate3d(75vw, 68vh, -30px) rotate(290deg) rotateX(20deg) rotateY(60deg);
+                opacity: 0.85;
+            }
+            92% { opacity: 0.7; }
+            100% {
+                transform: translate3d(112vw, 110vh, 30px) rotate(420deg) rotateX(60deg) rotateY(80deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fairytale-rose-drift-2 {
+            0% {
+                transform: translate3d(105vw, -5vh, 0px) rotate(0deg) rotateX(0deg) rotateY(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.9; }
+            40% {
+                transform: translate3d(60vw, 35vh, -40px) rotate(-160deg) rotateX(35deg) rotateY(-40deg);
+            }
+            75% {
+                transform: translate3d(20vw, 75vh, 35px) rotate(-310deg) rotateX(50deg) rotateY(30deg);
+                opacity: 0.8;
+            }
+            90% { opacity: 0.65; }
+            100% {
+                transform: translate3d(-15vw, 108vh, -20px) rotate(-460deg) rotateX(20deg) rotateY(-60deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fairytale-rose-drift-3 {
+            0% {
+                transform: translate3d(15vw, -8vh, 0px) rotate(0deg) rotateX(0deg) rotateY(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.85; }
+            30% {
+                transform: translate3d(55vw, 18vh, 60px) rotate(130deg) rotateX(50deg) rotateY(20deg);
+            }
+            55% {
+                transform: translate3d(30vw, 48vh, -25px) rotate(240deg) rotateX(25deg) rotateY(65deg);
+            }
+            80% {
+                transform: translate3d(80vw, 82vh, 40px) rotate(360deg) rotateX(45deg) rotateY(35deg);
+                opacity: 0.8;
+            }
+            95% { opacity: 0.55; }
+            100% {
+                transform: translate3d(115vw, 112vh, 0px) rotate(500deg) rotateX(60deg) rotateY(60deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fairytale-rose-drift-4 {
+            0% {
+                transform: translate3d(-15vw, 28vh, 0px) rotate(0deg) rotateX(0deg) rotateY(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.85; }
+            50% {
+                transform: translate3d(50vw, 36vh, 40px) rotate(230deg) rotateX(40deg) rotateY(45deg);
+            }
+            85% { opacity: 0.8; }
+            100% {
+                transform: translate3d(115vw, 42vh, -20px) rotate(520deg) rotateX(70deg) rotateY(65deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fairytale-rose-drift-5 {
+            0% {
+                transform: translate3d(115vw, 60vh, 0px) rotate(0deg) rotateX(0deg) rotateY(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.8; }
+            50% {
+                transform: translate3d(45vw, 52vh, -35px) rotate(-210deg) rotateX(45deg) rotateY(-40deg);
+            }
+            85% { opacity: 0.75; }
+            100% {
+                transform: translate3d(-15vw, 65vh, 25px) rotate(-480deg) rotateX(60deg) rotateY(-55deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fairytale-rose-drift-6 {
+            0% {
+                transform: translate3d(50vw, 110vh, 0px) rotate(0deg) rotateX(0deg) rotateY(0deg);
+                opacity: 0;
+            }
+            12% { opacity: 0.85; }
+            45% {
+                transform: translate3d(75vw, 65vh, 45px) rotate(150deg) rotateX(30deg) rotateY(45deg);
+            }
+            80% {
+                transform: translate3d(25vw, 22vh, -25px) rotate(310deg) rotateX(55deg) rotateY(25deg);
+                opacity: 0.75;
+            }
+            95% { opacity: 0.55; }
+            100% {
+                transform: translate3d(10vw, -12vh, 0px) rotate(440deg) rotateX(45deg) rotateY(40deg);
+                opacity: 0;
+            }
+        }
+
+        .anim-fairytale-fly-1 {
+            animation: fairytale-rose-drift-1 linear infinite;
+            will-change: transform, opacity;
+        }
+        .anim-fairytale-fly-2 {
+            animation: fairytale-rose-drift-2 linear infinite;
+            will-change: transform, opacity;
+        }
+        .anim-fairytale-fly-3 {
+            animation: fairytale-rose-drift-3 linear infinite;
+            will-change: transform, opacity;
+        }
+        .anim-fairytale-fly-4 {
+            animation: fairytale-rose-drift-4 linear infinite;
+            will-change: transform, opacity;
+        }
+        .anim-fairytale-fly-5 {
+            animation: fairytale-rose-drift-5 linear infinite;
+            will-change: transform, opacity;
+        }
+        .anim-fairytale-fly-6 {
+            animation: fairytale-rose-drift-6 linear infinite;
+            will-change: transform, opacity;
+        }
 
         /* ================= THEME 11: PREMIUM MISTY ROMANCE DESKTOP SPLIT VIEW & STYLES ================= */
         .font-misty-title { font-family: 'Cinzel', Georgia, serif; }
@@ -5207,12 +5364,168 @@
             transform-origin: bottom left;
         }
         .anim-amber-flower-top-right {
-            animation: amber-sway-left 6s ease-in-out infinite;
+            animation: amber-sway-right 6s ease-in-out infinite;
             transform-origin: top right;
+        }
+        .anim-amber-flower-top-left {
+            animation: amber-sway-left 6s ease-in-out infinite;
+            transform-origin: top left;
         }
         .anim-amber-flower-mid-left {
             animation: amber-sway-right 6.5s ease-in-out infinite;
             transform-origin: center left;
+        }
+
+        /* Wind-Blown Flying Blossoms Effect (Gambar 8: "berterbangan terbawa angin tak teratur, berputar random") */
+        @keyframes amber-wind-drift-1 {
+            0% {
+                transform: translate3d(-10vw, -10vh, 0px) rotate(0deg) rotateX(0deg) rotateY(0deg);
+                opacity: 0;
+            }
+            8% { opacity: 0.9; }
+            28% {
+                transform: translate3d(24vw, 25vh, 40px) rotate(140deg) rotateX(75deg) rotateY(180deg);
+            }
+            52% {
+                transform: translate3d(14vw, 52vh, -25px) rotate(290deg) rotateX(150deg) rotateY(320deg);
+            }
+            76% {
+                transform: translate3d(48vw, 78vh, 35px) rotate(430deg) rotateX(230deg) rotateY(480deg);
+            }
+            92% { opacity: 0.85; }
+            100% {
+                transform: translate3d(65vw, 112vh, 0px) rotate(600deg) rotateX(360deg) rotateY(720deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes amber-wind-drift-2 {
+            0% {
+                transform: translate3d(105vw, -5vh, 0px) rotate(0deg) rotateX(0deg) rotateY(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.9; }
+            32% {
+                transform: translate3d(68vw, 28vh, 30px) rotate(-150deg) rotateX(85deg) rotateY(-110deg);
+            }
+            58% {
+                transform: translate3d(78vw, 58vh, -20px) rotate(-310deg) rotateX(190deg) rotateY(-240deg);
+            }
+            82% {
+                transform: translate3d(32vw, 86vh, 25px) rotate(-450deg) rotateX(280deg) rotateY(-390deg);
+                opacity: 0.85;
+            }
+            100% {
+                transform: translate3d(8vw, 112vh, 0px) rotate(-620deg) rotateX(360deg) rotateY(-540deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes amber-wind-drift-3 {
+            0% {
+                transform: translate3d(0vw, -8vh, 0px) rotate(0deg) rotateX(0deg) rotateY(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.85; }
+            22% {
+                transform: translate3d(18vw, 18vh, 45px) rotate(180deg) rotateX(60deg) rotateY(90deg);
+            }
+            42% {
+                transform: translate3d(-10vw, 38vh, -25px) rotate(360deg) rotateX(120deg) rotateY(210deg);
+            }
+            62% {
+                transform: translate3d(22vw, 58vh, 35px) rotate(540deg) rotateX(200deg) rotateY(330deg);
+            }
+            80% {
+                transform: translate3d(-6vw, 82vh, -15px) rotate(720deg) rotateX(280deg) rotateY(450deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate3d(12vw, 115vh, 0px) rotate(900deg) rotateX(360deg) rotateY(540deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes amber-wind-drift-4 {
+            0% {
+                transform: translate3d(-15vw, 25vh, 0px) rotate(0deg) rotateX(0deg) rotateY(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.85; }
+            35% {
+                transform: translate3d(28vw, 18vh, 30px) rotate(170deg) rotateX(90deg) rotateY(150deg);
+            }
+            68% {
+                transform: translate3d(70vw, 40vh, -20px) rotate(350deg) rotateX(200deg) rotateY(290deg);
+            }
+            90% { opacity: 0.8; }
+            100% {
+                transform: translate3d(115vw, 32vh, 0px) rotate(560deg) rotateX(360deg) rotateY(480deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes amber-wind-drift-5 {
+            0% {
+                transform: translate3d(115vw, 62vh, 0px) rotate(0deg) rotateX(0deg) rotateY(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.8; }
+            38% {
+                transform: translate3d(68vw, 50vh, 35px) rotate(-160deg) rotateX(75deg) rotateY(-130deg);
+            }
+            72% {
+                transform: translate3d(26vw, 72vh, -25px) rotate(-340deg) rotateX(170deg) rotateY(-270deg);
+            }
+            90% { opacity: 0.75; }
+            100% {
+                transform: translate3d(-18vw, 58vh, 0px) rotate(-540deg) rotateX(360deg) rotateY(-420deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes amber-wind-drift-6 {
+            0% {
+                transform: translate3d(45vw, 110vh, 0px) rotate(0deg) rotateX(0deg) rotateY(0deg);
+                opacity: 0;
+            }
+            12% { opacity: 0.85; }
+            40% {
+                transform: translate3d(60vw, 68vh, 30px) rotate(190deg) rotateX(70deg) rotateY(160deg);
+            }
+            70% {
+                transform: translate3d(32vw, 30vh, -20px) rotate(390deg) rotateX(160deg) rotateY(310deg);
+            }
+            88% { opacity: 0.75; }
+            100% {
+                transform: translate3d(48vw, -12vh, 0px) rotate(580deg) rotateX(360deg) rotateY(450deg);
+                opacity: 0;
+            }
+        }
+
+        .anim-amber-fly-1 {
+            animation: amber-wind-drift-1 linear infinite;
+            will-change: transform, opacity;
+        }
+        .anim-amber-fly-2 {
+            animation: amber-wind-drift-2 linear infinite;
+            will-change: transform, opacity;
+        }
+        .anim-amber-fly-3 {
+            animation: amber-wind-drift-3 linear infinite;
+            will-change: transform, opacity;
+        }
+        .anim-amber-fly-4 {
+            animation: amber-wind-drift-4 linear infinite;
+            will-change: transform, opacity;
+        }
+        .anim-amber-fly-5 {
+            animation: amber-wind-drift-5 linear infinite;
+            will-change: transform, opacity;
+        }
+        .anim-amber-fly-6 {
+            animation: amber-wind-drift-6 linear infinite;
+            will-change: transform, opacity;
         }
 
         /* Bespoke Photo Frame for Bride & Groom */
@@ -5472,6 +5785,186 @@
       data-theme-id="{{ $currentThemeId }}"
       data-theme-slug="{{ $currentThemeSlug }}"
       data-tier="{{ $currentThemeTier }}">
+
+    @if($currentThemeId == 15 || $isMidnightAmber)
+    <!-- ================= THEME 15 CONTINUOUS WIND-BLOWN BLOSSOMS PARTICLES (GAMBAR 8) ================= -->
+    <div id="amber-wind-particles" class="fixed inset-0 pointer-events-none z-[70] overflow-hidden select-none" style="perspective: 1200px;" aria-hidden="true">
+        <!-- Particle 1: Diagonal Drift 1, Medium -->
+        <div class="absolute w-7 h-7 sm:w-9 sm:h-9 anim-amber-fly-1" style="left: 8%; animation-duration: 14s; animation-delay: -2s; opacity: 0.85;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]">
+        </div>
+        <!-- Particle 2: Diagonal Drift 2, Small/Fast -->
+        <div class="absolute w-5 h-5 sm:w-6 sm:h-6 anim-amber-fly-2" style="left: 82%; animation-duration: 11s; animation-delay: -6s; opacity: 0.75;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 3: Swirling Vortex 3, Large -->
+        <div class="absolute w-10 h-10 sm:w-12 sm:h-12 anim-amber-fly-3" style="left: 45%; animation-duration: 17s; animation-delay: -11s; opacity: 0.9;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain drop-shadow-[0_6px_16px_rgba(0,0,0,0.7)]">
+        </div>
+        <!-- Particle 4: Horizontal Gust 4, Medium -->
+        <div class="absolute w-6 h-6 sm:w-8 sm:h-8 anim-amber-fly-4" style="top: 15%; animation-duration: 13s; animation-delay: -4s; opacity: 0.8;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 5: Reverse Horizontal Gust 5, Small -->
+        <div class="absolute w-5 h-5 sm:w-6 sm:h-6 anim-amber-fly-5" style="top: 55%; animation-duration: 15s; animation-delay: -9s; opacity: 0.7;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 6: Updraft Float 6, Medium -->
+        <div class="absolute w-7 h-7 sm:w-9 sm:h-9 anim-amber-fly-6" style="left: 28%; animation-duration: 19s; animation-delay: -13s; opacity: 0.85;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain drop-shadow-md">
+        </div>
+        <!-- Particle 7: Diagonal Drift 1, Tiny/Distant with Blur -->
+        <div class="absolute w-4 h-4 sm:w-5 sm:h-5 anim-amber-fly-1 blur-[0.5px]" style="left: 20%; animation-duration: 21s; animation-delay: -8s; opacity: 0.55;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 8: Diagonal Drift 2, Medium -->
+        <div class="absolute w-8 h-8 sm:w-10 sm:h-10 anim-amber-fly-2" style="left: 65%; animation-duration: 16s; animation-delay: -3s; opacity: 0.85;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain drop-shadow-md">
+        </div>
+        <!-- Particle 9: Swirling Vortex 3, Small -->
+        <div class="absolute w-5 h-5 sm:w-7 sm:h-7 anim-amber-fly-3" style="left: 75%; animation-duration: 14s; animation-delay: -1s; opacity: 0.75;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 10: Horizontal Gust 4, Large -->
+        <div class="absolute w-9 h-9 sm:w-11 sm:h-11 anim-amber-fly-4" style="top: 40%; animation-duration: 18s; animation-delay: -10s; opacity: 0.9;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain drop-shadow-lg">
+        </div>
+        <!-- Particle 11: Reverse Horizontal Gust 5, Medium -->
+        <div class="absolute w-7 h-7 sm:w-8 sm:h-8 anim-amber-fly-5" style="top: 75%; animation-duration: 16s; animation-delay: -5s; opacity: 0.8;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 12: Diagonal Drift 1, Medium -->
+        <div class="absolute w-6 h-6 sm:w-8 sm:h-8 anim-amber-fly-1" style="left: 55%; animation-duration: 15s; animation-delay: -12s; opacity: 0.8;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 13: Diagonal Drift 2, Large -->
+        <div class="absolute w-9 h-9 sm:w-11 sm:h-11 anim-amber-fly-2" style="left: 35%; animation-duration: 18s; animation-delay: -15s; opacity: 0.9;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain drop-shadow-md">
+        </div>
+        <!-- Particle 14: Swirling Vortex 3, Tiny/Distant with Blur -->
+        <div class="absolute w-4 h-4 sm:w-5 sm:h-5 anim-amber-fly-3 blur-[0.5px]" style="left: 15%; animation-duration: 22s; animation-delay: -7s; opacity: 0.5;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 15: Updraft Float 6, Small -->
+        <div class="absolute w-5 h-5 sm:w-7 sm:h-7 anim-amber-fly-6" style="left: 70%; animation-duration: 17s; animation-delay: -4s; opacity: 0.75;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 16: Diagonal Drift 1, Medium -->
+        <div class="absolute w-7 h-7 sm:w-9 sm:h-9 anim-amber-fly-1" style="left: 90%; animation-duration: 16s; animation-delay: -9s; opacity: 0.8;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 17: Diagonal Drift 2, Tiny/Distant with Blur -->
+        <div class="absolute w-4 h-4 sm:w-5 sm:h-5 anim-amber-fly-2 blur-[0.5px]" style="left: 48%; animation-duration: 20s; animation-delay: -14s; opacity: 0.55;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 18: Horizontal Gust 4, Small -->
+        <div class="absolute w-6 h-6 sm:w-7 sm:h-7 anim-amber-fly-4" style="top: 70%; animation-duration: 14s; animation-delay: -7s; opacity: 0.75;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+    </div>
+    @endif
+
+    @if($currentThemeId == 14 || $isNightSky || $isFairytaleCastle)
+    <!-- ================= THEME 14 CONTINUOUS WIND-BLOWN ROSE & LEAF PARTICLES ================= -->
+    <div id="fairytale-rose-particles" class="fixed inset-0 pointer-events-none z-[70] overflow-hidden select-none" style="perspective: 1200px;" aria-hidden="true">
+        <!-- 1: Rose Blossom - Diagonal Drift 1 -->
+        <div class="absolute w-6 h-6 sm:w-8 sm:h-8 anim-fairytale-fly-1" style="left: 6%; animation-duration: 15s; animation-delay: -2s; opacity: 0.85;">
+            <img src="{{ $t14RoseBlossom }}" alt="" class="w-full h-full object-contain drop-shadow-[0_3px_8px_rgba(210,75,112,0.35)]">
+        </div>
+        <!-- 2: Rose Bud & Leaf - Diagonal Drift 2 -->
+        <div class="absolute w-5 h-5 sm:w-6 sm:h-6 anim-fairytale-fly-2" style="left: 88%; animation-duration: 12s; animation-delay: -5s; opacity: 0.8;">
+            <img src="{{ $t14RoseBudLeaf }}" alt="" class="w-full h-full object-contain drop-shadow-xs">
+        </div>
+        <!-- 3: Green Leaf - Swirling Vortex 3 -->
+        <div class="absolute w-5 h-5 sm:w-6 sm:h-6 anim-fairytale-fly-3" style="left: 48%; animation-duration: 18s; animation-delay: -9s; opacity: 0.75;">
+            <img src="{{ $t14RoseGreenLeaf }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- 4: Rose Blossom - Horizontal Gust 4 -->
+        <div class="absolute w-7 h-7 sm:w-9 sm:h-9 anim-fairytale-fly-4" style="top: 18%; animation-duration: 14s; animation-delay: -4s; opacity: 0.9;">
+            <img src="{{ $t14RoseBlossom }}" alt="" class="w-full h-full object-contain drop-shadow-[0_4px_10px_rgba(210,75,112,0.4)]">
+        </div>
+        <!-- 5: Rose Bud & Leaf - Reverse Horizontal Gust 5 -->
+        <div class="absolute w-5 h-5 sm:w-7 sm:h-7 anim-fairytale-fly-5" style="top: 58%; animation-duration: 16s; animation-delay: -11s; opacity: 0.85;">
+            <img src="{{ $t14RoseBudLeaf }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- 6: Rose Blossom - Updraft Float 6 -->
+        <div class="absolute w-6 h-6 sm:w-8 sm:h-8 anim-fairytale-fly-6" style="left: 32%; animation-duration: 20s; animation-delay: -13s; opacity: 0.85;">
+            <img src="{{ $t14RoseBlossom }}" alt="" class="w-full h-full object-contain drop-shadow-sm">
+        </div>
+        <!-- 7: Tiny Green Leaf - Diagonal Drift 1, Distant Blurred -->
+        <div class="absolute w-3.5 h-3.5 sm:w-4 sm:h-4 anim-fairytale-fly-1 blur-[0.5px]" style="left: 22%; animation-duration: 22s; animation-delay: -7s; opacity: 0.6;">
+            <img src="{{ $t14RoseGreenLeaf }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- 8: Rose Blossom - Diagonal Drift 2 -->
+        <div class="absolute w-8 h-8 sm:w-10 sm:h-10 anim-fairytale-fly-2" style="left: 68%; animation-duration: 17s; animation-delay: -3s; opacity: 0.9;">
+            <img src="{{ $t14RoseBlossom }}" alt="" class="w-full h-full object-contain drop-shadow-md">
+        </div>
+        <!-- 9: Rose Bud & Leaf - Swirling Vortex 3 -->
+        <div class="absolute w-5 h-5 sm:w-6 sm:h-6 anim-fairytale-fly-3" style="left: 78%; animation-duration: 15s; animation-delay: -1s; opacity: 0.8;">
+            <img src="{{ $t14RoseBudLeaf }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- 10: Rose Blossom - Horizontal Gust 4 -->
+        <div class="absolute w-7 h-7 sm:w-9 sm:h-9 anim-fairytale-fly-4" style="top: 38%; animation-duration: 19s; animation-delay: -12s; opacity: 0.85;">
+            <img src="{{ $t14RoseBlossom }}" alt="" class="w-full h-full object-contain drop-shadow-[0_4px_12px_rgba(210,75,112,0.35)]">
+        </div>
+        <!-- 11: Green Leaf - Reverse Horizontal Gust 5 -->
+        <div class="absolute w-4 h-4 sm:w-5 sm:h-5 anim-fairytale-fly-5" style="top: 72%; animation-duration: 15s; animation-delay: -6s; opacity: 0.75;">
+            <img src="{{ $t14RoseGreenLeaf }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- 12: Rose Blossom - Diagonal Drift 1 -->
+        <div class="absolute w-5 h-5 sm:w-7 sm:h-7 anim-fairytale-fly-1" style="left: 52%; animation-duration: 16s; animation-delay: -14s; opacity: 0.8;">
+            <img src="{{ $t14RoseBlossom }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- 13: Rose Bud & Leaf - Diagonal Drift 2 -->
+        <div class="absolute w-6 h-6 sm:w-8 sm:h-8 anim-fairytale-fly-2" style="left: 38%; animation-duration: 18s; animation-delay: -16s; opacity: 0.85;">
+            <img src="{{ $t14RoseBudLeaf }}" alt="" class="w-full h-full object-contain drop-shadow-sm">
+        </div>
+        <!-- 14: Tiny Rose Blossom - Swirling Vortex 3, Blurred -->
+        <div class="absolute w-4 h-4 sm:w-5 sm:h-5 anim-fairytale-fly-3 blur-[0.5px]" style="left: 14%; animation-duration: 23s; animation-delay: -8s; opacity: 0.55;">
+            <img src="{{ $t14RoseBlossom }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- 15: Green Leaf - Updraft Float 6 -->
+        <div class="absolute w-5 h-5 sm:w-6 sm:h-6 anim-fairytale-fly-6" style="left: 72%; animation-duration: 18s; animation-delay: -4s; opacity: 0.8;">
+            <img src="{{ $t14RoseGreenLeaf }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- 16: Rose Blossom - Diagonal Drift 1 -->
+        <div class="absolute w-6 h-6 sm:w-8 sm:h-8 anim-fairytale-fly-1" style="left: 92%; animation-duration: 16s; animation-delay: -10s; opacity: 0.85;">
+            <img src="{{ $t14RoseBlossom }}" alt="" class="w-full h-full object-contain drop-shadow-sm">
+        </div>
+        <!-- 17: Tiny Rose Bud - Diagonal Drift 2, Blurred -->
+        <div class="absolute w-4 h-4 sm:w-5 sm:h-5 anim-fairytale-fly-2 blur-[0.5px]" style="left: 44%; animation-duration: 21s; animation-delay: -15s; opacity: 0.6;">
+            <img src="{{ $t14RoseBudLeaf }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- 18: Rose Blossom - Horizontal Gust 4 -->
+        <div class="absolute w-5 h-5 sm:w-7 sm:h-7 anim-fairytale-fly-4" style="top: 80%; animation-duration: 13s; animation-delay: -8s; opacity: 0.8;">
+            <img src="{{ $t14RoseBlossom }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- 19: Green Leaf - Diagonal Drift 1 -->
+        <div class="absolute w-5 h-5 sm:w-6 sm:h-6 anim-fairytale-fly-1" style="left: 16%; animation-duration: 17s; animation-delay: -5s; opacity: 0.75;">
+            <img src="{{ $t14RoseGreenLeaf }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- 20: Rose Blossom - Swirling Vortex 3 -->
+        <div class="absolute w-7 h-7 sm:w-9 sm:h-9 anim-fairytale-fly-3" style="left: 60%; animation-duration: 19s; animation-delay: -17s; opacity: 0.85;">
+            <img src="{{ $t14RoseBlossom }}" alt="" class="w-full h-full object-contain drop-shadow-md">
+        </div>
+        <!-- 21: Rose Bud & Leaf - Diagonal Drift 2 -->
+        <div class="absolute w-5 h-5 sm:w-7 sm:h-7 anim-fairytale-fly-2" style="left: 28%; animation-duration: 14s; animation-delay: -9s; opacity: 0.8;">
+            <img src="{{ $t14RoseBudLeaf }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- 22: Rose Blossom - Updraft Float 6 -->
+        <div class="absolute w-6 h-6 sm:w-8 sm:h-8 anim-fairytale-fly-6" style="left: 84%; animation-duration: 17s; animation-delay: -11s; opacity: 0.85;">
+            <img src="{{ $t14RoseBlossom }}" alt="" class="w-full h-full object-contain drop-shadow-xs">
+        </div>
+        <!-- 23: Green Leaf - Reverse Horizontal Gust 5 -->
+        <div class="absolute w-4 h-4 sm:w-5 sm:h-5 anim-fairytale-fly-5" style="top: 25%; animation-duration: 17s; animation-delay: -3s; opacity: 0.7;">
+            <img src="{{ $t14RoseGreenLeaf }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- 24: Rose Blossom - Diagonal Drift 1 -->
+        <div class="absolute w-7 h-7 sm:w-9 sm:h-9 anim-fairytale-fly-1" style="left: 76%; animation-duration: 18s; animation-delay: -13s; opacity: 0.85;">
+            <img src="{{ $t14RoseBlossom }}" alt="" class="w-full h-full object-contain drop-shadow-[0_4px_10px_rgba(210,75,112,0.35)]">
+        </div>
+    </div>
+    @endif
 
     <!-- ================= 1. COVER UNDANGAN (FULLSCREEN OVERLAY PEMBUKA) ================= -->
     <div id="invitation-cover" data-test="invitation-cover-overlay" class="fixed inset-0 z-[60] flex items-center justify-center {{ ($currentThemeId == 1 || $currentThemeId == 4 || $isWantedPoster || $currentThemeId == 8 || $isSunnyBotanical || $currentThemeId == 9 || $isWhisperingGarden || $currentThemeId == 5 || $currentThemeId == 6 || $currentThemeId == 7 || $isLilacBlooms || $currentThemeId == 11 || $isMistyRomance || $currentThemeId == 12 || $isChampagneBloom || $currentThemeId == 13 || $currentThemeId == 14 || $isNightSky || $currentThemeId == 15 || $currentThemeId == 16 || $currentThemeId == 17 || $currentThemeId == 18 || $currentThemeId == 19 || $currentThemeId == 20 || $isDarkElegance || $isLavenderMist || $isMidnightAmber || $isMuseumOfLove || $isSummerVibes || $isCrayonDreams || $isBlueBlossom || $isEtherealBloom) ? 'p-0' : 'p-3 sm:p-6' }} select-none transition-all duration-1000 ease-in-out bg-[var(--bg-canvas)] overflow-hidden">
@@ -5809,39 +6302,39 @@
         <!-- ================= THEME 15 BESPOKE COVER (PREMIUM SERENADE MIDNIGHT AMBER) ================= -->
         <div class="relative w-full h-full min-h-full flex flex-col justify-between items-center text-center p-6 sm:p-10 select-none overflow-hidden bg-[#161514] text-white">
             
-            <!-- Continuous Gentle Swaying Floral Elements (4 Corner Symmetrical Fitting) -->
+            <!-- Continuous Gentle Swaying Floral Elements (4 Corner Dedicated Assets) -->
             <!-- Top-Left Swaying Flower Corner -->
-            <div class="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-44 sm:w-56 md:w-64 pointer-events-none z-10 anim-amber-flower-left drop-shadow-2xl opacity-95 transform -scale-y-100">
-                <img src="{{ asset('images/themes/serenade-amber/floral-corner.png') }}" alt="" class="w-full h-auto object-contain">
+            <div class="absolute -top-3 -left-3 sm:-top-5 sm:-left-5 w-36 sm:w-48 md:w-56 pointer-events-none z-10 anim-amber-flower-top-left drop-shadow-2xl opacity-95">
+                <img src="{{ asset('images/themes/serenade-amber/corner-top-left.png') }}" alt="" class="w-full h-auto object-contain">
             </div>
 
             <!-- Top-Right Swaying Flower Corner -->
-            <div class="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 w-44 sm:w-56 md:w-64 pointer-events-none z-10 anim-amber-flower-top-right drop-shadow-2xl opacity-95 transform -scale-x-100 -scale-y-100">
-                <img src="{{ asset('images/themes/serenade-amber/floral-corner.png') }}" alt="" class="w-full h-auto object-contain">
+            <div class="absolute -top-3 -right-3 sm:-top-5 sm:-right-5 w-36 sm:w-48 md:w-56 pointer-events-none z-10 anim-amber-flower-top-right drop-shadow-2xl opacity-95">
+                <img src="{{ asset('images/themes/serenade-amber/corner-top-right.png') }}" alt="" class="w-full h-auto object-contain">
             </div>
 
             <!-- Bottom-Left Swaying Flower Corner -->
-            <div class="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 w-48 sm:w-60 md:w-68 pointer-events-none z-10 anim-amber-flower-left drop-shadow-2xl opacity-95">
-                <img src="{{ asset('images/themes/serenade-amber/floral-corner.png') }}" alt="" class="w-full h-auto object-contain">
+            <div class="absolute -bottom-3 -left-3 sm:-bottom-5 sm:-left-5 w-40 sm:w-52 md:w-60 pointer-events-none z-10 anim-amber-flower-left drop-shadow-2xl opacity-95">
+                <img src="{{ asset('images/themes/serenade-amber/corner-bottom-left.png') }}" alt="" class="w-full h-auto object-contain">
             </div>
 
             <!-- Bottom-Right Swaying Flower Corner -->
-            <div class="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-48 sm:w-60 md:w-68 pointer-events-none z-10 anim-amber-flower-right drop-shadow-2xl opacity-95 transform -scale-x-100">
-                <img src="{{ asset('images/themes/serenade-amber/floral-corner.png') }}" alt="" class="w-full h-auto object-contain">
+            <div class="absolute -bottom-3 -right-3 sm:-bottom-5 sm:-right-5 w-40 sm:w-52 md:w-60 pointer-events-none z-10 anim-amber-flower-right drop-shadow-2xl opacity-95">
+                <img src="{{ asset('images/themes/serenade-amber/corner-bottom-right.png') }}" alt="" class="w-full h-auto object-contain">
             </div>
 
             <!-- Center Content Container (Matching Reference Preview Image) -->
             <div class="relative z-20 w-full max-w-sm mx-auto flex flex-col items-center pt-2 sm:pt-4 my-auto space-y-4">
                 
-                <!-- Couple Arch Frame with Floral Crest at Bottom -->
+                <!-- Couple Arch Frame with Floral Garland at Bottom (Matching Gambar 6 & 7) -->
                 <div class="relative w-44 sm:w-52 aspect-[3/4] mx-auto anim-amber-bloom">
                     <!-- Photo Container with Golden Border and Curved Arch -->
-                    <div class="w-full h-full rounded-t-[100px] rounded-b-[18px] overflow-hidden border-[2.5px] border-[#DDA74F] shadow-[0_12px_40px_rgba(0,0,0,0.85)] bg-[#1F1D1B] relative">
+                    <div class="w-full h-full rounded-t-[85px] sm:rounded-t-[105px] rounded-b-[4px] overflow-hidden border-[2px] sm:border-[2.5px] border-[#DDA74F] shadow-[0_12px_40px_rgba(0,0,0,0.85)] bg-[#1F1D1B] relative">
                         <img src="{{ $t15CoverPhoto }}" alt="The Couple" class="w-full h-full object-cover">
                     </div>
-                    <!-- Floral Crest wrapping the bottom of the arch photo -->
-                    <div class="absolute -bottom-6 sm:-bottom-7 -left-6 -right-6 pointer-events-none z-10 drop-shadow-[0_8px_20px_rgba(0,0,0,0.8)]">
-                        <img src="{{ asset('images/themes/serenade-amber/floral-crest.png') }}" alt="" class="w-full h-auto object-contain">
+                    <!-- Floral Garland wrapping the bottom of the arch photo -->
+                    <div class="absolute -bottom-5 sm:-bottom-6 -left-7 -right-7 sm:-left-9 sm:-right-9 pointer-events-none z-10 drop-shadow-[0_8px_20px_rgba(0,0,0,0.85)]">
+                        <img src="{{ asset('images/themes/serenade-amber/arch-flower-garland.png') }}" alt="" class="w-full h-auto object-contain">
                     </div>
                 </div>
 
@@ -8146,63 +8639,66 @@
             @if($currentThemeId == 15 || $isMidnightAmber)
             <!-- ================= THEME 15: BESPOKE HERO SECTION (PREMIUM SERENADE MIDNIGHT AMBER) ================= -->
             <div class="w-full relative overflow-hidden select-none bg-[#161514] text-white py-10 sm:py-16 px-4 sm:px-6">
-                <!-- Top-Left Swaying Flower Corner -->
-                <div class="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-40 sm:w-52 pointer-events-none z-10 anim-amber-flower-left drop-shadow-2xl opacity-90 transform -scale-y-100">
-                    <img src="{{ asset('images/themes/serenade-amber/floral-corner.png') }}" alt="" class="w-full h-auto object-contain">
+                <!-- Top-Left Swaying Flower Corner (Dedicated Native Asset) -->
+                <div class="absolute -top-3 -left-3 sm:-top-5 sm:-left-5 w-36 sm:w-48 md:w-56 pointer-events-none z-10 anim-amber-flower-top-left drop-shadow-2xl opacity-90">
+                    <img src="{{ asset('images/themes/serenade-amber/corner-top-left.png') }}" alt="" class="w-full h-auto object-contain">
                 </div>
-                <!-- Top-Right Swaying Flower Corner -->
-                <div class="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 w-40 sm:w-52 pointer-events-none z-10 anim-amber-flower-top-right drop-shadow-2xl opacity-90 transform -scale-x-100 -scale-y-100">
-                    <img src="{{ asset('images/themes/serenade-amber/floral-corner.png') }}" alt="" class="w-full h-auto object-contain">
+                <!-- Top-Right Swaying Flower Corner (Dedicated Native Asset) -->
+                <div class="absolute -top-3 -right-3 sm:-top-5 sm:-right-5 w-36 sm:w-48 md:w-56 pointer-events-none z-10 anim-amber-flower-top-right drop-shadow-2xl opacity-90">
+                    <img src="{{ asset('images/themes/serenade-amber/corner-top-right.png') }}" alt="" class="w-full h-auto object-contain">
                 </div>
 
                 <div class="relative z-10 max-w-lg mx-auto text-center space-y-4 pt-2">
-                    <!-- Couple Photo in Gold Arch Frame with Bottom Floral Crest -->
-                    <div class="relative w-48 sm:w-56 aspect-[3/4] mx-auto my-2 reveal-item anim-amber-frame">
-                        <div class="w-full h-full rounded-t-[110px] rounded-b-[20px] overflow-hidden border-[2.5px] border-[#DDA74F] shadow-[0_16px_50px_rgba(0,0,0,0.85)] bg-[#1F1D1B] group">
+                    <!-- Couple Photo in Gold Arch Frame with Bottom Floral Garland (Matching Gambar 6 & 7) -->
+                    <div class="relative w-44 sm:w-52 aspect-[3/4] mx-auto my-3 reveal-item anim-amber-frame">
+                        <div class="w-full h-full rounded-t-[85px] sm:rounded-t-[105px] rounded-b-[4px] overflow-hidden border-[2px] sm:border-[2.5px] border-[#DDA74F] shadow-[0_16px_50px_rgba(0,0,0,0.85)] bg-[#1F1D1B] group">
                             <img src="{{ $t15HeroPhoto }}" alt="{{ $groomNickname }} &amp; {{ $brideNickname }}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
                         </div>
-                        <!-- Floral Crest Wrapping Bottom of Arch -->
-                        <div class="absolute -bottom-6 sm:-bottom-7 -left-7 -right-7 pointer-events-none z-10 drop-shadow-[0_10px_25px_rgba(0,0,0,0.8)]">
-                            <img src="{{ asset('images/themes/serenade-amber/floral-crest.png') }}" alt="" class="w-full h-auto object-contain">
+                        <!-- Floral Garland (Gambar 6) Wrapping Bottom of Arch -->
+                        <div class="absolute -bottom-5 sm:-bottom-6 -left-7 -right-7 sm:-left-9 sm:-right-9 pointer-events-none z-10 drop-shadow-[0_10px_25px_rgba(0,0,0,0.85)]">
+                            <img src="{{ asset('images/themes/serenade-amber/arch-flower-garland.png') }}" alt="" class="w-full h-auto object-contain">
                         </div>
                     </div>
 
                     <!-- Header Title -->
-                    <div class="pt-3 space-y-1 reveal-item anim-amber-title">
+                    <div class="pt-3 space-y-1.5 reveal-item anim-amber-title">
                         <span class="inline-block font-amber-title text-[10px] sm:text-xs tracking-[0.35em] uppercase text-[#E8C37D] font-semibold">
                             THE WEDDING OF
                         </span>
                         <h1 class="font-amber-script text-5xl sm:text-6xl md:text-7xl text-[#F2D59B] leading-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)] py-1">
                             {{ $groomNickname }} <span class="text-[#DDA74F] font-light">&amp;</span> {{ $brideNickname }}
                         </h1>
-                        <p class="font-amber-headline text-sm sm:text-base tracking-[0.25em] text-[#C4B5A5] font-semibold uppercase pt-1">
-                            {{ $eventDateFormatted }}
+                        <p class="font-amber-headline text-xs sm:text-sm text-[#C4B5A5] italic font-normal max-w-sm mx-auto pt-1 leading-relaxed">
+                            Kami akan menikah, kami ingin anda menjadi bagian dari hari bahagia kami
                         </p>
                     </div>
 
-                    <!-- 4 Amber Gold Countdown Timer Boxes -->
+                    <!-- 4 Amber Gold Countdown Timer Boxes (Matching Gambar 7) -->
                     <div class="grid grid-cols-4 gap-2 sm:gap-3 max-w-xs sm:max-w-sm mx-auto pt-3 font-mono reveal-item anim-amber-card-3d delay-1 relative z-20">
-                        <div class="p-2.5 sm:p-3 rounded-xl bg-gradient-to-br from-[#DDA74F] via-[#C59132] to-[#9A6E20] text-[#161514] shadow-[0_6px_20px_rgba(221,167,79,0.3)] border border-[#FFE7B3]/60 text-center">
-                            <span id="hero-cd-days-t15" class="block text-xl sm:text-2xl font-bold leading-none cd-val-days font-sans">00</span>
-                            <span class="text-[9px] uppercase font-amber-title tracking-wider text-[#2A1D07] font-bold mt-1 block">Hari</span>
+                        <div class="p-2 sm:p-2.5 rounded-xl bg-gradient-to-b from-[#E2B258] via-[#CFA14B] to-[#B38332] text-white shadow-[0_6px_20px_rgba(207,161,75,0.35)] border border-[#FFE7B3]/50 text-center">
+                            <span id="hero-cd-days-t15" class="block text-xl sm:text-2xl font-bold leading-none cd-val-days font-sans text-white drop-shadow-sm">00</span>
+                            <span class="text-[9px] uppercase font-amber-title tracking-wider text-white/95 font-medium mt-1 block">Hari</span>
                         </div>
-                        <div class="p-2.5 sm:p-3 rounded-xl bg-gradient-to-br from-[#DDA74F] via-[#C59132] to-[#9A6E20] text-[#161514] shadow-[0_6px_20px_rgba(221,167,79,0.3)] border border-[#FFE7B3]/60 text-center">
-                            <span id="hero-cd-hours-t15" class="block text-xl sm:text-2xl font-bold leading-none cd-val-hours font-sans">00</span>
-                            <span class="text-[9px] uppercase font-amber-title tracking-wider text-[#2A1D07] font-bold mt-1 block">Jam</span>
+                        <div class="p-2 sm:p-2.5 rounded-xl bg-gradient-to-b from-[#E2B258] via-[#CFA14B] to-[#B38332] text-white shadow-[0_6px_20px_rgba(207,161,75,0.35)] border border-[#FFE7B3]/50 text-center">
+                            <span id="hero-cd-hours-t15" class="block text-xl sm:text-2xl font-bold leading-none cd-val-hours font-sans text-white drop-shadow-sm">00</span>
+                            <span class="text-[9px] uppercase font-amber-title tracking-wider text-white/95 font-medium mt-1 block">Jam</span>
                         </div>
-                        <div class="p-2.5 sm:p-3 rounded-xl bg-gradient-to-br from-[#DDA74F] via-[#C59132] to-[#9A6E20] text-[#161514] shadow-[0_6px_20px_rgba(221,167,79,0.3)] border border-[#FFE7B3]/60 text-center">
-                            <span id="hero-cd-mins-t15" class="block text-xl sm:text-2xl font-bold leading-none cd-val-mins font-sans">00</span>
-                            <span class="text-[9px] uppercase font-amber-title tracking-wider text-[#2A1D07] font-bold mt-1 block">Menit</span>
+                        <div class="p-2 sm:p-2.5 rounded-xl bg-gradient-to-b from-[#E2B258] via-[#CFA14B] to-[#B38332] text-white shadow-[0_6px_20px_rgba(207,161,75,0.35)] border border-[#FFE7B3]/50 text-center">
+                            <span id="hero-cd-mins-t15" class="block text-xl sm:text-2xl font-bold leading-none cd-val-mins font-sans text-white drop-shadow-sm">00</span>
+                            <span class="text-[9px] uppercase font-amber-title tracking-wider text-white/95 font-medium mt-1 block">Menit</span>
                         </div>
-                        <div class="p-2.5 sm:p-3 rounded-xl bg-gradient-to-br from-[#DDA74F] via-[#C59132] to-[#9A6E20] text-[#161514] shadow-[0_6px_20px_rgba(221,167,79,0.3)] border border-[#FFE7B3]/60 text-center">
-                            <span id="hero-cd-secs-t15" class="block text-xl sm:text-2xl font-bold leading-none cd-val-secs font-sans">00</span>
-                            <span class="text-[9px] uppercase font-amber-title tracking-wider text-[#2A1D07] font-bold mt-1 block">Detik</span>
+                        <div class="p-2 sm:p-2.5 rounded-xl bg-gradient-to-b from-[#E2B258] via-[#CFA14B] to-[#B38332] text-white shadow-[0_6px_20px_rgba(207,161,75,0.35)] border border-[#FFE7B3]/50 text-center">
+                            <span id="hero-cd-secs-t15" class="block text-xl sm:text-2xl font-bold leading-none cd-val-secs font-sans text-white drop-shadow-sm">00</span>
+                            <span class="text-[9px] uppercase font-amber-title tracking-wider text-white/95 font-medium mt-1 block">Detik</span>
                         </div>
                     </div>
 
-                    <!-- "SAVE THE DATE" Button -->
-                    <div class="pt-2 reveal-item anim-amber-pop delay-2 relative z-20">
-                        <button type="button" onclick="saveTheDateCalendar()" class="px-8 py-3 rounded-md bg-gradient-to-r from-[#DDA74F] via-[#F2D59B] to-[#C59132] hover:brightness-110 text-[#161514] font-amber-title text-xs font-bold tracking-[0.25em] uppercase transition-all duration-300 inline-flex items-center justify-center gap-2 shadow-[0_8px_25px_rgba(221,167,79,0.45)] border border-[#FFE7B3] active:scale-95 cursor-pointer group">
+                    <!-- Event Date & "SAVE THE DATE" Button -->
+                    <div class="pt-2 reveal-item anim-amber-pop delay-2 relative z-20 space-y-3">
+                        <p class="font-amber-headline text-sm sm:text-base tracking-[0.2em] text-[#E8C37D] font-semibold uppercase">
+                            {{ $eventDateFormatted }}
+                        </p>
+                        <button type="button" onclick="saveTheDateCalendar()" class="px-8 py-2.5 sm:py-3 rounded-md bg-gradient-to-r from-[#DDA74F] via-[#F2D59B] to-[#C59132] hover:brightness-110 text-[#161514] font-amber-title text-xs font-bold tracking-[0.25em] uppercase transition-all duration-300 inline-flex items-center justify-center gap-2 shadow-[0_8px_25px_rgba(221,167,79,0.45)] border border-[#FFE7B3] active:scale-95 cursor-pointer group">
                             <svg class="w-4 h-4 text-[#161514] group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                             <span class="sr-only">Simpan di Kalender</span>
                             <span>SAVE THE DATE</span>
@@ -8902,13 +9398,17 @@
             @elseif($currentThemeId == 14 || $isNightSky || $isFairytaleCastle)
             <!-- ================= THEME 14: BESPOKE HERO SECTION (PREMIUM FAIRYTALE CASTLE - MATCHING IMAGE 3) ================= -->
             <div class="w-full relative overflow-hidden select-none text-[#8A1538] py-8 sm:py-14 px-4 sm:px-6"
-                 style="background-image: url('{{ $t14BgPinkGradient }}'); background-size: cover; background-position: top center;">
+                 style="background-image: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.7) 0%, transparent 70%), url('{{ asset('images/themes/fairytale-castle/floral-damask-pattern.svg') }}'), url('{{ $t14BgPinkGradient }}'); background-size: 100% 100%, 160px 160px, cover; background-repeat: no-repeat, repeat, no-repeat; background-position: top center;">
                 
                 <!-- 4 Corner Floral Bouquets (Top & Bottom Corners as shown in Image 3) -->
                 <img src="{{ $t14FloralCornerTL }}" alt="" class="absolute top-0 left-0 w-24 sm:w-32 pointer-events-none z-10">
                 <img src="{{ $t14FloralCornerTR }}" alt="" class="absolute top-0 right-0 w-24 sm:w-32 pointer-events-none z-10">
                 <img src="{{ $t14FloralCornerBL }}" alt="" class="absolute bottom-0 left-0 w-24 sm:w-32 pointer-events-none z-10">
                 <img src="{{ $t14FloralCornerBR }}" alt="" class="absolute bottom-0 right-0 w-24 sm:w-32 pointer-events-none z-10">
+
+                <!-- Cascading Side Rose Vines (Foto 3) -->
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-14 -left-3 sm:left-2 w-16 sm:w-20 pointer-events-none z-10 opacity-80 drop-shadow-md">
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-14 -right-3 sm:right-2 w-16 sm:w-20 pointer-events-none z-10 opacity-80 drop-shadow-md -scale-x-100">
 
                 <div class="relative z-10 max-w-lg mx-auto text-center space-y-3 pt-2 pb-6">
                     <!-- Top Title -->
@@ -8946,6 +9446,11 @@
                         <p class="text-xs sm:text-sm text-[#8A1538] font-medium tracking-wider pt-1">
                             {{ $eventDateFormatted }}
                         </p>
+                    </div>
+
+                    <!-- Horizontal Floral Garland Divider (Foto 3) -->
+                    <div class="w-36 sm:w-48 mx-auto py-1 pointer-events-none">
+                        <img src="{{ $t14RoseVineHorizontal }}" alt="" class="w-full h-auto object-contain drop-shadow-xs">
                     </div>
 
                     <!-- Countdown Timer: 4 Round Pink Circles with Generous Spacing Downward -->
@@ -9793,9 +10298,9 @@
         <section id="section-kutipan" class="py-10 sm:py-16 px-4 sm:px-6 md:px-10 text-center relative overflow-hidden bg-[#161514] text-white">
             <!-- Dark Obsidian Card with Gold Border & 3D Rise Entrance -->
             <div class="max-w-xl mx-auto rounded-2xl sm:rounded-3xl bg-[#1C1A18] border border-[#DDA74F]/40 p-6 sm:p-10 shadow-[0_16px_50px_rgba(0,0,0,0.8)] relative space-y-5 text-center reveal-item anim-amber-card-3d">
-                <!-- Floral Crest Ornament Top -->
-                <div class="w-44 sm:w-56 mx-auto -mt-2 mb-2 pointer-events-none reveal-item anim-amber-bloom">
-                    <img src="{{ asset('images/themes/serenade-amber/floral-crest.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
+                <!-- Floral Garland Ornament Top -->
+                <div class="w-48 sm:w-60 mx-auto -mt-2 mb-2 pointer-events-none reveal-item anim-amber-bloom">
+                    <img src="{{ asset('images/themes/serenade-amber/arch-flower-garland.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
                 </div>
 
                 <!-- Arabic Calligraphy -->
@@ -10039,7 +10544,16 @@
         @elseif($currentThemeId == 14 || $isNightSky || $isFairytaleCastle)
         <!-- ================= THEME 14 BESPOKE KUTIPAN SUCI (PREMIUM FAIRYTALE CASTLE) ================= -->
         <section id="section-kutipan" class="py-10 sm:py-14 px-4 sm:px-6 md:px-10 text-center relative overflow-hidden text-[#8A1538]">
-            <div class="w-full max-w-sm sm:max-w-md md:max-w-xl mx-auto rounded-3xl bg-white/90 backdrop-blur-md border border-pink-200/80 p-6 sm:p-8 shadow-xl relative space-y-4 reveal-item anim-fairytale-zoom">
+            <!-- Cascading Flanking Rose Vines (Foto 3) -->
+            <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-4 -left-3 sm:left-4 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm">
+            <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-4 -right-3 sm:right-4 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm -scale-x-100">
+
+            <div class="w-full max-w-sm sm:max-w-md md:max-w-xl mx-auto rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/90 p-6 sm:p-8 shadow-xl relative space-y-4 reveal-item anim-fairytale-zoom">
+                <!-- Top Floral Garland Crown (Foto 3) -->
+                <div class="w-36 sm:w-48 mx-auto -mt-2 mb-2 pointer-events-none">
+                    <img src="{{ $t14RoseVineHorizontal }}" alt="" class="w-full h-auto object-contain drop-shadow-xs">
+                </div>
+
                 <!-- Heart Flourish -->
                 <div class="flex items-center justify-center gap-2 text-[#F47294] text-base">
                     <span>♡</span>
@@ -10705,9 +11219,9 @@
             <div class="w-full max-w-sm sm:max-w-md md:max-w-2xl mx-auto space-y-7 text-center text-white py-6 relative">
                 <!-- Section Header in Dark Obsidian Card -->
                 <div class="rounded-2xl sm:rounded-3xl bg-[#1C1A18] border border-[#DDA74F]/40 p-6 sm:p-10 shadow-[0_16px_50px_rgba(0,0,0,0.8)] relative space-y-4 text-center reveal-item anim-amber-card-3d">
-                    <!-- Top Floral Crest Ornament -->
+                    <!-- Top Floral Garland Ornament -->
                     <div class="w-48 sm:w-60 mx-auto -mt-2 mb-2 pointer-events-none reveal-item anim-amber-bloom">
-                        <img src="{{ asset('images/themes/serenade-amber/floral-crest.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
+                        <img src="{{ asset('images/themes/serenade-amber/arch-flower-garland.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
                     </div>
 
                     <span class="font-amber-title text-[11px] sm:text-xs tracking-[0.35em] uppercase text-[#DDA74F] font-bold block">
@@ -10791,9 +11305,9 @@
                         @endif
                     </div>
 
-                    <!-- Floral Crest Bottom Ornament -->
+                    <!-- Floral Garland Bottom Ornament -->
                     <div class="w-48 sm:w-60 mx-auto pt-4 pb-1 pointer-events-none reveal-item anim-amber-bloom delay-3">
-                        <img src="{{ asset('images/themes/serenade-amber/floral-crest.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
+                        <img src="{{ asset('images/themes/serenade-amber/arch-flower-garland.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
                     </div>
                 </div>
 
@@ -11476,12 +11990,20 @@
             </div>
             @elseif($currentThemeId == 14 || $isNightSky || $isFairytaleCastle)
             <!-- ================= THEME 14 BESPOKE PROFIL MEMPELAI (PREMIUM FAIRYTALE CASTLE) ================= -->
-            <div class="w-full max-w-sm sm:max-w-md md:max-w-3xl mx-auto space-y-8 select-none text-[#8A1538]">
+            <div class="w-full max-w-sm sm:max-w-md md:max-w-3xl mx-auto space-y-8 select-none text-[#8A1538] relative">
+                <!-- Flanking Cascading Rose Vines (Foto 3) -->
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -left-3 sm:left-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm">
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -right-3 sm:right-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm -scale-x-100">
+
                 <!-- Section Header -->
                 <div class="text-center space-y-1 reveal-item anim-fade-up">
                     <h3 class="text-3xl sm:text-4xl text-[#8A1538] leading-tight font-normal" style="font-family: 'Alex Brush', 'Great Vibes', cursive;">
                         Pasangan Mempelai
                     </h3>
+                    <!-- Top Floral Garland (Foto 3) -->
+                    <div class="w-36 sm:w-48 mx-auto py-1 pointer-events-none">
+                        <img src="{{ $t14RoseVineHorizontal }}" alt="" class="w-full h-auto object-contain drop-shadow-xs">
+                    </div>
                     <p class="text-xs sm:text-sm text-[#8A1538]/85 max-w-md mx-auto leading-relaxed">
                         Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan, perkenankan kami menyatukan cinta suci dalam ikatan pernikahan:
                     </p>
@@ -12983,9 +13505,9 @@
             @elseif($currentThemeId == 15 || $isMidnightAmber)
             <!-- ================= THEME 15 BESPOKE RANGKAIAN ACARA (PREMIUM SERENADE MIDNIGHT AMBER) ================= -->
             <div class="w-full max-w-sm sm:max-w-md md:max-w-2xl mx-auto rounded-2xl sm:rounded-3xl bg-[#1C1A18] border border-[#DDA74F]/40 shadow-[0_16px_50px_rgba(0,0,0,0.8)] p-6 sm:p-10 relative space-y-6 text-center text-white reveal-item anim-amber-card-3d">
-                <!-- Top Floral Crest Decoration -->
+                <!-- Top Floral Garland Decoration -->
                 <div class="w-48 sm:w-60 mx-auto -mt-2 mb-2 pointer-events-none reveal-item anim-amber-bloom">
-                    <img src="{{ asset('images/themes/serenade-amber/floral-crest.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
+                    <img src="{{ asset('images/themes/serenade-amber/arch-flower-garland.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
                 </div>
 
                 <!-- Section Header -->
@@ -13098,9 +13620,9 @@
                 </div>
                 @endif
 
-                <!-- Bottom Floral Crest Divider -->
+                <!-- Bottom Floral Garland Divider -->
                 <div class="w-48 sm:w-60 mx-auto pt-4 pointer-events-none reveal-item anim-amber-bloom delay-3">
-                    <img src="{{ asset('images/themes/serenade-amber/floral-crest.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
+                    <img src="{{ asset('images/themes/serenade-amber/arch-flower-garland.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
                 </div>
             </div>
 
@@ -13679,11 +14201,19 @@
             </div>
             @elseif($currentThemeId == 14 || $isNightSky || $isFairytaleCastle)
             <!-- ================= THEME 14 BESPOKE RANGKAIAN ACARA (PREMIUM FAIRYTALE CASTLE - MATCHING SCREENSHOT) ================= -->
-            <div class="w-full max-w-sm sm:max-w-md md:max-w-3xl mx-auto space-y-6 sm:space-y-8 select-none text-[#8A1538]">
+            <div class="w-full max-w-sm sm:max-w-md md:max-w-3xl mx-auto space-y-6 sm:space-y-8 select-none text-[#8A1538] relative">
+                <!-- Flanking Cascading Rose Vines (Foto 3) -->
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -left-3 sm:left-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm">
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -right-3 sm:right-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm -scale-x-100">
+
                 <div class="text-center space-y-1 reveal-item anim-fade-up">
                     <h3 class="text-4xl sm:text-5xl text-[#8A1538] leading-tight font-normal" style="font-family: 'Alex Brush', 'Great Vibes', cursive;">
                         Acara
                     </h3>
+                    <!-- Floral Garland Ribbon (Foto 3) -->
+                    <div class="w-36 sm:w-48 mx-auto py-1 pointer-events-none">
+                        <img src="{{ $t14RoseVineHorizontal }}" alt="" class="w-full h-auto object-contain drop-shadow-xs">
+                    </div>
                     <p class="text-xs sm:text-sm text-[#8A1538]/85 max-w-md mx-auto">
                         Kami bermaksud untuk mengundang saudara/(i) dalam acara pernikahan kami pada:
                     </p>
@@ -14993,9 +15523,9 @@
             @elseif($currentThemeId == 15 || $isMidnightAmber)
             <!-- ================= THEME 15 BESPOKE LOVE STORY (PREMIUM SERENADE MIDNIGHT AMBER) ================= -->
             <div class="w-full max-w-sm sm:max-w-md md:max-w-2xl mx-auto rounded-2xl sm:rounded-3xl bg-[#1C1A18] border border-[#DDA74F]/40 shadow-[0_16px_50px_rgba(0,0,0,0.8)] p-6 sm:p-10 relative space-y-6 text-center text-white reveal-item anim-amber-card-3d">
-                <!-- Top Floral Crest Decoration -->
+                <!-- Top Floral Garland Decoration -->
                 <div class="w-48 sm:w-60 mx-auto -mt-2 mb-2 pointer-events-none reveal-item anim-amber-bloom">
-                    <img src="{{ asset('images/themes/serenade-amber/floral-crest.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
+                    <img src="{{ asset('images/themes/serenade-amber/arch-flower-garland.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
                 </div>
 
                 <!-- Section Header -->
@@ -15067,9 +15597,9 @@
                     @endforeach
                 </div>
 
-                <!-- Bottom Floral Crest Divider -->
+                <!-- Bottom Floral Garland Divider -->
                 <div class="w-48 sm:w-60 mx-auto pt-4 pointer-events-none reveal-item anim-amber-bloom delay-3">
-                    <img src="{{ asset('images/themes/serenade-amber/floral-crest.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
+                    <img src="{{ asset('images/themes/serenade-amber/arch-flower-garland.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
                 </div>
             </div>
 
@@ -15784,11 +16314,19 @@
             @elseif($currentThemeId == 14 || $isNightSky || $isFairytaleCastle)
             <!-- ================= THEME 14 BESPOKE LOVE STORY (PREMIUM FAIRYTALE CASTLE - MATCHING IMAGE 5) ================= -->
             <div class="w-full max-w-sm sm:max-w-md mx-auto space-y-3 select-none text-[#8A1538] relative">
+                <!-- Flanking Cascading Rose Vines (Foto 3) -->
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-6 -left-6 sm:-left-10 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm">
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-6 -right-6 sm:-right-10 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm -scale-x-100">
+
                 <!-- Section Header: "Kisah Cinta" in Script Font with Wine Heart & Dotted Connector -->
                 <div class="text-center space-y-1 reveal-item anim-fairytale-zoom">
                     <h3 class="text-4xl sm:text-5xl text-[#8A1538] leading-tight font-normal" style="font-family: 'Alex Brush', 'Great Vibes', cursive;">
                         Kisah Cinta
                     </h3>
+                    <!-- Floral Garland Ribbon (Foto 3) -->
+                    <div class="w-36 sm:w-44 mx-auto py-1 pointer-events-none">
+                        <img src="{{ $t14RoseVineHorizontal }}" alt="" class="w-full h-auto object-contain drop-shadow-xs">
+                    </div>
                     <div class="flex flex-col items-center justify-center pt-1.5 pointer-events-none">
                         <span class="text-[#8A1538] text-base leading-none">♥</span>
                         <div class="w-[2px] h-6 sm:h-8 border-l-2 border-dotted border-[#F79BB2] my-1"></div>
@@ -16239,9 +16777,9 @@
             @elseif($currentThemeId == 15 || $isMidnightAmber)
             <!-- ================= THEME 15 BESPOKE GALERI PENGANTIN (PREMIUM SERENADE MIDNIGHT AMBER) ================= -->
             <div class="w-full max-w-sm sm:max-w-md md:max-w-2xl mx-auto rounded-2xl sm:rounded-3xl bg-[#1C1A18] border border-[#DDA74F]/40 shadow-[0_16px_50px_rgba(0,0,0,0.8)] p-6 sm:p-10 relative space-y-6 text-center text-white reveal-item anim-amber-card-3d">
-                <!-- Top Floral Crest Decoration -->
+                <!-- Top Floral Garland Decoration -->
                 <div class="w-48 sm:w-60 mx-auto -mt-2 mb-2 pointer-events-none reveal-item anim-amber-bloom">
-                    <img src="{{ asset('images/themes/serenade-amber/floral-crest.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
+                    <img src="{{ asset('images/themes/serenade-amber/arch-flower-garland.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
                 </div>
 
                 <!-- Section Header -->
@@ -16300,9 +16838,9 @@
                     *Klik foto untuk memperbesar tampilan layar penuh
                 </p>
 
-                <!-- Bottom Floral Crest Divider -->
+                <!-- Bottom Floral Garland Divider -->
                 <div class="w-48 sm:w-60 mx-auto pt-4 pointer-events-none reveal-item anim-amber-bloom delay-3">
-                    <img src="{{ asset('images/themes/serenade-amber/floral-crest.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
+                    <img src="{{ asset('images/themes/serenade-amber/arch-flower-garland.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
                 </div>
             </div>
 
@@ -16604,7 +17142,11 @@
             </div>
             @elseif($currentThemeId == 14 || $isNightSky || $isFairytaleCastle)
             <!-- ================= THEME 14 BESPOKE GALERI FOTO (PREMIUM FAIRYTALE CASTLE - MATCHING SCREENSHOT) ================= -->
-            <div class="w-full max-w-sm sm:max-w-md md:max-w-3xl mx-auto space-y-6 sm:space-y-8 select-none text-[#8A1538]">
+            <div class="w-full max-w-sm sm:max-w-md md:max-w-3xl mx-auto space-y-6 sm:space-y-8 select-none text-[#8A1538] relative">
+                <!-- Flanking Cascading Rose Vines (Foto 3) -->
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -left-3 sm:left-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm">
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -right-3 sm:right-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm -scale-x-100">
+
                 <div class="text-center space-y-1 reveal-item anim-fade-up">
                     <h3 class="text-4xl sm:text-5xl text-[#8A1538] leading-tight font-normal" style="font-family: 'Alex Brush', 'Great Vibes', cursive;">
                         Galeri Bahagia
@@ -16613,7 +17155,7 @@
                         Momen-momen indah perjalanan cinta kami yang terukir manis.
                     </p>
                     <div class="w-40 sm:w-52 mx-auto pt-2 pointer-events-none">
-                        <img src="{{ $t14FloralDivider }}" alt="" class="w-full h-auto object-contain">
+                        <img src="{{ $t14RoseVineHorizontal }}" alt="" class="w-full h-auto object-contain drop-shadow-xs">
                     </div>
                 </div>
 
@@ -17742,9 +18284,9 @@
             @elseif($currentThemeId == 15 || $isMidnightAmber)
             <!-- ================= THEME 15 BESPOKE TANDA KASIH (PREMIUM SERENADE MIDNIGHT AMBER) ================= -->
             <div class="w-full max-w-sm sm:max-w-md md:max-w-2xl mx-auto rounded-2xl sm:rounded-3xl bg-[#1C1A18] border border-[#DDA74F]/40 shadow-[0_16px_50px_rgba(0,0,0,0.8)] p-6 sm:p-10 relative space-y-6 text-center text-white reveal-item anim-amber-card-3d">
-                <!-- Top Floral Crest Decoration -->
+                <!-- Top Floral Garland Decoration -->
                 <div class="w-48 sm:w-60 mx-auto -mt-2 mb-2 pointer-events-none reveal-item anim-amber-bloom">
-                    <img src="{{ asset('images/themes/serenade-amber/floral-crest.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
+                    <img src="{{ asset('images/themes/serenade-amber/arch-flower-garland.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
                 </div>
 
                 <!-- Section Header -->
@@ -17872,9 +18414,9 @@
                     </div>
                 </div>
 
-                <!-- Bottom Floral Crest Divider -->
+                <!-- Bottom Floral Garland Divider -->
                 <div class="w-48 sm:w-60 mx-auto pt-4 pointer-events-none reveal-item anim-amber-bloom delay-3">
-                    <img src="{{ asset('images/themes/serenade-amber/floral-crest.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
+                    <img src="{{ asset('images/themes/serenade-amber/arch-flower-garland.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
                 </div>
             </div>
 
@@ -18475,17 +19017,22 @@
             @php
                 $t14Gifts = $giftAccounts ?? ($invitation->giftAccounts ?? collect());
             @endphp
-            <div class="w-full max-w-sm sm:max-w-md md:max-w-2xl mx-auto space-y-6 text-center select-none text-[#8A1538]">
+            <div class="w-full max-w-sm sm:max-w-md md:max-w-2xl mx-auto space-y-6 text-center select-none text-[#8A1538] relative">
+                <!-- Flanking Cascading Rose Vines (Foto 3) -->
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -left-3 sm:left-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm">
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -right-3 sm:right-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm -scale-x-100">
+
                 <div class="space-y-1 reveal-item anim-fade-up">
                     <h3 class="text-4xl sm:text-5xl text-[#8A1538] leading-tight font-normal" style="font-family: 'Alex Brush', 'Great Vibes', cursive;">
                         Tanda Kasih
                     </h3>
+                    <!-- Floral Garland Ribbon (Foto 3) -->
+                    <div class="w-36 sm:w-48 mx-auto py-1 pointer-events-none">
+                        <img src="{{ $t14RoseVineHorizontal }}" alt="" class="w-full h-auto object-contain drop-shadow-xs">
+                    </div>
                     <p class="text-xs sm:text-sm text-[#8A1538]/85 max-w-md mx-auto leading-relaxed">
                         Doa restu Anda merupakan karunia terindah bagi kami. Namun jika Anda bermaksud memberikan tanda kasih, dapat melalui:
                     </p>
-                    <div class="w-40 sm:w-52 mx-auto pt-2 pointer-events-none">
-                        <img src="{{ $t14FloralDivider }}" alt="" class="w-full h-auto object-contain">
-                    </div>
                 </div>
 
                 <div class="space-y-4 pt-1">
@@ -19561,9 +20108,9 @@
             @elseif($currentThemeId == 15 || $isMidnightAmber)
             <!-- ================= THEME 15 BESPOKE RSVP & UCAPAN (PREMIUM SERENADE MIDNIGHT AMBER) ================= -->
             <div class="w-full max-w-sm sm:max-w-md md:max-w-2xl mx-auto rounded-2xl sm:rounded-3xl bg-[#1C1A18] border border-[#DDA74F]/40 shadow-[0_16px_50px_rgba(0,0,0,0.8)] p-6 sm:p-10 relative space-y-6 text-center text-white reveal-item anim-amber-card-3d">
-                <!-- Top Floral Crest Decoration -->
+                <!-- Top Floral Garland Decoration -->
                 <div class="w-48 sm:w-60 mx-auto -mt-2 mb-2 pointer-events-none reveal-item anim-amber-bloom">
-                    <img src="{{ asset('images/themes/serenade-amber/floral-crest.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
+                    <img src="{{ asset('images/themes/serenade-amber/arch-flower-garland.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
                 </div>
 
                 <!-- Section Header -->
@@ -19659,9 +20206,9 @@
                     </div>
                 </div>
 
-                <!-- Bottom Floral Crest Divider -->
+                <!-- Bottom Floral Garland Divider -->
                 <div class="w-48 sm:w-60 mx-auto pt-4 pointer-events-none reveal-item anim-amber-bloom delay-3">
-                    <img src="{{ asset('images/themes/serenade-amber/floral-crest.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
+                    <img src="{{ asset('images/themes/serenade-amber/arch-flower-garland.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
                 </div>
             </div>
 
@@ -20272,7 +20819,11 @@
             </div>
             @elseif($currentThemeId == 14 || $isNightSky || $isFairytaleCastle)
             <!-- ================= THEME 14 BESPOKE RSVP & BUKU TAMU (PREMIUM FAIRYTALE CASTLE) ================= -->
-            <div class="w-full max-w-sm sm:max-w-md md:max-w-2xl mx-auto space-y-6 sm:space-y-8 select-none text-[#8A1538]">
+            <div class="w-full max-w-sm sm:max-w-md md:max-w-2xl mx-auto space-y-6 sm:space-y-8 select-none text-[#8A1538] relative">
+                <!-- Flanking Vertical Rose Vines from Reference Image 3 -->
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -left-5 sm:-left-10 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm">
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -right-5 sm:-right-10 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm -scale-x-100">
+
                 <div class="text-center space-y-1 reveal-item anim-fairytale-zoom">
                     <p class="text-[10px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#9F4D62]">
                         Konfirmasi Kehadiran
@@ -20280,6 +20831,10 @@
                     <h3 class="text-3xl sm:text-4xl text-[#8A1538]" style="font-family: 'Alex Brush', cursive;">
                         RSVP &amp; Buku Tamu
                     </h3>
+                    <!-- Horizontal Rose Garland Divider -->
+                    <div class="w-32 sm:w-44 mx-auto my-1 pointer-events-none opacity-85">
+                        <img src="{{ $t14RoseVineHorizontal }}" alt="" class="w-full h-auto object-contain">
+                    </div>
                     <p class="text-xs text-[#9F4D62] max-w-xs sm:max-w-md mx-auto leading-relaxed">
                         Doa restu dan kehadiran Anda di hari bahagia kami merupakan kebahagiaan dan kehormatan yang tak terhingga:
                     </p>
@@ -20730,6 +21285,15 @@
         <!-- ================= THEME 14 BESPOKE CLOSING & TERIMA KASIH (PREMIUM FAIRYTALE CASTLE) ================= -->
         <section id="section-penutup" class="py-14 sm:py-20 px-4 sm:px-6 md:px-10 text-center space-y-8 relative overflow-hidden select-none text-[#8A1538]">
             <div class="max-w-xl mx-auto rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/80 p-6 sm:p-10 shadow-[0_15px_35px_rgba(210,75,112,0.15)] relative space-y-6 text-center reveal-item anim-fairytale-zoom">
+                <!-- Flanking Vertical Rose Vines from Reference Image 3 -->
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -left-4 sm:-left-8 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm">
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -right-4 sm:-right-8 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm -scale-x-100">
+
+                <!-- Horizontal Rose Garland Divider -->
+                <div class="w-36 sm:w-48 mx-auto -mt-2 mb-2 pointer-events-none opacity-90">
+                    <img src="{{ $t14RoseVineHorizontal }}" alt="" class="w-full h-auto object-contain">
+                </div>
+
                 <!-- Castle Landscape Illustration Banner -->
                 <div class="w-full max-w-xs sm:max-w-sm mx-auto rounded-2xl overflow-hidden shadow-sm border border-pink-100 pointer-events-none mb-2">
                     <img src="{{ $t14BgCastleLandscape }}" alt="Fairytale Castle" class="w-full h-auto object-cover max-h-36">
@@ -20953,9 +21517,9 @@
         <section id="section-penutup" class="py-14 sm:py-20 px-4 sm:px-6 md:px-10 text-center space-y-8 relative overflow-hidden bg-[#161514] text-white">
             <!-- Arched Card Container -->
             <div class="max-w-xl mx-auto rounded-2xl sm:rounded-3xl bg-[#1C1A18] border border-[#DDA74F]/40 shadow-[0_16px_50px_rgba(0,0,0,0.8)] p-6 sm:p-10 relative space-y-6 text-center reveal-item anim-amber-card-3d">
-                <!-- Floral Crest Top Crown -->
+                <!-- Floral Garland Top Crown -->
                 <div class="w-48 sm:w-60 mx-auto pointer-events-none -mt-2 mb-2 reveal-item anim-amber-bloom">
-                    <img src="{{ asset('images/themes/serenade-amber/floral-crest.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
+                    <img src="{{ asset('images/themes/serenade-amber/arch-flower-garland.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
                 </div>
 
                 <h3 class="font-amber-script text-4xl sm:text-5xl text-[#FAF5EC] font-normal tracking-wide reveal-item anim-amber-title delay-1">
@@ -20978,9 +21542,9 @@
                     </p>
                 </div>
 
-                <!-- Bottom Floral Crest -->
+                <!-- Bottom Floral Garland -->
                 <div class="w-40 sm:w-56 mx-auto pt-3 pointer-events-none reveal-item anim-amber-bloom delay-3">
-                    <img src="{{ asset('images/themes/serenade-amber/floral-crest.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
+                    <img src="{{ asset('images/themes/serenade-amber/arch-flower-garland.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
                 </div>
             </div>
 
@@ -21282,7 +21846,7 @@
             </div>
             @elseif($currentThemeId == 15 || $isMidnightAmber)
             <div class="w-48 sm:w-64 mx-auto mb-3 pointer-events-none reveal-item anim-amber-bloom">
-                <img src="{{ asset('images/themes/serenade-amber/floral-crest.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
+                <img src="{{ asset('images/themes/serenade-amber/arch-flower-garland.png') }}" alt="" class="w-full h-auto object-contain drop-shadow-md">
             </div>
             @elseif($currentThemeId == 13 || $isSummerVibes)
             <div class="w-32 sm:w-44 mx-auto mb-3 pointer-events-none reveal-item anim-summer-stamp">
@@ -21791,6 +22355,24 @@
                     unlockInvitation();
                 });
             });
+
+            if (new URLSearchParams(window.location.search).has('open')) {
+                unlockInvitation();
+                const scrollTarget = new URLSearchParams(window.location.search).get('scroll');
+                setTimeout(() => {
+                    document.querySelectorAll('.reveal-item').forEach(el => el.classList.add('revealed'));
+                    if (scrollTarget) {
+                        const targetEl = document.getElementById(scrollTarget);
+                        const mainContainer = document.getElementById('invitation-main-content');
+                        if (targetEl) {
+                            targetEl.scrollIntoView({ behavior: 'instant', block: 'start' });
+                            if (mainContainer) {
+                                mainContainer.scrollTop = targetEl.offsetTop;
+                            }
+                        }
+                    }
+                }, 300);
+            }
         });
 
         window.saveTheDateCalendar = function() {

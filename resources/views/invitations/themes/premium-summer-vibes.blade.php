@@ -2182,12 +2182,198 @@
             transform-origin: bottom left;
         }
         .anim-amber-flower-top-right {
-            animation: amber-sway-left 6s ease-in-out infinite;
+            animation: amber-sway-right 6s ease-in-out infinite;
             transform-origin: top right;
+        }
+        .anim-amber-flower-top-left {
+            animation: amber-sway-left 6s ease-in-out infinite;
+            transform-origin: top left;
         }
         .anim-amber-flower-mid-left {
             animation: amber-sway-right 6.5s ease-in-out infinite;
             transform-origin: center left;
+        }
+
+        /* Ambient Floating & Rotating Single Blossoms (Gambar 8) */
+        @keyframes amber-spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes amber-spin-reverse {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+        @keyframes amber-drift-1 {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            50% { transform: translateY(-16px) rotate(18deg) scale(1.06); }
+        }
+        @keyframes amber-drift-2 {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            50% { transform: translateY(18px) rotate(-22deg) scale(0.94); }
+        }
+        @keyframes amber-orbit-spin {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0px) rotate(360deg); }
+        }
+        .anim-amber-spin {
+            animation: amber-spin-slow 20s linear infinite;
+        }
+        .anim-amber-spin-rev {
+            animation: amber-spin-reverse 24s linear infinite;
+        }
+        .anim-amber-spin-fast {
+            animation: amber-spin-slow 12s linear infinite;
+        }
+        .anim-amber-drift-1 {
+            animation: amber-drift-1 7s ease-in-out infinite;
+        }
+        .anim-amber-drift-2 {
+            animation: amber-drift-2 8.5s ease-in-out infinite;
+        }
+        .anim-amber-orbit-spin {
+            animation: amber-orbit-spin 16s ease-in-out infinite;
+        }
+
+        /* Wind-Blown Flying Blossoms Effect (Gambar 8: "berterbangan terbawa angin tak teratur, berputar random") */
+        @keyframes amber-wind-drift-1 {
+            0% {
+                transform: translate3d(-10vw, -10vh, 0px) rotate(0deg) rotateX(0deg) rotateY(0deg);
+                opacity: 0;
+            }
+            8% { opacity: 0.9; }
+            35% {
+                transform: translate3d(35vw, 25vh, 60px) rotate(140deg) rotateX(45deg) rotateY(20deg);
+            }
+            70% {
+                transform: translate3d(75vw, 68vh, -40px) rotate(290deg) rotateX(15deg) rotateY(55deg);
+                opacity: 0.85;
+            }
+            92% { opacity: 0.75; }
+            100% {
+                transform: translate3d(112vw, 110vh, 30px) rotate(420deg) rotateX(60deg) rotateY(80deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes amber-wind-drift-2 {
+            0% {
+                transform: translate3d(105vw, -5vh, 0px) rotate(0deg) rotateX(0deg) rotateY(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.9; }
+            40% {
+                transform: translate3d(60vw, 35vh, -50px) rotate(-160deg) rotateX(35deg) rotateY(-40deg);
+            }
+            75% {
+                transform: translate3d(20vw, 75vh, 40px) rotate(-310deg) rotateX(50deg) rotateY(25deg);
+                opacity: 0.8;
+            }
+            90% { opacity: 0.7; }
+            100% {
+                transform: translate3d(-15vw, 108vh, -20px) rotate(-460deg) rotateX(20deg) rotateY(-60deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes amber-wind-drift-3 {
+            0% {
+                transform: translate3d(0vw, -8vh, 0px) rotate(0deg) rotateX(0deg) rotateY(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.85; }
+            30% {
+                transform: translate3d(45vw, 15vh, 70px) rotate(120deg) rotateX(50deg) rotateY(15deg);
+            }
+            55% {
+                transform: translate3d(25vw, 45vh, -30px) rotate(230deg) rotateX(20deg) rotateY(70deg);
+            }
+            80% {
+                transform: translate3d(85vw, 80vh, 50px) rotate(350deg) rotateX(45deg) rotateY(30deg);
+                opacity: 0.8;
+            }
+            95% { opacity: 0.6; }
+            100% {
+                transform: translate3d(115vw, 112vh, 0px) rotate(490deg) rotateX(60deg) rotateY(60deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes amber-wind-drift-4 {
+            0% {
+                transform: translate3d(-15vw, 25vh, 0px) rotate(0deg) rotateX(0deg) rotateY(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.85; }
+            50% {
+                transform: translate3d(50vw, 32vh, 40px) rotate(240deg) rotateX(40deg) rotateY(40deg);
+            }
+            85% { opacity: 0.85; }
+            100% {
+                transform: translate3d(115vw, 40vh, -20px) rotate(540deg) rotateX(70deg) rotateY(70deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes amber-wind-drift-5 {
+            0% {
+                transform: translate3d(115vw, 62vh, 0px) rotate(0deg) rotateX(0deg) rotateY(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.8; }
+            50% {
+                transform: translate3d(45vw, 55vh, -40px) rotate(-220deg) rotateX(45deg) rotateY(-45deg);
+            }
+            85% { opacity: 0.8; }
+            100% {
+                transform: translate3d(-15vw, 68vh, 30px) rotate(-500deg) rotateX(60deg) rotateY(-60deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes amber-wind-drift-6 {
+            0% {
+                transform: translate3d(45vw, 110vh, 0px) rotate(0deg) rotateX(0deg) rotateY(0deg);
+                opacity: 0;
+            }
+            12% { opacity: 0.85; }
+            45% {
+                transform: translate3d(70vw, 65vh, 50px) rotate(160deg) rotateX(30deg) rotateY(50deg);
+            }
+            80% {
+                transform: translate3d(30vw, 20vh, -30px) rotate(320deg) rotateX(60deg) rotateY(20deg);
+                opacity: 0.8;
+            }
+            95% { opacity: 0.6; }
+            100% {
+                transform: translate3d(15vw, -12vh, 0px) rotate(450deg) rotateX(45deg) rotateY(45deg);
+                opacity: 0;
+            }
+        }
+
+        .anim-amber-fly-1 {
+            animation: amber-wind-drift-1 linear infinite;
+            will-change: transform, opacity;
+        }
+        .anim-amber-fly-2 {
+            animation: amber-wind-drift-2 linear infinite;
+            will-change: transform, opacity;
+        }
+        .anim-amber-fly-3 {
+            animation: amber-wind-drift-3 linear infinite;
+            will-change: transform, opacity;
+        }
+        .anim-amber-fly-4 {
+            animation: amber-wind-drift-4 linear infinite;
+            will-change: transform, opacity;
+        }
+        .anim-amber-fly-5 {
+            animation: amber-wind-drift-5 linear infinite;
+            will-change: transform, opacity;
+        }
+        .anim-amber-fly-6 {
+            animation: amber-wind-drift-6 linear infinite;
+            will-change: transform, opacity;
         }
 
         /* Bespoke Photo Frame for Bride & Groom */
@@ -2447,6 +2633,84 @@
       data-theme-id="{{ $currentThemeId }}"
       data-theme-slug="{{ $currentThemeSlug }}"
       data-tier="{{ $currentThemeTier }}">
+
+    @if($currentThemeId == 15 || $isMidnightAmber)
+    <!-- ================= THEME 15 CONTINUOUS WIND-BLOWN BLOSSOMS PARTICLES (GAMBAR 8) ================= -->
+    <div id="amber-wind-particles" class="fixed inset-0 pointer-events-none z-[70] overflow-hidden select-none" style="perspective: 1200px;" aria-hidden="true">
+        <!-- Particle 1: Diagonal Drift 1, Medium -->
+        <div class="absolute w-7 h-7 sm:w-9 sm:h-9 anim-amber-fly-1" style="left: 8%; animation-duration: 14s; animation-delay: -2s; opacity: 0.85;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]">
+        </div>
+        <!-- Particle 2: Diagonal Drift 2, Small/Fast -->
+        <div class="absolute w-5 h-5 sm:w-6 sm:h-6 anim-amber-fly-2" style="left: 82%; animation-duration: 11s; animation-delay: -6s; opacity: 0.75;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 3: Swirling Vortex 3, Large -->
+        <div class="absolute w-10 h-10 sm:w-12 sm:h-12 anim-amber-fly-3" style="left: 45%; animation-duration: 17s; animation-delay: -11s; opacity: 0.9;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain drop-shadow-[0_6px_16px_rgba(0,0,0,0.7)]">
+        </div>
+        <!-- Particle 4: Horizontal Gust 4, Medium -->
+        <div class="absolute w-6 h-6 sm:w-8 sm:h-8 anim-amber-fly-4" style="top: 15%; animation-duration: 13s; animation-delay: -4s; opacity: 0.8;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 5: Reverse Horizontal Gust 5, Small -->
+        <div class="absolute w-5 h-5 sm:w-6 sm:h-6 anim-amber-fly-5" style="top: 55%; animation-duration: 15s; animation-delay: -9s; opacity: 0.7;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 6: Updraft Float 6, Medium -->
+        <div class="absolute w-7 h-7 sm:w-9 sm:h-9 anim-amber-fly-6" style="left: 28%; animation-duration: 19s; animation-delay: -13s; opacity: 0.85;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain drop-shadow-md">
+        </div>
+        <!-- Particle 7: Diagonal Drift 1, Tiny/Distant with Blur -->
+        <div class="absolute w-4 h-4 sm:w-5 sm:h-5 anim-amber-fly-1 blur-[0.5px]" style="left: 20%; animation-duration: 21s; animation-delay: -8s; opacity: 0.55;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 8: Diagonal Drift 2, Medium -->
+        <div class="absolute w-8 h-8 sm:w-10 sm:h-10 anim-amber-fly-2" style="left: 65%; animation-duration: 16s; animation-delay: -3s; opacity: 0.85;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain drop-shadow-md">
+        </div>
+        <!-- Particle 9: Swirling Vortex 3, Small -->
+        <div class="absolute w-5 h-5 sm:w-7 sm:h-7 anim-amber-fly-3" style="left: 75%; animation-duration: 14s; animation-delay: -1s; opacity: 0.75;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 10: Horizontal Gust 4, Large -->
+        <div class="absolute w-9 h-9 sm:w-11 sm:h-11 anim-amber-fly-4" style="top: 40%; animation-duration: 18s; animation-delay: -10s; opacity: 0.9;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain drop-shadow-lg">
+        </div>
+        <!-- Particle 11: Reverse Horizontal Gust 5, Medium -->
+        <div class="absolute w-7 h-7 sm:w-8 sm:h-8 anim-amber-fly-5" style="top: 75%; animation-duration: 16s; animation-delay: -5s; opacity: 0.8;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 12: Diagonal Drift 1, Medium -->
+        <div class="absolute w-6 h-6 sm:w-8 sm:h-8 anim-amber-fly-1" style="left: 55%; animation-duration: 15s; animation-delay: -12s; opacity: 0.8;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 13: Diagonal Drift 2, Large -->
+        <div class="absolute w-9 h-9 sm:w-11 sm:h-11 anim-amber-fly-2" style="left: 35%; animation-duration: 18s; animation-delay: -15s; opacity: 0.9;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain drop-shadow-md">
+        </div>
+        <!-- Particle 14: Swirling Vortex 3, Tiny/Distant with Blur -->
+        <div class="absolute w-4 h-4 sm:w-5 sm:h-5 anim-amber-fly-3 blur-[0.5px]" style="left: 15%; animation-duration: 22s; animation-delay: -7s; opacity: 0.5;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 15: Updraft Float 6, Small -->
+        <div class="absolute w-5 h-5 sm:w-7 sm:h-7 anim-amber-fly-6" style="left: 70%; animation-duration: 17s; animation-delay: -4s; opacity: 0.75;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 16: Diagonal Drift 1, Medium -->
+        <div class="absolute w-7 h-7 sm:w-9 sm:h-9 anim-amber-fly-1" style="left: 90%; animation-duration: 16s; animation-delay: -9s; opacity: 0.8;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 17: Diagonal Drift 2, Tiny/Distant with Blur -->
+        <div class="absolute w-4 h-4 sm:w-5 sm:h-5 anim-amber-fly-2 blur-[0.5px]" style="left: 48%; animation-duration: 20s; animation-delay: -14s; opacity: 0.55;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+        <!-- Particle 18: Horizontal Gust 4, Small -->
+        <div class="absolute w-6 h-6 sm:w-7 sm:h-7 anim-amber-fly-4" style="top: 70%; animation-duration: 14s; animation-delay: -7s; opacity: 0.75;">
+            <img src="{{ asset('images/themes/serenade-amber/single-flower-blossom.png') }}" alt="" class="w-full h-full object-contain">
+        </div>
+    </div>
+    @endif
 
     <!-- ================= 1. COVER UNDANGAN (FULLSCREEN OVERLAY PEMBUKA) ================= -->
     <div id="invitation-cover" data-test="invitation-cover-overlay" class="fixed inset-0 z-[60] flex items-center justify-center {{ ($currentThemeId == 1 || $currentThemeId == 5 || $currentThemeId == 13 || $currentThemeId == 15 || $currentThemeId == 16 || $currentThemeId == 19 || $currentThemeId == 20 || $isDarkElegance || $isLavenderMist || $isMidnightAmber || $isMuseumOfLove || $isSummerVibes) ? 'p-0' : 'p-3 sm:p-6' }} select-none transition-all duration-1000 ease-in-out bg-[var(--bg-canvas)] overflow-hidden">
@@ -2753,39 +3017,39 @@
         <!-- ================= THEME 15 BESPOKE COVER (PREMIUM SERENADE MIDNIGHT AMBER) ================= -->
         <div class="relative w-full h-full min-h-full flex flex-col justify-between items-center text-center p-6 sm:p-10 select-none overflow-hidden bg-[#161514] text-white">
             
-            <!-- Continuous Gentle Swaying Floral Elements (Image 4 User Asset: "gerak goyang goyang") -->
-            <!-- Top-Right Swaying Flower Bouquet -->
-            <div class="absolute -top-6 -right-6 sm:-top-8 sm:-right-8 w-44 sm:w-56 md:w-64 pointer-events-none z-10 anim-amber-flower-top-right drop-shadow-2xl opacity-95">
-                <img src="{{ asset('images/themes/serenade-amber/floral-corner.png') }}" alt="" class="w-full h-auto object-contain transform -scale-x-100 rotate-45">
+            <!-- Continuous Gentle Swaying Floral Elements (4 Corner Dedicated Assets) -->
+            <!-- Top-Left Swaying Flower Corner -->
+            <div class="absolute -top-3 -left-3 sm:-top-5 sm:-left-5 w-36 sm:w-48 md:w-56 pointer-events-none z-10 anim-amber-flower-top-left drop-shadow-2xl opacity-95">
+                <img src="{{ asset('images/themes/serenade-amber/corner-top-left.png') }}" alt="" class="w-full h-auto object-contain">
             </div>
 
-            <!-- Middle-Left Swaying Flower Bouquet -->
-            <div class="absolute top-[35%] -left-8 sm:-left-12 w-40 sm:w-48 pointer-events-none z-10 anim-amber-flower-mid-left drop-shadow-2xl opacity-90">
-                <img src="{{ asset('images/themes/serenade-amber/floral-corner.png') }}" alt="" class="w-full h-auto object-contain rotate-12">
+            <!-- Top-Right Swaying Flower Corner -->
+            <div class="absolute -top-3 -right-3 sm:-top-5 sm:-right-5 w-36 sm:w-48 md:w-56 pointer-events-none z-10 anim-amber-flower-top-right drop-shadow-2xl opacity-95">
+                <img src="{{ asset('images/themes/serenade-amber/corner-top-right.png') }}" alt="" class="w-full h-auto object-contain">
             </div>
 
-            <!-- Bottom-Left Swaying Flower Bouquet -->
-            <div class="absolute -bottom-6 -left-6 sm:-bottom-8 sm:-left-8 w-48 sm:w-60 md:w-68 pointer-events-none z-10 anim-amber-flower-left drop-shadow-2xl opacity-95">
-                <img src="{{ asset('images/themes/serenade-amber/floral-corner.png') }}" alt="" class="w-full h-auto object-contain">
+            <!-- Bottom-Left Swaying Flower Corner -->
+            <div class="absolute -bottom-3 -left-3 sm:-bottom-5 sm:-left-5 w-40 sm:w-52 md:w-60 pointer-events-none z-10 anim-amber-flower-left drop-shadow-2xl opacity-95">
+                <img src="{{ asset('images/themes/serenade-amber/corner-bottom-left.png') }}" alt="" class="w-full h-auto object-contain">
             </div>
 
-            <!-- Bottom-Right Swaying Flower Bouquet -->
-            <div class="absolute -bottom-6 -right-6 sm:-bottom-8 sm:-right-8 w-48 sm:w-60 md:w-68 pointer-events-none z-10 anim-amber-flower-right drop-shadow-2xl opacity-95">
-                <img src="{{ asset('images/themes/serenade-amber/floral-corner.png') }}" alt="" class="w-full h-auto object-contain transform -scale-x-100">
+            <!-- Bottom-Right Swaying Flower Corner -->
+            <div class="absolute -bottom-3 -right-3 sm:-bottom-5 sm:-right-5 w-40 sm:w-52 md:w-60 pointer-events-none z-10 anim-amber-flower-right drop-shadow-2xl opacity-95">
+                <img src="{{ asset('images/themes/serenade-amber/corner-bottom-right.png') }}" alt="" class="w-full h-auto object-contain">
             </div>
 
             <!-- Center Content Container (Matching Reference Preview Image) -->
             <div class="relative z-20 w-full max-w-sm mx-auto flex flex-col items-center pt-2 sm:pt-4 my-auto space-y-4">
                 
-                <!-- Couple Arch Frame with Floral Crest at Bottom -->
+                <!-- Couple Arch Frame with Floral Garland at Bottom (Matching Gambar 6 & 7) -->
                 <div class="relative w-44 sm:w-52 aspect-[3/4] mx-auto anim-amber-bloom">
                     <!-- Photo Container with Golden Border and Curved Arch -->
-                    <div class="w-full h-full rounded-t-[100px] rounded-b-[18px] overflow-hidden border-[2.5px] border-[#DDA74F] shadow-[0_12px_40px_rgba(0,0,0,0.85)] bg-[#1F1D1B] relative">
+                    <div class="w-full h-full rounded-t-[85px] sm:rounded-t-[105px] rounded-b-[4px] overflow-hidden border-[2px] sm:border-[2.5px] border-[#DDA74F] shadow-[0_12px_40px_rgba(0,0,0,0.85)] bg-[#1F1D1B] relative">
                         <img src="{{ $t15CoverPhoto }}" alt="The Couple" class="w-full h-full object-cover">
                     </div>
-                    <!-- Floral Crest wrapping the bottom of the arch photo -->
-                    <div class="absolute -bottom-6 sm:-bottom-7 -left-6 -right-6 pointer-events-none z-10 drop-shadow-[0_8px_20px_rgba(0,0,0,0.8)]">
-                        <img src="{{ asset('images/themes/serenade-amber/floral-crest.png') }}" alt="" class="w-full h-auto object-contain">
+                    <!-- Floral Garland wrapping the bottom of the arch photo -->
+                    <div class="absolute -bottom-5 sm:-bottom-6 -left-7 -right-7 sm:-left-9 sm:-right-9 pointer-events-none z-10 drop-shadow-[0_8px_20px_rgba(0,0,0,0.85)]">
+                        <img src="{{ asset('images/themes/serenade-amber/arch-flower-garland.png') }}" alt="" class="w-full h-auto object-contain">
                     </div>
                 </div>
 
@@ -3386,64 +3650,68 @@
             @if($currentThemeId == 15 || $isMidnightAmber)
             <!-- ================= THEME 15: BESPOKE HERO SECTION (PREMIUM SERENADE MIDNIGHT AMBER) ================= -->
             <div class="w-full relative overflow-hidden select-none bg-[#161514] text-white py-10 sm:py-16 px-4 sm:px-6">
-                <!-- Top-Right Swaying Flower Bouquet -->
-                <div class="absolute -top-6 -right-6 sm:-top-8 sm:-right-8 w-44 sm:w-56 pointer-events-none z-10 anim-amber-flower-top-right drop-shadow-2xl opacity-90">
-                    <img src="{{ asset('images/themes/serenade-amber/floral-corner.png') }}" alt="" class="w-full h-auto object-contain transform -scale-x-100 rotate-45">
+                <!-- Top-Left Swaying Flower Corner (Dedicated Native Asset) -->
+                <div class="absolute -top-3 -left-3 sm:-top-5 sm:-left-5 w-36 sm:w-48 md:w-56 pointer-events-none z-10 anim-amber-flower-top-left drop-shadow-2xl opacity-90">
+                    <img src="{{ asset('images/themes/serenade-amber/corner-top-left.png') }}" alt="" class="w-full h-auto object-contain">
                 </div>
-                <!-- Middle-Left Swaying Flower Bouquet -->
-                <div class="absolute top-[38%] -left-8 sm:-left-12 w-40 sm:w-48 pointer-events-none z-10 anim-amber-flower-mid-left drop-shadow-2xl opacity-85">
-                    <img src="{{ asset('images/themes/serenade-amber/floral-corner.png') }}" alt="" class="w-full h-auto object-contain rotate-12">
+                <!-- Top-Right Swaying Flower Corner (Dedicated Native Asset) -->
+                <div class="absolute -top-3 -right-3 sm:-top-5 sm:-right-5 w-36 sm:w-48 md:w-56 pointer-events-none z-10 anim-amber-flower-top-right drop-shadow-2xl opacity-90">
+                    <img src="{{ asset('images/themes/serenade-amber/corner-top-right.png') }}" alt="" class="w-full h-auto object-contain">
                 </div>
 
                 <div class="relative z-10 max-w-lg mx-auto text-center space-y-4 pt-2">
-                    <!-- Couple Photo in Gold Arch Frame with Bottom Floral Crest -->
-                    <div class="relative w-48 sm:w-56 aspect-[3/4] mx-auto my-2 reveal-item anim-amber-frame">
-                        <div class="w-full h-full rounded-t-[110px] rounded-b-[20px] overflow-hidden border-[2.5px] border-[#DDA74F] shadow-[0_16px_50px_rgba(0,0,0,0.85)] bg-[#1F1D1B] group">
+                    <!-- Couple Photo in Gold Arch Frame with Bottom Floral Garland (Matching Gambar 6 & 7) -->
+                    <div class="relative w-44 sm:w-52 aspect-[3/4] mx-auto my-3 reveal-item anim-amber-frame">
+                        <div class="w-full h-full rounded-t-[85px] sm:rounded-t-[105px] rounded-b-[4px] overflow-hidden border-[2px] sm:border-[2.5px] border-[#DDA74F] shadow-[0_16px_50px_rgba(0,0,0,0.85)] bg-[#1F1D1B] group">
                             <img src="{{ $t15HeroPhoto }}" alt="{{ $groomNickname }} &amp; {{ $brideNickname }}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
                         </div>
-                        <!-- Floral Crest Wrapping Bottom of Arch -->
-                        <div class="absolute -bottom-6 sm:-bottom-7 -left-7 -right-7 pointer-events-none z-10 drop-shadow-[0_10px_25px_rgba(0,0,0,0.8)]">
-                            <img src="{{ asset('images/themes/serenade-amber/floral-crest.png') }}" alt="" class="w-full h-auto object-contain">
+                        <!-- Floral Garland (Gambar 6) Wrapping Bottom of Arch -->
+                        <div class="absolute -bottom-5 sm:-bottom-6 -left-7 -right-7 sm:-left-9 sm:-right-9 pointer-events-none z-10 drop-shadow-[0_10px_25px_rgba(0,0,0,0.85)]">
+                            <img src="{{ asset('images/themes/serenade-amber/arch-flower-garland.png') }}" alt="" class="w-full h-auto object-contain">
                         </div>
                     </div>
 
                     <!-- Header Title -->
-                    <div class="pt-3 space-y-1 reveal-item anim-amber-title">
+                    <div class="pt-3 space-y-1.5 reveal-item anim-amber-title">
                         <span class="inline-block font-amber-title text-[10px] sm:text-xs tracking-[0.35em] uppercase text-[#E8C37D] font-semibold">
                             THE WEDDING OF
                         </span>
                         <h1 class="font-amber-script text-5xl sm:text-6xl md:text-7xl text-[#F2D59B] leading-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)] py-1">
                             {{ $groomNickname }} <span class="text-[#DDA74F] font-light">&amp;</span> {{ $brideNickname }}
                         </h1>
-                        <p class="font-amber-headline text-sm sm:text-base tracking-[0.25em] text-[#C4B5A5] font-semibold uppercase pt-1">
-                            {{ $eventDateFormatted }}
+                        <p class="font-amber-headline text-xs sm:text-sm text-[#C4B5A5] italic font-normal max-w-sm mx-auto pt-1 leading-relaxed">
+                            Kami akan menikah, kami ingin anda menjadi bagian dari hari bahagia kami
                         </p>
                     </div>
 
-                    <!-- 4 Amber Gold Countdown Timer Boxes -->
+                    <!-- 4 Amber Gold Countdown Timer Boxes (Matching Gambar 7) -->
                     <div class="grid grid-cols-4 gap-2 sm:gap-3 max-w-xs sm:max-w-sm mx-auto pt-3 font-mono reveal-item anim-amber-card-3d delay-1 relative z-20">
-                        <div class="p-2.5 sm:p-3 rounded-xl bg-gradient-to-br from-[#DDA74F] via-[#C59132] to-[#9A6E20] text-[#161514] shadow-[0_6px_20px_rgba(221,167,79,0.3)] border border-[#FFE7B3]/60 text-center">
-                            <span id="hero-cd-days-t15" class="block text-xl sm:text-2xl font-bold leading-none cd-val-days font-sans">00</span>
-                            <span class="text-[9px] uppercase font-amber-title tracking-wider text-[#2A1D07] font-bold mt-1 block">Hari</span>
+                        <div class="p-2 sm:p-2.5 rounded-xl bg-gradient-to-b from-[#E2B258] via-[#CFA14B] to-[#B38332] text-white shadow-[0_6px_20px_rgba(207,161,75,0.35)] border border-[#FFE7B3]/50 text-center">
+                            <span id="hero-cd-days-t15" class="block text-xl sm:text-2xl font-bold leading-none cd-val-days font-sans text-white drop-shadow-sm">00</span>
+                            <span class="text-[9px] uppercase font-amber-title tracking-wider text-white/95 font-medium mt-1 block">Hari</span>
                         </div>
-                        <div class="p-2.5 sm:p-3 rounded-xl bg-gradient-to-br from-[#DDA74F] via-[#C59132] to-[#9A6E20] text-[#161514] shadow-[0_6px_20px_rgba(221,167,79,0.3)] border border-[#FFE7B3]/60 text-center">
-                            <span id="hero-cd-hours-t15" class="block text-xl sm:text-2xl font-bold leading-none cd-val-hours font-sans">00</span>
-                            <span class="text-[9px] uppercase font-amber-title tracking-wider text-[#2A1D07] font-bold mt-1 block">Jam</span>
+                        <div class="p-2 sm:p-2.5 rounded-xl bg-gradient-to-b from-[#E2B258] via-[#CFA14B] to-[#B38332] text-white shadow-[0_6px_20px_rgba(207,161,75,0.35)] border border-[#FFE7B3]/50 text-center">
+                            <span id="hero-cd-hours-t15" class="block text-xl sm:text-2xl font-bold leading-none cd-val-hours font-sans text-white drop-shadow-sm">00</span>
+                            <span class="text-[9px] uppercase font-amber-title tracking-wider text-white/95 font-medium mt-1 block">Jam</span>
                         </div>
-                        <div class="p-2.5 sm:p-3 rounded-xl bg-gradient-to-br from-[#DDA74F] via-[#C59132] to-[#9A6E20] text-[#161514] shadow-[0_6px_20px_rgba(221,167,79,0.3)] border border-[#FFE7B3]/60 text-center">
-                            <span id="hero-cd-mins-t15" class="block text-xl sm:text-2xl font-bold leading-none cd-val-mins font-sans">00</span>
-                            <span class="text-[9px] uppercase font-amber-title tracking-wider text-[#2A1D07] font-bold mt-1 block">Menit</span>
+                        <div class="p-2 sm:p-2.5 rounded-xl bg-gradient-to-b from-[#E2B258] via-[#CFA14B] to-[#B38332] text-white shadow-[0_6px_20px_rgba(207,161,75,0.35)] border border-[#FFE7B3]/50 text-center">
+                            <span id="hero-cd-mins-t15" class="block text-xl sm:text-2xl font-bold leading-none cd-val-mins font-sans text-white drop-shadow-sm">00</span>
+                            <span class="text-[9px] uppercase font-amber-title tracking-wider text-white/95 font-medium mt-1 block">Menit</span>
                         </div>
-                        <div class="p-2.5 sm:p-3 rounded-xl bg-gradient-to-br from-[#DDA74F] via-[#C59132] to-[#9A6E20] text-[#161514] shadow-[0_6px_20px_rgba(221,167,79,0.3)] border border-[#FFE7B3]/60 text-center">
-                            <span id="hero-cd-secs-t15" class="block text-xl sm:text-2xl font-bold leading-none cd-val-secs font-sans">00</span>
-                            <span class="text-[9px] uppercase font-amber-title tracking-wider text-[#2A1D07] font-bold mt-1 block">Detik</span>
+                        <div class="p-2 sm:p-2.5 rounded-xl bg-gradient-to-b from-[#E2B258] via-[#CFA14B] to-[#B38332] text-white shadow-[0_6px_20px_rgba(207,161,75,0.35)] border border-[#FFE7B3]/50 text-center">
+                            <span id="hero-cd-secs-t15" class="block text-xl sm:text-2xl font-bold leading-none cd-val-secs font-sans text-white drop-shadow-sm">00</span>
+                            <span class="text-[9px] uppercase font-amber-title tracking-wider text-white/95 font-medium mt-1 block">Detik</span>
                         </div>
                     </div>
 
-                    <!-- "SAVE THE DATE" Button -->
-                    <div class="pt-2 reveal-item anim-amber-pop delay-2 relative z-20">
-                        <button type="button" onclick="saveTheDateCalendar()" class="px-8 py-3 rounded-md bg-gradient-to-r from-[#DDA74F] via-[#F2D59B] to-[#C59132] hover:brightness-110 text-[#161514] font-amber-title text-xs font-bold tracking-[0.25em] uppercase transition-all duration-300 inline-flex items-center justify-center gap-2 shadow-[0_8px_25px_rgba(221,167,79,0.45)] border border-[#FFE7B3] active:scale-95 cursor-pointer group">
+                    <!-- Event Date & "SAVE THE DATE" Button -->
+                    <div class="pt-2 reveal-item anim-amber-pop delay-2 relative z-20 space-y-3">
+                        <p class="font-amber-headline text-sm sm:text-base tracking-[0.2em] text-[#E8C37D] font-semibold uppercase">
+                            {{ $eventDateFormatted }}
+                        </p>
+                        <button type="button" onclick="saveTheDateCalendar()" class="px-8 py-2.5 sm:py-3 rounded-md bg-gradient-to-r from-[#DDA74F] via-[#F2D59B] to-[#C59132] hover:brightness-110 text-[#161514] font-amber-title text-xs font-bold tracking-[0.25em] uppercase transition-all duration-300 inline-flex items-center justify-center gap-2 shadow-[0_8px_25px_rgba(221,167,79,0.45)] border border-[#FFE7B3] active:scale-95 cursor-pointer group">
                             <svg class="w-4 h-4 text-[#161514] group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            <span class="sr-only">Simpan di Kalender</span>
                             <span>SAVE THE DATE</span>
                         </button>
                     </div>

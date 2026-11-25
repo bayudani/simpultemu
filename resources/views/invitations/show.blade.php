@@ -280,14 +280,14 @@
 
             // === 10 PREMIUM THEMES ===
             11 => [
-                'name' => 'Premium Misty Romance',
-                'slug' => 'premium-misty-romance',
+                'name' => 'Premium Nostalgic Village',
+                'slug' => 'premium-nostalgic-village',
                 'tier' => 'premium',
-                'bgCanvas' => '#14181E',
+                'bgCanvas' => '#FAF7F2',
                 'bgCard' => '#FFFFFF',
-                'bgAccentBlock' => '#2D3748',
-                'bgAccentLight' => 'rgba(255, 255, 255, 0.1)',
-                'textMain' => '#1A202C',
+                'bgAccentBlock' => '#2C404E',
+                'bgAccentLight' => 'rgba(44, 64, 78, 0.08)',
+                'textMain' => '#2C404E',
                 'textMuted' => '#4A5568',
                 'textAccent' => '#2B374A',
                 'textSecondary' => '#4A5568',
@@ -1173,22 +1173,29 @@
             $t14GalIdx++;
         }
 
-        // Theme 11 (Premium Misty Romance) Bespoke Variables & Photo Assets
-        $isMistyRomance = ($currentThemeId == 11) || ($currentThemeSlug === 'premium-misty-romance') || ($currentThemeSlug === 'premium-serenade-maroon') || (request()->route('theme') == 11);
+        // Theme 11 (Premium Nostalgic Village) Bespoke Variables & Photo Assets
+        $isNostalgicVillage = ($currentThemeId == 11) || ($currentThemeSlug === 'premium-nostalgic-village') || ($currentThemeSlug === 'premium-misty-romance') || ($currentThemeSlug === 'premium-serenade-maroon') || (request()->route('theme') == 11);
+        $isMistyRomance = $isNostalgicVillage;
 
-        $t11BgSwans = asset('images/themes/misty-romance/bg-swans.jpg');
-        $t11BgMountain = asset('images/themes/misty-romance/bg-mountain.jpg');
-        $t11BgDarkFloral = asset('images/themes/misty-romance/bg-dark-floral.jpg');
+        $t11BgMountain = asset('images/themes/nostalgic-village/bg-mountain-landscape.jpg');
+        $t11BgBeach = asset('images/themes/nostalgic-village/bg-beach-scene.jpg');
+        $t11BgNight = asset('images/themes/nostalgic-village/bg-night-village.jpg');
+        $t11CarWagon = asset('images/themes/nostalgic-village/car-yellow-wagon.png');
+        $t11Bicycle = asset('images/themes/nostalgic-village/bicycle-yellow.png');
+        $t11HouseVillage = asset('images/themes/nostalgic-village/house-village.png');
+        $t11BgCoastalRoad = asset('images/themes/nostalgic-village/bg-coastal-road.jpg');
+        $t11BgPendopoSunset = asset('images/themes/nostalgic-village/bg-pendopo-sunset.jpg');
+        $t11CouplePendopo = asset('images/themes/nostalgic-village/couple-pendopo.png');
 
-        $t11DefaultCover = asset('images/themes/misty-romance/demo-cover.jpg');
-        $t11DefaultHero = asset('images/themes/misty-romance/demo-hero.jpg');
-        $t11DefaultBride = asset('images/themes/misty-romance/bride.jpg');
-        $t11DefaultGroom = asset('images/themes/misty-romance/groom.jpg');
-        $t11DefaultPortrait = asset('images/themes/misty-romance/couple-portrait.jpg');
-        $t11DefaultStory1 = asset('images/themes/misty-romance/story-1.jpg');
-        $t11DefaultStory2 = asset('images/themes/misty-romance/story-2.jpg');
-        $t11DefaultQuote = asset('images/themes/misty-romance/demo-quote.jpg');
-        $t11DefaultClosing = asset('images/themes/misty-romance/demo-closing.jpg');
+        $t11DefaultCover = 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&auto=format&fit=crop&q=80';
+        $t11DefaultHero = 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&auto=format&fit=crop&q=80';
+        $t11DefaultBride = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&auto=format&fit=crop&q=80';
+        $t11DefaultGroom = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop&q=80';
+        $t11DefaultPortrait = 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1000&auto=format&fit=crop&q=80';
+        $t11DefaultStory1 = 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&auto=format&fit=crop&q=80';
+        $t11DefaultStory2 = 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&auto=format&fit=crop&q=80';
+        $t11DefaultQuote = asset('images/themes/nostalgic-village/bg-mountain-landscape.jpg');
+        $t11DefaultClosing = asset('images/themes/nostalgic-village/bg-night-village.jpg');
 
         $t11CoverPhoto = !empty($invitation->background_photo_url)
             ? $invitation->background_photo_url
@@ -1216,12 +1223,12 @@
             }
         }
         $t11DefaultGallery = [
-            asset('images/themes/misty-romance/demo-cover.jpg'),
-            asset('images/themes/misty-romance/couple-portrait.jpg'),
-            asset('images/themes/misty-romance/story-1.jpg'),
-            asset('images/themes/misty-romance/story-2.jpg'),
-            asset('images/themes/misty-romance/groom.jpg'),
-            asset('images/themes/misty-romance/bride.jpg'),
+            'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop&q=80',
+            'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&auto=format&fit=crop&q=80',
+            'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&auto=format&fit=crop&q=80',
+            'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1000&auto=format&fit=crop&q=80',
+            'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&auto=format&fit=crop&q=80',
+            'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&auto=format&fit=crop&q=80',
         ];
         $t11GalIdx = 0;
         while (count($t11GalleryPhotos) < 6) {
@@ -3424,34 +3431,531 @@
             border: none !important;
         }
 
-        /* Fairytale Castle Animations */
-        @keyframes fairytale-zoom {
-            0% { transform: scale(0.75); opacity: 0; }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); opacity: 1; }
+        /* Fairytale Castle Animations - Rich Cinematic & Organic Suite */
+        @keyframes fairytale-frame-entrance {
+            0% {
+                opacity: 0;
+                transform: perspective(1200px) rotateX(16deg) translateY(45px) scale(0.88);
+                filter: blur(8px) drop-shadow(0 4px 10px rgba(210, 75, 112, 0.15));
+            }
+            60% {
+                opacity: 0.95;
+                transform: perspective(1200px) rotateX(-2deg) translateY(-4px) scale(1.02);
+                filter: blur(0) drop-shadow(0 14px 28px rgba(210, 75, 112, 0.45));
+            }
+            100% {
+                opacity: 1;
+                transform: perspective(1200px) rotateX(0deg) translateY(0) scale(1);
+                filter: blur(0) drop-shadow(0 12px 24px rgba(210, 75, 112, 0.35));
+            }
         }
         @keyframes fairytale-pulse-frame {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 10px 25px rgba(210, 75, 112, 0.3)); }
-            50% { transform: scale(1.02); filter: drop-shadow(0 15px 35px rgba(210, 75, 112, 0.55)); }
+            0%, 100% {
+                transform: scale(1) translateZ(0);
+                filter: drop-shadow(0 10px 24px rgba(210, 75, 112, 0.3));
+            }
+            50% {
+                transform: scale(1.018) translateZ(0);
+                filter: drop-shadow(0 16px 36px rgba(210, 75, 112, 0.52));
+            }
+        }
+        @keyframes fairytale-portrait-breathe {
+            0%, 100% {
+                transform: scale(1) translate(0%, 0%);
+            }
+            50% {
+                transform: scale(1.06) translate(-1%, -1%);
+            }
+        }
+        @keyframes fairytale-frame-shimmer {
+            0% {
+                transform: translateX(-150%) rotate(25deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.65;
+            }
+            40% {
+                transform: translateX(250%) rotate(25deg);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(250%) rotate(25deg);
+                opacity: 0;
+            }
+        }
+        @keyframes fairytale-vine-sway-l {
+            0%, 100% {
+                transform: rotate(0deg) translateY(0);
+            }
+            50% {
+                transform: rotate(-2.5deg) translateY(-3px);
+            }
+        }
+        @keyframes fairytale-vine-sway-r {
+            0%, 100% {
+                transform: scaleX(-1) rotate(0deg) translateY(0);
+            }
+            50% {
+                transform: scaleX(-1) rotate(2.5deg) translateY(-3px);
+            }
+        }
+        @keyframes fairytale-vine-unfurl-l {
+            0% {
+                opacity: 0;
+                transform: scaleY(0.4) translateY(-35px) rotate(-10deg);
+                filter: blur(5px);
+            }
+            70% {
+                opacity: 0.9;
+                transform: scaleY(1.03) translateY(2px) rotate(1.5deg);
+                filter: blur(0);
+            }
+            100% {
+                opacity: 0.8;
+                transform: scale(1) translateY(0) rotate(0deg);
+                filter: blur(0);
+            }
+        }
+        @keyframes fairytale-vine-unfurl-r {
+            0% {
+                opacity: 0;
+                transform: scaleX(-1) scaleY(0.4) translateY(-35px) rotate(10deg);
+                filter: blur(5px);
+            }
+            70% {
+                opacity: 0.9;
+                transform: scaleX(-1) scaleY(1.03) translateY(2px) rotate(-1.5deg);
+                filter: blur(0);
+            }
+            100% {
+                opacity: 0.8;
+                transform: scaleX(-1) scale(1) translateY(0) rotate(0deg);
+                filter: blur(0);
+            }
+        }
+        @keyframes fairytale-garland-bloom {
+            0% {
+                opacity: 0;
+                transform: scale(0.65);
+                clip-path: inset(0 45% 0 45%);
+                filter: blur(5px);
+            }
+            65% {
+                opacity: 0.95;
+                transform: scale(1.05);
+                clip-path: inset(0 0% 0 0%);
+                filter: blur(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                clip-path: inset(0 0% 0 0%);
+                filter: blur(0);
+            }
+        }
+        @keyframes fairytale-script-reveal {
+            0% {
+                opacity: 0;
+                transform: translateY(28px) scale(0.88) rotate(-1.5deg);
+                filter: blur(8px);
+                letter-spacing: 0.08em;
+            }
+            65% {
+                opacity: 0.95;
+                transform: translateY(-2px) scale(1.02) rotate(0.5deg);
+                filter: blur(0);
+                letter-spacing: normal;
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotate(0deg);
+                filter: blur(0);
+                letter-spacing: normal;
+            }
+        }
+        @keyframes fairytale-title-reveal {
+            0% {
+                opacity: 0;
+                transform: translateY(25px) scale(0.94);
+                letter-spacing: 0.25em;
+                filter: blur(6px);
+            }
+            70% {
+                opacity: 1;
+                transform: translateY(-2px) scale(1.01);
+                filter: blur(0);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+        @keyframes fairytale-text-reveal {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+                filter: blur(4px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+        @keyframes fairytale-castle-entrance {
+            0% {
+                opacity: 0;
+                transform: translateY(35px) scale(0.92);
+                filter: blur(8px);
+            }
+            70% {
+                opacity: 1;
+                transform: translateY(-3px) scale(1.02);
+                filter: blur(0);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+        @keyframes fairytale-castle-float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-7px);
+            }
+        }
+        @keyframes fairytale-card-3d-l {
+            0% {
+                opacity: 0;
+                transform: perspective(1200px) rotateY(-16deg) rotateX(4deg) translateX(-45px) translateY(30px) scale(0.92);
+                filter: blur(6px);
+            }
+            65% {
+                opacity: 0.95;
+                transform: perspective(1200px) rotateY(2deg) rotateX(-1deg) translateX(3px) translateY(-3px) scale(1.01);
+                filter: blur(0);
+            }
+            100% {
+                opacity: 1;
+                transform: perspective(1200px) rotateY(0deg) rotateX(0deg) translateX(0) translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+        @keyframes fairytale-card-3d-r {
+            0% {
+                opacity: 0;
+                transform: perspective(1200px) rotateY(16deg) rotateX(4deg) translateX(45px) translateY(30px) scale(0.92);
+                filter: blur(6px);
+            }
+            65% {
+                opacity: 0.95;
+                transform: perspective(1200px) rotateY(-2deg) rotateX(-1deg) translateX(-3px) translateY(-3px) scale(1.01);
+                filter: blur(0);
+            }
+            100% {
+                opacity: 1;
+                transform: perspective(1200px) rotateY(0deg) rotateX(0deg) translateX(0) translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+        @keyframes fairytale-card-3d-center {
+            0% {
+                opacity: 0;
+                transform: perspective(1200px) rotateX(15deg) translateY(55px) scale(0.92);
+                filter: blur(8px);
+                box-shadow: 0 4px 10px rgba(210, 75, 112, 0.05);
+            }
+            70% {
+                opacity: 1;
+                transform: perspective(1200px) rotateX(-2deg) translateY(-3px) scale(1.01);
+                filter: blur(0);
+                box-shadow: 0 20px 40px rgba(210, 75, 112, 0.22);
+            }
+            100% {
+                opacity: 1;
+                transform: perspective(1200px) rotateX(0deg) translateY(0) scale(1);
+                filter: blur(0);
+                box-shadow: 0 15px 35px rgba(210, 75, 112, 0.15);
+            }
+        }
+        @keyframes fairytale-portrait-pop {
+            0% {
+                opacity: 0;
+                transform: scale(0.65) translateY(25px);
+                filter: blur(8px);
+            }
+            65% {
+                opacity: 1;
+                transform: scale(1.08) translateY(-4px);
+                filter: blur(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+                filter: blur(0);
+            }
+        }
+        @keyframes fairytale-thumb-pop {
+            0% {
+                opacity: 0;
+                transform: scale(0.6) translateY(20px) rotate(-4deg);
+                filter: blur(4px);
+            }
+            70% {
+                opacity: 1;
+                transform: scale(1.06) translateY(-2px) rotate(1deg);
+                filter: blur(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0) rotate(0deg);
+                filter: blur(0);
+            }
+        }
+        @keyframes fairytale-sphere-bounce {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) translateY(25px);
+                filter: blur(4px);
+            }
+            65% {
+                opacity: 1;
+                transform: scale(1.18) translateY(-4px);
+                filter: blur(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+                filter: blur(0);
+            }
+        }
+        @keyframes fairytale-btn-pop {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(15px);
+                filter: blur(3px);
+            }
+            70% {
+                opacity: 1;
+                transform: scale(1.05) translateY(-2px);
+                filter: blur(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+                filter: blur(0);
+            }
+        }
+        @keyframes fairytale-corner-bloom {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) rotate(-15deg);
+                filter: blur(6px);
+            }
+            70% {
+                opacity: 1;
+                transform: scale(1.05) rotate(2deg);
+                filter: blur(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+                filter: blur(0);
+            }
+        }
+        @keyframes fairytale-crystal-float {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+                box-shadow: 0 4px 12px rgba(244, 114, 148, 0.35);
+            }
+            50% {
+                transform: translateY(-4px) scale(1.03);
+                box-shadow: 0 8px 18px rgba(244, 114, 148, 0.55);
+            }
+        }
+        @keyframes fairytale-btn-shine {
+            0% {
+                transform: translateX(-150%) skewX(-20deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.8;
+            }
+            35% {
+                transform: translateX(250%) skewX(-20deg);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(250%) skewX(-20deg);
+                opacity: 0;
+            }
+        }
+        @keyframes fairytale-star-twinkle {
+            0%, 100% {
+                transform: scale(0.8) rotate(0deg);
+                opacity: 0.35;
+                filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.4));
+            }
+            50% {
+                transform: scale(1.25) rotate(15deg);
+                opacity: 1;
+                filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.95));
+            }
+        }
+        @keyframes fairytale-halo-ring {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(244, 114, 148, 0.4), 0 4px 14px rgba(210, 75, 112, 0.25);
+                border-color: #F47294;
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(244, 114, 148, 0), 0 6px 20px rgba(210, 75, 112, 0.45);
+                border-color: #E55B82;
+            }
+        }
+        @keyframes fairytale-corner-sway {
+            0%, 100% {
+                transform: rotate(0deg) scale(1);
+            }
+            50% {
+                transform: rotate(2deg) scale(1.02);
+            }
         }
         @keyframes fairydust-float {
             0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
             50% { transform: translateY(-10px) rotate(8deg); opacity: 1; }
         }
-        @keyframes fairytale-slide-r {
-            0% { transform: translateX(40px); opacity: 0; }
-            100% { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes fairytale-slide-l {
-            0% { transform: translateX(-40px); opacity: 0; }
-            100% { transform: translateX(0); opacity: 1; }
+
+        /* ================= THEME 14: SCROLL REVEAL ENTRANCE CLASSES ================= */
+        /* Elements stay hidden until the user scrolls them into the viewport */
+        .reveal-item.anim-fairytale-card-l,
+        .reveal-item.anim-fairytale-card-r,
+        .reveal-item.anim-fairytale-card-center,
+        .reveal-item.anim-fairytale-zoom,
+        .reveal-item.anim-fairytale-title,
+        .reveal-item.anim-fairytale-script,
+        .reveal-item.anim-fairytale-text,
+        .reveal-item.anim-fairytale-garland,
+        .reveal-item.anim-fairytale-vine-l,
+        .reveal-item.anim-fairytale-vine-r,
+        .reveal-item.anim-fairytale-portrait,
+        .reveal-item.anim-fairytale-frame,
+        .reveal-item.anim-fairytale-castle,
+        .reveal-item.anim-fairytale-sphere,
+        .reveal-item.anim-fairytale-thumb,
+        .reveal-item.anim-fairytale-corner,
+        .reveal-item.anim-fairytale-btn {
+            opacity: 0;
+            will-change: transform, opacity, filter;
         }
 
-        .anim-fairytale-zoom { animation: fairytale-zoom 1.1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
-        .anim-fairytale-frame { animation: fairytale-pulse-frame 4s ease-in-out infinite; }
-        .anim-fairydust { animation: fairydust-float 3s ease-in-out infinite; }
-        .anim-fairytale-slide-r { animation: fairytale-slide-r 0.8s ease-out forwards; }
-        .anim-fairytale-slide-l { animation: fairytale-slide-l 0.8s ease-out forwards; }
+        /* Trigger entrance animations strictly when .revealed is added by Scroll Observer */
+        .anim-fairytale-card-l.revealed {
+            animation: fairytale-card-3d-l 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .anim-fairytale-card-r.revealed {
+            animation: fairytale-card-3d-r 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .anim-fairytale-card-center.revealed,
+        .anim-fairytale-zoom.revealed {
+            animation: fairytale-card-3d-center 1.05s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .anim-fairytale-title.revealed {
+            animation: fairytale-title-reveal 0.95s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .anim-fairytale-script.revealed {
+            animation: fairytale-script-reveal 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .anim-fairytale-text.revealed {
+            animation: fairytale-text-reveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .anim-fairytale-garland.revealed {
+            animation: fairytale-garland-bloom 1.05s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .anim-fairytale-vine-l.revealed {
+            animation: fairytale-vine-unfurl-l 1.1s cubic-bezier(0.16, 1, 0.3, 1) both, fairytale-vine-sway-l 6.5s ease-in-out 1.1s infinite;
+        }
+        .anim-fairytale-vine-r.revealed {
+            animation: fairytale-vine-unfurl-r 1.1s cubic-bezier(0.16, 1, 0.3, 1) both, fairytale-vine-sway-r 7.2s ease-in-out 1.1s infinite;
+        }
+        .anim-fairytale-corner.revealed {
+            animation: fairytale-corner-bloom 1.1s cubic-bezier(0.16, 1, 0.3, 1) both, fairytale-corner-sway 6s ease-in-out 1.1s infinite;
+        }
+        .anim-fairytale-frame.revealed {
+            animation: fairytale-frame-entrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) both, fairytale-pulse-frame 4.5s ease-in-out 1.2s infinite;
+        }
+        .anim-fairytale-portrait.revealed {
+            animation: fairytale-portrait-pop 1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+        .anim-fairytale-thumb.revealed {
+            animation: fairytale-thumb-pop 0.85s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+        .anim-fairytale-castle.revealed {
+            animation: fairytale-castle-entrance 1.1s cubic-bezier(0.16, 1, 0.3, 1) both, fairytale-castle-float 5s ease-in-out 1.1s infinite;
+        }
+        .anim-fairytale-sphere.revealed {
+            animation: fairytale-sphere-bounce 0.85s cubic-bezier(0.34, 1.56, 0.64, 1) both, fairytale-crystal-float 3.5s ease-in-out 0.85s infinite;
+        }
+        .anim-fairytale-btn.revealed {
+            animation: fairytale-btn-pop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        /* Ambient loops once revealed or inside containers */
+        .anim-fairytale-portrait-idle {
+            animation: fairytale-portrait-breathe 14s ease-in-out infinite alternate;
+            will-change: transform;
+        }
+        .anim-fairytale-star {
+            animation: fairytale-star-twinkle 3s ease-in-out infinite;
+            will-change: transform, opacity;
+        }
+        .anim-fairytale-ring {
+            animation: fairytale-halo-ring 3.5s ease-in-out infinite;
+            will-change: box-shadow;
+        }
+        .anim-fairydust {
+            animation: fairydust-float 3s ease-in-out infinite;
+        }
+
+        /* Fairytale Button Shimmer Overlay */
+        .btn-fairytale-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-fairytale-shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+            transform: translateX(-150%) skewX(-20deg);
+            animation: fairytale-btn-shine 4.5s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        /* Baroque Frame Shimmer Overlay */
+        .baroque-shimmer-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .baroque-shimmer-container::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(135deg, transparent 40%, rgba(255, 255, 255, 0.35) 50%, transparent 60%);
+            animation: fairytale-frame-shimmer 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            pointer-events: none;
+            z-index: 5;
+        }
 
         /* ================= THEME 14: FAIRYTALE ROSE & LEAF FLYING PARTICLES ================= */
         @keyframes fairytale-rose-drift-1 {
@@ -3594,36 +4098,46 @@
             will-change: transform, opacity;
         }
 
-        /* ================= THEME 11: PREMIUM MISTY ROMANCE DESKTOP SPLIT VIEW & STYLES ================= */
-        .font-misty-title { font-family: 'Cinzel', Georgia, serif; }
-        .font-misty-heading { font-family: 'Playfair Display', 'Prata', Georgia, serif; }
-        .font-misty-script { font-family: 'Playfair Display', Georgia, serif; font-style: italic; }
+        /* ================= THEME 11: PREMIUM NOSTALGIC VILLAGE DESKTOP SPLIT VIEW & STYLES ================= */
+        .font-nostalgic-title,
+        .font-misty-title { font-family: 'Cinzel', 'Playfair Display', Georgia, serif; }
+        .font-nostalgic-heading,
+        .font-misty-heading { font-family: 'Playfair Display', 'Lora', Georgia, serif; }
+        .font-nostalgic-script,
+        .font-misty-script { font-family: 'Alex Brush', cursive; }
+        .font-nostalgic-body,
         .font-misty-body { font-family: 'Plus Jakarta Sans', sans-serif; }
+
         @media (min-width: 768px) {
             [data-theme-id="11"] body,
+            [data-theme-slug="premium-nostalgic-village"] body,
             [data-theme-slug="premium-misty-romance"] body,
             [data-theme-slug="premium-serenade-maroon"] body {
-                background-color: #0E1217 !important;
+                background-color: #FAF7F2 !important;
             }
             [data-theme-id="11"] #t11-desktop-sidebar,
+            [data-theme-slug="premium-nostalgic-village"] #t11-desktop-sidebar,
             [data-theme-slug="premium-misty-romance"] #t11-desktop-sidebar,
             [data-theme-slug="premium-serenade-maroon"] #t11-desktop-sidebar {
                 display: flex !important;
             }
             [data-theme-id="11"] #invitation-main-content,
+            [data-theme-slug="premium-nostalgic-village"] #invitation-main-content,
             [data-theme-slug="premium-misty-romance"] #invitation-main-content,
             [data-theme-slug="premium-serenade-maroon"] #invitation-main-content {
                 margin-left: 58% !important;
                 margin-right: 0 !important;
                 width: 42% !important;
                 max-width: none !important;
-                box-shadow: -15px 0 45px rgba(0, 0, 0, 0.75) !important;
-                background-color: #11151C !important;
-                color: #F8FAFC !important;
+                box-shadow: -15px 0 45px rgba(44, 64, 78, 0.12) !important;
+                background-color: #FAF7F2 !important;
+                color: #2C404E !important;
                 padding-bottom: 0 !important;
             }
             [data-theme-id="11"] #floating-nav-container,
             [data-theme-id="11"] #floating-bottom-nav-wrapper,
+            [data-theme-slug="premium-nostalgic-village"] #floating-nav-container,
+            [data-theme-slug="premium-nostalgic-village"] #floating-bottom-nav-wrapper,
             [data-theme-slug="premium-misty-romance"] #floating-nav-container,
             [data-theme-slug="premium-misty-romance"] #floating-bottom-nav-wrapper,
             [data-theme-slug="premium-serenade-maroon"] #floating-nav-container,
@@ -3633,16 +4147,19 @@
                 right: auto !important;
             }
             [data-theme-id="11"] #floating-autoscroll-container,
+            [data-theme-slug="premium-nostalgic-village"] #floating-autoscroll-container,
             [data-theme-slug="premium-misty-romance"] #floating-autoscroll-container,
             [data-theme-slug="premium-serenade-maroon"] #floating-autoscroll-container {
                 left: calc(58% + 16px) !important;
             }
             [data-theme-id="11"] #invitation-toast,
+            [data-theme-slug="premium-nostalgic-village"] #invitation-toast,
             [data-theme-slug="premium-misty-romance"] #invitation-toast,
             [data-theme-slug="premium-serenade-maroon"] #invitation-toast {
                 left: 79% !important;
             }
             [data-theme-id="11"] #floating-music-container,
+            [data-theme-slug="premium-nostalgic-village"] #floating-music-container,
             [data-theme-slug="premium-misty-romance"] #floating-music-container,
             [data-theme-slug="premium-serenade-maroon"] #floating-music-container {
                 right: 20px !important;
@@ -3651,6 +4168,7 @@
 
         @media (min-width: 1024px) {
             [data-theme-id="11"] #invitation-main-content,
+            [data-theme-slug="premium-nostalgic-village"] #invitation-main-content,
             [data-theme-slug="premium-misty-romance"] #invitation-main-content,
             [data-theme-slug="premium-serenade-maroon"] #invitation-main-content {
                 margin-left: 60% !important;
@@ -3658,6 +4176,8 @@
             }
             [data-theme-id="11"] #floating-nav-container,
             [data-theme-id="11"] #floating-bottom-nav-wrapper,
+            [data-theme-slug="premium-nostalgic-village"] #floating-nav-container,
+            [data-theme-slug="premium-nostalgic-village"] #floating-bottom-nav-wrapper,
             [data-theme-slug="premium-misty-romance"] #floating-nav-container,
             [data-theme-slug="premium-misty-romance"] #floating-bottom-nav-wrapper,
             [data-theme-slug="premium-serenade-maroon"] #floating-nav-container,
@@ -3669,43 +4189,126 @@
         }
 
         [data-theme-id="11"] #invitation-main-content,
+        [data-theme-slug="premium-nostalgic-village"] #invitation-main-content,
         [data-theme-slug="premium-misty-romance"] #invitation-main-content,
         [data-theme-slug="premium-serenade-maroon"] #invitation-main-content {
-            background-color: #11151C !important;
-            color: #F8FAFC !important;
+            background-color: #FAF7F2 !important;
+            color: #2C404E !important;
             padding-bottom: 0 !important;
         }
 
         /* Floating Bottom Nav for Theme 11 */
         [data-theme-id="11"] #floating-bottom-nav,
+        [data-theme-slug="premium-nostalgic-village"] #floating-bottom-nav,
         [data-theme-slug="premium-misty-romance"] #floating-bottom-nav,
         [data-theme-slug="premium-serenade-maroon"] #floating-bottom-nav {
-            background: rgba(17, 21, 28, 0.92) !important;
-            border: 1px solid rgba(255, 255, 255, 0.25) !important;
+            background: rgba(250, 247, 242, 0.94) !important;
+            border: 1px solid rgba(44, 64, 78, 0.2) !important;
             border-radius: 9999px !important;
             padding: 5px 12px !important;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7) !important;
+            box-shadow: 0 10px 30px rgba(44, 64, 78, 0.15) !important;
             backdrop-filter: blur(14px) !important;
         }
         [data-theme-id="11"] #floating-bottom-nav .nav-item,
+        [data-theme-slug="premium-nostalgic-village"] #floating-bottom-nav .nav-item,
         [data-theme-slug="premium-misty-romance"] #floating-bottom-nav .nav-item,
         [data-theme-slug="premium-serenade-maroon"] #floating-bottom-nav .nav-item {
-            color: #CBD5E1 !important;
+            color: #64748B !important;
             border-radius: 9999px !important;
             transition: all 0.25s ease !important;
             padding: 6px 12px !important;
         }
         [data-theme-id="11"] #floating-bottom-nav .nav-item:hover,
         [data-theme-id="11"] #floating-bottom-nav .nav-item.active,
+        [data-theme-slug="premium-nostalgic-village"] #floating-bottom-nav .nav-item:hover,
+        [data-theme-slug="premium-nostalgic-village"] #floating-bottom-nav .nav-item.active,
         [data-theme-slug="premium-misty-romance"] #floating-bottom-nav .nav-item:hover,
         [data-theme-slug="premium-misty-romance"] #floating-bottom-nav .nav-item.active,
         [data-theme-slug="premium-serenade-maroon"] #floating-bottom-nav .nav-item:hover,
         [data-theme-slug="premium-serenade-maroon"] #floating-bottom-nav .nav-item.active {
-            color: #FFFFFF !important;
-            background: rgba(255, 255, 255, 0.15) !important;
+            color: #2C404E !important;
+            background: rgba(217, 119, 6, 0.12) !important;
         }
 
-        /* Misty Romance Custom Animations */
+        /* Nostalgic Village Custom Animations */
+        @keyframes nostalgicKenBurns {
+            0% { transform: scale(1) translate(0, 0); }
+            50% { transform: scale(1.08) translate(-1%, -1%); }
+            100% { transform: scale(1) translate(0, 0); }
+        }
+        .anim-nostalgic-ken-burns {
+            animation: nostalgicKenBurns 22s ease-in-out infinite alternate;
+            will-change: transform;
+        }
+
+        @keyframes nostalgicScaleUp {
+            0% { opacity: 0; transform: scale(0.82) translateY(20px); filter: blur(6px); }
+            70% { opacity: 1; transform: scale(1.02) translateY(-2px); filter: blur(0); }
+            100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+        }
+        @keyframes nostalgicSlideR {
+            0% { opacity: 0; transform: translateX(50px) scale(0.95); filter: blur(6px); }
+            70% { opacity: 1; transform: translateX(-3px) scale(1.01); filter: blur(0); }
+            100% { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
+        }
+        @keyframes nostalgicSlideL {
+            0% { opacity: 0; transform: translateX(-50px) scale(0.95); filter: blur(6px); }
+            70% { opacity: 1; transform: translateX(3px) scale(1.01); filter: blur(0); }
+            100% { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
+        }
+        @keyframes nostalgicPolaroidPop {
+            0% { opacity: 0; transform: scale(0.7) rotate(-4deg); filter: blur(6px); }
+            65% { opacity: 1; transform: scale(1.05) rotate(1deg); filter: blur(0); }
+            100% { opacity: 1; transform: scale(1) rotate(-1deg); filter: blur(0); }
+        }
+        @keyframes nostalgicBikeLean {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(2deg) translateY(-2px); }
+        }
+        .anim-nostalgic-bike {
+            animation: nostalgicBikeLean 4.5s ease-in-out infinite;
+            will-change: transform;
+        }
+
+        /* Scroll reveal entrance states */
+        .reveal-item.anim-nostalgic-scale-up,
+        .reveal-item.anim-nostalgic-slide-r,
+        .reveal-item.anim-nostalgic-slide-l,
+        .reveal-item.anim-nostalgic-polaroid {
+            opacity: 0;
+            will-change: transform, opacity, filter;
+        }
+        .anim-nostalgic-scale-up.revealed {
+            animation: nostalgicScaleUp 0.95s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .anim-nostalgic-slide-r.revealed {
+            animation: nostalgicSlideR 0.95s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .anim-nostalgic-slide-l.revealed {
+            animation: nostalgicSlideL 0.95s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .anim-nostalgic-polaroid.revealed {
+            animation: nostalgicPolaroidPop 1.05s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        /* Remove all arch/oval borders and background cards on Theme 11 for Acara and RSVP */
+        [data-theme-id="11"] #section-acara .theme-arch-frame,
+        [data-theme-id="11"] #section-rsvp .theme-arch-frame,
+        [data-theme-slug="premium-nostalgic-village"] #section-acara .theme-arch-frame,
+        [data-theme-slug="premium-nostalgic-village"] #section-rsvp .theme-arch-frame {
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            background: transparent !important;
+            padding: 0 !important;
+        }
+        [data-theme-id="11"] #section-acara .theme-arch-frame::after,
+        [data-theme-id="11"] #section-rsvp .theme-arch-frame::after,
+        [data-theme-slug="premium-nostalgic-village"] #section-acara .theme-arch-frame::after,
+        [data-theme-slug="premium-nostalgic-village"] #section-rsvp .theme-arch-frame::after {
+            display: none !important;
+        }
+
         @keyframes mistyScrollDot {
             0% { transform: translateY(0); opacity: 0; }
             40% { opacity: 1; }
@@ -7072,11 +7675,11 @@
                 <!-- Subtle Translucent Overlay for High Legibility -->
                 <div class="absolute inset-0 bg-white/10 pointer-events-none"></div>
 
-                <!-- 4 Corner Floral Bouquets -->
-                <img src="{{ $t14FloralCornerTL }}" alt="" class="absolute top-0 left-0 w-20 sm:w-28 pointer-events-none z-20">
-                <img src="{{ $t14FloralCornerTR }}" alt="" class="absolute top-0 right-0 w-20 sm:w-28 pointer-events-none z-20">
-                <img src="{{ $t14FloralCornerBL }}" alt="" class="absolute bottom-0 left-0 w-20 sm:w-28 pointer-events-none z-20">
-                <img src="{{ $t14FloralCornerBR }}" alt="" class="absolute bottom-0 right-0 w-20 sm:w-28 pointer-events-none z-20">
+                <!-- 4 Corner Floral Bouquets with Organic Fairy Sway -->
+                <img src="{{ $t14FloralCornerTL }}" alt="" class="absolute top-0 left-0 w-20 sm:w-28 pointer-events-none z-20 anim-fairytale-corner">
+                <img src="{{ $t14FloralCornerTR }}" alt="" class="absolute top-0 right-0 w-20 sm:w-28 pointer-events-none z-20 anim-fairytale-corner" style="animation-delay: -2s;">
+                <img src="{{ $t14FloralCornerBL }}" alt="" class="absolute bottom-0 left-0 w-20 sm:w-28 pointer-events-none z-20 anim-fairytale-corner" style="animation-delay: -3.5s;">
+                <img src="{{ $t14FloralCornerBR }}" alt="" class="absolute bottom-0 right-0 w-20 sm:w-28 pointer-events-none z-20 anim-fairytale-corner" style="animation-delay: -1.5s;">
 
                 <!-- Center Cover Card Structure: Flowing Top to Bottom With Zero Overlap -->
                 <div class="w-full max-w-[320px] sm:max-w-[340px] my-auto relative z-30 flex flex-col items-center justify-center text-center py-4 anim-fairytale-zoom">
@@ -7086,18 +7689,18 @@
                         Undangan Pernikahan
                     </p>
 
-                    <!-- Ornate Pink Baroque Frame with Oval Couple Photo (Explicit Width & Height Prevents Height Collapse) -->
-                    <div class="relative mx-auto my-2 anim-fairytale-frame" style="width: 200px; height: 258px; max-width: 75vw; position: relative; flex-shrink: 0;">
+                    <!-- Ornate Pink Baroque Frame with Oval Couple Living Portrait -->
+                    <div class="relative mx-auto my-2 anim-fairytale-frame baroque-shimmer-container" style="width: 200px; height: 258px; max-width: 75vw; position: relative; flex-shrink: 0;">
                         <!-- Oval Photo Aperture (Exact Coordinates Matching Frame Transparency) -->
                         <div style="position: absolute; left: 21.5%; top: 14.6%; width: 57%; height: 65.2%; border-radius: 9999px; overflow: hidden; z-index: 1; background-color: #fce7f3; box-shadow: inset 0 2px 8px rgba(0,0,0,0.2);">
-                            <img src="{{ $t14CoverPhoto }}" alt="{{ $groomNickname }} &amp; {{ $brideNickname }}" class="w-full h-full object-cover">
+                            <img src="{{ $t14CoverPhoto }}" alt="{{ $groomNickname }} &amp; {{ $brideNickname }}" class="w-full h-full object-cover anim-fairytale-portrait">
                         </div>
                         <!-- Baroque Frame Cutout Overlay -->
                         <img src="{{ $t14OrnateFrame }}" alt="Fairytale Frame" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 2; filter: drop-shadow(0 10px 20px rgba(210,75,112,0.35));">
                     </div>
 
                     <!-- Couple Names in Cursive Script (Placed Strictly Below Frame) -->
-                    <div class="space-y-0.5 text-center mt-3">
+                    <div class="space-y-0.5 text-center mt-3 anim-fairytale-script">
                         <h2 class="text-3xl sm:text-4xl text-[#8A1538] leading-tight font-normal"
                             style="font-family: 'Alex Brush', 'Great Vibes', cursive;">
                             {{ $groomNickname }} <span class="text-[#F47294] font-serif text-2xl">&amp;</span> {{ $brideNickname }}
@@ -7113,9 +7716,9 @@
                         <p class="text-xs sm:text-sm font-bold text-[#8A1538]">{{ $guestName }}</p>
                     </div>
 
-                    <!-- Buka Undangan Button (Deep Pink High Contrast Text on White Pill) -->
+                    <!-- Buka Undangan Button (Deep Pink High Contrast Text on White Pill with Radiant Shimmer) -->
                     <div class="pt-3 w-full max-w-[220px]">
-                        <button type="button" onclick="openInvitation()" class="btn-open-invitation w-full py-3 px-6 rounded-full bg-white hover:bg-pink-50 border-2 border-[#8A1538] text-[#8A1538] font-bold text-xs sm:text-sm tracking-widest uppercase shadow-[0_8px_20px_rgba(138,21,56,0.25)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 group cursor-pointer">
+                        <button type="button" onclick="openInvitation()" class="btn-open-invitation btn-fairytale-shimmer w-full py-3 px-6 rounded-full bg-white hover:bg-pink-50 border-2 border-[#8A1538] text-[#8A1538] font-bold text-xs sm:text-sm tracking-widest uppercase shadow-[0_8px_20px_rgba(138,21,56,0.25)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 group cursor-pointer">
                             <svg class="w-4 h-4 text-[#8A1538] group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                             </svg>
@@ -7127,78 +7730,76 @@
         </div>
 
         @elseif($currentThemeId == 11 || $isMistyRomance)
-        <!-- ================= THEME 11 BESPOKE COVER (PREMIUM MISTY ROMANCE DUAL PANE) ================= -->
-        <div class="w-full h-full min-h-screen flex flex-col md:flex-row relative overflow-hidden select-none bg-[#0E1217] text-white">
+        <!-- ================= THEME 11 BESPOKE COVER (PREMIUM NOSTALGIC VILLAGE DUAL PANE) ================= -->
+        <div class="w-full h-full min-h-screen flex flex-col md:flex-row relative overflow-hidden select-none bg-[#FAF7F2] text-[#2C404E]">
             
-            <!-- Desktop Left Pane (Mirroring Fixed Sidebar for Seamless Unfold) -->
-            <div class="hidden md:flex md:w-[58%] lg:w-[60%] h-full flex-col items-center justify-center p-6 lg:p-12 select-none relative shadow-2xl overflow-hidden"
-                 style="background-image: url('{{ $t11BgMountain }}'); background-size: cover; background-position: center;">
-                
-                <!-- Ambient Misty Dark Gradient Overlay -->
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-900/40 to-slate-950/70 pointer-events-none"></div>
-                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent pointer-events-none anim-mist-drift"></div>
-
-                <!-- Center Content Card -->
-                <div class="relative z-20 max-w-lg w-full text-center space-y-5 px-8 py-10 rounded-3xl bg-slate-950/65 backdrop-blur-md border border-white/20 shadow-[0_25px_60px_rgba(0,0,0,0.65)] anim-golden-breathe">
-                    <div class="space-y-1">
-                        <span class="inline-block px-4 py-1 rounded-full bg-white/10 border border-white/25 text-slate-200 text-[10px] lg:text-xs font-semibold tracking-[0.35em] uppercase font-misty-title">
-                            THE WEDDING OF
-                        </span>
-                    </div>
-
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl text-white leading-tight font-misty-heading font-normal tracking-wide drop-shadow-md">
-                        {{ $groomNickname }} <span class="font-misty-script italic font-normal text-3xl sm:text-4xl lg:text-5xl text-slate-200">&amp;</span> {{ $brideNickname }}
-                    </h1>
-
-                    <p class="text-xs lg:text-sm text-slate-300 font-misty-title tracking-[0.25em] uppercase">
+            <!-- Desktop Left Pane (Mirroring Fixed Sidebar with Ken Burns Landscape) -->
+            <div class="hidden md:flex md:w-[58%] lg:w-[60%] h-full flex-col justify-end items-center pb-12 select-none relative shadow-2xl overflow-hidden">
+                <div class="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
+                    <div class="w-full h-full bg-cover bg-center anim-nostalgic-ken-burns scale-105"
+                         style="background-image: url('{{ $t11BgMountain }}');"></div>
+                </div>
+                <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-black/60 via-black/25 to-transparent pointer-events-none z-10"></div>
+                <div class="relative z-20 text-center px-6 space-y-1">
+                    <p class="text-[11px] sm:text-xs font-serif uppercase tracking-[0.3em] text-white/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                        Pernikahan
+                    </p>
+                    <h2 class="text-xl sm:text-2xl lg:text-3xl font-serif font-bold uppercase tracking-[0.16em] text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+                        {{ $groomName }} &amp; {{ $brideName }}
+                    </h2>
+                    <p class="text-[10px] sm:text-xs font-serif tracking-[0.2em] text-white/80 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                         {{ $eventDateFormatted }}
                     </p>
-
-                    <div class="w-24 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent mx-auto my-3"></div>
-
-                    <!-- Personalized Guest Invitation Box -->
-                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/15 max-w-xs mx-auto space-y-1">
-                        <p class="text-[10px] uppercase tracking-wider text-slate-300 font-misty-body">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
-                        <p class="text-base font-medium text-white tracking-wide font-misty-heading">{{ $guestName }}</p>
-                    </div>
                 </div>
             </div>
 
-            <!-- Mobile & Right Pane: Invitation Cover (Matching Screenshot 1 e8770a9c.jpg) -->
-            <div class="w-full md:w-[42%] lg:w-[40%] h-full flex flex-col items-center justify-between p-6 sm:p-10 relative overflow-y-auto"
-                 style="background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.45) 0%, rgba(15, 23, 42, 0.25) 35%, rgba(15, 23, 42, 0.75) 100%), url('{{ $t11CoverPhoto }}'); background-size: cover; background-position: center;">
+            <!-- Mobile & Right Pane: Invitation Cover (Matching Screenshot 1c925dc7.jpg) -->
+            <div class="w-full md:w-[42%] lg:w-[40%] h-full flex flex-col items-center justify-between p-6 sm:p-10 relative overflow-y-auto bg-[#FAF7F2]">
                 
-                <!-- Ambient Tint -->
-                <div class="absolute inset-0 bg-slate-950/25 pointer-events-none"></div>
-
-                <!-- Top: "THE WEDDING OF" & Couple Names -->
-                <div class="relative z-10 text-center pt-8 sm:pt-12 space-y-2 reveal-item anim-fade-up">
-                    <p class="text-xs sm:text-sm text-white/90 font-misty-title tracking-[0.3em] uppercase">
-                        THE WEDDING OF
+                <!-- Top: "Undangan pernikahan" & Couple Names -->
+                <div class="relative z-10 text-center pt-4 sm:pt-6 space-y-1">
+                    <p class="text-xs sm:text-sm font-serif text-[#2C404E]/80 tracking-wider">
+                        Undangan pernikahan
                     </p>
-                    <h2 class="text-4xl sm:text-5xl text-white font-misty-heading font-normal tracking-wide leading-tight drop-shadow-md">
-                        {{ $groomNickname }} <span class="font-misty-script italic font-normal text-3xl sm:text-4xl text-slate-200">&amp;</span> {{ $brideNickname }}
-                    </h2>
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif text-[#2C404E] font-normal leading-tight">
+                        {{ $brideNickname }}<br><span class="font-serif italic font-light text-2xl sm:text-3xl">&amp;</span> {{ $groomNickname }}
+                    </h1>
+                    <p class="text-xs sm:text-sm font-serif text-[#2C404E]/75 tracking-wide pt-0.5">
+                        {{ $eventDateFormatted }}
+                    </p>
                 </div>
 
-                <!-- Middle / Bottom: Kepada & Buka Undangan Button -->
-                <div class="relative z-10 w-full max-w-xs text-center space-y-5 pb-8 sm:pb-12 reveal-item anim-fade-up delay-1">
-                    <div class="space-y-1 text-white/95">
-                        <p class="text-xs sm:text-sm font-misty-body text-white/85">
-                            Kepada Bapak/Ibu/Saudara/i
-                        </p>
-                        <h3 class="text-xl sm:text-2xl font-misty-heading font-medium text-white tracking-wide">
+                <!-- Middle: Scenic Sawah & Yellow Wagon Car Illustration Banner -->
+                <div class="relative z-10 w-full max-w-xs sm:max-w-sm rounded-2xl overflow-hidden shadow-lg border-2 border-white/80 my-4 group">
+                    <div class="relative aspect-[16/10] overflow-hidden">
+                        <img src="{{ $t11BgMountain }}" alt="Nostalgic Village" class="w-full h-full object-cover">
+                        <!-- Janur & Coastal/Road atmosphere -->
+                        <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#2C404E]/60 to-transparent flex items-end justify-between px-4 pb-2">
+                            <img src="{{ $t11CarWagon }}" alt="Yellow Car" class="w-20 sm:w-24 h-auto drop-shadow-md transform -scale-x-100">
+                            <span class="text-[9px] font-serif text-white/90 drop-shadow-xs italic">Menuju Bahagia</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom: Kepada Yth & Buka Undangan Button -->
+                <div class="relative z-10 w-full max-w-xs text-center space-y-3 pb-4 sm:pb-8">
+                    <div class="space-y-0.5 text-[#2C404E]">
+                        <p class="text-xs font-serif text-[#2C404E]/70">Kepada Yth.</p>
+                        <h3 class="text-base sm:text-lg font-serif font-bold tracking-wide text-[#2C404E]">
                             {{ $guestName }}
                         </h3>
+                        <p class="text-[11px] sm:text-xs font-serif italic text-[#2C404E]/70 pt-0.5">
+                            Ikuti janur kuning, kami menunggu di ujung jalan.
+                        </p>
                     </div>
 
-                    <!-- Buka Undangan Button (White pill matching Screenshot 1 e8770a9c.jpg) -->
-                    <div class="pt-2">
-                        <button type="button" onclick="openInvitation()" class="btn-open-invitation w-full py-3.5 px-8 rounded-full bg-white text-slate-900 font-semibold text-xs sm:text-sm tracking-wider uppercase shadow-[0_10px_25px_rgba(0,0,0,0.35)] hover:bg-slate-100 hover:scale-[1.03] active:scale-95 transition-all flex items-center justify-center gap-2 group cursor-pointer font-misty-body">
-                            <svg class="w-4 h-4 text-slate-900 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <!-- Buka Undangan Button (Golden Ochre matching screenshot 1c925dc7.jpg) -->
+                    <div class="pt-1">
+                        <button type="button" onclick="openInvitation()" style="background-color: #D49838 !important; color: #FFFFFF !important;" class="btn-open-invitation w-full py-3 px-6 rounded-xl text-white font-medium text-xs sm:text-sm tracking-wide shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 group cursor-pointer font-serif">
+                            <svg class="w-4 h-4 text-white group-hover:rotate-12 transition-transform" style="color: #FFFFFF !important; stroke: #FFFFFF !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                             </svg>
-                            <span>Buka Undangan</span>
+                            <span style="color: #FFFFFF !important;">Buka Undangan</span>
                         </button>
                     </div>
                 </div>
@@ -8214,40 +8815,29 @@
     @endif
 
     @if($currentThemeId == 11 || $isMistyRomance)
-    <!-- Desktop Fixed Sidebar for Theme 11 (Premium Misty Romance) -->
-    <aside id="t11-desktop-sidebar" class="hidden md:flex fixed top-0 left-0 md:w-[58%] lg:w-[60%] h-screen text-[#F8FAFC] z-20 flex-col items-center justify-center p-6 lg:p-12 select-none shadow-2xl overflow-hidden"
-           style="background-image: url('{{ $t11BgMountain }}'); background-size: cover; background-position: center;">
+    <!-- Desktop Fixed Sidebar for Theme 11 (Premium Nostalgic Village) -->
+    <aside id="t11-desktop-sidebar" class="hidden md:flex fixed top-0 left-0 md:w-[58%] lg:w-[60%] h-screen text-[#FAF7F2] z-20 flex-col justify-end items-center pb-12 select-none shadow-2xl overflow-hidden">
         
-        <!-- Ambient Misty Dark Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-900/40 to-slate-950/70 pointer-events-none"></div>
+        <!-- Background Landscape with Ken Burns Zoom In & Out -->
+        <div class="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
+            <div class="w-full h-full bg-cover bg-center anim-nostalgic-ken-burns scale-105"
+                 style="background-image: url('{{ $t11BgMountain }}');"></div>
+        </div>
 
-        <!-- Drifting Mist Layer -->
-        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent pointer-events-none anim-mist-drift"></div>
+        <!-- Subtle Gradient at Bottom for Text Readability -->
+        <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-black/60 via-black/25 to-transparent pointer-events-none z-10"></div>
 
-        <!-- Center Content Card (Misty Glassmorphic Luxury) -->
-        <div class="relative z-20 max-w-lg w-full text-center space-y-5 px-8 py-10 rounded-3xl bg-slate-950/65 backdrop-blur-md border border-white/20 shadow-[0_25px_60px_rgba(0,0,0,0.65)] anim-golden-breathe">
-            
-            <div class="space-y-1">
-                <span class="inline-block px-4 py-1 rounded-full bg-white/10 border border-white/25 text-slate-200 text-[10px] lg:text-xs font-semibold tracking-[0.35em] uppercase font-misty-title">
-                    THE WEDDING OF
-                </span>
-            </div>
-
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl text-white leading-tight font-misty-heading font-normal tracking-wide drop-shadow-md">
-                {{ $groomNickname }} <span class="font-misty-script italic font-normal text-3xl sm:text-4xl lg:text-5xl text-slate-200">&amp;</span> {{ $brideNickname }}
-            </h1>
-
-            <p class="text-xs lg:text-sm text-slate-300 font-misty-title tracking-[0.25em] uppercase">
+        <!-- Bottom Center Couple Names & Date (Matching Reference d8360ddb.jpg) -->
+        <div class="relative z-20 text-center px-6 space-y-1">
+            <p class="text-[11px] sm:text-xs font-serif uppercase tracking-[0.3em] text-white/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                Pernikahan
+            </p>
+            <h2 class="text-xl sm:text-2xl lg:text-3xl font-serif font-bold uppercase tracking-[0.16em] text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+                {{ $groomName }} &amp; {{ $brideName }}
+            </h2>
+            <p class="text-[10px] sm:text-xs font-serif tracking-[0.2em] text-white/80 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                 {{ $eventDateFormatted }}
             </p>
-
-            <div class="w-24 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent mx-auto my-3"></div>
-
-            <!-- Personalized Guest Invitation Box -->
-            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/15 max-w-xs mx-auto space-y-1">
-                <p class="text-[10px] uppercase tracking-wider text-slate-300 font-misty-body">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
-                <p class="text-base font-medium text-white tracking-wide font-misty-heading">{{ $guestName }}</p>
-            </div>
         </div>
     </aside>
     @endif
@@ -8302,14 +8892,14 @@
         <!-- Romantic Translucent Gradient Overlay -->
         <div class="absolute inset-0 bg-gradient-to-t from-[#8A1538]/80 via-[#D24B70]/35 to-black/20 pointer-events-none"></div>
 
-        <!-- Floating Fairydust Sparkles -->
+        <!-- Floating Fairydust Sparkles with Twinkling Starlight -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden">
-            <div class="absolute top-1/4 left-1/4 text-white/80 text-xs anim-fairydust">✦</div>
-            <div class="absolute top-1/3 right-1/3 text-pink-200/90 text-base anim-fairydust" style="animation-delay: 1.2s;">✧</div>
-            <div class="absolute bottom-1/3 left-1/5 text-white/95 text-sm anim-fairydust" style="animation-delay: 2.1s;">✦</div>
-            <div class="absolute top-1/6 right-1/5 text-pink-100/70 text-xs anim-fairydust" style="animation-delay: 0.7s;">✧</div>
-            <div class="absolute bottom-1/4 right-1/4 text-white/85 text-base anim-fairydust" style="animation-delay: 1.8s;">✦</div>
-            <div class="absolute top-2/3 left-1/3 text-pink-200/80 text-xs anim-fairydust" style="animation-delay: 2.5s;">✧</div>
+            <div class="absolute top-1/4 left-1/4 text-white text-xs anim-fairytale-star">✦</div>
+            <div class="absolute top-1/3 right-1/3 text-pink-200 text-base anim-fairytale-star" style="animation-delay: 1.2s;">✧</div>
+            <div class="absolute bottom-1/3 left-1/5 text-white text-sm anim-fairytale-star" style="animation-delay: 2.1s;">✦</div>
+            <div class="absolute top-1/6 right-1/5 text-pink-100 text-xs anim-fairytale-star" style="animation-delay: 0.7s;">✧</div>
+            <div class="absolute bottom-1/4 right-1/4 text-white text-base anim-fairytale-star" style="animation-delay: 1.8s;">✦</div>
+            <div class="absolute top-2/3 left-1/3 text-pink-200 text-xs anim-fairytale-star" style="animation-delay: 2.5s;">✧</div>
         </div>
 
         <!-- Center Content: Undangan Pernikahan & Couple Calligraphy -->
@@ -8318,7 +8908,7 @@
                 Undangan Pernikahan
             </p>
 
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl text-white leading-tight font-normal"
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl text-white leading-tight font-normal anim-fairytale-script"
                 style="font-family: 'Alex Brush', 'Great Vibes', cursive; text-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);">
                 {{ $groomNickname }} &amp; {{ $brideNickname }}
             </h1>
@@ -9400,36 +9990,36 @@
             <div class="w-full relative overflow-hidden select-none text-[#8A1538] py-8 sm:py-14 px-4 sm:px-6"
                  style="background-image: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.7) 0%, transparent 70%), url('{{ asset('images/themes/fairytale-castle/floral-damask-pattern.svg') }}'), url('{{ $t14BgPinkGradient }}'); background-size: 100% 100%, 160px 160px, cover; background-repeat: no-repeat, repeat, no-repeat; background-position: top center;">
                 
-                <!-- 4 Corner Floral Bouquets (Top & Bottom Corners as shown in Image 3) -->
-                <img src="{{ $t14FloralCornerTL }}" alt="" class="absolute top-0 left-0 w-24 sm:w-32 pointer-events-none z-10">
-                <img src="{{ $t14FloralCornerTR }}" alt="" class="absolute top-0 right-0 w-24 sm:w-32 pointer-events-none z-10">
-                <img src="{{ $t14FloralCornerBL }}" alt="" class="absolute bottom-0 left-0 w-24 sm:w-32 pointer-events-none z-10">
-                <img src="{{ $t14FloralCornerBR }}" alt="" class="absolute bottom-0 right-0 w-24 sm:w-32 pointer-events-none z-10">
+                <!-- 4 Corner Floral Bouquets (Top & Bottom Corners with Organic Fairy Bloom) -->
+                <img src="{{ $t14FloralCornerTL }}" alt="" class="absolute top-0 left-0 w-24 sm:w-32 pointer-events-none z-10 reveal-item anim-fairytale-corner">
+                <img src="{{ $t14FloralCornerTR }}" alt="" class="absolute top-0 right-0 w-24 sm:w-32 pointer-events-none z-10 reveal-item anim-fairytale-corner delay-1">
+                <img src="{{ $t14FloralCornerBL }}" alt="" class="absolute bottom-0 left-0 w-24 sm:w-32 pointer-events-none z-10 reveal-item anim-fairytale-corner delay-2">
+                <img src="{{ $t14FloralCornerBR }}" alt="" class="absolute bottom-0 right-0 w-24 sm:w-32 pointer-events-none z-10 reveal-item anim-fairytale-corner delay-2">
 
-                <!-- Cascading Side Rose Vines (Foto 3) -->
-                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-14 -left-3 sm:left-2 w-16 sm:w-20 pointer-events-none z-10 opacity-80 drop-shadow-md">
-                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-14 -right-3 sm:right-2 w-16 sm:w-20 pointer-events-none z-10 opacity-80 drop-shadow-md -scale-x-100">
+                <!-- Cascading Side Rose Vines with Living Botanical Sway (Foto 3) -->
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-14 -left-3 sm:left-2 w-16 sm:w-20 pointer-events-none z-10 opacity-80 drop-shadow-md reveal-item anim-fairytale-vine-l">
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-14 -right-3 sm:right-2 w-16 sm:w-20 pointer-events-none z-10 opacity-80 drop-shadow-md reveal-item anim-fairytale-vine-r">
 
                 <div class="relative z-10 max-w-lg mx-auto text-center space-y-3 pt-2 pb-6">
                     <!-- Top Title -->
-                    <div class="space-y-1 reveal-item anim-fade-up">
+                    <div class="space-y-1 reveal-item anim-fairytale-title">
                         <p class="text-[11px] sm:text-xs text-[#8A1538] uppercase tracking-[0.25em] font-sans font-medium">
                             Undangan Pernikahan
                         </p>
                     </div>
 
-                    <!-- Ornate Pink Baroque Frame with Oval Couple Photo (Explicit Width & Height Prevents Height Collapse) -->
-                    <div class="relative mx-auto my-3 reveal-item anim-fairytale-frame" style="width: 220px; height: 284px; max-width: 80vw; position: relative; flex-shrink: 0;">
+                    <!-- Ornate Pink Baroque Frame with Living Oval Couple Portrait -->
+                    <div class="relative mx-auto my-3 reveal-item anim-fairytale-frame baroque-shimmer-container" style="width: 220px; height: 284px; max-width: 80vw; position: relative; flex-shrink: 0;">
                         <!-- Oval Photo Aperture (Exact Coordinates) -->
                         <div style="position: absolute; left: 21.5%; top: 14.6%; width: 57%; height: 65.2%; border-radius: 9999px; overflow: hidden; z-index: 1; background-color: #fce7f3; box-shadow: inset 0 2px 8px rgba(0,0,0,0.2);">
-                            <img src="{{ $t14HeroPhoto }}" alt="{{ $groomNickname }} &amp; {{ $brideNickname }}" class="w-full h-full object-cover">
+                            <img src="{{ $t14HeroPhoto }}" alt="{{ $groomNickname }} &amp; {{ $brideNickname }}" class="w-full h-full object-cover anim-fairytale-portrait-idle">
                         </div>
                         <!-- Baroque Frame Cutout Overlay -->
                         <img src="{{ $t14OrnateFrame }}" alt="Fairytale Frame" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; z-index: 2; filter: drop-shadow(0 12px 24px rgba(210,75,112,0.35));">
                     </div>
 
                     <!-- Couple Names in Cursive Script (Clean Vertical Flow Strictly Below Frame, Never Overlapping) -->
-                    <div class="space-y-1 text-center mt-4 reveal-item anim-fairytale-zoom">
+                    <div class="space-y-1 text-center mt-4 reveal-item anim-fairytale-script delay-1">
                         <h1 class="text-4xl sm:text-5xl text-[#8A1538] leading-tight font-normal"
                             style="font-family: 'Alex Brush', 'Great Vibes', cursive;">
                             {{ $brideNickname }}
@@ -9449,11 +10039,11 @@
                     </div>
 
                     <!-- Horizontal Floral Garland Divider (Foto 3) -->
-                    <div class="w-36 sm:w-48 mx-auto py-1 pointer-events-none">
+                    <div class="w-36 sm:w-48 mx-auto py-1 pointer-events-none reveal-item anim-fairytale-garland delay-2">
                         <img src="{{ $t14RoseVineHorizontal }}" alt="" class="w-full h-auto object-contain drop-shadow-xs">
                     </div>
 
-                    <!-- Countdown Timer: 4 Round Pink Circles with Generous Spacing Downward -->
+                    <!-- Countdown Timer: 4 Round Pink Circles with Staggered Sphere Bounce -->
                     @php
                         $t14Now = \Illuminate\Support\Carbon::now();
                         $t14Diff = max(0, $t14Now->diffInSeconds($eventDate, false));
@@ -9462,29 +10052,29 @@
                         $t14InitMins = str_pad((string) floor(($t14Diff % 3600) / 60), 2, '0', STR_PAD_LEFT);
                         $t14InitSecs = str_pad((string) ($t14Diff % 60), 2, '0', STR_PAD_LEFT);
                     @endphp
-                    <div class="mt-6 mb-3 reveal-item anim-fade-up">
+                    <div class="mt-6 mb-3">
                         <div class="grid grid-cols-4 gap-2.5 sm:gap-3.5 max-w-[270px] sm:max-w-[300px] mx-auto text-center font-sans" data-countdown="{{ $eventDate->toIso8601String() }}">
-                            <div class="flex flex-col items-center justify-center space-y-1.5">
-                                <div class="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#F8A0B6] text-white flex items-center justify-center font-bold text-xs sm:text-sm shadow-[0_4px_12px_rgba(244,114,148,0.35)]">
+                            <div class="flex flex-col items-center justify-center space-y-1.5 reveal-item anim-fairytale-sphere">
+                                <div class="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#F8A0B6] text-white flex items-center justify-center font-bold text-xs sm:text-sm shadow-md">
                                     <span class="cd-val-days countdown-days">{{ $t14InitDays }}</span>
                                 </div>
                                 <span class="text-[10px] sm:text-xs text-[#8A1538] font-medium">Hari</span>
                             </div>
-                            <div class="flex flex-col items-center justify-center space-y-1.5">
-                                <div class="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#F8A0B6] text-white flex items-center justify-center font-bold text-xs sm:text-sm shadow-[0_4px_12px_rgba(244,114,148,0.35)]">
+                            <div class="flex flex-col items-center justify-center space-y-1.5 reveal-item anim-fairytale-sphere delay-1">
+                                <div class="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#F8A0B6] text-white flex items-center justify-center font-bold text-xs sm:text-sm shadow-md">
                                     <span class="cd-val-hours countdown-hours">{{ $t14InitHours }}</span>
                                 </div>
                                 <span class="text-[10px] sm:text-xs text-[#8A1538] font-medium">Jam</span>
                             </div>
-                            <div class="flex flex-col items-center justify-center space-y-1.5">
-                                <div class="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#F8A0B6] text-white flex items-center justify-center font-bold text-xs sm:text-sm shadow-[0_4px_12px_rgba(244,114,148,0.35)]">
+                            <div class="flex flex-col items-center justify-center space-y-1.5 reveal-item anim-fairytale-sphere delay-2">
+                                <div class="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#F8A0B6] text-white flex items-center justify-center font-bold text-xs sm:text-sm shadow-md">
                                     <span class="cd-val-mins countdown-minutes">{{ $t14InitMins }}</span>
                                 </div>
                                 <span class="text-[10px] sm:text-xs text-[#8A1538] font-medium">Menit</span>
                             </div>
-                            <div class="flex flex-col items-center justify-center space-y-1.5">
-                                <div class="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#F8A0B6] text-white flex items-center justify-center font-bold text-xs sm:text-sm shadow-[0_4px_12px_rgba(244,114,148,0.35)]">
-                                    <span class="cd-val-secs countdown-seconds">{{ $t14InitSecs }}</span>
+                            <div class="flex flex-col items-center justify-center space-y-1.5 reveal-item anim-fairytale-sphere delay-3">
+                                <div class="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#F8A0B6] text-white flex items-center justify-center font-bold text-xs sm:text-sm shadow-md">
+                                    <span class="cd-val-seconds countdown-seconds">{{ $t14InitSecs }}</span>
                                 </div>
                                 <span class="text-[10px] sm:text-xs text-[#8A1538] font-medium">Detik</span>
                             </div>
@@ -9499,41 +10089,66 @@
                 </div>
             </div>
             @elseif($currentThemeId == 11 || $isMistyRomance)
-            <!-- ================= THEME 11: BESPOKE HERO SECTION (PREMIUM MISTY ROMANCE) ================= -->
-            <div class="w-full relative overflow-hidden select-none text-slate-800 py-12 sm:py-16 px-4 sm:px-6 flex flex-col items-center justify-center space-y-5 pb-36 sm:pb-44"
-                 style="background-image: url('{{ $t11BgSwans }}'); background-size: cover; background-position: center bottom;">
+            <!-- ================= THEME 11: BESPOKE HERO SECTION (PREMIUM NOSTALGIC VILLAGE) ================= -->
+            <div class="w-full relative overflow-hidden select-none text-[#2C404E] py-10 sm:py-14 px-4 sm:px-6 flex flex-col items-center justify-center space-y-4 bg-[#FAF7F2]">
                 
-                <!-- Ambient Mist Layer Top & Center -->
-                <div class="absolute inset-0 bg-gradient-to-b from-white/35 via-transparent to-slate-900/35 pointer-events-none"></div>
-
-                <!-- Top: "THE WEDDING OF" -->
-                <div class="relative z-10 text-center space-y-1 reveal-item anim-fade-up">
-                    <p class="text-xs sm:text-sm font-misty-title tracking-[0.3em] uppercase text-slate-800 font-semibold">
-                        THE WEDDING OF
-                    </p>
-                </div>
-
-                <!-- Center: Vertical Oval Arch Frame containing Couple Photo (Matching Screenshot 3 9876cdc2.jpg) -->
-                <div class="relative z-10 max-w-sm mx-auto text-center space-y-4 reveal-item anim-fade-up delay-1">
-                    <div class="relative w-44 sm:w-52 md:w-56 h-60 sm:h-72 md:h-80 mx-auto rounded-full overflow-hidden border-[3px] sm:border-4 border-white shadow-[0_15px_35px_rgba(0,0,0,0.22)] bg-slate-100 anim-oval-breathe">
-                        <img src="{{ $t11HeroPhoto }}" alt="{{ $groomNickname }} &amp; {{ $brideNickname }}" class="w-full h-full object-cover">
+                <!-- Polaroid Frame with Couple Photo (Matching Screenshot 37b37e3c.png) -->
+                <div class="relative z-10 max-w-sm mx-auto text-center space-y-3 reveal-item anim-nostalgic-polaroid">
+                    <div class="relative w-48 sm:w-56 p-3 bg-white rounded-md shadow-[0_12px_30px_rgba(44,64,78,0.18)] rotate-[-1.5deg] hover:rotate-0 transition-transform duration-500 mx-auto border border-[#E2D8CC]">
+                        <div class="w-full h-56 sm:h-64 overflow-hidden rounded-xs bg-stone-100">
+                            <img src="{{ $t11HeroPhoto }}" alt="{{ $groomNickname }} &amp; {{ $brideNickname }}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="pt-2 text-center">
+                            <span class="text-[10px] font-serif text-[#64748B] italic tracking-wide">Our Special Moment</span>
+                        </div>
                     </div>
 
-                    <!-- Couple Names & Dot-Formatted Date -->
-                    <div class="space-y-1.5 pt-1">
-                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-misty-heading text-slate-900 tracking-wide font-normal">
-                            {{ $groomNickname }} <span class="font-misty-script italic font-normal text-2xl sm:text-3xl">&amp;</span> {{ $brideNickname }}
+                    <!-- Couple Names & Date -->
+                    <div class="space-y-1 pt-2">
+                        <h1 class="text-3xl sm:text-4xl font-serif text-[#2C404E] tracking-wide font-normal">
+                            {{ $brideNickname }} <span class="font-serif italic font-light text-2xl sm:text-3xl">&amp;</span> {{ $groomNickname }}
                         </h1>
-                        <p class="text-xs sm:text-sm font-misty-title tracking-[0.25em] text-slate-800 font-medium">
-                            {{ $eventDate->format('d . m . Y') }}
+                        <p class="text-xs sm:text-sm font-serif tracking-[0.2em] text-[#64748B]">
+                            {{ $eventDateFormatted }}
                         </p>
                     </div>
 
-                    <!-- Animated Scroll Pill Indicator (Matching Screenshot 3 9876cdc2.jpg) -->
-                    <div class="pt-1">
-                        <div class="w-5 h-8 sm:w-6 sm:h-9 rounded-full border-2 border-slate-700/60 flex items-start justify-center p-1 mx-auto cursor-pointer shadow-xs bg-white/30 backdrop-blur-xs"
-                             onclick="smoothScrollTo(null, 'section-mempelai')" title="Scroll ke bawah">
-                            <span class="w-1 h-2 bg-slate-800 rounded-full anim-misty-scroll-dot"></span>
+                    @php
+                        $t11Target = $eventDate;
+                        $t11Diff = now()->diff($t11Target);
+                        $t11InitDays = now()->greaterThan($t11Target) ? '00' : str_pad($t11Diff->days, 2, '0', STR_PAD_LEFT);
+                        $t11InitHours = now()->greaterThan($t11Target) ? '00' : str_pad($t11Diff->h, 2, '0', STR_PAD_LEFT);
+                        $t11InitMins = now()->greaterThan($t11Target) ? '00' : str_pad($t11Diff->i, 2, '0', STR_PAD_LEFT);
+                        $t11InitSecs = now()->greaterThan($t11Target) ? '00' : str_pad($t11Diff->s, 2, '0', STR_PAD_LEFT);
+                    @endphp
+
+                    <!-- Functional Countdown Timer (Above Quran Quote / Ayat) -->
+                    <div class="pt-3 pb-1" data-countdown="{{ $eventDate->toIso8601String() }}">
+                        <div class="grid grid-cols-4 gap-2 sm:gap-2.5 max-w-[280px] sm:max-w-[300px] mx-auto">
+                            <div class="p-2 sm:p-2.5 rounded-xl bg-white/95 border border-[#2C404E]/15 shadow-xs text-center flex flex-col items-center justify-center">
+                                <span class="block text-lg sm:text-xl font-bold font-serif text-[#2C404E] leading-tight cd-val-days countdown-days">{{ $t11InitDays }}</span>
+                                <span class="text-[9px] uppercase tracking-wider text-[#64748B] font-medium font-serif mt-0.5">Hari</span>
+                            </div>
+                            <div class="p-2 sm:p-2.5 rounded-xl bg-white/95 border border-[#2C404E]/15 shadow-xs text-center flex flex-col items-center justify-center">
+                                <span class="block text-lg sm:text-xl font-bold font-serif text-[#2C404E] leading-tight cd-val-hours countdown-hours">{{ $t11InitHours }}</span>
+                                <span class="text-[9px] uppercase tracking-wider text-[#64748B] font-medium font-serif mt-0.5">Jam</span>
+                            </div>
+                            <div class="p-2 sm:p-2.5 rounded-xl bg-white/95 border border-[#2C404E]/15 shadow-xs text-center flex flex-col items-center justify-center">
+                                <span class="block text-lg sm:text-xl font-bold font-serif text-[#2C404E] leading-tight cd-val-mins countdown-minutes">{{ $t11InitMins }}</span>
+                                <span class="text-[9px] uppercase tracking-wider text-[#64748B] font-medium font-serif mt-0.5">Menit</span>
+                            </div>
+                            <div class="p-2 sm:p-2.5 rounded-xl bg-white/95 border border-[#2C404E]/15 shadow-xs text-center flex flex-col items-center justify-center">
+                                <span class="block text-lg sm:text-xl font-bold font-serif text-[#D49838] leading-tight cd-val-secs countdown-seconds">{{ $t11InitSecs }}</span>
+                                <span class="text-[9px] uppercase tracking-wider text-[#64748B] font-medium font-serif mt-0.5">Detik</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Animated Scroll Indicator -->
+                    <div class="pt-2">
+                        <div class="w-5 h-8 sm:w-6 sm:h-9 rounded-full border-2 border-[#2C404E]/50 flex items-start justify-center p-1 mx-auto cursor-pointer shadow-xs bg-white/60"
+                             onclick="smoothScrollTo(null, 'section-kutipan')" title="Scroll ke bawah">
+                            <span class="w-1 h-2 bg-[#2C404E] rounded-full anim-misty-scroll-dot"></span>
                         </div>
                     </div>
                 </div>
@@ -10544,61 +11159,55 @@
         @elseif($currentThemeId == 14 || $isNightSky || $isFairytaleCastle)
         <!-- ================= THEME 14 BESPOKE KUTIPAN SUCI (PREMIUM FAIRYTALE CASTLE) ================= -->
         <section id="section-kutipan" class="py-10 sm:py-14 px-4 sm:px-6 md:px-10 text-center relative overflow-hidden text-[#8A1538]">
-            <!-- Cascading Flanking Rose Vines (Foto 3) -->
-            <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-4 -left-3 sm:left-4 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm">
-            <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-4 -right-3 sm:right-4 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm -scale-x-100">
+            <!-- Cascading Flanking Rose Vines with Botanical Sway (Foto 3) -->
+            <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-4 -left-3 sm:left-4 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm reveal-item anim-fairytale-vine-l">
+            <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-4 -right-3 sm:right-4 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm reveal-item anim-fairytale-vine-r">
 
-            <div class="w-full max-w-sm sm:max-w-md md:max-w-xl mx-auto rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/90 p-6 sm:p-8 shadow-xl relative space-y-4 reveal-item anim-fairytale-zoom">
+            <div class="w-full max-w-sm sm:max-w-md md:max-w-xl mx-auto rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/90 p-6 sm:p-8 shadow-xl relative space-y-4 reveal-item anim-fairytale-card-center">
                 <!-- Top Floral Garland Crown (Foto 3) -->
-                <div class="w-36 sm:w-48 mx-auto -mt-2 mb-2 pointer-events-none">
+                <div class="w-36 sm:w-48 mx-auto -mt-2 mb-2 pointer-events-none reveal-item anim-fairytale-garland">
                     <img src="{{ $t14RoseVineHorizontal }}" alt="" class="w-full h-auto object-contain drop-shadow-xs">
                 </div>
 
                 <!-- Heart Flourish -->
-                <div class="flex items-center justify-center gap-2 text-[#F47294] text-base">
+                <div class="flex items-center justify-center gap-2 text-[#F47294] text-base reveal-item anim-fairytale-sphere delay-1">
                     <span>♡</span>
                     <span class="text-xs">♡</span>
                     <span>♡</span>
                 </div>
 
                 @if(!empty($invitation->quran_text))
-                <p class="text-xl sm:text-2xl leading-loose font-serif text-[#8A1538] drop-shadow-sm" dir="rtl">
+                <p class="text-xl sm:text-2xl leading-loose font-serif text-[#8A1538] drop-shadow-sm reveal-item anim-fairytale-title delay-2" dir="rtl">
                     {{ $invitation->quran_text }}
                 </p>
                 @endif
 
-                <p class="text-xs sm:text-sm text-[#8A1538]/90 leading-relaxed italic font-light max-w-lg mx-auto">
+                <p class="text-xs sm:text-sm text-[#8A1538]/90 leading-relaxed italic font-light max-w-lg mx-auto reveal-item anim-fairytale-text delay-3">
                     "{{ $invitation->quran_translation ?? ($invitation->quote_text ?? 'Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.') }}"
                 </p>
 
-                <p class="text-xs font-semibold text-[#8A1538] tracking-widest uppercase">
+                <p class="text-xs font-semibold text-[#8A1538] tracking-widest uppercase reveal-item anim-fairytale-title delay-4">
                     ( {{ $invitation->quote_source ?? 'QS. AR-RUM: 21' }} )
                 </p>
             </div>
         </section>
         @elseif($currentThemeId == 11 || $isMistyRomance)
-        <!-- ================= THEME 11 BESPOKE KUTIPAN SUCI (PREMIUM MISTY ROMANCE) ================= -->
-        <section id="section-kutipan" class="py-12 sm:py-16 px-4 sm:px-6 md:px-10 text-center relative overflow-hidden text-slate-100"
-                 style="background-image: linear-gradient(180deg, rgba(14, 18, 23, 0.85) 0%, rgba(14, 18, 23, 0.75) 50%, rgba(14, 18, 23, 0.9) 100%), url('{{ $t11BgDarkFloral }}'); background-size: cover; background-position: center;">
-            <div class="w-full max-w-sm sm:max-w-md md:max-w-xl mx-auto rounded-3xl bg-slate-950/75 backdrop-blur-md border border-white/20 p-6 sm:p-8 shadow-2xl relative space-y-5 reveal-item anim-fade-up">
+        <!-- ================= THEME 11 BESPOKE KUTIPAN SUCI (PREMIUM NOSTALGIC VILLAGE) ================= -->
+        <section id="section-kutipan" class="py-10 sm:py-14 px-4 sm:px-6 md:px-10 text-center relative overflow-hidden text-[#2C404E] bg-[#FAF7F2]">
+            <div class="w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto space-y-4 reveal-item anim-nostalgic-scale-up">
                 
-                <!-- Circular Emblem with Couple Photo -->
-                <div class="relative w-24 sm:w-28 h-24 sm:h-28 mx-auto rounded-full overflow-hidden border-2 border-white/60 shadow-xl bg-slate-900 group">
-                    <img src="{{ $t11HeroPhoto }}" alt="Wedding Moment" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
-                </div>
-
                 @if(!empty($invitation->quran_text))
-                <p class="text-xl sm:text-2xl leading-loose font-serif text-white drop-shadow-sm pt-2" dir="rtl">
+                <p class="text-lg sm:text-xl leading-loose font-serif text-[#2C404E] drop-shadow-xs" dir="rtl">
                     {{ $invitation->quran_text }}
                 </p>
                 @endif
 
-                <p class="text-xs sm:text-sm text-slate-200 leading-relaxed italic font-misty-body max-w-lg mx-auto">
-                    "{{ $invitation->quran_translation ?? 'Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.' }}"
+                <p class="text-xs sm:text-sm text-[#475569] leading-relaxed italic font-serif max-w-md mx-auto">
+                    "{{ $invitation->quran_translation ?? 'Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sesungguhnya yang demikian menjadi tanda-tanda kebesaran-Nya bagi orang-orang yang berpikir.' }}"
                 </p>
 
-                <p class="text-xs font-misty-title font-semibold text-slate-300 tracking-widest uppercase">
-                    ( {{ $invitation->quote_source ?? 'QS. Ar-Rum: 21' }} )
+                <p class="text-[11px] font-serif font-semibold text-[#D97706] tracking-widest uppercase">
+                    {{ $invitation->quote_source ?? 'Q.S. Ar-Rum: 21' }}
                 </p>
             </div>
         </section>
@@ -10676,7 +11285,7 @@
         <!-- ================= 4. SECTION PROFIL MEMPELAI (PASANGAN MEMPELAI) ================= -->
         <section id="section-mempelai" class="py-10 sm:py-16 px-4 sm:px-6 md:px-10 text-center relative overflow-hidden"
                  @if($currentThemeId == 11 || $isMistyRomance)
-                 style="background-image: url('{{ $t11BgMountain }}'); background-size: cover; background-position: center; background-repeat: no-repeat;"
+                 style="background-color: #FAF7F2;"
                  @endif
         >
             @if($currentThemeId == 2)
@@ -11991,50 +12600,50 @@
             @elseif($currentThemeId == 14 || $isNightSky || $isFairytaleCastle)
             <!-- ================= THEME 14 BESPOKE PROFIL MEMPELAI (PREMIUM FAIRYTALE CASTLE) ================= -->
             <div class="w-full max-w-sm sm:max-w-md md:max-w-3xl mx-auto space-y-8 select-none text-[#8A1538] relative">
-                <!-- Flanking Cascading Rose Vines (Foto 3) -->
-                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -left-3 sm:left-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm">
-                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -right-3 sm:right-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm -scale-x-100">
+                <!-- Flanking Cascading Rose Vines with Botanical Sway (Foto 3) -->
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -left-3 sm:left-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm reveal-item anim-fairytale-vine-l">
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -right-3 sm:right-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm reveal-item anim-fairytale-vine-r">
 
                 <!-- Section Header -->
-                <div class="text-center space-y-1 reveal-item anim-fade-up">
-                    <h3 class="text-3xl sm:text-4xl text-[#8A1538] leading-tight font-normal" style="font-family: 'Alex Brush', 'Great Vibes', cursive;">
+                <div class="text-center space-y-1">
+                    <h3 class="text-3xl sm:text-4xl text-[#8A1538] leading-tight font-normal reveal-item anim-fairytale-script" style="font-family: 'Alex Brush', 'Great Vibes', cursive;">
                         Pasangan Mempelai
                     </h3>
                     <!-- Top Floral Garland (Foto 3) -->
-                    <div class="w-36 sm:w-48 mx-auto py-1 pointer-events-none">
+                    <div class="w-36 sm:w-48 mx-auto py-1 pointer-events-none reveal-item anim-fairytale-garland delay-1">
                         <img src="{{ $t14RoseVineHorizontal }}" alt="" class="w-full h-auto object-contain drop-shadow-xs">
                     </div>
-                    <p class="text-xs sm:text-sm text-[#8A1538]/85 max-w-md mx-auto leading-relaxed">
+                    <p class="text-xs sm:text-sm text-[#8A1538]/85 max-w-md mx-auto leading-relaxed reveal-item anim-fairytale-text delay-2">
                         Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan, perkenankan kami menyatukan cinta suci dalam ikatan pernikahan:
                     </p>
                 </div>
 
-                <!-- Fairytale Castle Illustration in Arch Frame -->
-                <div class="w-full max-w-xs mx-auto rounded-t-full overflow-hidden shadow-lg border-2 border-white/80 aspect-[16/9] bg-pink-100 reveal-item anim-fairytale-zoom">
+                <!-- Fairytale Castle Illustration in Arch Frame with Dreamy Float -->
+                <div class="w-full max-w-xs mx-auto rounded-t-full overflow-hidden shadow-lg border-2 border-white/80 aspect-[16/9] bg-pink-100 reveal-item anim-fairytale-castle delay-2">
                     <img src="{{ $t14BgCastleLandscape }}" alt="Fairytale Castle" class="w-full h-full object-cover">
                 </div>
 
-                <!-- Couple Cards: Crisp White Cards with Rose Pink Accents -->
+                <!-- Couple Cards: Crisp White Cards with 3D Perspective Entrance -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
                     <!-- Mempelai Pria (Groom) -->
-                    <div class="rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/80 p-6 sm:p-8 shadow-xl relative text-center space-y-4 flex flex-col justify-between reveal-item anim-fairytale-slide-l">
-                        <!-- Groom Photo in Rose Circular Ring -->
-                        <div class="relative w-40 sm:w-44 h-40 sm:h-44 mx-auto my-2 flex items-center justify-center">
-                            <div class="w-full h-full rounded-full overflow-hidden p-1.5 border-2 border-[#F47294] shadow-md bg-white">
-                                <img src="{{ $t14GroomPhoto }}" alt="{{ $groomName }}" class="w-full h-full object-cover rounded-full">
+                    <div class="rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/80 p-6 sm:p-8 shadow-xl relative text-center space-y-4 flex flex-col justify-between reveal-item anim-fairytale-card-l delay-3">
+                        <!-- Groom Photo in Pulsing Rose Circular Ring with Living Portrait Breathe -->
+                        <div class="relative w-40 sm:w-44 h-40 sm:h-44 mx-auto my-2 flex items-center justify-center reveal-item anim-fairytale-portrait delay-1">
+                            <div class="w-full h-full rounded-full overflow-hidden p-1.5 border-2 border-[#F47294] shadow-md bg-white anim-fairytale-ring">
+                                <img src="{{ $t14GroomPhoto }}" alt="{{ $groomName }}" class="w-full h-full object-cover rounded-full anim-fairytale-portrait-idle">
                             </div>
                         </div>
 
                         <div class="space-y-1 pt-1">
-                            <h4 class="text-2xl sm:text-3xl text-[#8A1538] font-normal" style="font-family: 'Alex Brush', 'Great Vibes', cursive;">
+                            <h4 class="text-2xl sm:text-3xl text-[#8A1538] font-normal reveal-item anim-fairytale-script delay-2" style="font-family: 'Alex Brush', 'Great Vibes', cursive;">
                                 {{ $groomName }}
                             </h4>
-                            <p class="text-xs sm:text-sm text-[#8A1538]/85 font-medium">
+                            <p class="text-xs sm:text-sm text-[#8A1538]/85 font-medium reveal-item anim-fairytale-text delay-3">
                                 {{ $invitation->groom_parents ?? 'Putra pertama dari Bpk. Bambang & Ibu Rini' }}
                             </p>
                             @if(!empty($invitation->groom_instagram))
-                            <div class="pt-2">
-                                <a href="https://instagram.com/{{ ltrim($invitation->groom_instagram, '@') }}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F47294]/15 hover:bg-[#F47294]/25 text-[#8A1538] text-xs border border-[#F47294]/40 transition shadow-xs">
+                            <div class="pt-2 reveal-item anim-fairytale-btn delay-4">
+                                <a href="https://instagram.com/{{ ltrim($invitation->groom_instagram, '@') }}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F47294]/15 hover:bg-[#F47294]/25 text-[#8A1538] text-xs border border-[#F47294]/40 transition shadow-xs btn-fairytale-shimmer">
                                     <svg class="w-3.5 h-3.5 text-[#F47294]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                                     <span>{{ '@' . ltrim($invitation->groom_instagram, '@') }}</span>
                                 </a>
@@ -12044,24 +12653,24 @@
                     </div>
 
                     <!-- Mempelai Wanita (Bride) -->
-                    <div class="rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/80 p-6 sm:p-8 shadow-xl relative text-center space-y-4 flex flex-col justify-between reveal-item anim-fairytale-slide-r">
-                        <!-- Bride Photo in Rose Circular Ring -->
-                        <div class="relative w-40 sm:w-44 h-40 sm:h-44 mx-auto my-2 flex items-center justify-center">
-                            <div class="w-full h-full rounded-full overflow-hidden p-1.5 border-2 border-[#F47294] shadow-md bg-white">
-                                <img src="{{ $t14BridePhoto }}" alt="{{ $brideName }}" class="w-full h-full object-cover rounded-full">
+                    <div class="rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/80 p-6 sm:p-8 shadow-xl relative text-center space-y-4 flex flex-col justify-between reveal-item anim-fairytale-card-r delay-4">
+                        <!-- Bride Photo in Pulsing Rose Circular Ring with Living Portrait Breathe -->
+                        <div class="relative w-40 sm:w-44 h-40 sm:h-44 mx-auto my-2 flex items-center justify-center reveal-item anim-fairytale-portrait delay-1">
+                            <div class="w-full h-full rounded-full overflow-hidden p-1.5 border-2 border-[#F47294] shadow-md bg-white anim-fairytale-ring">
+                                <img src="{{ $t14BridePhoto }}" alt="{{ $brideName }}" class="w-full h-full object-cover rounded-full anim-fairytale-portrait-idle">
                             </div>
                         </div>
 
                         <div class="space-y-1 pt-1">
-                            <h4 class="text-2xl sm:text-3xl text-[#8A1538] font-normal" style="font-family: 'Alex Brush', 'Great Vibes', cursive;">
+                            <h4 class="text-2xl sm:text-3xl text-[#8A1538] font-normal reveal-item anim-fairytale-script delay-2" style="font-family: 'Alex Brush', 'Great Vibes', cursive;">
                                 {{ $brideName }}
                             </h4>
-                            <p class="text-xs sm:text-sm text-[#8A1538]/85 font-medium">
+                            <p class="text-xs sm:text-sm text-[#8A1538]/85 font-medium reveal-item anim-fairytale-text delay-3">
                                 {{ $invitation->bride_parents ?? 'Putri kedua dari Bpk. Ir. Hendro & Ibu Siti' }}
                             </p>
                             @if(!empty($invitation->bride_instagram))
-                            <div class="pt-2">
-                                <a href="https://instagram.com/{{ ltrim($invitation->bride_instagram, '@') }}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F47294]/15 hover:bg-[#F47294]/25 text-[#8A1538] text-xs border border-[#F47294]/40 transition shadow-xs">
+                            <div class="pt-2 reveal-item anim-fairytale-btn delay-4">
+                                <a href="https://instagram.com/{{ ltrim($invitation->bride_instagram, '@') }}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F47294]/15 hover:bg-[#F47294]/25 text-[#8A1538] text-xs border border-[#F47294]/40 transition shadow-xs btn-fairytale-shimmer">
                                     <svg class="w-3.5 h-3.5 text-[#F47294]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                                     <span>{{ '@' . ltrim($invitation->bride_instagram, '@') }}</span>
                                 </a>
@@ -12072,35 +12681,29 @@
                 </div>
             </div>
             @elseif($currentThemeId == 11 || $isMistyRomance)
-            <!-- ================= THEME 11 BESPOKE PROFIL MEMPELAI (PREMIUM MISTY ROMANCE - MATCHING SCREENSHOT 2 00aa726d.jpg) ================= -->
-            <div class="w-full max-w-sm sm:max-w-md md:max-w-xl mx-auto rounded-[32px] sm:rounded-[40px] bg-white/92 backdrop-blur-md border border-white/80 p-6 sm:p-10 shadow-2xl relative text-center space-y-6 select-none reveal-item anim-fade-up"
-                 style="box-shadow: 0 25px 60px rgba(0,0,0,0.35);">
+            <!-- ================= THEME 11 BESPOKE PROFIL MEMPELAI (PREMIUM NOSTALGIC VILLAGE - MATCHING SCREENSHOT 88848432.png) ================= -->
+            <div class="w-full max-w-sm sm:max-w-md mx-auto text-center space-y-10 select-none py-6">
                 
-                <!-- Greeting & Invitation Wording -->
-                <div class="space-y-2 text-slate-800">
-                    <h3 class="font-misty-heading text-lg sm:text-xl font-medium tracking-wide text-slate-900">
-                        Assalamu'alaikum Wr. Wb.
-                    </h3>
-                    <p class="text-xs sm:text-sm text-slate-600 font-misty-body leading-relaxed max-w-sm mx-auto">
-                        Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i serta kerabat sekalian untuk menghadiri acara pernikahan kami.
-                    </p>
-                </div>
-
-                <!-- Groom (Mempelai Pria) -->
-                <div class="space-y-3 pt-2">
-                    <div class="relative w-36 sm:w-44 h-52 sm:h-64 mx-auto rounded-full overflow-hidden border-[3px] sm:border-4 border-white shadow-[0_12px_30px_rgba(0,0,0,0.18)] bg-slate-100 group">
-                        <img src="{{ $t11GroomPhoto }}" alt="{{ $groomName }}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                <!-- Bride (Mempelai Wanita - Matching Reference 88848432.png) -->
+                <div class="space-y-3.5 reveal-item anim-nostalgic-polaroid">
+                    <div class="relative w-44 sm:w-52 p-2.5 bg-white rounded-md shadow-[0_12px_28px_rgba(44,64,78,0.12)] rotate-[1.5deg] hover:rotate-0 transition-transform duration-500 mx-auto border border-[#E2D8CC]">
+                        <div class="w-full h-52 sm:h-60 overflow-hidden rounded-xs bg-stone-100">
+                            <img src="{{ $t11BridePhoto }}" alt="{{ $brideName }}" class="w-full h-full object-cover">
+                        </div>
                     </div>
-                    <div class="space-y-1">
-                        <h4 class="text-2xl sm:text-3xl font-misty-heading font-medium text-slate-900 tracking-wide">
-                            {{ $groomName }}
+                    <div class="space-y-1 text-center max-w-xs mx-auto pt-1">
+                        <h4 class="text-2xl sm:text-3xl font-serif font-bold text-[#2C404E] tracking-tight">
+                            {{ $brideName }}
                         </h4>
-                        <p class="text-xs sm:text-sm text-slate-600 font-misty-body leading-relaxed max-w-xs mx-auto">
-                            {{ $invitation->groom_parents ?? 'Putra Kedua dari Bapak M. Dawam & (Almh) Ibu Dewi Sudarwati' }}
+                        <p class="text-xs font-serif text-[#8C9BA5] pt-0.5">
+                            Putri dari
                         </p>
-                        @if(!empty($invitation->groom_instagram))
-                        <div class="pt-1">
-                            <a href="https://instagram.com/{{ ltrim($invitation->groom_instagram, '@') }}" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-slate-900 hover:bg-slate-700 text-white inline-flex items-center justify-center transition shadow-sm cursor-pointer" title="Instagram">
+                        <p class="text-xs sm:text-sm font-serif font-semibold text-[#2C404E] leading-relaxed">
+                            {{ $invitation->bride_parents ?? 'Bapak Ayah Azalia & Ibu Ibu Azalia' }}
+                        </p>
+                        @if(!empty($invitation->bride_instagram))
+                        <div class="pt-2">
+                            <a href="https://instagram.com/{{ ltrim($invitation->bride_instagram, '@') }}" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-[#D8B4A6] text-[#A67C6D] bg-[#F4EBE6]/60 hover:bg-[#A67C6D] hover:text-white inline-flex items-center justify-center transition shadow-2xs cursor-pointer" title="Instagram">
                                 <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                             </a>
                         </div>
@@ -12108,26 +12711,26 @@
                     </div>
                 </div>
 
-                <!-- Ampersand Divider -->
-                <div class="my-2">
-                    <span class="font-misty-script italic text-3xl sm:text-4xl text-slate-700">&amp;</span>
-                </div>
-
-                <!-- Bride (Mempelai Wanita) -->
-                <div class="space-y-3">
-                    <div class="relative w-36 sm:w-44 h-52 sm:h-64 mx-auto rounded-full overflow-hidden border-[3px] sm:border-4 border-white shadow-[0_12px_30px_rgba(0,0,0,0.18)] bg-slate-100 group">
-                        <img src="{{ $t11BridePhoto }}" alt="{{ $brideName }}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                <!-- Groom (Mempelai Pria - Matching Reference 88848432.png) -->
+                <div class="space-y-3.5 reveal-item anim-nostalgic-polaroid delay-1">
+                    <div class="relative w-44 sm:w-52 p-2.5 bg-white rounded-md shadow-[0_12px_28px_rgba(44,64,78,0.12)] rotate-[-1.5deg] hover:rotate-0 transition-transform duration-500 mx-auto border border-[#E2D8CC]">
+                        <div class="w-full h-52 sm:h-60 overflow-hidden rounded-xs bg-stone-100">
+                            <img src="{{ $t11GroomPhoto }}" alt="{{ $groomName }}" class="w-full h-full object-cover">
+                        </div>
                     </div>
-                    <div class="space-y-1">
-                        <h4 class="text-2xl sm:text-3xl font-misty-heading font-medium text-slate-900 tracking-wide">
-                            {{ $brideName }}
+                    <div class="space-y-1 text-center max-w-xs mx-auto pt-1">
+                        <h4 class="text-2xl sm:text-3xl font-serif font-bold text-[#2C404E] tracking-tight">
+                            {{ $groomName }}
                         </h4>
-                        <p class="text-xs sm:text-sm text-slate-600 font-misty-body leading-relaxed max-w-xs mx-auto">
-                            {{ $invitation->bride_parents ?? 'Putri Pertama dari Bapak Anas Rifai & Ibu Kholifah' }}
+                        <p class="text-xs font-serif text-[#8C9BA5] pt-0.5">
+                            Putra dari
                         </p>
-                        @if(!empty($invitation->bride_instagram))
-                        <div class="pt-1">
-                            <a href="https://instagram.com/{{ ltrim($invitation->bride_instagram, '@') }}" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-slate-950 text-white hover:bg-slate-700 inline-flex items-center justify-center transition shadow-sm cursor-pointer" title="Instagram">
+                        <p class="text-xs sm:text-sm font-serif font-semibold text-[#2C404E] leading-relaxed">
+                            {{ $invitation->groom_parents ?? 'Bapak Ayah Dias & Ibu Ibu Dias' }}
+                        </p>
+                        @if(!empty($invitation->groom_instagram))
+                        <div class="pt-2">
+                            <a href="https://instagram.com/{{ ltrim($invitation->groom_instagram, '@') }}" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-[#D8B4A6] text-[#A67C6D] bg-[#F4EBE6]/60 hover:bg-[#A67C6D] hover:text-white inline-flex items-center justify-center transition shadow-2xs cursor-pointer" title="Instagram">
                                 <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                             </a>
                         </div>
@@ -12886,7 +13489,7 @@
         <!-- ================= 6. SECTION DETAIL ACARA (AKAD NIKAH & RESEPSI) ================= -->
         <section id="section-acara" class="{{ ($currentThemeId == 19 || $isLavenderMist) ? 'py-0 px-0' : 'py-10 sm:py-16 px-4 sm:px-6 md:px-10' }} text-center relative overflow-hidden"
                  @if($currentThemeId == 11 || $isMistyRomance)
-                 style="background-image: linear-gradient(180deg, rgba(14, 18, 23, 0.92) 0%, rgba(14, 18, 23, 0.85) 50%, rgba(14, 18, 23, 0.94) 100%), url('{{ $t11BgDarkFloral }}'); background-size: cover; background-position: center; background-repeat: no-repeat;"
+                 style="background-color: #FAF7F2;"
                  @endif
         >
             @if($currentThemeId == 2)
@@ -14202,26 +14805,26 @@
             @elseif($currentThemeId == 14 || $isNightSky || $isFairytaleCastle)
             <!-- ================= THEME 14 BESPOKE RANGKAIAN ACARA (PREMIUM FAIRYTALE CASTLE - MATCHING SCREENSHOT) ================= -->
             <div class="w-full max-w-sm sm:max-w-md md:max-w-3xl mx-auto space-y-6 sm:space-y-8 select-none text-[#8A1538] relative">
-                <!-- Flanking Cascading Rose Vines (Foto 3) -->
-                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -left-3 sm:left-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm">
-                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -right-3 sm:right-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm -scale-x-100">
+                <!-- Flanking Cascading Rose Vines with Botanical Sway (Foto 3) -->
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -left-3 sm:left-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm reveal-item anim-fairytale-vine-l">
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -right-3 sm:right-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm -scale-x-100 reveal-item anim-fairytale-vine-r">
 
-                <div class="text-center space-y-1 reveal-item anim-fade-up">
-                    <h3 class="text-4xl sm:text-5xl text-[#8A1538] leading-tight font-normal" style="font-family: 'Alex Brush', 'Great Vibes', cursive;">
+                <div class="text-center space-y-1">
+                    <h3 class="text-4xl sm:text-5xl text-[#8A1538] leading-tight font-normal reveal-item anim-fairytale-script" style="font-family: 'Alex Brush', 'Great Vibes', cursive;">
                         Acara
                     </h3>
                     <!-- Floral Garland Ribbon (Foto 3) -->
-                    <div class="w-36 sm:w-48 mx-auto py-1 pointer-events-none">
+                    <div class="w-36 sm:w-48 mx-auto py-1 pointer-events-none reveal-item anim-fairytale-garland delay-1">
                         <img src="{{ $t14RoseVineHorizontal }}" alt="" class="w-full h-auto object-contain drop-shadow-xs">
                     </div>
-                    <p class="text-xs sm:text-sm text-[#8A1538]/85 max-w-md mx-auto">
+                    <p class="text-xs sm:text-sm text-[#8A1538]/85 max-w-md mx-auto reveal-item anim-fairytale-text delay-2">
                         Kami bermaksud untuk mengundang saudara/(i) dalam acara pernikahan kami pada:
                     </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 text-center">
-                    <!-- Akad Nikah Card with Asymmetric Rounded Corners -->
-                    <div class="rounded-tr-[3.5rem] rounded-bl-[3.5rem] rounded-tl-2xl rounded-br-2xl bg-white/95 backdrop-blur-md border border-pink-200/80 p-6 sm:p-8 shadow-xl relative space-y-3.5 reveal-item anim-fairytale-slide-l">
+                    <!-- Akad Nikah Card with 3D Perspective Fold-in -->
+                    <div class="rounded-tr-[3.5rem] rounded-bl-[3.5rem] rounded-tl-2xl rounded-br-2xl bg-white/95 backdrop-blur-md border border-pink-200/80 p-6 sm:p-8 shadow-xl relative space-y-3.5 reveal-item anim-fairytale-card-l delay-1">
                         <!-- Heart Divider -->
                         <div class="flex items-center justify-center gap-3 text-[#F47294] py-1">
                             <span class="w-12 h-px bg-[#F47294]/40"></span>
@@ -14244,21 +14847,21 @@
                             </div>
                         </div>
 
-                        <!-- Buttons: Navigasi Map & Simpan Tanggal -->
-                        <div class="flex items-center justify-center gap-2 pt-2">
-                            <a href="{{ $mapsUrl }}" target="_blank" rel="noopener" class="px-4 py-2 rounded-full bg-[#F47294] hover:bg-[#E55B82] text-white text-xs font-semibold flex items-center gap-1.5 shadow-md transition active:scale-95">
+                        <!-- Buttons: Navigasi Map & Simpan Tanggal with Shimmer & Spring Pop -->
+                        <div class="flex items-center justify-center gap-2 pt-2 reveal-item anim-fairytale-btn delay-2">
+                            <a href="{{ $mapsUrl }}" target="_blank" rel="noopener" class="px-4 py-2 rounded-full bg-[#F47294] hover:bg-[#E55B82] text-white text-xs font-semibold flex items-center gap-1.5 shadow-md transition active:scale-95 btn-fairytale-shimmer">
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                                 <span>Navigasi Map</span>
                             </a>
-                            <button type="button" onclick="saveTheDateCalendar()" class="px-4 py-2 rounded-full bg-[#F47294] hover:bg-[#E55B82] text-white text-xs font-semibold flex items-center gap-1.5 shadow-md transition active:scale-95 cursor-pointer">
+                            <button type="button" onclick="saveTheDateCalendar()" class="px-4 py-2 rounded-full bg-[#F47294] hover:bg-[#E55B82] text-white text-xs font-semibold flex items-center gap-1.5 shadow-md transition active:scale-95 cursor-pointer btn-fairytale-shimmer">
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                                 <span>Simpan Tanggal</span>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Resepsi Card with Asymmetric Rounded Corners -->
-                    <div class="rounded-tr-[3.5rem] rounded-bl-[3.5rem] rounded-tl-2xl rounded-br-2xl bg-white/95 backdrop-blur-md border border-pink-200/80 p-6 sm:p-8 shadow-xl relative space-y-3.5 reveal-item anim-fairytale-slide-r">
+                    <!-- Resepsi Card with 3D Perspective Fold-in -->
+                    <div class="rounded-tr-[3.5rem] rounded-bl-[3.5rem] rounded-tl-2xl rounded-br-2xl bg-white/95 backdrop-blur-md border border-pink-200/80 p-6 sm:p-8 shadow-xl relative space-y-3.5 reveal-item anim-fairytale-card-r delay-2">
                         <!-- Heart Divider -->
                         <div class="flex items-center justify-center gap-3 text-[#F47294] py-1">
                             <span class="w-12 h-px bg-[#F47294]/40"></span>
@@ -14281,13 +14884,13 @@
                             </div>
                         </div>
 
-                        <!-- Buttons: Navigasi Map & Simpan Tanggal -->
-                        <div class="flex items-center justify-center gap-2 pt-2">
-                            <a href="{{ $mapsUrl }}" target="_blank" rel="noopener" class="px-4 py-2 rounded-full bg-[#F47294] hover:bg-[#E55B82] text-white text-xs font-semibold flex items-center gap-1.5 shadow-md transition active:scale-95">
+                        <!-- Buttons: Navigasi Map & Simpan Tanggal with Shimmer & Spring Pop -->
+                        <div class="flex items-center justify-center gap-2 pt-2 reveal-item anim-fairytale-btn delay-3">
+                            <a href="{{ $mapsUrl }}" target="_blank" rel="noopener" class="px-4 py-2 rounded-full bg-[#F47294] hover:bg-[#E55B82] text-white text-xs font-semibold flex items-center gap-1.5 shadow-md transition active:scale-95 btn-fairytale-shimmer">
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                                 <span>Navigasi Map</span>
                             </a>
-                            <button type="button" onclick="saveTheDateCalendar()" class="px-4 py-2 rounded-full bg-[#F47294] hover:bg-[#E55B82] text-white text-xs font-semibold flex items-center gap-1.5 shadow-md transition active:scale-95 cursor-pointer">
+                            <button type="button" onclick="saveTheDateCalendar()" class="px-4 py-2 rounded-full bg-[#F47294] hover:bg-[#E55B82] text-white text-xs font-semibold flex items-center gap-1.5 shadow-md transition active:scale-95 cursor-pointer btn-fairytale-shimmer">
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                                 <span>Simpan Tanggal</span>
                             </button>
@@ -14296,74 +14899,164 @@
                 </div>
             </div>
             @elseif($currentThemeId == 11 || $isMistyRomance)
-            <!-- ================= THEME 11 BESPOKE RANGKAIAN ACARA (PREMIUM MISTY ROMANCE) ================= -->
-            <div class="w-full max-w-sm sm:max-w-md md:max-w-3xl mx-auto space-y-6 sm:space-y-8 select-none text-slate-800">
-                <div class="text-center space-y-2 reveal-item anim-fade-up">
-                    <span class="inline-block px-3.5 py-0.5 rounded-full bg-white/15 border border-white/30 text-slate-200 text-[10px] sm:text-xs font-semibold tracking-[0.35em] uppercase font-misty-title">
-                        WAKTU &amp; TEMPAT
-                    </span>
-                    <h3 class="text-2xl sm:text-3xl font-misty-heading font-normal text-white tracking-wide">
-                        Rangkaian Acara
-                    </h3>
-                    <p class="text-xs sm:text-sm text-slate-300 font-misty-body max-w-md mx-auto leading-relaxed">
-                        Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Anda untuk hadir di momen bahagia kami:
-                    </p>
-                </div>
+            <!-- ================= THEME 11 BESPOKE RANGKAIAN ACARA (PREMIUM NOSTALGIC VILLAGE - MATCHING SCREENSHOT 7100A34B.JPG) ================= -->
+            <div class="w-full max-w-sm sm:max-w-md md:max-w-xl mx-auto space-y-6 sm:space-y-8 select-none text-[#2C404E]">
+                
+                <!-- Pendopo House Banner & Interactive Couple Greeting (Sunset Sky + Groom & Bride Illustration - Matching Reference 36bccb95.png) -->
+                <div class="space-y-3 reveal-item anim-nostalgic-scale-up text-center">
+                    <div class="relative w-full max-w-xs sm:max-w-sm aspect-[4/5] rounded-2xl overflow-hidden shadow-lg border border-[#E2D8CC] mx-auto cursor-pointer group bg-stone-100" onclick="greetAtPendopo()" title="Sentuh kedua mempelai untuk disapa">
+                        <!-- Watercolor Pendopo Sunset Backdrop -->
+                        <img src="{{ $t11BgPendopoSunset }}" alt="Pendopo Senja" class="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500">
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 text-left">
-                    <!-- Akad Nikah Card -->
-                    <div class="rounded-3xl bg-white/92 backdrop-blur-md border border-white/80 p-6 sm:p-8 shadow-2xl relative space-y-4 reveal-item anim-fade-up">
-                        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-                            <h4 class="text-xl sm:text-2xl font-misty-heading font-normal text-slate-900">Akad Nikah</h4>
-                            <span class="text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 font-misty-title font-semibold">Sacred Vow</span>
+                        <!-- Parked Yellow Wagon Car at Bottom Left (Properly scaled to couple size - Firmly planted on ground tanah) -->
+                        <div style="position: absolute; bottom: 2.2%; left: -2%; width: 52%; z-index: 10; pointer-events: none;">
+                            <img src="{{ $t11CarWagon }}" alt="Mobil Kuning Parkir" style="width: 100%; height: auto; display: block; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">
                         </div>
-                        <div class="space-y-2.5 text-xs sm:text-sm text-slate-700 font-misty-body">
-                            <p class="font-medium text-slate-900 flex items-center gap-2">
-                                <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                                <span>{{ $invitation->akad_date ? $invitation->akad_date->translatedFormat('l, d F Y') : $eventDate->translatedFormat('l, d F Y') }}</span>
-                            </p>
-                            <p class="flex items-center gap-2 text-slate-700">
-                                <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                <span>Pukul {{ $invitation->akad_time ? (is_string($invitation->akad_time) ? $invitation->akad_time : $invitation->akad_time->format('H:i')) : '08:00' }} WIB - Selesai</span>
-                            </p>
-                            <p class="flex items-start gap-2 text-slate-700 pt-1">
-                                <svg class="w-4 h-4 text-slate-700 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                                <span><strong>{{ $akadVenue }}</strong><br><span class="text-xs text-slate-600">{{ $akadAddress }}</span></span>
-                            </p>
+
+                        <!-- Cartoon Couple Standing in front of Pendopo (Firmly planted on ground tanah - Matching Reference 36bccb95.png) -->
+                        <div style="position: absolute; bottom: 3.5%; left: 50%; transform: translateX(-50%); width: 18%; z-index: 20; cursor: pointer;" onclick="event.stopPropagation(); greetAtPendopo();" title="Sentuh kedua mempelai untuk disapa">
+                            <img src="{{ $t11CouplePendopo }}" alt="{{ $groomNickname }} &amp; {{ $brideNickname }} di depan Pendopo" style="width: 100%; height: auto; display: block; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.35)); transition: transform 0.3s ease;">
                         </div>
-                        <div class="pt-2">
-                            <a href="{{ $akadMapsUrl }}" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-medium text-xs tracking-wider uppercase shadow-md flex items-center justify-center gap-2 transition active:scale-95 cursor-pointer font-misty-body">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                                <span>Buka Google Maps</span>
-                            </a>
+
+                        <!-- Interactive Greeting Speech Bubble (Pops up on touch/click) -->
+                        <div id="pendopo-bubble" style="position: absolute; top: 14px; left: 50%; transform: translateX(-50%) scale(0.9); background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(4px); padding: 6px 16px; border-radius: 9999px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); border: 1px solid #D49838; font-size: 11px; font-family: serif; color: #2C404E; white-space: nowrap; transition: all 0.3s ease; z-index: 30; opacity: 0; pointer-events: none;">
+                            💛 {{ $groomNickname }} &amp; {{ $brideNickname }}: "Selamat datang! Kami sangat menantikan kehadiran Anda."
                         </div>
                     </div>
 
-                    <!-- Resepsi Card -->
-                    <div class="rounded-3xl bg-white/92 backdrop-blur-md border border-white/80 p-6 sm:p-8 shadow-2xl relative space-y-4 reveal-item anim-fade-up delay-1">
-                        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-                            <h4 class="text-xl sm:text-2xl font-misty-heading font-normal text-slate-900">Resepsi Pernikahan</h4>
-                            <span class="text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 font-misty-title font-semibold">Celebration</span>
+                    <!-- Caption Below Card (Matching Reference 36bccb95.png) -->
+                    <p class="text-center text-xs sm:text-sm font-serif italic text-[#475569] leading-relaxed pt-1">
+                        Kedua mempelai menunggu di depan pendopo.<br>
+                        Sentuh untuk disapa.
+                    </p>
+                </div>
+
+                <!-- Section Header: "Waktu dan tempat" -->
+                <div class="text-center space-y-2 reveal-item anim-nostalgic-scale-up">
+                    <h3 class="text-3xl sm:text-4xl font-serif font-normal text-[#2C404E] tracking-wide">
+                        Waktu dan tempat
+                    </h3>
+                    <p class="text-xs sm:text-sm text-[#475569] font-serif max-w-md mx-auto leading-relaxed">
+                        Dengan memohon rahmat dan ridha Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami:
+                    </p>
+                </div>
+
+                <!-- 3 Event Cards Matching Reference: Akad Nikah, Resepsi, Ngunduh Mantu -->
+                <div class="space-y-6">
+                    <!-- 1. AKAD NIKAH -->
+                    <div class="space-y-3 pt-3 text-left border-b border-[#E2D8CC] pb-6 reveal-item anim-nostalgic-scale-up">
+                        <div class="flex flex-col sm:flex-row gap-3 sm:gap-6 items-start">
+                            <div class="sm:w-5/12 space-y-1 shrink-0">
+                                <h4 class="text-xl sm:text-2xl font-serif text-[#2C404E] font-medium leading-tight">Akad<br class="hidden sm:inline"> Nikah</h4>
+                                <p class="text-xs sm:text-sm font-serif font-bold text-[#2C404E]">
+                                    {{ $invitation->akad_date ? $invitation->akad_date->translatedFormat('l, d F Y') : 'Rabu, 30 September 2026' }}
+                                </p>
+                                <p class="text-xs text-[#64748B] font-serif">
+                                    {{ $invitation->akad_time ? (is_string($invitation->akad_time) ? $invitation->akad_time : $invitation->akad_time->format('H:i')) : '08:00' }} - {{ $invitation->akad_end_time ?? 'Selesai' }}
+                                </p>
+                            </div>
+                            <div class="sm:w-7/12 space-y-3 grow">
+                                <div class="space-y-1">
+                                    <h5 class="text-xs sm:text-sm font-serif font-bold text-[#2C404E]">{{ $akadVenue }}</h5>
+                                    <p class="text-[11px] sm:text-xs text-[#64748B] font-serif leading-relaxed">{{ $akadAddress }}</p>
+                                </div>
+                                <div class="space-y-2 pt-1">
+                                    <div>
+                                        <a href="{{ $akadMapsUrl }}" target="_blank" rel="noopener noreferrer" class="px-4 py-1.5 rounded-full border border-[#2C404E]/50 hover:bg-[#2C404E] hover:text-white text-[#2C404E] text-[11px] sm:text-xs font-serif inline-flex items-center gap-1.5 transition active:scale-95 shadow-xs">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                                            <span>Lihat Lokasi</span>
+                                        </a>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <button type="button" onclick="saveCalendarEvent('akad')" class="px-3.5 py-1.5 rounded-full border border-[#2C404E]/50 hover:bg-[#2C404E] hover:text-white text-[#2C404E] text-[10.5px] sm:text-xs font-serif inline-flex items-center gap-1.5 transition active:scale-95 shadow-xs cursor-pointer">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                            <span>Google Calendar</span>
+                                        </button>
+                                        <button type="button" onclick="downloadIcsEvent('akad')" class="px-3.5 py-1.5 rounded-full border border-[#2C404E]/50 hover:bg-[#2C404E] hover:text-white text-[#2C404E] text-[10.5px] sm:text-xs font-serif inline-flex items-center gap-1.5 transition active:scale-95 shadow-xs cursor-pointer">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                            <span>Apple Calendar</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="space-y-2.5 text-xs sm:text-sm text-slate-700 font-misty-body">
-                            <p class="font-medium text-slate-900 flex items-center gap-2">
-                                <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                                <span>{{ $eventDate->translatedFormat('l, d F Y') }}</span>
-                            </p>
-                            <p class="flex items-center gap-2 text-slate-700">
-                                <svg class="w-4 h-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                <span>Pukul {{ $invitation->event_time ? (is_string($invitation->event_time) ? $invitation->event_time : $invitation->event_time->format('H:i')) : '11:00' }} WIB - Selesai</span>
-                            </p>
-                            <p class="flex items-start gap-2 text-slate-700 pt-1">
-                                <svg class="w-4 h-4 text-slate-700 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                                <span><strong>{{ $venueName }}</strong><br><span class="text-xs text-slate-600">{{ $venueAddress }}</span></span>
-                            </p>
+                    </div>
+
+                    <!-- 2. RESEPSI -->
+                    <div class="space-y-3 pt-3 text-left border-b border-[#E2D8CC] pb-6 reveal-item anim-nostalgic-scale-up delay-1">
+                        <div class="flex flex-col sm:flex-row gap-3 sm:gap-6 items-start">
+                            <div class="sm:w-5/12 space-y-1 shrink-0">
+                                <h4 class="text-xl sm:text-2xl font-serif text-[#2C404E] font-medium leading-tight">Resepsi</h4>
+                                <p class="text-xs sm:text-sm font-serif font-bold text-[#2C404E]">
+                                    {{ $eventDate ? $eventDate->translatedFormat('l, d F Y') : 'Rabu, 30 September 2026' }}
+                                </p>
+                                <p class="text-xs text-[#64748B] font-serif">
+                                    {{ $invitation->event_time ? (is_string($invitation->event_time) ? $invitation->event_time : $invitation->event_time->format('H:i')) : '12:25' }} - {{ $invitation->event_end_time ?? 'Selesai' }}
+                                </p>
+                            </div>
+                            <div class="sm:w-7/12 space-y-3 grow">
+                                <div class="space-y-1">
+                                    <h5 class="text-xs sm:text-sm font-serif font-bold text-[#2C404E]">{{ $venueName }}</h5>
+                                    <p class="text-[11px] sm:text-xs text-[#64748B] font-serif leading-relaxed">{{ $venueAddress }}</p>
+                                </div>
+                                <div class="space-y-2 pt-1">
+                                    <div>
+                                        <a href="{{ $mapsUrl }}" target="_blank" rel="noopener noreferrer" class="px-4 py-1.5 rounded-full border border-[#2C404E]/50 hover:bg-[#2C404E] hover:text-white text-[#2C404E] text-[11px] sm:text-xs font-serif inline-flex items-center gap-1.5 transition active:scale-95 shadow-xs">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                                            <span>Lihat Lokasi</span>
+                                        </a>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <button type="button" onclick="saveCalendarEvent('resepsi')" class="px-3.5 py-1.5 rounded-full border border-[#2C404E]/50 hover:bg-[#2C404E] hover:text-white text-[#2C404E] text-[10.5px] sm:text-xs font-serif inline-flex items-center gap-1.5 transition active:scale-95 shadow-xs cursor-pointer">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                            <span>Google Calendar</span>
+                                        </button>
+                                        <button type="button" onclick="downloadIcsEvent('resepsi')" class="px-3.5 py-1.5 rounded-full border border-[#2C404E]/50 hover:bg-[#2C404E] hover:text-white text-[#2C404E] text-[10.5px] sm:text-xs font-serif inline-flex items-center gap-1.5 transition active:scale-95 shadow-xs cursor-pointer">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                            <span>Apple Calendar</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="pt-2">
-                            <a href="{{ $mapsUrl }}" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-medium text-xs tracking-wider uppercase shadow-md flex items-center justify-center gap-2 transition active:scale-95 cursor-pointer font-misty-body">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                                <span>Buka Google Maps</span>
-                            </a>
+                    </div>
+
+                    <!-- 3. NGUNDUH MANTU -->
+                    <div class="space-y-3 pt-3 text-left reveal-item anim-nostalgic-scale-up delay-2">
+                        <div class="flex flex-col sm:flex-row gap-3 sm:gap-6 items-start">
+                            <div class="sm:w-5/12 space-y-1 shrink-0">
+                                <h4 class="text-xl sm:text-2xl font-serif text-[#2C404E] font-medium leading-tight">Ngunduh<br class="hidden sm:inline"> Mantu</h4>
+                                <p class="text-xs sm:text-sm font-serif font-bold text-[#2C404E]">
+                                    Minggu, 30 Agustus 2026
+                                </p>
+                                <p class="text-xs text-[#64748B] font-serif">
+                                    08:00 - 20:00
+                                </p>
+                            </div>
+                            <div class="sm:w-7/12 space-y-3 grow">
+                                <div class="space-y-1">
+                                    <h5 class="text-xs sm:text-sm font-serif font-bold text-[#2C404E]">Rumah Mempelai Pria</h5>
+                                    <p class="text-[11px] sm:text-xs text-[#64748B] font-serif leading-relaxed">Unduh Mantu</p>
+                                </div>
+                                <div class="space-y-2 pt-1">
+                                    <div>
+                                        <a href="{{ $akadMapsUrl }}" target="_blank" rel="noopener noreferrer" class="px-4 py-1.5 rounded-full border border-[#2C404E]/50 hover:bg-[#2C404E] hover:text-white text-[#2C404E] text-[11px] sm:text-xs font-serif inline-flex items-center gap-1.5 transition active:scale-95 shadow-xs">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                                            <span>Lihat Lokasi</span>
+                                        </a>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <button type="button" onclick="saveCalendarEvent('akad')" class="px-3.5 py-1.5 rounded-full border border-[#2C404E]/50 hover:bg-[#2C404E] hover:text-white text-[#2C404E] text-[10.5px] sm:text-xs font-serif inline-flex items-center gap-1.5 transition active:scale-95 shadow-xs cursor-pointer">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                            <span>Google Calendar</span>
+                                        </button>
+                                        <button type="button" onclick="downloadIcsEvent('ngunduh')" class="px-3.5 py-1.5 rounded-full border border-[#2C404E]/50 hover:bg-[#2C404E] hover:text-white text-[#2C404E] text-[10.5px] sm:text-xs font-serif inline-flex items-center gap-1.5 transition active:scale-95 shadow-xs cursor-pointer">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                            <span>Apple Calendar</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -15036,6 +15729,7 @@
                     <span>{{ $groomNickname }} &amp; {{ $brideNickname }}</span>
                 </div>
             </div>
+
             @else
 
                 <div>
@@ -15157,7 +15851,7 @@
         @if(($invitation->show_love_story ?? true) && $currentThemeId != 6 && !$isBlueBlossom && !$isSoftBlueBotanical)
         <section id="section-cerita" class="py-10 sm:py-16 px-4 sm:px-6 md:px-10 text-center relative overflow-hidden"
                  @if($currentThemeId == 11 || $isMistyRomance)
-                 style="background-image: linear-gradient(180deg, rgba(14, 18, 23, 0.92) 0%, rgba(14, 18, 23, 0.85) 50%, rgba(14, 18, 23, 0.94) 100%), url('{{ $t11BgDarkFloral }}'); background-size: cover; background-position: center; background-repeat: no-repeat;"
+                 style="background-color: #FAF7F2;"
                  @endif
         >
             @if($currentThemeId == 2)
@@ -15881,50 +16575,73 @@
                 </div>
             </div>
             @elseif($currentThemeId == 11 || $isMistyRomance)
-            <!-- ================= THEME 11 BESPOKE LOVE STORY (PREMIUM MISTY ROMANCE - MATCHING SCREENSHOT 4 4e554066.jpg) ================= -->
-            <div class="w-full max-w-sm sm:max-w-md md:max-w-xl mx-auto rounded-[32px] sm:rounded-[40px] p-6 sm:p-10 shadow-2xl relative text-center space-y-8 select-none overflow-hidden bg-slate-950/70 backdrop-blur-md border border-white/20"
-                 style="box-shadow: 0 25px 60px rgba(0,0,0,0.45);">
+            <!-- ================= THEME 11 BESPOKE INTERACTIVE COASTAL ROAD & LOVE STORY (PREMIUM NOSTALGIC VILLAGE) ================= -->
+            <div class="w-full max-w-sm sm:max-w-md md:max-w-xl mx-auto space-y-10 select-none text-[#2C404E]">
                 
-                <!-- Script Title Header -->
-                <div class="space-y-1 reveal-item anim-fade-up">
-                    <h3 class="text-4xl sm:text-5xl md:text-6xl text-[#E2D4C0] font-misty-heading italic font-normal drop-shadow-md">
-                        Love Story
-                    </h3>
+                <!-- 1. Interactive Coastal Road & Yellow Wagon Car Section (Matching Screenshot 5affb4d8.jpg uncropped with real road) -->
+                <div id="section-coastal-road" class="space-y-2 reveal-item anim-nostalgic-scale-up">
+                    <div class="relative w-full max-w-sm sm:max-w-md mx-auto overflow-hidden rounded-2xl shadow-xl border-2 border-white/80 bg-stone-100">
+                        <!-- Watercolor Coastal Beach with Road at Bottom Backdrop (Uncropped, natural aspect ratio so road is 100% visible) -->
+                        <img src="{{ $t11BgCoastalRoad }}" alt="Pemandangan Jalan Pesisir" class="w-full h-auto block" style="width: 100%; height: auto; display: block;">
+                        
+                        <!-- Road with Moving Yellow Wagon Car placed exactly on the road lane -->
+                        <div class="absolute inset-x-0 bottom-0 pointer-events-auto flex items-end" style="height: 16%;">
+                            <div id="nostalgic-wagon-car"
+                                 class="absolute cursor-pointer transition-transform duration-75 ease-out will-change-transform drop-shadow-[0_4px_10px_rgba(0,0,0,0.4)]"
+                                 style="bottom: 8px; left: 8px; width: 28%; max-width: 130px;"
+                                 onclick="triggerCarBoost(this)"
+                                 title="Sentuh mobilnya untuk melaju">
+                                <img src="{{ $t11CarWagon }}" alt="Yellow Car" class="w-full h-auto block" style="width: 100%; height: auto; display: block;">
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-center text-[11px] sm:text-xs font-serif italic text-[#64748B] pt-1">
+                        Sentuh mobilnya untuk melaju.
+                    </p>
                 </div>
 
-                <!-- Overlapping Photo Composition (Clean Authentic Couple Moments) -->
-                <div class="relative w-72 sm:w-80 mx-auto py-2 reveal-item anim-fade-up delay-1">
-                    <!-- Photo 1: Top Left with Rounded Top-Left -->
-                    <div class="w-48 sm:w-56 h-36 sm:h-44 rounded-tl-[44px] rounded-br-[16px] rounded-tr-lg rounded-bl-lg overflow-hidden border-2 border-white/80 shadow-2xl bg-slate-900 group">
-                        <img src="{{ $t11StoryPhoto1 }}" alt="Love Story 1" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                <!-- 2. "Perjalanan kami" with Yellow Bicycle (Matching Screenshot 37b37e3c.png & 14ecbed4.png) -->
+                <div class="space-y-6 pt-2">
+                    <div class="text-center space-y-2 reveal-item anim-nostalgic-scale-up">
+                        <div class="w-24 sm:w-28 mx-auto pointer-events-none anim-nostalgic-bike drop-shadow-sm">
+                            <img src="{{ $t11Bicycle }}" alt="Yellow Bicycle" class="w-full h-auto object-contain">
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-serif font-normal text-[#2C404E] tracking-wide">
+                            Perjalanan kami
+                        </h3>
                     </div>
-                    <!-- Photo 2: Bottom Right Overlapping with Rounded Bottom-Right -->
-                    <div class="w-48 sm:w-56 h-36 sm:h-44 rounded-br-[44px] rounded-tl-[16px] rounded-tr-lg rounded-bl-lg overflow-hidden border-2 border-white/80 shadow-2xl bg-slate-900 -mt-10 ml-20 sm:ml-24 group">
-                        <img src="{{ $t11StoryPhoto2 }}" alt="Love Story 2" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                </div>
 
-                <!-- Milestones Timeline (Centered Editorial Prose matching Screenshot 4) -->
-                @php
-                    $t11Stories = !empty($invitation->love_stories) ? $invitation->love_stories : (!empty($invitation->milestones) ? $invitation->milestones : [
-                        ['title' => 'Awal Cerita', 'story' => 'Berawal dari pertemuan sederhana, kami saling mengenal dan mulai berbagi banyak cerita. Tanpa disadari, kebersamaan itu tumbuh menjadi rasa nyaman yang semakin kuat dari hari ke hari.'],
-                        ['title' => 'Lamaran', 'story' => 'Dengan niat yang tulus dan restu keluarga, kami memutuskan untuk melangkah ke tahap yang lebih serius. Momen lamaran menjadi awal dari perjalanan baru yang penuh harapan dan doa baik.'],
-                        ['title' => 'Pernikahan', 'story' => 'Kini kami sampai pada hari yang kami nantikan, hari di mana dua hati dipersatukan dalam ikatan suci pernikahan. Semoga langkah ini menjadi awal kehidupan baru yang penuh cinta, kebahagiaan, dan keberkahan.']
-                    ]);
-                @endphp
-                <div class="space-y-6 pt-2 max-w-sm sm:max-w-md mx-auto text-center">
-                    @foreach($t11Stories as $sIdx => $s)
-                    @if(!empty($s['title']) || !empty($s['story']))
-                    <div class="space-y-2 reveal-item anim-fade-up delay-{{ ($sIdx % 3) + 1 }}">
-                        <h4 class="text-base sm:text-lg font-misty-heading font-medium text-[#E2D4C0] tracking-wide">
-                            {{ $s['title'] ?? '' }}
-                        </h4>
-                        <p class="text-xs sm:text-sm text-slate-200 font-misty-body leading-relaxed max-w-sm mx-auto">
-                            {{ $s['story'] ?? '' }}
-                        </p>
+                    @php
+                        $t11Stories = !empty($invitation->love_stories) ? $invitation->love_stories : (!empty($invitation->milestones) ? $invitation->milestones : [
+                            ['title' => 'Pertemuan Pertama', 'story' => 'Pertama kali kami bertemu saat menjadi anggota sebuah organisasi di kampus. Kebetulan kami berada di divisi yang sama, yang menjadikan kami lebih akrab. Obrolan hangat dan senyuman tulus perlahan menumbuhkan benih cinta di antara kami.'],
+                            ['title' => 'Lamaran', 'story' => 'Setelah bertahun-tahun merajut kasih bersama, dengan penuh keyakinan dan restu kedua orang tua kami, kami melangkah mantap menuju ikatan pernikahan yang suci.']
+                        ]);
+                        $t11StoryPhotos = [$t11StoryPhoto1, $t11StoryPhoto2];
+                    @endphp
+
+                    <div class="space-y-6">
+                        @foreach($t11Stories as $sIdx => $s)
+                        @if(!empty($s['title']) || !empty($s['story']))
+                        <div class="space-y-3 reveal-item {{ $sIdx % 2 == 0 ? 'anim-nostalgic-slide-r' : 'anim-nostalgic-slide-l' }} delay-{{ $sIdx + 1 }}">
+                            @if(isset($t11StoryPhotos[$sIdx]))
+                            <div class="relative w-44 sm:w-52 p-2 bg-white rounded-md shadow-md border border-[#E2D8CC] mx-auto {{ $sIdx % 2 == 0 ? 'rotate-[-1.5deg]' : 'rotate-[1.5deg]' }} hover:rotate-0 transition-transform duration-500">
+                                <div class="w-full h-32 sm:h-36 overflow-hidden rounded-xs bg-stone-100">
+                                    <img src="{{ $t11StoryPhotos[$sIdx] }}" alt="{{ $s['title'] ?? 'Story Photo' }}" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                            @endif
+                            <div class="space-y-1 text-center max-w-sm mx-auto">
+                                <h4 class="text-base sm:text-lg font-serif font-semibold text-[#2C404E] tracking-wide">
+                                    {{ $s['title'] ?? '' }}
+                                </h4>
+                                <p class="text-xs sm:text-sm text-[#475569] font-serif leading-relaxed">
+                                    {{ $s['story'] ?? '' }}
+                                </p>
+                            </div>
+                        </div>
+                        @endif
+                        @endforeach
                     </div>
-                    @endif
-                    @endforeach
                 </div>
             </div>
                         @elseif($currentThemeId == 12 || $isChampagneBloom)
@@ -16311,23 +17028,24 @@
                     <span>{{ $groomNickname }} &amp; {{ $brideNickname }}</span>
                 </div>
             </div>
+
             @elseif($currentThemeId == 14 || $isNightSky || $isFairytaleCastle)
             <!-- ================= THEME 14 BESPOKE LOVE STORY (PREMIUM FAIRYTALE CASTLE - MATCHING IMAGE 5) ================= -->
             <div class="w-full max-w-sm sm:max-w-md mx-auto space-y-3 select-none text-[#8A1538] relative">
-                <!-- Flanking Cascading Rose Vines (Foto 3) -->
-                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-6 -left-6 sm:-left-10 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm">
-                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-6 -right-6 sm:-right-10 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm -scale-x-100">
+                <!-- Flanking Cascading Rose Vines with Botanical Sway (Foto 3) -->
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-6 -left-6 sm:-left-10 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm reveal-item anim-fairytale-vine-l">
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-6 -right-6 sm:-right-10 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm -scale-x-100 reveal-item anim-fairytale-vine-r">
 
                 <!-- Section Header: "Kisah Cinta" in Script Font with Wine Heart & Dotted Connector -->
-                <div class="text-center space-y-1 reveal-item anim-fairytale-zoom">
-                    <h3 class="text-4xl sm:text-5xl text-[#8A1538] leading-tight font-normal" style="font-family: 'Alex Brush', 'Great Vibes', cursive;">
+                <div class="text-center space-y-1">
+                    <h3 class="text-4xl sm:text-5xl text-[#8A1538] leading-tight font-normal reveal-item anim-fairytale-script" style="font-family: 'Alex Brush', 'Great Vibes', cursive;">
                         Kisah Cinta
                     </h3>
                     <!-- Floral Garland Ribbon (Foto 3) -->
-                    <div class="w-36 sm:w-44 mx-auto py-1 pointer-events-none">
+                    <div class="w-36 sm:w-44 mx-auto py-1 pointer-events-none reveal-item anim-fairytale-garland delay-1">
                         <img src="{{ $t14RoseVineHorizontal }}" alt="" class="w-full h-auto object-contain drop-shadow-xs">
                     </div>
-                    <div class="flex flex-col items-center justify-center pt-1.5 pointer-events-none">
+                    <div class="flex flex-col items-center justify-center pt-1.5 pointer-events-none reveal-item anim-fairytale-text delay-2">
                         <span class="text-[#8A1538] text-base leading-none">♥</span>
                         <div class="w-[2px] h-6 sm:h-8 border-l-2 border-dotted border-[#F79BB2] my-1"></div>
                     </div>
@@ -16362,8 +17080,8 @@
                                     : ($t14DefaultGallery[$sIdx % count($t14DefaultGallery)] ?? $t14DefaultStory1)));
                     @endphp
 
-                    <!-- Rounded Soft-Pink Card (Matching Image 5) -->
-                    <div class="rounded-[28px] sm:rounded-[32px] bg-[#F88CA7] p-3 sm:p-3.5 shadow-xl border border-pink-200/50 text-center relative overflow-hidden reveal-item anim-fairytale-zoom delay-{{ ($sIdx % 3) + 1 }}">
+                    <!-- Rounded Soft-Pink Card (Matching Image 5) with 3D Perspective Entrance -->
+                    <div class="rounded-[28px] sm:rounded-[32px] bg-[#F88CA7] p-3 sm:p-3.5 shadow-xl border border-pink-200/50 text-center relative overflow-hidden reveal-item {{ ($sIdx % 2 == 0) ? 'anim-fairytale-card-l' : 'anim-fairytale-card-r' }} delay-{{ ($sIdx % 3) + 1 }}">
                         @if(!empty($stImg))
                         <!-- Rounded Photo on Top of Card -->
                         <div class="w-full aspect-[16/10] sm:aspect-[4/3] rounded-[20px] sm:rounded-[24px] overflow-hidden bg-pink-100/60 shadow-xs mb-2.5">
@@ -17143,29 +17861,29 @@
             @elseif($currentThemeId == 14 || $isNightSky || $isFairytaleCastle)
             <!-- ================= THEME 14 BESPOKE GALERI FOTO (PREMIUM FAIRYTALE CASTLE - MATCHING SCREENSHOT) ================= -->
             <div class="w-full max-w-sm sm:max-w-md md:max-w-3xl mx-auto space-y-6 sm:space-y-8 select-none text-[#8A1538] relative">
-                <!-- Flanking Cascading Rose Vines (Foto 3) -->
-                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -left-3 sm:left-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm">
-                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -right-3 sm:right-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm -scale-x-100">
+                <!-- Flanking Cascading Rose Vines with Botanical Sway (Foto 3) -->
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -left-3 sm:left-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm reveal-item anim-fairytale-vine-l">
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -right-3 sm:right-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm -scale-x-100 reveal-item anim-fairytale-vine-r">
 
-                <div class="text-center space-y-1 reveal-item anim-fade-up">
-                    <h3 class="text-4xl sm:text-5xl text-[#8A1538] leading-tight font-normal" style="font-family: 'Alex Brush', 'Great Vibes', cursive;">
+                <div class="text-center space-y-1">
+                    <h3 class="text-4xl sm:text-5xl text-[#8A1538] leading-tight font-normal reveal-item anim-fairytale-script" style="font-family: 'Alex Brush', 'Great Vibes', cursive;">
                         Galeri Bahagia
                     </h3>
-                    <p class="text-xs sm:text-sm text-[#8A1538]/85 max-w-md mx-auto">
-                        Momen-momen indah perjalanan cinta kami yang terukir manis.
-                    </p>
-                    <div class="w-40 sm:w-52 mx-auto pt-2 pointer-events-none">
+                    <div class="w-40 sm:w-52 mx-auto pt-1 pointer-events-none reveal-item anim-fairytale-garland delay-1">
                         <img src="{{ $t14RoseVineHorizontal }}" alt="" class="w-full h-auto object-contain drop-shadow-xs">
                     </div>
+                    <p class="text-xs sm:text-sm text-[#8A1538]/85 max-w-md mx-auto reveal-item anim-fairytale-text delay-2">
+                        Momen-momen indah perjalanan cinta kami yang terukir manis.
+                    </p>
                 </div>
 
                 <!-- Template Galeri: 4 Thumbnails on Top + 1 Big Main Preview Below -->
-                <div class="rounded-3xl bg-white/90 backdrop-blur-md border border-pink-200/80 p-4 sm:p-6 shadow-xl space-y-4 reveal-item anim-fairytale-zoom">
+                <div class="rounded-3xl bg-white/90 backdrop-blur-md border border-pink-200/80 p-4 sm:p-6 shadow-xl space-y-4 reveal-item anim-fairytale-card-center delay-1">
                     
-                    <!-- 4 Thumbnails in a Row -->
+                    <!-- 4 Thumbnails in a Row with Staggered Elastic Pop -->
                     <div class="grid grid-cols-4 gap-2 sm:gap-3">
                         @foreach(array_slice($t14GalleryPhotos, 0, 4) as $gIdx => $gPhoto)
-                        <div class="aspect-square rounded-xl sm:rounded-2xl overflow-hidden border-2 border-pink-200/90 shadow-md cursor-pointer hover:scale-105 active:scale-95 transition-all duration-300 relative group"
+                        <div class="aspect-square rounded-xl sm:rounded-2xl overflow-hidden border-2 border-pink-200/90 shadow-md cursor-pointer hover:scale-105 active:scale-95 transition-all duration-300 relative group reveal-item anim-fairytale-thumb delay-{{ $gIdx + 1 }}"
                              onclick="changeFairytalePreview('{{ $gPhoto }}')">
                             <img src="{{ $gPhoto }}" alt="Galeri {{ $gIdx + 1 }}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute inset-0 bg-[#F47294]/10 group-hover:bg-transparent transition-colors"></div>
@@ -17173,12 +17891,12 @@
                         @endforeach
                     </div>
 
-                    <!-- 1 Large Main Featured Preview Below -->
-                    <div class="w-full aspect-[4/3] sm:aspect-[16/10] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-4 border-white cursor-pointer relative group bg-pink-100"
+                    <!-- 1 Large Main Featured Preview Below with Royal Shimmer -->
+                    <div class="w-full aspect-[4/3] sm:aspect-[16/10] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-4 border-white cursor-pointer relative group bg-pink-100 baroque-shimmer-container reveal-item anim-fairytale-card-center delay-3"
                          onclick="openLightbox(document.getElementById('fairytale-main-preview').src)">
                         <img id="fairytale-main-preview" src="{{ $t14GalleryPhotos[0] ?? $t14HeroPhoto }}" alt="Galeri Utama" class="w-full h-full object-cover transform group-hover:scale-105 transition-all duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#8A1538]/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-4">
-                            <span class="px-4 py-1.5 rounded-full bg-white/90 text-[#8A1538] text-xs font-semibold shadow-md flex items-center gap-1.5">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#8A1538]/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-4 z-10">
+                            <span class="px-4 py-1.5 rounded-full bg-white/90 text-[#8A1538] text-xs font-semibold shadow-md flex items-center gap-1.5 btn-fairytale-shimmer">
                                 <svg class="w-3.5 h-3.5 text-[#F47294]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
                                 <span>Perbesar Foto</span>
                             </span>
@@ -17204,32 +17922,49 @@
                 }
             </script>
             @elseif($currentThemeId == 11 || $isMistyRomance)
-            <!-- ================= THEME 11 BESPOKE GALERI FOTO (PREMIUM MISTY ROMANCE) ================= -->
-            <div class="w-full max-w-sm sm:max-w-md md:max-w-3xl mx-auto space-y-6 sm:space-y-8 select-none text-slate-100">
-                <div class="text-center space-y-2 reveal-item anim-fade-up">
-                    <span class="inline-block px-3.5 py-0.5 rounded-full bg-white/15 border border-white/30 text-slate-200 text-[10px] sm:text-xs font-semibold tracking-[0.35em] uppercase font-misty-title">
-                        OUR MOMENTS
-                    </span>
-                    <h3 class="text-2xl sm:text-3xl font-misty-heading font-normal tracking-wide text-white">
-                        Galeri Bahagia
+            <!-- ================= THEME 11 BESPOKE POLAROID GALLERY (PREMIUM NOSTALGIC VILLAGE - MATCHING SCREENSHOT 247C3F13.JPG) ================= -->
+            <div class="w-full max-w-sm sm:max-w-md md:max-w-xl mx-auto space-y-6 select-none text-[#2C404E]">
+                <div class="text-center space-y-1 reveal-item anim-nostalgic-scale-up">
+                    <h3 class="text-2xl sm:text-3xl font-serif font-normal text-[#2C404E] tracking-wide">
+                        Galeri foto
                     </h3>
-                    <p class="text-xs sm:text-sm text-slate-300 font-misty-body max-w-md mx-auto leading-relaxed">
-                        Momen-momen indah perjalanan kisah cinta kami yang terukir penuh kehangatan.
+                    <p class="text-xs font-serif italic text-[#64748B]">
+                        Sentuh foto untuk memperbesar
                     </p>
                 </div>
 
-                <div class="rounded-3xl bg-slate-950/70 backdrop-blur-md border border-white/20 p-4 sm:p-6 shadow-2xl reveal-item anim-fade-up">
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-                        @foreach($t11GalleryPhotos as $idx => $photo)
-                        <div class="aspect-square rounded-2xl overflow-hidden border border-white/25 shadow-md group cursor-pointer relative" onclick="openLightbox('{{ $photo }}')">
-                            <img src="{{ $photo }}" alt="Galeri Foto {{ $idx + 1 }}" class="w-full h-full object-cover transform group-hover:scale-108 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-black/15 group-hover:bg-transparent transition-colors"></div>
+                <!-- Main Polaroid Frame with Tape Matching Reference Screenshot 247c3f13.jpg -->
+                <div class="relative max-w-xs sm:max-w-sm mx-auto reveal-item anim-nostalgic-polaroid">
+                    <!-- Top Semi-Transparent Tape -->
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-16 sm:w-20 h-5 bg-amber-100/75 border border-amber-300/40 rounded-xs shadow-xs rotate-[-2deg] z-20 backdrop-blur-[1px] pointer-events-none"></div>
+
+                    <!-- White Polaroid Card -->
+                    <div class="bg-white p-3 sm:p-4 pb-4 sm:pb-5 rounded shadow-xl border border-stone-200">
+                        <div class="w-full aspect-[4/5] overflow-hidden rounded-xs bg-stone-100 cursor-pointer relative group" onclick="openLightbox(document.getElementById('nostalgic-main-img').src)">
+                            <img id="nostalgic-main-img" src="{{ $t11GalleryPhotos[0] }}" alt="Galeri Foto" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-103">
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                                <span class="opacity-0 group-hover:opacity-100 bg-white/90 px-3 py-1 rounded-full text-[11px] font-serif shadow-md transition-opacity">Perbesar 🔍</span>
+                            </div>
                         </div>
-                        @endforeach
+
+                        <!-- Carousel Arrows & Dots -->
+                        <div class="flex items-center justify-between pt-3 px-2">
+                            <button type="button" onclick="changeNostalgicPhoto(-1)" class="w-8 h-8 rounded-full border border-[#2C404E]/30 hover:bg-[#2C404E] hover:text-white text-[#2C404E] flex items-center justify-center transition active:scale-95 cursor-pointer" title="Foto Sebelumnya">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                            </button>
+
+                            <!-- Dots Indicator -->
+                            <div class="flex items-center gap-1.5">
+                                @foreach($t11GalleryPhotos as $idx => $photo)
+                                <button type="button" onclick="setNostalgicPhoto({{ $idx }})" class="nostalgic-gal-dot w-2 h-2 rounded-full transition-all duration-300 cursor-pointer {{ $idx === 0 ? 'bg-[#2C404E] scale-125' : 'bg-stone-300' }}" title="Foto {{ $idx + 1 }}"></button>
+                                @endforeach
+                            </div>
+
+                            <button type="button" onclick="changeNostalgicPhoto(1)" class="w-8 h-8 rounded-full border border-[#2C404E]/30 hover:bg-[#2C404E] hover:text-white text-[#2C404E] flex items-center justify-center transition active:scale-95 cursor-pointer" title="Foto Selanjutnya">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
                     </div>
-                    <p class="text-[10px] sm:text-xs text-slate-400 italic text-center pt-3 font-misty-body">
-                        *Klik foto untuk melihat dalam resolusi penuh
-                    </p>
                 </div>
             </div>
                         @elseif($currentThemeId == 12 || $isChampagneBloom)
@@ -17640,6 +18375,7 @@
                     <span>{{ $groomNickname }} &amp; {{ $brideNickname }}</span>
                 </div>
             </div>
+
             @else
             <div class="theme-arch-frame bg-white p-5 sm:p-10 shadow-lg w-full mx-auto relative reveal-item anim-border">
                 
@@ -19018,56 +19754,56 @@
                 $t14Gifts = $giftAccounts ?? ($invitation->giftAccounts ?? collect());
             @endphp
             <div class="w-full max-w-sm sm:max-w-md md:max-w-2xl mx-auto space-y-6 text-center select-none text-[#8A1538] relative">
-                <!-- Flanking Cascading Rose Vines (Foto 3) -->
-                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -left-3 sm:left-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm">
-                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -right-3 sm:right-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm -scale-x-100">
+                <!-- Flanking Cascading Rose Vines with Botanical Sway (Foto 3) -->
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -left-3 sm:left-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm reveal-item anim-fairytale-vine-l">
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -right-3 sm:right-1 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm -scale-x-100 reveal-item anim-fairytale-vine-r">
 
-                <div class="space-y-1 reveal-item anim-fade-up">
-                    <h3 class="text-4xl sm:text-5xl text-[#8A1538] leading-tight font-normal" style="font-family: 'Alex Brush', 'Great Vibes', cursive;">
+                <div class="space-y-1">
+                    <h3 class="text-4xl sm:text-5xl text-[#8A1538] leading-tight font-normal reveal-item anim-fairytale-script" style="font-family: 'Alex Brush', 'Great Vibes', cursive;">
                         Tanda Kasih
                     </h3>
                     <!-- Floral Garland Ribbon (Foto 3) -->
-                    <div class="w-36 sm:w-48 mx-auto py-1 pointer-events-none">
+                    <div class="w-36 sm:w-48 mx-auto py-1 pointer-events-none reveal-item anim-fairytale-garland delay-1">
                         <img src="{{ $t14RoseVineHorizontal }}" alt="" class="w-full h-auto object-contain drop-shadow-xs">
                     </div>
-                    <p class="text-xs sm:text-sm text-[#8A1538]/85 max-w-md mx-auto leading-relaxed">
+                    <p class="text-xs sm:text-sm text-[#8A1538]/85 max-w-md mx-auto leading-relaxed reveal-item anim-fairytale-text delay-2">
                         Doa restu Anda merupakan karunia terindah bagi kami. Namun jika Anda bermaksud memberikan tanda kasih, dapat melalui:
                     </p>
                 </div>
 
                 <div class="space-y-4 pt-1">
-                    @forelse($t14Gifts as $g)
-                    <div class="rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/80 p-6 shadow-xl relative flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left reveal-item anim-fairytale-zoom">
+                    @forelse($t14Gifts as $gIdx => $g)
+                    <div class="rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/80 p-6 shadow-xl relative flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left reveal-item {{ ($gIdx % 2 == 0) ? 'anim-fairytale-card-l' : 'anim-fairytale-card-r' }} delay-{{ ($gIdx % 3) + 1 }}">
                         <div class="space-y-1 w-full sm:w-auto">
                             <p class="text-xs font-bold text-[#F47294] uppercase tracking-wider">{{ $g->bank_name }}</p>
                             <p class="text-2xl font-mono font-bold text-[#8A1538] tracking-widest">{{ $g->account_number }}</p>
                             <p class="text-xs text-[#8A1538]/80">a.n {{ $g->account_holder }}</p>
                         </div>
-                        <button type="button" onclick="copyToClipboard('{{ $g->account_number }}', 'Nomor rekening {{ $g->bank_name }} berhasil disalin!')" class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-[#F47294] hover:bg-[#E55B82] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-md transition active:scale-95 cursor-pointer">
+                        <button type="button" onclick="copyToClipboard('{{ $g->account_number }}', 'Nomor rekening {{ $g->bank_name }} berhasil disalin!')" class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-[#F47294] hover:bg-[#E55B82] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-md transition active:scale-95 cursor-pointer btn-fairytale-shimmer">
                             <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                             <span>Salin No. Rekening</span>
                         </button>
                     </div>
                     @empty
-                    <div class="rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/80 p-6 shadow-xl relative flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left reveal-item anim-fairytale-zoom">
+                    <div class="rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/80 p-6 shadow-xl relative flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left reveal-item anim-fairytale-card-l delay-1">
                         <div class="space-y-1 w-full sm:w-auto">
                             <p class="text-xs font-bold text-[#F47294] uppercase tracking-wider">DANA</p>
                             <p class="text-2xl font-mono font-bold text-[#8A1538] tracking-widest">081234567890</p>
                             <p class="text-xs text-[#8A1538]/80">a.n Annisa Rahmah</p>
                         </div>
-                        <button type="button" onclick="copyToClipboard('081234567890', 'Nomor DANA berhasil disalin!')" class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-[#F47294] hover:bg-[#E55B82] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-md transition active:scale-95 cursor-pointer">
+                        <button type="button" onclick="copyToClipboard('081234567890', 'Nomor DANA berhasil disalin!')" class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-[#F47294] hover:bg-[#E55B82] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-md transition active:scale-95 cursor-pointer btn-fairytale-shimmer">
                             <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                             <span>Salin No. Rekening</span>
                         </button>
                     </div>
 
-                    <div class="rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/80 p-6 shadow-xl relative flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left reveal-item anim-fairytale-zoom delay-1">
+                    <div class="rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/80 p-6 shadow-xl relative flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left reveal-item anim-fairytale-card-r delay-2">
                         <div class="space-y-1 w-full sm:w-auto">
                             <p class="text-xs font-bold text-[#F47294] uppercase tracking-wider">Bank Mandiri</p>
                             <p class="text-2xl font-mono font-bold text-[#8A1538] tracking-widest">1230009876543</p>
                             <p class="text-xs text-[#8A1538]/80">a.n Andrian Sanjaya</p>
                         </div>
-                        <button type="button" onclick="copyToClipboard('1230009876543', 'Nomor rekening Mandiri berhasil disalin!')" class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-[#F47294] hover:bg-[#E55B82] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-md transition active:scale-95 cursor-pointer">
+                        <button type="button" onclick="copyToClipboard('1230009876543', 'Nomor rekening Mandiri berhasil disalin!')" class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-[#F47294] hover:bg-[#E55B82] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-md transition active:scale-95 cursor-pointer btn-fairytale-shimmer">
                             <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                             <span>Salin No. Rekening</span>
                         </button>
@@ -19075,10 +19811,10 @@
                     @endforelse
 
                     @if(!empty($invitation->gift_address))
-                    <div class="rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/80 p-6 shadow-xl relative text-center space-y-2 reveal-item anim-fairytale-zoom delay-2">
+                    <div class="rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/80 p-6 shadow-xl relative text-center space-y-2 reveal-item anim-fairytale-card-center delay-3">
                         <span class="text-xs uppercase tracking-wider font-bold text-[#F47294]">Kirim Kado Fisik</span>
                         <p class="text-xs text-[#8A1538]/85 leading-relaxed max-w-sm mx-auto">{{ $invitation->gift_address }}</p>
-                        <button type="button" onclick="copyToClipboard('{{ addslashes($invitation->gift_address) }}', 'Alamat pengiriman kado berhasil disalin!')" class="px-5 py-2 rounded-full bg-[#F47294] hover:bg-[#E55B82] text-white text-xs font-bold inline-flex items-center gap-1.5 shadow-md transition active:scale-95 cursor-pointer">
+                        <button type="button" onclick="copyToClipboard('{{ addslashes($invitation->gift_address) }}', 'Alamat pengiriman kado berhasil disalin!')" class="px-5 py-2 rounded-full bg-[#F47294] hover:bg-[#E55B82] text-white text-xs font-bold inline-flex items-center gap-1.5 shadow-md transition active:scale-95 cursor-pointer btn-fairytale-shimmer">
                             <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                             <span>Salin Alamat</span>
                         </button>
@@ -19087,49 +19823,71 @@
                 </div>
             </div>
             @elseif($currentThemeId == 11 || $isMistyRomance)
-            <!-- ================= THEME 11 BESPOKE TITIP HADIAH (PREMIUM MISTY ROMANCE) ================= -->
+            <!-- ================= THEME 11 BESPOKE TITIP HADIAH (PREMIUM NOSTALGIC VILLAGE) ================= -->
             @php
                 $t11Gifts = $giftAccounts ?? ($invitation->giftAccounts ?? collect());
             @endphp
-            <div class="w-full max-w-sm sm:max-w-md md:max-w-2xl mx-auto space-y-6 text-center select-none text-slate-100">
-                <div class="space-y-2 reveal-item anim-fade-up">
-                    <span class="inline-block px-3.5 py-0.5 rounded-full bg-white/15 border border-white/30 text-slate-200 text-[10px] sm:text-xs font-semibold tracking-[0.35em] uppercase font-misty-title">
-                        TANDA KASIH
+            <div class="w-full max-w-sm sm:max-w-md md:max-w-xl mx-auto space-y-6 text-center select-none text-[#2C404E]">
+                <div class="space-y-2 reveal-item anim-nostalgic-scale-up">
+                    <span class="inline-block px-3.5 py-0.5 rounded-full bg-[#D49838]/15 border border-[#D49838]/30 text-[#D49838] text-[10px] sm:text-xs font-semibold tracking-[0.3em] uppercase font-serif">
+                        Tanda Kasih
                     </span>
-                    <h3 class="text-2xl sm:text-3xl font-misty-heading font-normal tracking-wide text-white">
+                    <h3 class="text-2xl sm:text-3xl font-serif font-normal tracking-wide text-[#2C404E]">
                         Kirim Hadiah Digital
                     </h3>
-                    <p class="text-xs sm:text-sm text-slate-300 font-misty-body max-w-md mx-auto leading-relaxed">
+                    <p class="text-xs sm:text-sm text-[#475569] font-serif max-w-md mx-auto leading-relaxed">
                         Doa restu Anda merupakan karunia terindah bagi kami. Namun jika Anda bermaksud memberikan tanda kasih, dapat melalui rekening di bawah ini:
                     </p>
                 </div>
 
                 <div class="space-y-4">
                     @forelse($t11Gifts as $g)
-                    <div class="rounded-2xl bg-slate-950/70 backdrop-blur-md border border-white/20 p-5 shadow-xl relative flex flex-col sm:flex-row items-center justify-between gap-4 text-left reveal-item anim-fade-up">
-                        <div class="space-y-1 w-full sm:w-auto font-misty-body">
-                            <p class="text-xs font-bold text-slate-300 uppercase tracking-wider">{{ $g->bank_name }}</p>
-                            <p class="text-xl font-mono font-bold text-white tracking-widest">{{ $g->account_number }}</p>
-                            <p class="text-xs text-slate-400">a.n {{ $g->account_holder }}</p>
+                    <div class="rounded-2xl bg-white p-5 border border-[#E2D8CC] shadow-md relative flex flex-col sm:flex-row items-center justify-between gap-4 text-left reveal-item anim-nostalgic-scale-up">
+                        <div class="space-y-1 w-full sm:w-auto font-serif">
+                            <p class="text-xs font-bold text-[#64748B] uppercase tracking-wider">{{ $g->bank_name }}</p>
+                            <p class="text-xl font-mono font-bold text-[#2C404E] tracking-widest">{{ $g->account_number }}</p>
+                            <p class="text-xs text-[#64748B]">a.n {{ $g->account_holder }}</p>
                         </div>
-                        <button type="button" onclick="copyToClipboard('{{ $g->account_number }}', 'Nomor rekening {{ $g->bank_name }} berhasil disalin!')" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white text-slate-900 hover:bg-slate-100 text-xs font-semibold flex items-center justify-center gap-1.5 transition active:scale-95 shadow-md cursor-pointer font-misty-body">
-                            <svg class="w-4 h-4 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        <button type="button" onclick="copyToClipboard('{{ $g->account_number }}', 'Nomor rekening {{ $g->bank_name }} berhasil disalin!')" class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-[#2C404E] text-white hover:bg-[#1E293B] text-xs font-serif flex items-center justify-center gap-1.5 transition active:scale-95 shadow-xs cursor-pointer">
+                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                             <span>Salin Rekening</span>
                         </button>
                     </div>
                     @empty
-                    <div class="rounded-2xl bg-slate-950/70 backdrop-blur-md border border-white/20 p-5 shadow-xl relative flex flex-col sm:flex-row items-center justify-between gap-4 text-left reveal-item anim-fade-up">
-                        <div class="space-y-1 w-full sm:w-auto font-misty-body">
-                            <p class="text-xs font-bold text-slate-300 uppercase tracking-wider">{{ $invitation->gift_bank_name ?? 'Bank Central Asia (BCA)' }}</p>
-                            <p class="text-xl font-mono font-bold text-white tracking-widest">{{ $invitation->gift_account_number ?? '8801234567' }}</p>
-                            <p class="text-xs text-slate-400">a.n {{ $invitation->gift_account_holder ?? $groomName }}</p>
+                    <div class="rounded-2xl bg-white p-5 border border-[#E2D8CC] shadow-md relative flex flex-col sm:flex-row items-center justify-between gap-4 text-left reveal-item anim-nostalgic-scale-up">
+                        <div class="space-y-1 w-full sm:w-auto font-serif">
+                            <p class="text-xs font-bold text-[#64748B] uppercase tracking-wider">Bank Central Asia (BCA)</p>
+                            <p class="text-xl font-mono font-bold text-[#2C404E] tracking-widest">8420194821</p>
+                            <p class="text-xs text-[#64748B]">a.n Dias Taufik</p>
                         </div>
-                        <button type="button" onclick="copyToClipboard('{{ $invitation->gift_account_number ?? '8801234567' }}', 'Nomor rekening berhasil disalin!')" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white text-slate-900 hover:bg-slate-100 text-xs font-semibold flex items-center justify-center gap-1.5 transition active:scale-95 shadow-md cursor-pointer font-misty-body">
-                            <svg class="w-4 h-4 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        <button type="button" onclick="copyToClipboard('8420194821', 'Nomor rekening BCA berhasil disalin!')" class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-[#2C404E] text-white hover:bg-[#1E293B] text-xs font-serif flex items-center justify-center gap-1.5 transition active:scale-95 shadow-xs cursor-pointer">
+                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                            <span>Salin Rekening</span>
+                        </button>
+                    </div>
+                    <div class="rounded-2xl bg-white p-5 border border-[#E2D8CC] shadow-md relative flex flex-col sm:flex-row items-center justify-between gap-4 text-left reveal-item anim-nostalgic-scale-up delay-1">
+                        <div class="space-y-1 w-full sm:w-auto font-serif">
+                            <p class="text-xs font-bold text-[#64748B] uppercase tracking-wider">Bank Mandiri</p>
+                            <p class="text-xl font-mono font-bold text-[#2C404E] tracking-widest">137009283741</p>
+                            <p class="text-xs text-[#64748B]">a.n Azalia Fasya</p>
+                        </div>
+                        <button type="button" onclick="copyToClipboard('137009283741', 'Nomor rekening Mandiri berhasil disalin!')" class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-[#2C404E] text-white hover:bg-[#1E293B] text-xs font-serif flex items-center justify-center gap-1.5 transition active:scale-95 shadow-xs cursor-pointer">
+                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                             <span>Salin Rekening</span>
                         </button>
                     </div>
                     @endforelse
+
+                    @if(!empty($invitation->gift_address))
+                    <div class="rounded-2xl bg-white p-5 border border-[#E2D8CC] shadow-md text-center space-y-2 reveal-item anim-nostalgic-scale-up delay-2">
+                        <span class="text-xs uppercase tracking-wider font-bold text-[#D49838] font-serif">Kirim Kado Fisik</span>
+                        <p class="text-xs text-[#475569] font-serif leading-relaxed max-w-sm mx-auto">{{ $invitation->gift_address }}</p>
+                        <button type="button" onclick="copyToClipboard('{{ addslashes($invitation->gift_address) }}', 'Alamat pengiriman kado berhasil disalin!')" class="px-5 py-2 rounded-full border border-[#2C404E]/50 hover:bg-[#2C404E] hover:text-white text-[#2C404E] text-xs font-serif inline-flex items-center gap-1.5 transition active:scale-95 shadow-xs cursor-pointer">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                            <span>Salin Alamat</span>
+                        </button>
+                    </div>
+                    @endif
                 </div>
             </div>
                         @elseif($currentThemeId == 12 || $isChampagneBloom)
@@ -19597,6 +20355,7 @@
                     <span>{{ $groomNickname }} &amp; {{ $brideNickname }}</span>
                 </div>
             </div>
+
             @else
             <div class="theme-arch-frame bg-white p-6 sm:p-10 md:p-12 shadow-lg w-full mx-auto relative space-y-8 reveal-item anim-border">
                 
@@ -19692,7 +20451,11 @@
 
 
         <!-- ================= SECTION RSVP ================= -->
-        <section id="section-rsvp" class="py-10 sm:py-16 px-4 sm:px-6 md:px-10 text-center">
+        <section id="section-rsvp" class="py-10 sm:py-16 px-4 sm:px-6 md:px-10 text-center"
+                 @if($currentThemeId == 11 || $isMistyRomance)
+                 style="background-color: #FAF7F2;"
+                 @endif
+        >
             @if($currentThemeId == 2)
             <!-- THEME 2 BESPOKE RSVP & BUKU TAMU (BASIC HARMONY EMERALD) -->
             <div class="w-full max-w-sm sm:max-w-md md:max-w-2xl mx-auto space-y-6 sm:space-y-8">
@@ -20820,28 +21583,28 @@
             @elseif($currentThemeId == 14 || $isNightSky || $isFairytaleCastle)
             <!-- ================= THEME 14 BESPOKE RSVP & BUKU TAMU (PREMIUM FAIRYTALE CASTLE) ================= -->
             <div class="w-full max-w-sm sm:max-w-md md:max-w-2xl mx-auto space-y-6 sm:space-y-8 select-none text-[#8A1538] relative">
-                <!-- Flanking Vertical Rose Vines from Reference Image 3 -->
-                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -left-5 sm:-left-10 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm">
-                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -right-5 sm:-right-10 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm -scale-x-100">
+                <!-- Flanking Vertical Rose Vines with Botanical Sway -->
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -left-5 sm:-left-10 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm reveal-item anim-fairytale-vine-l">
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -right-5 sm:-right-10 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm -scale-x-100 reveal-item anim-fairytale-vine-r">
 
-                <div class="text-center space-y-1 reveal-item anim-fairytale-zoom">
-                    <p class="text-[10px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#9F4D62]">
+                <div class="text-center space-y-1">
+                    <p class="text-[10px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#9F4D62] reveal-item anim-fairytale-title">
                         Konfirmasi Kehadiran
                     </p>
-                    <h3 class="text-3xl sm:text-4xl text-[#8A1538]" style="font-family: 'Alex Brush', cursive;">
+                    <h3 class="text-3xl sm:text-4xl text-[#8A1538] reveal-item anim-fairytale-script delay-1" style="font-family: 'Alex Brush', cursive;">
                         RSVP &amp; Buku Tamu
                     </h3>
                     <!-- Horizontal Rose Garland Divider -->
-                    <div class="w-32 sm:w-44 mx-auto my-1 pointer-events-none opacity-85">
+                    <div class="w-32 sm:w-44 mx-auto my-1 pointer-events-none opacity-85 reveal-item anim-fairytale-garland delay-2">
                         <img src="{{ $t14RoseVineHorizontal }}" alt="" class="w-full h-auto object-contain">
                     </div>
-                    <p class="text-xs text-[#9F4D62] max-w-xs sm:max-w-md mx-auto leading-relaxed">
+                    <p class="text-xs text-[#9F4D62] max-w-xs sm:max-w-md mx-auto leading-relaxed reveal-item anim-fairytale-text delay-3">
                         Doa restu dan kehadiran Anda di hari bahagia kami merupakan kebahagiaan dan kehormatan yang tak terhingga:
                     </p>
                 </div>
 
-                <!-- Form Card with Soft White & Pink Elegance -->
-                <div class="rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/80 shadow-[0_10px_30px_rgba(210,75,112,0.12)] p-5 sm:p-7 space-y-4 text-left relative overflow-hidden reveal-item anim-fairytale-slide-l">
+                <!-- Form Card with 3D Perspective Entrance & Soft Rose Ambient Glow -->
+                <div class="rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/80 shadow-[0_10px_30px_rgba(210,75,112,0.12)] p-5 sm:p-7 space-y-4 text-left relative overflow-hidden reveal-item anim-fairytale-card-center delay-2">
                     <form action="{{ route('rsvp.store', $invitation->id ?? 1) }}" method="POST" class="space-y-4" data-rsvp-form>
                         @csrf
                         <div>
@@ -20888,14 +21651,14 @@
                         </div>
 
                         <button type="submit"
-                                class="w-full py-3 rounded-full bg-gradient-to-r from-[#F47294] via-[#E55B82] to-[#D24B70] hover:brightness-105 text-white font-bold text-xs sm:text-sm tracking-wider uppercase shadow-lg shadow-pink-500/20 hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer">
+                                class="w-full py-3 rounded-full bg-gradient-to-r from-[#F47294] via-[#E55B82] to-[#D24B70] hover:brightness-105 text-white font-bold text-xs sm:text-sm tracking-wider uppercase shadow-lg shadow-pink-500/20 hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer btn-fairytale-shimmer">
                             Kirim Konfirmasi &amp; Doa
                         </button>
                     </form>
                 </div>
 
-                <!-- Wishes Feed List with Message Counter -->
-                <div class="rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/80 shadow-[0_10px_30px_rgba(210,75,112,0.12)] p-5 sm:p-7 space-y-4 text-left reveal-item anim-fairytale-slide-r delay-1" data-comments-feed>
+                <!-- Wishes Feed List with Message Counter & 3D Fold-in -->
+                <div class="rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/80 shadow-[0_10px_30px_rgba(210,75,112,0.12)] p-5 sm:p-7 space-y-4 text-left reveal-item anim-fairytale-card-center delay-3" data-comments-feed>
                     <div class="flex items-center justify-between pb-2 border-b border-pink-100">
                         <span class="text-xs font-bold text-[#8A1538] uppercase tracking-wider">Doa &amp; Ucapan Kerabat</span>
                         <span class="px-2.5 py-0.5 rounded-full bg-pink-100 text-[#8A1538] text-[10px] font-bold" data-comments-count>
@@ -21152,6 +21915,95 @@
                     <span>{{ $groomNickname }} &amp; {{ $brideNickname }}</span>
                 </div>
             </div>
+            @elseif($currentThemeId == 11 || $isMistyRomance)
+            <!-- ================= THEME 11 BESPOKE RSVP & BUKU TAMU (PREMIUM NOSTALGIC VILLAGE - BORDERLESS PLAIN) ================= -->
+            <div class="w-full max-w-sm sm:max-w-md md:max-w-xl mx-auto space-y-6 select-none text-[#2C404E]">
+                <div class="text-center space-y-2 reveal-item anim-nostalgic-scale-up">
+                    <p class="text-xs font-serif uppercase tracking-[0.2em] text-[#64748B]">
+                        Reservasi
+                    </p>
+                    <h3 class="text-2xl sm:text-3xl font-serif font-normal text-[#2C404E] tracking-wide">
+                        Konfirmasi Kehadiran
+                    </h3>
+                    <p class="text-xs sm:text-sm text-[#64748B] font-serif max-w-md mx-auto leading-relaxed">
+                        Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
+                    </p>
+                </div>
+
+                <!-- RSVP Form Plain without enclosing oval frame -->
+                <div class="space-y-4 text-left">
+                    <form action="{{ route('rsvp.store', $invitation->id ?? 1) }}" method="POST" class="space-y-4" data-rsvp-form>
+                        @csrf
+                        <div>
+                            <label class="block text-xs font-serif font-semibold text-[#2C404E] mb-1">Nama Lengkap</label>
+                            <input type="text" name="name" value="{{ ($guestName === 'Tamu Undangan') ? '' : $guestName }}" placeholder="Nama Lengkap Anda" required class="w-full px-4 py-2.5 rounded-xl border border-[#2C404E]/25 bg-white text-xs sm:text-sm text-[#2C404E] focus:outline-none focus:ring-2 focus:ring-[#D49838] shadow-2xs font-serif">
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                            <div>
+                                <label class="block text-xs font-serif font-semibold text-[#2C404E] mb-1">Konfirmasi Kehadiran</label>
+                                <select name="attendance" class="w-full px-4 py-2.5 rounded-xl border border-[#2C404E]/25 bg-white text-xs sm:text-sm text-[#2C404E] focus:outline-none focus:ring-2 focus:ring-[#D49838] shadow-2xs font-serif">
+                                    <option value="hadir">Ya, Saya Akan Hadir</option>
+                                    <option value="tidak_hadir">Maaf, Tidak Bisa Hadir</option>
+                                    <option value="masih_ragu">Masih Ragu-ragu</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-serif font-semibold text-[#2C404E] mb-1">Jumlah Tamu</label>
+                                <select name="guest_count" class="w-full px-4 py-2.5 rounded-xl border border-[#2C404E]/25 bg-white text-xs sm:text-sm text-[#2C404E] focus:outline-none focus:ring-2 focus:ring-[#D49838] shadow-2xs font-serif">
+                                    <option value="1">1 Orang</option>
+                                    <option value="2">2 Orang</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-serif font-semibold text-[#2C404E] mb-1">Pesan / Doa Restu</label>
+                            <textarea name="message" rows="3" placeholder="Tuliskan ucapan dan doa restu Anda..." class="w-full px-4 py-2.5 rounded-xl border border-[#2C404E]/25 bg-white text-xs sm:text-sm text-[#2C404E] placeholder-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#D49838] shadow-2xs font-serif"></textarea>
+                        </div>
+                        <button type="submit" style="background-color: #D49838 !important; color: #FFFFFF !important;" class="w-full py-3 px-6 rounded-xl hover:bg-[#c38729] text-white font-serif font-medium text-xs sm:text-sm tracking-wide shadow-md hover:shadow-lg transition cursor-pointer">
+                            Kirim Konfirmasi &amp; Ucapan
+                        </button>
+                    </form>
+
+                    <!-- Daftar Ucapan Masuk (Theme 11) -->
+                    <div class="mt-8 pt-6 border-t border-[#E2D8CC] space-y-4" data-comments-feed>
+                        <h4 class="text-xs sm:text-sm font-serif font-bold uppercase tracking-wider text-[#2C404E] flex items-center justify-between">
+                            <span>Ucapan &amp; Doa Restu</span>
+                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-white border border-[#2C404E]/20 text-[#2C404E]" data-comments-count>
+                                {{ isset($invitation->comments) ? $invitation->comments->count() : 0 }} Pesan
+                            </span>
+                        </h4>
+                        <div class="space-y-2.5 max-h-72 overflow-y-auto pr-1" data-comments-list>
+                            @if(isset($invitation->comments) && $invitation->comments->isNotEmpty())
+                                @foreach($invitation->comments as $c)
+                                <div class="p-3.5 rounded-xl bg-white border border-[#E2D8CC] shadow-2xs space-y-1">
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="font-bold text-[#2C404E] font-serif">{{ $c->name }}</span>
+                                        <span class="text-[10px] text-[#64748B] font-serif">{{ $c->created_at ? $c->created_at->diffForHumans() : 'Baru saja' }}</span>
+                                    </div>
+                                    <p class="text-xs text-[#475569] font-serif leading-relaxed italic">
+                                        "{{ $c->message }}"
+                                    </p>
+                                </div>
+                                @endforeach
+                            @else
+                                <div class="p-4 rounded-xl bg-white/60 border border-[#E2D8CC] text-center text-xs text-[#64748B] font-serif italic" data-comments-empty>
+                                    Belum ada ucapan. Jadilah yang pertama memberikan doa restu!
+                                </div>
+                            @endif
+                        </div>
+
+                        <template data-comment-template>
+                            <div class="p-3.5 rounded-xl bg-white border border-[#E2D8CC] shadow-2xs space-y-1 transform transition duration-500 ease-out">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="font-bold text-[#2C404E] font-serif" data-comment-name></span>
+                                    <span class="text-[10px] text-[#64748B] font-serif" data-comment-time>Baru saja</span>
+                                </div>
+                                <p class="text-xs text-[#475569] font-serif leading-relaxed italic" data-comment-message></p>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
             @else
             <div class="theme-arch-frame bg-white p-6 sm:p-10 md:p-12 shadow-lg w-full mx-auto relative space-y-6 reveal-item anim-border">
                 
@@ -21284,50 +22136,50 @@
         @elseif($currentThemeId == 14 || $isNightSky || $isFairytaleCastle)
         <!-- ================= THEME 14 BESPOKE CLOSING & TERIMA KASIH (PREMIUM FAIRYTALE CASTLE) ================= -->
         <section id="section-penutup" class="py-14 sm:py-20 px-4 sm:px-6 md:px-10 text-center space-y-8 relative overflow-hidden select-none text-[#8A1538]">
-            <div class="max-w-xl mx-auto rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/80 p-6 sm:p-10 shadow-[0_15px_35px_rgba(210,75,112,0.15)] relative space-y-6 text-center reveal-item anim-fairytale-zoom">
-                <!-- Flanking Vertical Rose Vines from Reference Image 3 -->
-                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -left-4 sm:-left-8 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm">
-                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -right-4 sm:-right-8 w-14 sm:w-18 pointer-events-none z-10 opacity-75 drop-shadow-sm -scale-x-100">
+            <div class="max-w-xl mx-auto rounded-3xl bg-white/95 backdrop-blur-md border border-pink-200/80 p-6 sm:p-10 shadow-[0_15px_35px_rgba(210,75,112,0.15)] relative space-y-6 text-center reveal-item anim-fairytale-card-center">
+                <!-- Flanking Vertical Rose Vines with Botanical Sway -->
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -left-4 sm:-left-8 w-14 sm:w-18 pointer-events-none z-10 opacity-80 drop-shadow-sm reveal-item anim-fairytale-vine-l">
+                <img src="{{ $t14RoseVineVertical }}" alt="" class="hidden sm:block absolute top-8 -right-4 sm:-right-8 w-14 sm:w-18 pointer-events-none z-10 opacity-80 drop-shadow-sm -scale-x-100 reveal-item anim-fairytale-vine-r">
 
-                <!-- Horizontal Rose Garland Divider -->
-                <div class="w-36 sm:w-48 mx-auto -mt-2 mb-2 pointer-events-none opacity-90">
+                <!-- Horizontal Rose Garland Divider with Center Bloom Animation -->
+                <div class="w-36 sm:w-48 mx-auto -mt-2 mb-2 pointer-events-none opacity-90 reveal-item anim-fairytale-garland delay-1">
                     <img src="{{ $t14RoseVineHorizontal }}" alt="" class="w-full h-auto object-contain">
                 </div>
 
-                <!-- Castle Landscape Illustration Banner -->
-                <div class="w-full max-w-xs sm:max-w-sm mx-auto rounded-2xl overflow-hidden shadow-sm border border-pink-100 pointer-events-none mb-2">
+                <!-- Castle Landscape Illustration Banner with Gentle Cinematic Float -->
+                <div class="w-full max-w-xs sm:max-w-sm mx-auto rounded-2xl overflow-hidden shadow-sm border border-pink-100 pointer-events-none mb-2 reveal-item anim-fairytale-castle delay-2">
                     <img src="{{ $t14BgCastleLandscape }}" alt="Fairytale Castle" class="w-full h-auto object-cover max-h-36">
                 </div>
 
                 <div class="space-y-1">
-                    <div class="flex items-center justify-center gap-1.5 text-xs text-[#F47294]">
+                    <div class="flex items-center justify-center gap-1.5 text-xs text-[#F47294] reveal-item anim-fairytale-title delay-2">
                         <span>♡</span><span>♡</span><span>♡</span>
                     </div>
-                    <h3 class="text-4xl sm:text-5xl text-[#8A1538]" style="font-family: 'Alex Brush', cursive;">
+                    <h3 class="text-4xl sm:text-5xl text-[#8A1538] reveal-item anim-fairytale-script delay-3" style="font-family: 'Alex Brush', cursive;">
                         Terima Kasih
                     </h3>
                 </div>
 
-                <p class="text-xs sm:text-sm text-[#9F4D62] leading-relaxed font-light max-w-md mx-auto">
+                <p class="text-xs sm:text-sm text-[#9F4D62] leading-relaxed font-light max-w-md mx-auto reveal-item anim-fairytale-text delay-4">
                     {{ $invitation->closing_message ?? 'Merupakan suatu kehormatan dan kebahagiaan bagi kami sekeluarga apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu kepada kedua mempelai.' }}
                 </p>
 
                 <div class="space-y-1.5 pt-2">
-                    <p class="text-xs font-semibold text-[#8A1538] tracking-wide">
+                    <p class="text-xs font-semibold text-[#8A1538] tracking-wide reveal-item anim-fairytale-text delay-4">
                         Wassalamu'alaikum Warahmatullahi Wabarakatuh
                     </p>
-                    <p class="text-[10px] sm:text-xs uppercase tracking-widest text-[#9F4D62]">
+                    <p class="text-[10px] sm:text-xs uppercase tracking-widest text-[#9F4D62] reveal-item anim-fairytale-title delay-4">
                         KAMI YANG BERBAHAGIA
                     </p>
-                    <p class="text-4xl sm:text-5xl text-[#8A1538] py-1" style="font-family: 'Alex Brush', cursive;">
+                    <p class="text-4xl sm:text-5xl text-[#8A1538] py-1 reveal-item anim-fairytale-script delay-5" style="font-family: 'Alex Brush', cursive;">
                         {{ $groomNickname }} &amp; {{ $brideNickname }}
                     </p>
-                    <p class="text-[10px] sm:text-xs uppercase tracking-widest text-[#9F4D62]">
+                    <p class="text-[10px] sm:text-xs uppercase tracking-widest text-[#9F4D62] reveal-item anim-fairytale-text delay-5">
                         {{ $invitation->closing_signature ?? 'Beserta Seluruh Keluarga Besar' }}
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto pt-4 text-xs text-[#8A1538] border-t border-pink-100">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto pt-4 text-xs text-[#8A1538] border-t border-pink-100 reveal-item anim-fairytale-text delay-6">
                     <div>
                         <p class="font-bold text-[#8A1538] uppercase tracking-wider text-[11px]">Keluarga Pria</p>
                         <p class="mt-0.5 text-[#9F4D62]">{{ $invitation->groom_parents ?? 'Bapak Raden Santoso & Ibu Ratna Dewi' }}</p>
@@ -21340,38 +22192,50 @@
             </div>
         </section>
         @elseif($currentThemeId == 11 || $isMistyRomance)
-        <!-- ================= THEME 11 BESPOKE CLOSING & TERIMA KASIH (PREMIUM MISTY ROMANCE - MATCHING SCREENSHOT 6 46014382.jpg) ================= -->
-        <section id="section-penutup" class="py-14 sm:py-20 px-4 sm:px-6 md:px-10 text-center relative overflow-hidden select-none text-slate-900 flex flex-col items-center justify-center space-y-6 pb-36 sm:pb-48"
-                 style="background-image: url('{{ $t11BgSwans }}'); background-size: cover; background-position: center bottom;">
+        <!-- ================= THEME 11 BESPOKE CLOSING & TERIMA KASIH (PREMIUM NOSTALGIC VILLAGE - MATCHING SCREENSHOT 2916F789.JPG) ================= -->
+        <section id="section-penutup" class="py-16 sm:py-24 px-4 sm:px-6 md:px-10 text-center relative overflow-hidden select-none text-white flex flex-col items-center justify-center space-y-6 pb-64 sm:pb-80 min-h-[580px] sm:min-h-[680px]"
+                 style="background-image: url('{{ $t11BgNight }}'); background-size: cover; background-position: center bottom;">
             
-            <!-- Ambient Mist Layer -->
-            <div class="absolute inset-0 bg-gradient-to-b from-white/35 via-transparent to-slate-900/35 pointer-events-none"></div>
+            <!-- Ambient Night Layer -->
+            <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/40 pointer-events-none"></div>
 
             <!-- Content Container -->
-            <div class="relative z-10 max-w-md mx-auto space-y-5 text-center reveal-item anim-fade-up">
-                <!-- Vertical Oval Arch Couple Photo Frame -->
-                <div class="relative w-36 sm:w-44 h-52 sm:h-64 mx-auto rounded-full overflow-hidden border-[3px] sm:border-4 border-white shadow-[0_15px_35px_rgba(0,0,0,0.22)] bg-slate-100 anim-oval-breathe">
-                    <img src="{{ $t11HeroPhoto }}" alt="{{ $groomNickname }} &amp; {{ $brideNickname }}" class="w-full h-full object-cover">
-                </div>
+            <div class="relative z-10 max-w-md mx-auto space-y-5 text-center reveal-item anim-nostalgic-scale-up">
+                <!-- Top Thank You Note in Gold -->
+                <p class="text-xs sm:text-sm font-serif italic text-[#FDE68A] leading-relaxed max-w-sm mx-auto">
+                    Terima kasih banyak atas perhatian dan doa restu yang Anda berikan.
+                </p>
 
-                <!-- Thank You Message -->
-                <p class="text-xs sm:text-sm text-slate-800 font-misty-body leading-relaxed max-w-sm mx-auto">
-                    {{ $invitation->closing_message ?? 'Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kami.' }}
+                <!-- Monogram A & D Matching Screenshot -->
+                <h3 class="text-4xl sm:text-5xl font-serif tracking-[0.25em] text-white py-1 font-light drop-shadow-md">
+                    A &amp; D
+                </h3>
+
+                <!-- Thank You Body Message -->
+                <p class="text-xs sm:text-sm text-stone-200 font-serif leading-relaxed max-w-sm mx-auto drop-shadow-sm">
+                    {{ $invitation->closing_message ?? 'Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kedua mempelai.' }}
                 </p>
 
                 <!-- Salam Penutup & Signature -->
-                <div class="space-y-1.5 pt-1">
-                    <p class="text-xs font-misty-body font-medium text-slate-800">
+                <div class="space-y-1.5 pt-2">
+                    <p class="text-xs font-serif font-medium text-stone-300">
                         Wassalamu'alaikum Wr. Wb.
                     </p>
-                    <p class="text-[10px] sm:text-xs font-misty-title uppercase tracking-widest text-slate-600 pt-2">
+                    <p class="text-[10px] sm:text-xs font-serif uppercase tracking-widest text-[#FDE68A] pt-1">
                         KAMI YANG BERBAHAGIA,
                     </p>
-                    <h4 class="text-3xl sm:text-4xl text-slate-900 font-misty-heading tracking-wide py-1 font-normal">
-                        {{ $groomNickname }} <span class="font-misty-script italic font-normal text-2xl sm:text-3xl">&amp;</span> {{ $brideNickname }}
+                    <h4 class="text-2xl sm:text-3xl text-white font-serif tracking-wide py-1 font-normal drop-shadow-md">
+                        {{ $groomNickname }} &amp; {{ $brideNickname }}
                     </h4>
-                    <p class="text-[10px] sm:text-xs font-misty-body uppercase tracking-widest text-slate-600">
+                    <p class="text-[10px] sm:text-xs font-serif uppercase tracking-widest text-stone-300">
                         {{ $invitation->closing_signature ?? 'Beserta Seluruh Keluarga Besar' }}
+                    </p>
+                </div>
+
+                <!-- Watermark / Footer Credits Matching Screenshot -->
+                <div class="pt-4">
+                    <p class="text-[10px] text-stone-300 font-serif tracking-wider">
+                        Crafted with <span class="text-red-400">♥</span> by <span class="font-semibold text-white">SimpulTemu</span>
                     </p>
                 </div>
             </div>
@@ -21963,16 +22827,16 @@
             @elseif($currentThemeId == 14 || $isNightSky || $isFairytaleCastle)
             <!-- ================= THEME 14 BESPOKE FOOTER SIGNATURE (PREMIUM FAIRYTALE CASTLE) ================= -->
             <div class="space-y-2 pt-2 px-4 t14-footer-text">
-                <div class="w-36 sm:w-48 mx-auto mb-3 pointer-events-none reveal-item anim-fairytale-zoom">
+                <div class="w-36 sm:w-48 mx-auto mb-3 pointer-events-none reveal-item anim-fairytale-garland">
                     <img src="{{ $t14FloralDivider }}" alt="" class="w-full h-auto object-contain">
                 </div>
-                <p class="text-3xl sm:text-4xl text-[#8A1538] reveal-item anim-fairytale-zoom" style="font-family: 'Alex Brush', cursive;">
+                <p class="text-3xl sm:text-4xl text-[#8A1538] reveal-item anim-fairytale-script delay-1" style="font-family: 'Alex Brush', cursive;">
                     {{ $groomNickname }} &amp; {{ $brideNickname }}
                 </p>
-                <p class="text-[10px] sm:text-xs uppercase tracking-widest text-[#9F4D62] reveal-item anim-fade-up delay-1">
+                <p class="text-[10px] sm:text-xs uppercase tracking-widest text-[#9F4D62] reveal-item anim-fairytale-text delay-2">
                     Terima kasih atas doa &amp; restu Anda
                 </p>
-                <p class="text-[9px] sm:text-[10px] font-mono text-[#9F4D62]/70 opacity-70 reveal-item anim-fade-up delay-2">
+                <p class="text-[9px] sm:text-[10px] font-mono text-[#9F4D62]/70 opacity-70 reveal-item anim-fairytale-text delay-3">
                     SimpulTemu Digital Wedding Platform
                 </p>
             </div>
@@ -22267,10 +23131,9 @@
             setInterval(update, 1000);
         }
 
-        let revealObserverStarted = false;
+        let revealObserver = null;
         function initRevealAnimations() {
-            if (revealObserverStarted) return;
-            revealObserverStarted = true;
+            if (revealObserver) return;
 
             if (!('IntersectionObserver' in window)) {
                 document.querySelectorAll('.reveal-item').forEach(el => el.classList.add('revealed'));
@@ -22279,11 +23142,11 @@
 
             const observerOptions = {
                 root: null,
-                rootMargin: '0px 0px -20px 0px',
-                threshold: 0.02
+                rootMargin: '0px 0px -40px 0px',
+                threshold: 0.04
             };
 
-            const revealObserver = new IntersectionObserver((entries, observer) => {
+            revealObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('revealed');
@@ -22292,7 +23155,7 @@
                 });
             }, observerOptions);
 
-            document.querySelectorAll('.reveal-item').forEach(el => {
+            document.querySelectorAll('#invitation-main-content .reveal-item').forEach(el => {
                 revealObserver.observe(el);
             });
         }
@@ -22321,8 +23184,8 @@
                 });
             }
 
-            initRevealAnimations();
             triggerHeroReveals();
+            initRevealAnimations();
         };
 
         window.openInvitation = window.unlockInvitation;
@@ -22332,7 +23195,7 @@
             heroItems.forEach((el, index) => {
                 setTimeout(() => {
                     el.classList.add('revealed');
-                }, index * 120);
+                }, index * 90);
             });
         }
 
@@ -22348,7 +23211,18 @@
 
         document.addEventListener('DOMContentLoaded', function () {
             startCountdown();
-            initRevealAnimations();
+
+            const cover = document.getElementById('invitation-cover');
+            const isOpenParam = new URLSearchParams(window.location.search).has('open');
+
+            if (cover && !isOpenParam) {
+                // Cover is displayed, reveal only cover elements; main content waits for unlock
+                document.querySelectorAll('#invitation-cover .reveal-item').forEach(el => el.classList.add('revealed'));
+            } else {
+                triggerHeroReveals();
+                initRevealAnimations();
+            }
+
             document.querySelectorAll('.btn-open-invitation, #btn-open-invitation, [data-action="open-invitation"]').forEach(btn => {
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -22356,22 +23230,27 @@
                 });
             });
 
-            if (new URLSearchParams(window.location.search).has('open')) {
+            if (isOpenParam) {
                 unlockInvitation();
                 const scrollTarget = new URLSearchParams(window.location.search).get('scroll');
-                setTimeout(() => {
-                    document.querySelectorAll('.reveal-item').forEach(el => el.classList.add('revealed'));
-                    if (scrollTarget) {
-                        const targetEl = document.getElementById(scrollTarget);
+                if (scrollTarget) {
+                    const targetEl = document.getElementById(scrollTarget);
+                    if (targetEl) {
+                        targetEl.scrollIntoView({ behavior: 'instant', block: 'start' });
+                        targetEl.querySelectorAll('.reveal-item').forEach(el => el.classList.add('revealed'));
+                    }
+                    setTimeout(() => {
+                        const targetEl2 = document.getElementById(scrollTarget);
                         const mainContainer = document.getElementById('invitation-main-content');
-                        if (targetEl) {
-                            targetEl.scrollIntoView({ behavior: 'instant', block: 'start' });
+                        if (targetEl2) {
+                            targetEl2.scrollIntoView({ behavior: 'instant', block: 'start' });
+                            targetEl2.querySelectorAll('.reveal-item').forEach(el => el.classList.add('revealed'));
                             if (mainContainer) {
-                                mainContainer.scrollTop = targetEl.offsetTop;
+                                mainContainer.scrollTop = targetEl2.offsetTop;
                             }
                         }
-                    }
-                }, 300);
+                    }, 100);
+                }
             }
         });
 
@@ -22462,6 +23341,129 @@
                 modal.classList.remove('flex');
             }
         };
+
+        // ================= THEME 11 (PREMIUM NOSTALGIC VILLAGE) BESPOKE ENGINE =================
+        let t11ActivePhotoIndex = 0;
+        const t11PhotosList = @json($t11GalleryPhotos);
+
+        window.changeNostalgicPhoto = function(direction) {
+            if (!t11PhotosList || t11PhotosList.length === 0) return;
+            t11ActivePhotoIndex = (t11ActivePhotoIndex + direction + t11PhotosList.length) % t11PhotosList.length;
+            updateNostalgicGalleryUI();
+        };
+
+        window.setNostalgicPhoto = function(index) {
+            if (index >= 0 && index < t11PhotosList.length) {
+                t11ActivePhotoIndex = index;
+                updateNostalgicGalleryUI();
+            }
+        };
+
+        function updateNostalgicGalleryUI() {
+            const img = document.getElementById('nostalgic-main-img');
+            if (img) {
+                img.style.opacity = '0.35';
+                img.style.transform = 'scale(0.96)';
+                setTimeout(() => {
+                    img.src = t11PhotosList[t11ActivePhotoIndex];
+                    img.style.opacity = '1';
+                    img.style.transform = 'scale(1)';
+                }, 140);
+            }
+            document.querySelectorAll('.nostalgic-gal-dot').forEach((dot, idx) => {
+                if (idx === t11ActivePhotoIndex) {
+                    dot.classList.add('bg-[#2C404E]', 'scale-125');
+                    dot.classList.remove('bg-stone-300');
+                } else {
+                    dot.classList.remove('bg-[#2C404E]', 'scale-125');
+                    dot.classList.add('bg-stone-300');
+                }
+            });
+        }
+
+        window.triggerCarBoost = function(el) {
+            if (!el) el = document.getElementById('nostalgic-wagon-car');
+            if (!el) return;
+            el.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            const curTransform = el.style.transform || '';
+            el.style.transform = curTransform + ' scale(1.12) rotate(-1deg)';
+            showToast('Vroom! 🚗💨 Mobil melaju!');
+            setTimeout(() => {
+                el.style.transition = '';
+                updateNostalgicCar();
+            }, 450);
+        };
+
+        window.greetAtPendopo = function() {
+            const bubble = document.getElementById('pendopo-bubble');
+            if (bubble) {
+                bubble.style.opacity = '1';
+                bubble.style.transform = 'translateX(-50%) scale(1)';
+                bubble.style.pointerEvents = 'auto';
+                showToast('{{ $groomNickname }} & {{ $brideNickname }}: "Sampai jumpa di hari bahagia kami di depan pendopo!" 🏡✨');
+                setTimeout(() => {
+                    bubble.style.opacity = '0';
+                    bubble.style.transform = 'translateX(-50%) scale(0.9)';
+                    bubble.style.pointerEvents = 'none';
+                }, 4000);
+            }
+        };
+
+        window.downloadIcsEvent = function(type) {
+            const isAkad = (type === 'akad');
+            const isNgunduh = (type === 'ngunduh');
+            const title = isAkad
+                ? "Akad Nikah: {{ $groomNickname }} & {{ $brideNickname }}"
+                : (isNgunduh ? "Ngunduh Mantu: {{ $groomNickname }} & {{ $brideNickname }}" : "Resepsi Pernikahan: {{ $groomNickname }} & {{ $brideNickname }}");
+            const loc = isAkad ? "{{ $akadAddress ?? $venueAddress }}" : (isNgunduh ? "Rumah Mempelai Pria, Unduh Mantu" : "{{ $venueAddress }}");
+            const dtStart = isAkad ? "20260930T080000" : (isNgunduh ? "20260830T080000" : "20260930T122500");
+            const dtEnd = isAkad ? "20260930T110000" : (isNgunduh ? "20260830T200000" : "20260930T160000");
+            const icsData = [
+                "BEGIN:VCALENDAR",
+                "VERSION:2.0",
+                "PRODID:-//SimpulTemu//Wedding Invitation//EN",
+                "BEGIN:VEVENT",
+                "SUMMARY:" + title,
+                "DESCRIPTION:Pernikahan {{ $groomName }} & {{ $brideName }}",
+                "LOCATION:" + loc,
+                "DTSTART:" + dtStart,
+                "DTEND:" + dtEnd,
+                "END:VEVENT",
+                "END:VCALENDAR"
+            ].join("\r\n");
+            const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', `${type}-event.ics`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast('File Apple Calendar (.ics) berhasil diunduh! 📅');
+        };
+
+        function updateNostalgicCar() {
+            const road = document.getElementById('section-coastal-road');
+            const car = document.getElementById('nostalgic-wagon-car');
+            if (!road || !car) return;
+
+            const rect = road.getBoundingClientRect();
+            const windowH = window.innerHeight || document.documentElement.clientHeight;
+
+            // Progress is 0 when road enters bottom of screen, 1 when it leaves top of screen
+            const totalTravel = windowH + rect.height;
+            const currentTravel = windowH - rect.top;
+            const progress = Math.max(0, Math.min(1, currentTravel / totalTravel));
+
+            // Road width minus car width
+            const roadWidth = road.offsetWidth;
+            const carWidth = car.offsetWidth || 100;
+            const maxDriveX = Math.max(50, roadWidth - carWidth - 16);
+
+            const targetX = progress * maxDriveX;
+            const bounceY = Math.sin(progress * 28) * 1.5;
+
+            car.style.transform = `translateX(${targetX}px) translateY(${bounceY}px)`;
+        }
 
         window.smoothScrollTo = function(e, id) {
             e.preventDefault();
@@ -22692,20 +23694,28 @@
             }
 
             let ticking = false;
-            window.addEventListener('scroll', function() {
+            function onScrollHandler() {
                 if (!ticking) {
                     window.requestAnimationFrame(function() {
                         updateScrollspy();
                         if (isTheme13) updateTheme13Parallax();
+                        if (typeof updateNostalgicCar === 'function') updateNostalgicCar();
                         ticking = false;
                     });
                     ticking = true;
                 }
-            }, { passive: true });
+            }
+
+            window.addEventListener('scroll', onScrollHandler, { passive: true });
+            const mainContentEl = document.getElementById('invitation-main-content');
+            if (mainContentEl) {
+                mainContentEl.addEventListener('scroll', onScrollHandler, { passive: true });
+            }
 
             document.addEventListener('DOMContentLoaded', function() {
                 updateScrollspy();
                 if (isTheme13) updateTheme13Parallax();
+                if (typeof updateNostalgicCar === 'function') updateNostalgicCar();
             });
         })();
     </script>

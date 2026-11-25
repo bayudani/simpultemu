@@ -536,6 +536,17 @@
                             </div>
 
                             <div class="space-y-3">
+                                <!-- Dynamic Slot Tracker -->
+                                <div id="theme-gallery-slot-tracker" class="p-3 bg-white rounded-xl border border-[#E7E0D6] flex flex-wrap items-center justify-between gap-2 shadow-2xs">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                        <span class="text-xs font-semibold text-stone-800">Slot Galeri Tersedia:</span>
+                                    </div>
+                                    <div id="theme-gallery-slot-pills" class="flex flex-wrap items-center gap-1">
+                                        <!-- Dynamically generated pills for slots 1 to 8 -->
+                                    </div>
+                                </div>
+
                                 <div class="p-3.5 bg-white rounded-xl border border-[#E7E0D6] space-y-1.5">
                                     <label for="galleryPhotoInput" class="block text-xs font-semibold text-stone-700">Pilih / Tambah Foto Galeri (Bisa Pilih Banyak Sekaligus)</label>
                                     <input type="file" name="gallery_photos[]" id="galleryPhotoInput" multiple accept="image/jpeg,image/png,image/jpg,image/webp" class="block w-full text-xs text-stone-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-emerald-600/10 file:text-emerald-700 hover:file:bg-emerald-600/20 cursor-pointer">
@@ -551,7 +562,7 @@
                                         <div class="relative group rounded-xl overflow-hidden border border-[#E7E0D6] bg-white shadow-xs aspect-[4/3]" data-photo-id="{{ $photo->id }}">
                                             <img src="{{ Storage::url($photo->path) }}" class="w-full h-full object-cover">
                                             <span class="absolute bottom-1.5 left-1.5 px-1.5 py-0.5 rounded bg-black/60 text-white text-[9px] font-mono">
-                                                #{{ $idx + 1 }}
+                                                Slot #{{ $idx + 1 }}
                                             </span>
                                             <button type="button" onclick="deleteGalleryPhoto({{ $photo->id }})" class="absolute top-1.5 right-1.5 bg-red-600 text-white p-1.5 rounded-full opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition shadow cursor-pointer" title="Hapus Foto">
                                                 <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -563,6 +574,9 @@
                                     @endif
                                 </div>
                                 <div id="newPhotosPreviewContainer" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+
+                                <!-- Dynamic Empty Slot Placeholders up to theme limit (e.g. 8 slots) -->
+                                <div id="emptyGallerySlotsContainer" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
                             </div>
                         </div>
 
@@ -2723,27 +2737,27 @@ const THEME_PHOTO_CONFIG = {
     },
     11: {
         id: 11,
-        name: "Premium Mystic Romance",
+        name: "Premium Nostalgic Village",
         tier: "premium",
-        iconSvg: '<svg class="w-5 h-5 text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M16 17H7"/><path d="M17 21H9"/></svg>',
-        desc: "Sentuhan kabut magis dengan foto full-bleed dramatis, floating parallax halus, dan tipografi sinematik premium.",
-        tags: ["Cover Misty Full-Bleed", "Love Story (2 Foto)", "Galeri Masonry (8 Foto)", "Mempelai"],
-        coverTitle: "1. Foto Cover Buka Undangan (Misty Cinematic Full-Bleed)",
-        coverSubtitle: "Foto portrait utama dengan lapisan kabut sinematik di layar pembuka",
-        coverGuide: "Foto portrait utama dengan lapisan kabut sinematik di layar pembuka dan kartu undangan premium.",
+        iconSvg: '<svg class="w-5 h-5 text-amber-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+        desc: "Nuansa pedesaan hangat & nostalgia romantis dengan pemandangan sawah terasering, animasi mobil interaktif, pendopo senja, dan 8 foto galeri polaroid kenangan indah.",
+        tags: ["Cover Landscape Pedesaan", "Perjalanan Kami", "Galeri Polaroid (8 Foto)", "Mempelai"],
+        coverTitle: "1. Foto Cover Buka Undangan (Polaroid Nostalgia Pedesaan)",
+        coverSubtitle: "Foto cover portrait/landscape dengan bingkai polaroid klasik di panel pembuka & panel kiri desktop",
+        coverGuide: "Foto pasangan berdua dalam kartu polaroid klasik berlatar pemandangan pedesaan asri dengan countdown timer fungsional.",
         hasStoryPhotos: true,
         storyPhotosCount: 2,
-        storySubtitle: "2 Foto Love Story bernuansa kabut magis dan romantis",
-        storyGuide: "Unggah 2 foto potret untuk seksi Love Story bertabur kabut lembut nan syahdu.",
+        storySubtitle: "2 Foto Cerita Cinta / Perjalanan Kami berbingkai polaroid klasik",
+        storyGuide: "Unggah 2 foto potret untuk seksi perjalanan cinta kami dengan ornamen sepeda dan mobil pedesaan.",
         hasHeroCountdown: false,
         hasFloralOrnaments: false,
         galleryLimit: 8,
-        galleryTip: "Kapasitas galeri hingga 8 foto dalam masonry grid premium berlatar kabut dramatis.",
+        galleryTip: "Kapasitas galeri hingga 8 foto polaroid kenangan indah dengan tombol navigasi geser & lightbox.",
         slots: [
-            { title: "1. Foto Cover Buka Undangan", desc: "Diatur di Langkah 2 (background_photo). Layar pembuka portrait sinematik berefek kabut." },
-            { title: "2. Foto Love Story (2 Foto)", desc: "Diatur di Langkah 2 (story_photo_1 & 2). 2 foto perjalanan cinta bernuansa mistis romantis." },
-            { title: "3. Galeri Foto Masonry (8 Foto)", desc: "Diatur di Langkah 2 (gallery_photos). Masonry grid 8 foto pre-wedding berkelas premium." },
-            { title: "4. Foto Mempelai Pria & Wanita", desc: "Diatur di Langkah 3 (Data Mempelai). Avatar sinematik profil mempelai." }
+            { title: "1. Foto Cover Utama", desc: "Diatur di Langkah 2 (background_photo). Polaroid utama di halaman pembuka & panel kiri desktop." },
+            { title: "2. Cerita Cinta / Perjalanan Kami (2 Foto)", desc: "Diatur di Langkah 2 (story_photo_1 & 2). 2 foto perjalanan cinta bernuansa nostalgia pedesaan." },
+            { title: "3. Galeri Foto Polaroid (8 Foto)", desc: "Diatur di Langkah 2 (gallery_photos). 8 foto polaroid kenangan dengan tombol navigasi geser & lightbox." },
+            { title: "4. Foto Mempelai Pria & Wanita", desc: "Diatur di Langkah 3 (Data Mempelai). Foto portrait mempelai berlatar kertas klasik yang elegan." }
         ]
     },
     12: {
@@ -3018,8 +3032,11 @@ function updateThemePhotoGuide(themeId) {
     // Gallery section
     const quotaBadge = document.getElementById('theme-gallery-quota-badge');
     const tipText = document.getElementById('theme-gallery-tip-text');
-    if (quotaBadge) quotaBadge.innerText = `Kapasitas Rekomendasi: ${config.galleryLimit} Foto`;
+    if (quotaBadge) quotaBadge.innerText = `Kapasitas: ${config.galleryLimit} Slot Foto`;
     if (tipText) tipText.innerHTML = `★ Pada tema ini, galeri dapat menampilkan hingga <strong>${config.galleryLimit} foto</strong> dengan tata letak estetik. Format: JPG, PNG, WebP (Maks 25MB per foto).`;
+    if (typeof renderGallerySlotPlaceholders === 'function') {
+        renderGallerySlotPlaceholders(config.galleryLimit || 8);
+    }
 
     // Love Story section
     const storySection = document.getElementById('theme-story-section');
@@ -4104,6 +4121,48 @@ function setupAvatarReader(inputId, previewImgId, fallbackId, onUpdate) {
 }
 
 // Gallery Photo Management & Instant Previews
+function renderGallerySlotPlaceholders(limit = 8) {
+    const pillsContainer = document.getElementById('theme-gallery-slot-pills');
+    const emptyContainer = document.getElementById('emptyGallerySlotsContainer');
+    const existingCards = document.querySelectorAll('#photoGalleryContainer [data-photo-id]');
+    const existingCount = existingCards.length;
+    const newPreviewCards = document.querySelectorAll('#newPhotosPreviewContainer > div');
+    const totalFilled = existingCount + newPreviewCards.length;
+
+    if (pillsContainer) {
+        let pillsHtml = '';
+        for (let i = 1; i <= limit; i++) {
+            const isFilled = i <= totalFilled;
+            pillsHtml += `
+                <span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold ${
+                    isFilled ? 'bg-emerald-600 text-white shadow-2xs' : 'bg-stone-100 text-stone-500 border border-stone-200'
+                }">
+                    ${isFilled ? '✓ ' : ''}Slot #${i}
+                </span>
+            `;
+        }
+        pillsContainer.innerHTML = pillsHtml;
+    }
+
+    if (emptyContainer) {
+        let emptyHtml = '';
+        for (let i = totalFilled + 1; i <= limit; i++) {
+            emptyHtml += `
+                <div onclick="document.getElementById('galleryPhotoInput').click()" 
+                     class="border-2 border-dashed border-[#D6C7B2] rounded-xl aspect-[4/3] bg-white/70 hover:bg-emerald-50/50 hover:border-emerald-500 flex flex-col items-center justify-center p-3 text-center cursor-pointer transition-all duration-200 group shadow-2xs"
+                     title="Klik untuk memilih foto untuk Slot #${i}">
+                    <div class="w-8 h-8 rounded-full bg-stone-100 group-hover:bg-emerald-100 text-stone-400 group-hover:text-emerald-700 flex items-center justify-center mb-1.5 transition">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    </div>
+                    <span class="text-[11px] font-bold text-stone-700 group-hover:text-emerald-800">Slot Foto #${i}</span>
+                    <span class="text-[9px] text-stone-400 group-hover:text-emerald-600">Klik untuk Unggah</span>
+                </div>
+            `;
+        }
+        emptyContainer.innerHTML = emptyHtml;
+    }
+}
+
 const galleryPhotoInput = document.getElementById('galleryPhotoInput');
 if (galleryPhotoInput) {
     galleryPhotoInput.addEventListener('change', function(e) {
@@ -4111,20 +4170,30 @@ if (galleryPhotoInput) {
         if (!container) return;
         container.innerHTML = '';
         const files = Array.from(e.target.files);
-        if (files.length === 0) return;
+        const existingCount = document.querySelectorAll('#photoGalleryContainer [data-photo-id]').length;
+        const cfg = (typeof THEME_PHOTO_CONFIG !== 'undefined' && typeof activeThemeId !== 'undefined' && THEME_PHOTO_CONFIG[activeThemeId]) 
+            ? THEME_PHOTO_CONFIG[activeThemeId] 
+            : { galleryLimit: 8 };
+
+        if (files.length === 0) {
+            renderGallerySlotPlaceholders(cfg.galleryLimit || 8);
+            return;
+        }
 
         files.forEach((file, idx) => {
+            const slotNum = existingCount + idx + 1;
             const reader = new FileReader();
             reader.onload = function(evt) {
                 const div = document.createElement('div');
                 div.className = 'relative rounded-xl overflow-hidden border-2 border-emerald-500 bg-white shadow-xs aspect-[4/3]';
                 div.innerHTML = `
                     <img src="${evt.target.result}" class="w-full h-full object-cover">
-                    <span class="absolute top-1.5 left-1.5 px-1.5 py-0.5 rounded bg-emerald-600 text-white text-[9px] font-bold">
-                        Siap Unggah
+                    <span class="absolute top-1.5 left-1.5 px-2 py-0.5 rounded-full bg-emerald-600 text-white text-[9px] font-bold shadow-xs">
+                        Slot #${slotNum} • Siap Unggah
                     </span>
                 `;
                 container.appendChild(div);
+                renderGallerySlotPlaceholders(cfg.galleryLimit || 8);
             };
             reader.readAsDataURL(file);
         });
@@ -4149,6 +4218,12 @@ function deleteGalleryPhoto(photoId) {
             const remaining = document.querySelectorAll('#photoGalleryContainer [data-photo-id]').length;
             if (countBadge) {
                 countBadge.innerText = `${remaining} Foto Tersimpan`;
+            }
+            if (typeof renderGallerySlotPlaceholders === 'function') {
+                const cfg = (typeof THEME_PHOTO_CONFIG !== 'undefined' && typeof activeThemeId !== 'undefined' && THEME_PHOTO_CONFIG[activeThemeId]) 
+                    ? THEME_PHOTO_CONFIG[activeThemeId] 
+                    : { galleryLimit: 8 };
+                renderGallerySlotPlaceholders(cfg.galleryLimit || 8);
             }
         } else {
             alert('Gagal menghapus foto.');

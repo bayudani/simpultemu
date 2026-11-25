@@ -131,13 +131,13 @@
 
         // === 10 PREMIUM THEMES (RP 59.000) - ULTRA LUXURIOUS ===
         11 => [
-            'bg' => 'radial-gradient(circle at 50% 20%, #5a0b18 0%, #170206 100%)',
-            'pattern' => 'url("data:image/svg+xml,%3Csvg width=%2248%22 height=%2248%22 viewBox=%220 0 48 48%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath d=%22M24 4c3 6 8 8 13 6-2 6 0 11 4 14-6 1-9 5-9 10-4-4-9-3-13 2-3-5-8-6-13-2 0-5-3-9-9-10 4-3 6-8 4-14 5 2 10 0 13-6z%22 fill=%22%23fbbf24%22 fill-opacity=%220.2%22/%3E%3Ccircle cx=%2224%22 cy=%2224%22 r=%224%22 fill=%22%23ca8a04%22 fill-opacity=%220.3%22/%3E%3C/svg%3E")',
-            'motifName' => 'Royal Velvet & Gold Filigree',
-            'accentColor' => '#FCD34D',
-            'textColor' => '#FFFBEB',
-            'tagBg' => 'bg-rose-950/85 border-amber-400/50',
-            'iconSvg' => '<svg class="w-6 h-6 text-amber-300" viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/></svg>',
+            'bg' => 'radial-gradient(circle at 50% 20%, #FAF7F2 0%, #EAE3D5 100%)',
+            'pattern' => 'none',
+            'motifName' => 'Nostalgic Village Watercolor',
+            'accentColor' => '#D49838',
+            'textColor' => '#2C404E',
+            'tagBg' => 'bg-[#FAF7F2] border-[#D49838]/60 text-[#2C404E]',
+            'iconSvg' => '<svg class="w-6 h-6 text-[#D49838]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>',
         ],
         12 => [
             'bg' => 'radial-gradient(circle at 50% 20%, #064e3b 0%, #021a12 100%)',
@@ -229,7 +229,7 @@
         $isTheme17 => 'border-[3.5px] border-[#1D4ED8]/70 shadow-[0_16px_40px_-8px_rgba(29,78,216,0.35)] ring-1 ring-blue-300/40 ring-offset-1 ring-offset-black/90',
         $isTheme14 => 'border-[3.5px] border-[#F492A7] shadow-[0_16px_40px_-8px_rgba(229,91,130,0.35)] ring-1 ring-pink-300/60 ring-offset-1 ring-offset-black/90',
         $isTheme12 => 'border-[3.5px] border-[#A3704C]/70 shadow-[0_16px_40px_-8px_rgba(163,112,76,0.35)] ring-1 ring-[#D8B48D]/50 ring-offset-1 ring-offset-black/90',
-        $isTheme11 => 'border-[3.5px] border-slate-500/70 shadow-[0_16px_40px_-8px_rgba(15,23,42,0.5)] ring-1 ring-slate-300/40 ring-offset-1 ring-offset-black/90',
+        $isTheme11 => 'border-[3.5px] border-[#D49838]/70 shadow-[0_16px_40px_-8px_rgba(212,152,56,0.35)] ring-1 ring-[#D49838]/40 ring-offset-1 ring-offset-black/90',
         $isTheme9 => 'border-[3.5px] border-[#6B442A]/70 shadow-[0_16px_40px_-8px_rgba(107,68,42,0.35)] ring-1 ring-amber-200/40 ring-offset-1 ring-offset-black/90',
         $isTheme8 => 'border-[3.5px] border-[#E67E22]/70 shadow-[0_16px_40px_-8px_rgba(230,126,34,0.35)] ring-1 ring-amber-300/50 ring-offset-1 ring-offset-black/90',
         $isTheme7 => 'border-[3.5px] border-[#5C3D8D]/70 shadow-[0_16px_40px_-8px_rgba(92,61,141,0.35)] ring-1 ring-purple-300/40 ring-offset-1 ring-offset-black/90',
@@ -1271,44 +1271,54 @@
         </div>
     </div>
     @elseif($isTheme11)
-    <!-- Screen Canvas: EXACT MATCH TO THEME 11 (PREMIUM MISTY ROMANCE) REAL COVER -->
-    <div class="rounded-[1.6rem] sm:rounded-[1.8rem] h-full flex flex-col justify-between p-2.5 sm:p-3 relative overflow-hidden select-none bg-slate-950 text-white font-serif"
-         style="background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.45) 0%, rgba(15, 23, 42, 0.25) 35%, rgba(15, 23, 42, 0.8) 100%), url('{{ asset('images/themes/misty-romance/demo-cover.jpg') }}'); background-size: cover; background-position: center;">
+    <!-- Screen Canvas: EXACT MATCH TO THEME 11 (PREMIUM NOSTALGIC VILLAGE) REAL COVER -->
+    <div class="rounded-[1.6rem] sm:rounded-[1.8rem] h-full flex flex-col justify-between p-2.5 sm:p-3 relative overflow-hidden select-none bg-[#FAF7F2] text-[#2C404E] font-serif">
         
-        <!-- Ambient Tint -->
-        <div class="absolute inset-0 bg-slate-950/20 pointer-events-none"></div>
-
-        <!-- Top: "THE WEDDING OF" & Couple Names -->
-        <div class="relative z-10 text-center pt-5 sm:pt-6 space-y-1">
-            <p class="text-[7px] sm:text-[7.5px] text-white/90 tracking-[0.3em] uppercase font-semibold">
-                THE WEDDING OF
-            </p>
-            <h4 class="text-[17px] sm:text-[19px] text-white font-normal tracking-wide leading-tight drop-shadow-md">
-                Habib &amp; Adiba
-            </h4>
+        <!-- Watercolor Landscape Header -->
+        <div class="absolute inset-x-0 top-0 h-28 overflow-hidden rounded-t-[1.6rem] sm:rounded-t-[1.8rem]">
+            <img src="{{ asset('images/themes/nostalgic-village/bg-mountain-landscape.jpg') }}" alt="Mountain Landscape" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#FAF7F2]/40 to-[#FAF7F2]"></div>
         </div>
 
-        <!-- Bottom: Kepada & White Pill Buka Undangan Button (Matching Screenshot 1) -->
+        <!-- Top: "THE WEDDING OF" & Couple Names -->
+        <div class="relative z-10 text-center pt-16 sm:pt-18 space-y-0.5">
+            <p class="text-[6.5px] sm:text-[7px] text-[#D49838] tracking-[0.25em] uppercase font-bold">
+                PERNIKAHAN
+            </p>
+            <h4 class="text-[17px] sm:text-[19px] text-[#2C404E] font-normal tracking-wide leading-tight drop-shadow-xs">
+                Dias &amp; Azalia
+            </h4>
+            <p class="text-[6.5px] text-[#64748B] tracking-wider">
+                Rabu, 30 September 2026
+            </p>
+        </div>
+
+        <!-- Middle: Yellow Wagon Car Accent -->
+        <div class="relative z-10 w-20 sm:w-24 mx-auto my-auto drop-shadow-sm">
+            <img src="{{ asset('images/themes/nostalgic-village/car-yellow-wagon.png') }}" alt="Yellow Wagon Car" class="w-full h-auto">
+        </div>
+
+        <!-- Bottom: Kepada & Golden Ochre Button -->
         <div class="relative z-10 w-full text-center space-y-2 pb-0.5">
-            <div class="space-y-0.5 text-white/95">
-                <p class="text-[6px] sm:text-[6.5px] text-white/85">
+            <div class="space-y-0.5 text-[#2C404E]">
+                <p class="text-[6px] sm:text-[6.5px] text-[#64748B]">
                     Kepada Bapak/Ibu/Saudara/i
                 </p>
-                <p class="text-[10px] sm:text-[11px] font-medium text-white tracking-wide truncate">
+                <p class="text-[10px] sm:text-[11px] font-semibold text-[#2C404E] tracking-wide truncate">
                     Budi Santoso &amp; Pasangan
                 </p>
             </div>
 
-            <!-- White Pill Button Matching Screenshot -->
-            <div class="w-full max-w-[125px] sm:max-w-[135px] mx-auto py-1.5 px-3 rounded-full bg-white text-slate-900 font-semibold text-[7px] sm:text-[8px] tracking-wider uppercase shadow-[0_6px_20px_rgba(0,0,0,0.4)] flex items-center justify-center gap-1.5">
-                <svg class="w-2.5 h-2.5 text-slate-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <!-- Golden Ochre Pill Button -->
+            <div class="w-full max-w-[125px] sm:max-w-[135px] mx-auto py-1.5 px-3 rounded-full bg-gradient-to-r from-[#D49838] to-[#B37B24] text-white font-semibold text-[7px] sm:text-[8px] tracking-wider uppercase shadow-[0_4px_14px_rgba(212,152,56,0.4)] flex items-center justify-center gap-1.5 border border-[#F5DC9A]/60">
+                <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                 </svg>
                 <span>Buka Undangan</span>
             </div>
 
             <!-- Home Bar Indicator -->
-            <div class="w-10 sm:w-12 h-0.5 bg-white/40 rounded-full mx-auto pointer-events-none"></div>
+            <div class="w-10 sm:w-12 h-0.5 bg-[#2C404E]/25 rounded-full mx-auto pointer-events-none"></div>
         </div>
     </div>
     @elseif($isTheme12)

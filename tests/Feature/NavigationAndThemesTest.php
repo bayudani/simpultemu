@@ -119,13 +119,13 @@ class NavigationAndThemesTest extends TestCase
         $response->assertSee('Gratis');
         $response->assertSee('Rp 59.000');
         $response->assertSee('Basic Harmony Maroon');
-        $response->assertSee('Premium Misty Romance');
+        $response->assertSee('Premium Nostalgic Village');
     }
 
     public function test_theme_detail_routes_are_accessible(): void
     {
         $this->get('/tema/1')->assertStatus(200)->assertSee('Basic Harmony Maroon');
-        $this->get('/tema/11')->assertStatus(200)->assertSee('Premium Misty Romance');
+        $this->get('/tema/11')->assertStatus(200)->assertSee('Premium Nostalgic Village');
     }
 
     public function test_dashboard_user_flow_and_three_column_editor(): void
@@ -370,6 +370,74 @@ class NavigationAndThemesTest extends TestCase
         $response->assertSee('Buka Undangan');
         $response->assertSee('musicToggleBtn');
         $response->assertSee('vinylDiscSvg');
+    }
+
+    public function test_theme_11_nostalgic_village_renders_bespoke_dual_pane_and_interactive_elements(): void
+    {
+        $user = User::factory()->create();
+        $theme11 = Theme::where('slug', 'premium-nostalgic-village')->firstOrFail();
+
+        $invitation = Invitation::create([
+            'user_id' => $user->id,
+            'theme_id' => $theme11->id,
+            'title' => 'Pernikahan Dias & Azalia',
+            'slug' => 'dias-azalia-nostalgic-village',
+            'groom_name' => 'Dias Taufik',
+            'groom_nickname' => 'Dias',
+            'groom_parents' => 'Bapak Ayah Dias & Ibu Ibu Dias',
+            'groom_instagram' => '@diastaufik',
+            'groom_photo' => 'groom.jpg',
+            'bride_name' => 'Azalia Fasya',
+            'bride_nickname' => 'Azalia',
+            'bride_parents' => 'Bapak Ayah Azalia & Ibu Ibu Azalia',
+            'bride_instagram' => '@azaliafasya',
+            'bride_photo' => 'bride.jpg',
+            'event_date' => now()->addDays(30),
+            'event_time' => '12:25',
+            'venue' => 'Hotel Transit FM3',
+            'address' => 'Jl. Raya Serpong No.104',
+            'status' => 'published',
+            'published_at' => now(),
+        ]);
+
+        $response = $this->get('/undangan/'.$invitation->slug.'?to=Bapak+Joko+Susanto');
+        $response->assertStatus(200);
+
+        // Custom guest name verification on Cover & Invitation
+        $response->assertSee('Bapak Joko Susanto');
+
+        // Assets verification
+        $response->assertSee('bg-mountain-landscape.jpg');
+        $response->assertSee('bg-coastal-road.jpg');
+        $response->assertSee('bg-night-village.jpg');
+        $response->assertSee('car-yellow-wagon.png');
+        $response->assertSee('bicycle-yellow.png');
+        $response->assertSee('couple-pendopo.png');
+        $response->assertSee('bg-pendopo-sunset.jpg');
+        $response->assertSee('t11-desktop-sidebar');
+        $response->assertSee('section-coastal-road');
+        $response->assertSee('nostalgic-wagon-car');
+
+        // Names & sections
+        $response->assertSee('Dias');
+        $response->assertSee('Azalia');
+        $response->assertSee('Waktu dan tempat');
+        $response->assertSee('Perjalanan kami');
+        $response->assertSee('Galeri foto');
+        $response->assertSee('Tanda Kasih');
+        $response->assertSee('Kirim Hadiah Digital');
+        $response->assertSee('Konfirmasi Kehadiran');
+        $response->assertSee('Buka Undangan');
+
+        // Demo endpoint test with custom guest name
+        $demoResponse = $this->get('/tema/11/demo?to=Ibu+Siti+Aminah');
+        $demoResponse->assertStatus(200);
+        $demoResponse->assertSee('Ibu Siti Aminah');
+        $demoResponse->assertSee('Dias');
+        $demoResponse->assertSee('Azalia');
+        $demoResponse->assertSee('car-yellow-wagon.png');
+        $demoResponse->assertSee('couple-pendopo.png');
+        $demoResponse->assertSee('Edelweiss Wedding Hall');
     }
 
     public function test_theme_12_champagne_bloom_renders_bespoke_dual_pane_and_custom_guest_name(): void

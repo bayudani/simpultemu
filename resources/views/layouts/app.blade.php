@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Simpultemu - Buat Undangan Pernikahan Digital Praktis & Modern')</title>
     <meta name="description" content="@yield('description', 'Wujudkan undangan pernikahan digital impian dalam hitungan menit. Lengkap dengan fitur RSVP, musik latar, galeri foto, peta lokasi, dan amplop digital. Mulai buat undanganmu sekarang di Simpultemu.')">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url()->current() }}">
 
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website">

@@ -6,6 +6,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $invitation->groom_nickname ?? 'Rian' }} &amp; {{ $invitation->bride_nickname ?? 'Maya' }} - Undangan Pernikahan</title>
     <meta name="description" content="Undangan pernikahan {{ $invitation->groom_name ?? 'Rian Pratama' }} dan {{ $invitation->bride_name ?? 'Maya Anggraini' }}">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url()->current() }}">
     <meta property="og:title" content="The Wedding of {{ $invitation->groom_nickname ?? 'Rian' }} &amp; {{ $invitation->bride_nickname ?? 'Maya' }}">
     <meta property="og:description" content="Rayakan momen bahagia pernikahan kami. Klik untuk melihat detail acara dan undangan online.">
     <meta property="og:type" content="website">

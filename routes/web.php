@@ -35,6 +35,17 @@ Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
 Route::get('/tentang-kami', [HomeController::class, 'about'])->name('about');
 Route::get('/about', [HomeController::class, 'about']); // Alias /about
 
+// Dynamic SEO Sitemap XML
+Route::get('/sitemap.xml', function () {
+    $invitations = \App\Models\Invitation::where('status', 'published')
+        ->latest('updated_at')
+        ->get();
+
+    return response()
+        ->view('sitemap', ['invitations' => $invitations])
+        ->header('Content-Type', 'text/xml; charset=utf-8');
+})->name('sitemap');
+
 // CSRF & Session Keepalive Refresh endpoint
 Route::get('/refresh-csrf', function () {
     return response()->json([

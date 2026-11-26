@@ -13,7 +13,7 @@
     <meta property="og:title" content="@yield('og_title', 'Simpultemu - Undangan Pernikahan Digital Praktis & Modern')">
     <meta property="og:description" content="@yield('og_description', 'Wujudkan undangan pernikahan digital impian dalam hitungan menit. Lengkap dengan fitur RSVP, musik latar, galeri foto, peta lokasi, dan amplop digital.')">
     <meta property="og:image" content="@yield('og_image', asset('images/hero-banner.png'))">
-
+    <meta name="google-site-verification" content="GJrrJ1i_rESYWb1Krvsk2_19S31ZWjguQMfWMImE_gU" />
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="@yield('og_title', 'Simpultemu - Undangan Pernikahan Digital Praktis & Modern')">

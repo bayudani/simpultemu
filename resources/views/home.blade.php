@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'SimpulTemu - Buat Undangan Pernikahan Digital Praktis & Modern')
-@section('description', 'Rayakan momen berharga pernikahan Anda dengan undangan digital eksklusif yang dirancang elegan, interaktif, dan mudah dibagikan kepada keluarga serta kerabat tercinta.')
+@section('description', 'Rayakan momen berharga pernikahanmu dengan undangan digital eksklusif yang dirancang elegan, interaktif, dan mudah dibagikan kepada keluarga serta kerabat tercinta.')
 
 @section('content')
     <!-- Hero Section - Landscape Couple & Smartphone Mockup -->
@@ -10,9 +10,9 @@
         class="relative overflow-hidden pt-16 pb-14 sm:pt-20 sm:pb-20 md:pt-20 md:pb-24 lg:pt-20 lg:pb-28 xl:pt-24 xl:pb-32 bg-[#0B132B] bg-cover min-h-[480px] sm:min-h-[540px] lg:min-h-[600px] xl:min-h-[640px] flex items-center w-full"
         style="background-image: url('{{ asset('images/hero-couple.jpg') }}'); background-size: cover; background-position: center 85%;"
     >
-        <!-- Enhanced Navy Atmosphere Overlay (Rona Navy Khas SimpulTemu Ditingkatkan Lebih Terasa) -->
-        <div class="absolute inset-0 bg-[#0B132B]/55 z-0 pointer-events-none"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-[#0B132B]/80 via-[#0B132B]/45 to-[#0B132B]/35 z-0 pointer-events-none"></div>
+        <!-- Enhanced Navy Atmosphere Overlay (Rona Navy Khas SimpulTemu: Kanan Agak Pekat Pas) -->
+        <div class="absolute inset-0 bg-[#0B132B]/50 z-0 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#0B132B]/80 via-[#0B132B]/40 to-[#0B132B]/55 z-0 pointer-events-none"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-[#0B132B]/50 via-transparent to-[#0B132B]/40 z-0 pointer-events-none"></div>
 
         <div class="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -29,13 +29,15 @@
                         </div>
                     </div>
 
-                    <!-- Main Heading: Platform Undangan Digital Modern & Praktis (Kapital di Awal Kata) -->
-                    <h1 class="reveal-init reveal-up delay-250 text-white font-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[40px] xl:text-[46px] 2xl:text-[50px] leading-[1.18] tracking-tight">
-                        Platform Undangan Digital <span class="text-[#FF2E3A]">Modern & Praktis</span>
+                    <!-- Main Heading: Solusi Undangan Digital Untuk Hari Pernikahanmu Modern & Praktis (3 Baris) -->
+                    <h1 class="reveal-init reveal-up delay-250 text-white font-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[38px] xl:text-[44px] 2xl:text-[48px] leading-[1.18] tracking-tight">
+                        <span class="block">Solusi Undangan Digital</span>
+                        <span class="block">Untuk Hari Pernikahanmu</span>
+                        <span class="block text-[#FF2E3A]">Modern &amp; Praktis</span>
                     </h1>
 
-                    <p class="reveal-init reveal-up delay-400 font-sans text-slate-300 text-xs sm:text-base lg:text-lg xl:text-xl font-normal leading-relaxed max-w-xl mx-auto lg:mx-0">
-                        Rayakan momen berharga pernikahan Anda dengan undangan digital eksklusif yang dirancang elegan, interaktif, dan mudah dibagikan kepada keluarga serta kerabat tercinta.
+                    <p class="reveal-init reveal-up delay-400 font-sans text-slate-300 text-xs sm:text-sm lg:text-base font-normal leading-relaxed max-w-lg mx-auto lg:mx-0">
+                        Rayakan momen berharga pernikahanmu dengan undangan digital eksklusif yang dirancang elegan, interaktif, dan mudah dibagikan kepada keluarga serta kerabat tercinta.
                     </p>
 
                     <div class="reveal-init reveal-up delay-550 flex flex-row gap-2.5 sm:gap-4 justify-center lg:justify-start pt-1 sm:pt-2">
@@ -130,11 +132,15 @@
             </div>
         </div>
 
-        <!-- Dual-Layer Curved SVG Shape Divider at Bottom -->
-        <div class="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none z-20 pointer-events-none">
-            <svg class="relative block w-full h-[36px] sm:h-[46px] md:h-[58px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M0,0 C180,95 380,-30 520,65 C680,165 920,15 1200,45 L1200,120 L0,120 Z" fill="#DBF6FF" opacity="0.3"></path>
-                <path d="M0,35 C320,125 620,15 920,85 C1060,115 1160,65 1200,55 L1200,120 L0,120 Z" fill="#FFFFFF"></path>
+        <!-- Multi-Layer Sweeping Wave Divider (Persis Referensi: Melengkung Naik ke Kanan Membingkai HP) -->
+        <div class="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none z-10 pointer-events-none">
+            <svg class="relative block w-full h-[120px] sm:h-[160px] md:h-[200px] lg:h-[240px] xl:h-[280px] 2xl:h-[320px]" viewBox="0 0 1440 300" preserveAspectRatio="none">
+                <!-- Layer 1: Pita Atas (Soft Translucent Ice-Blue) yang naik tinggi di belakang HP hingga 42/300 -->
+                <path d="M0,245 C360,260 540,210 720,150 C900,90 1180,45 1440,42 L1440,300 L0,300 Z" fill="#DBF6FF" opacity="0.30"></path>
+                <!-- Layer 2: Pita Tengah (Luminous Pastel Ice-Blue) membingkai di antara pita atas dan putih dasar -->
+                <path d="M0,248 C380,262 580,225 760,175 C940,125 1220,108 1440,115 L1440,300 L0,300 Z" fill="#DBF6FF" opacity="0.60"></path>
+                <!-- Layer 3: Gelombang Putih Solid (Crest di bawah HP pada 165/300, lalu melengkung lembut turun ke kanan 215/300) -->
+                <path d="M0,235 C280,268 560,235 850,185 C1140,135 1300,175 1440,215 L1440,300 L0,300 Z" fill="#FFFFFF"></path>
             </svg>
         </div>
     </section>

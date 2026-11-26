@@ -5,7 +5,7 @@
     $themeName = is_object($theme) ? $theme->name : ($theme['name'] ?? 'Theme');
     $size = $size ?? 'normal'; // 'compact', 'normal', 'large'
 
-    $isTheme20 = ($themeId == 20) || str_contains($themeSlug, 'dark-elegance');
+    $isTheme20 = ($themeId == 20) || str_contains($themeSlug, 'melayu-pixelated') || str_contains($themeSlug, 'dark-elegance');
     $isTheme19 = ($themeId == 19) || str_contains($themeSlug, 'sahala') || str_contains($themeSlug, 'lavender');
     $isTheme16 = ($themeId == 16) || str_contains($themeSlug, 'museum-of-love') || str_contains($themeSlug, 'golden-glam');
     $isTheme15 = ($themeId == 15) || str_contains($themeSlug, 'midnight-amber') || str_contains($themeSlug, 'rustic-wood');
@@ -234,7 +234,7 @@
         $isTheme8 => 'border-[3.5px] border-[#E67E22]/70 shadow-[0_16px_40px_-8px_rgba(230,126,34,0.35)] ring-1 ring-amber-300/50 ring-offset-1 ring-offset-black/90',
         $isTheme7 => 'border-[3.5px] border-[#5C3D8D]/70 shadow-[0_16px_40px_-8px_rgba(92,61,141,0.35)] ring-1 ring-purple-300/40 ring-offset-1 ring-offset-black/90',
         $isTheme6 => 'border-[3.5px] border-[#38B6FF]/70 shadow-[0_16px_40px_-8px_rgba(56,182,255,0.35)] ring-1 ring-sky-300/40 ring-offset-1 ring-offset-black/90',
-        $isTheme20 => 'border-[3.5px] border-[#9EB092]/60 shadow-[0_16px_40px_-8px_rgba(158,176,146,0.35)] ring-1 ring-[#9EB092]/40 ring-offset-1 ring-offset-black/90',
+        $isTheme20 => 'border-[3.5px] border-[#D4AF37]/80 shadow-[0_16px_40px_-8px_rgba(212,175,55,0.4)] ring-1 ring-[#D4AF37]/50 ring-offset-1 ring-offset-black/90',
         $isTheme19 => 'border-[3.5px] border-[#E5A93C]/80 shadow-[0_16px_40px_-8px_rgba(229,169,60,0.4)] ring-1 ring-[#E5A93C]/50 ring-offset-1 ring-offset-black/90',
         $isTheme16 => 'border-[3.5px] border-[#D4AF37]/80 shadow-[0_16px_40px_-8px_rgba(139,30,34,0.35)] ring-1 ring-[#D4AF37]/50 ring-offset-1 ring-offset-black/90',
         $isTheme15 => 'border-[3.5px] border-[#DDA74F]/70 shadow-[0_16px_40px_-8px_rgba(221,167,79,0.4)] ring-1 ring-[#F2D59B]/50 ring-offset-1 ring-offset-black/90',
@@ -276,71 +276,56 @@
     <div class="absolute -right-[3px] top-16 w-[2.5px] h-8 bg-neutral-600 rounded-r-xs pointer-events-none"></div>
 
     @if($isTheme20)
-    <!-- Screen Canvas: EXACT MATCH TO THEME 20 (PREMIUM SERENADE DARK ELEGANCE) REAL COVER -->
-    <div class="rounded-[1.6rem] sm:rounded-[1.8rem] h-full flex flex-col justify-between p-2.5 sm:p-3 relative overflow-hidden select-none bg-[#070807] text-[#FAF7F2] font-serif">
-        <!-- Radial Gradient Halo Glow behind circular photo -->
-        <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(circle at 50% 28%, rgba(158, 176, 146, 0.35) 0%, rgba(7, 8, 7, 0.95) 55%, #070807 100%);"></div>
+    <!-- Screen Canvas: EXACT MATCH TO THEME 20 (PREMIUM MELAYU PIXELATED) REAL COVER -->
+    <div class="rounded-[1.6rem] sm:rounded-[1.8rem] h-full flex flex-col justify-between p-2 sm:p-2.5 relative overflow-hidden select-none text-[#2C1810]" style="background: url('/images/themes/melayu-pixelated/bg-hall-clean.jpg') center/cover no-repeat; font-family: monospace;">
+        <!-- Top Quest Banner -->
+        <div class="relative z-10 w-full pt-1 flex flex-col items-center">
+            <div class="px-2.5 py-0.5 rounded bg-[#1B4332] border border-[#D4AF37]/80 text-[#FAF4E6] text-[6.5px] sm:text-[7.5px] font-bold tracking-widest uppercase shadow-md">
+                UNDANGAN PERNIKAHAN
+            </div>
+            <!-- Pelaminan Bride & Groom Pixel Sprite -->
+            <div class="w-14 sm:w-16 h-auto mt-1 drop-shadow-md">
+                <img src="/images/themes/melayu-pixelated/characters/bride_groom.png" alt="Pengantin" class="w-full h-auto object-contain">
+            </div>
+        </div>
 
-        <!-- Top Header & Circular Couple Avatar -->
-        <div class="relative z-10 w-full pt-1 flex flex-col items-center space-y-1">
-            <span class="text-[7.5px] sm:text-[8px] tracking-[0.25em] uppercase text-[#9EB092] font-semibold font-serif leading-none">
-                THE WEDDING OF
-            </span>
+        <!-- Center Welcome & Character Select Card (Exact Match to ref-welcome-character-select.jpg) -->
+        <div class="relative z-10 w-full px-0.5 my-auto">
+            <div class="rounded-xl bg-[#FAF4E6] border-2 border-[#3D271D] p-2 shadow-xl space-y-1 text-center">
+                <h4 class="text-[9px] sm:text-[10px] font-black text-[#3D271D] tracking-tight leading-none">
+                    Azalia &amp; Dias
+                </h4>
+                <p class="text-[5.5px] sm:text-[6.5px] text-[#6B4B3E] font-medium">
+                    30 September 2026
+                </p>
+                <div class="py-0.5 px-1 rounded bg-[#EFE5CD] border border-[#3D271D]/30 text-[5.5px] sm:text-[6.5px] text-[#3D271D] font-bold">
+                    Kepada: <span class="text-[#8B2500]">Tamu Undangan</span>
+                </div>
 
-            <!-- Circular Photo with Glowing Halo -->
-            <div class="relative my-0.5 sm:my-1 flex items-center justify-center">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-[2px] bg-gradient-to-b from-[#9EB092] via-[#9EB092]/50 to-[#131713] shadow-[0_0_22px_rgba(158,176,146,0.6)]">
-                    <div class="w-full h-full rounded-full overflow-hidden border border-[#9EB092]/80">
-                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&auto=format&fit=crop&q=80" 
-                             alt="Lisa & Theo" 
-                             class="w-full h-full object-cover">
+                <!-- 2 Character Choices -->
+                <div class="grid grid-cols-2 gap-1 pt-0.5">
+                    <div class="p-1 rounded-lg bg-[#EFE5CD] border border-[#3D271D] flex items-center gap-1 text-left">
+                        <img src="/images/themes/melayu-pixelated/characters/male/front_walk_1.png" alt="Pria" class="w-4 h-6 object-contain">
+                        <span class="text-[5.5px] font-black text-[#3D271D]">PRIA</span>
+                    </div>
+                    <div class="p-1 rounded-lg bg-[#FAF4E6] border border-[#3D271D]/40 flex items-center gap-1 text-left opacity-80">
+                        <img src="/images/themes/melayu-pixelated/characters/female/front_walk_1.png" alt="Wanita" class="w-4 h-6 object-contain">
+                        <span class="text-[5.5px] font-bold text-stone-600">WANITA</span>
                     </div>
                 </div>
-            </div>
 
-            <!-- Couple Names & Date -->
-            <div class="space-y-0.5 text-center">
-                <h4 class="font-script text-xl sm:text-2xl text-white font-normal leading-tight drop-shadow-sm tracking-wide" style="font-family: 'Great Vibes', cursive;">
-                    Lisa &amp; Theo
-                </h4>
-                <p class="text-[6.5px] sm:text-[7.5px] tracking-[0.22em] uppercase text-[#9EB092] font-semibold font-serif pt-0.5">
-                    MINGGU, 10 JANUARI 2027
-                </p>
+                <!-- Mulai Jelajahi Button -->
+                <div class="w-full py-1 rounded-md bg-[#E4C580] hover:bg-[#D4B368] border border-[#3D271D] text-[#3D271D] font-black text-[6.5px] sm:text-[7.5px] tracking-wider uppercase shadow-xs flex items-center justify-center gap-1">
+                    <span>&#9654; MULAI JELAJAHI</span>
+                </div>
             </div>
         </div>
 
-        <!-- Recipient Card -->
-        <div class="relative z-10 w-full px-1 my-auto">
-            <div class="rounded-xl bg-[#131713] border border-[#9EB092]/45 p-2 sm:p-2.5 shadow-lg space-y-0.5 text-center">
-                <p class="text-[5.5px] sm:text-[6.5px] tracking-[0.16em] uppercase text-[#9EB092] font-serif font-semibold">
-                    KEPADA YTH. BAPAK/IBU/SAUDARA/I:
-                </p>
-                <p class="text-[9.5px] sm:text-[10.5px] font-bold text-[#FAF7F2] font-serif leading-tight">
-                    BUDI SANTOSO &amp; PASANGAN
-                </p>
-                <p class="text-[5px] sm:text-[6px] italic text-[#D5DDD0]/70 font-serif">
-                    *Mohon maaf apabila ada kesalahan penulisan nama/gelar
-                </p>
+        <!-- Bottom Controller Hint -->
+        <div class="relative z-10 w-full pb-0.5 text-center">
+            <div class="inline-block px-2 py-0.5 rounded-full bg-[#1B4332]/90 border border-[#D4AF37]/60 text-[5px] sm:text-[6px] text-amber-200 font-mono tracking-tight shadow-sm">
+                Geser joystick &bull; WASD &bull; Tombol Aksi A
             </div>
-        </div>
-
-        <!-- Bottom Floral Ornament & Buka Undangan Button -->
-        <div class="relative z-10 w-full space-y-1.5 pb-0.5">
-            <!-- Floral Divider -->
-            <div class="w-24 sm:w-28 mx-auto pointer-events-none opacity-85">
-                <img src="/images/themes/serenade-dark/floral-divider.png" alt="" class="w-full h-auto object-contain">
-            </div>
-
-            <!-- Buka Undangan Pill Button -->
-            <div class="w-full py-1.5 px-3 rounded-full bg-[#9EB092] text-[#070807] font-bold text-[7.5px] sm:text-[8.5px] shadow-md flex items-center justify-center gap-1.5 uppercase tracking-wider font-serif">
-                <svg class="w-2.5 h-2.5 text-[#070807]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                </svg>
-                <span>BUKA UNDANGAN</span>
-            </div>
-
-            <!-- Home Bar Indicator -->
-            <div class="w-10 sm:w-12 h-0.5 bg-[#9EB092]/40 rounded-full mx-auto pointer-events-none"></div>
         </div>
     </div>
     @elseif($isTheme15)

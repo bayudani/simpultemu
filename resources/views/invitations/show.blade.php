@@ -505,29 +505,29 @@
                 'ornamentSecondary' => '#6D0E18',
             ],
             20 => [
-                'name' => 'Premium Serenade Dark Elegance',
-                'slug' => 'premium-serenade-dark-elegance',
+                'name' => 'Premium Melayu Pixelated',
+                'slug' => 'premium-melayu-pixelated',
                 'tier' => 'premium',
-                'bgCanvas' => '#070807',
-                'bgCard' => '#131713',
-                'bgAccentBlock' => '#1A211A',
-                'bgAccentLight' => '#212A21',
-                'textMain' => '#FAF7F2',
-                'textMuted' => '#9EB092',
-                'textAccent' => '#9EB092',
-                'textSecondary' => '#FAF7F2',
-                'borderFrame' => '#9EB092',
-                'frameRadius' => '24px',
-                'frameBorder' => '1.5px solid #9EB092',
-                'frameShadow' => '0 25px 60px -10px rgba(0, 0, 0, 0.7)',
-                'photoRadius' => '24px',
-                'heroPhotoRadius' => '9999px',
-                'profilePhotoRadius' => '24px',
-                'fontHeading' => "'Cinzel', Georgia, serif",
-                'fontScript' => "'Alex Brush', cursive",
-                'fontBody' => "'Urbanist', sans-serif",
-                'ornamentPrimary' => '#9EB092',
-                'ornamentSecondary' => '#588157',
+                'bgCanvas' => '#1A0E08',
+                'bgCard' => '#FAF4E6',
+                'bgAccentBlock' => '#3D271D',
+                'bgAccentLight' => '#FAF0D7',
+                'textMain' => '#2C1810',
+                'textMuted' => '#78543E',
+                'textAccent' => '#8B2500',
+                'textSecondary' => '#FAF4E6',
+                'borderFrame' => '#3D271D',
+                'frameRadius' => '16px',
+                'frameBorder' => '3px solid #3D271D',
+                'frameShadow' => '0 6px 0 #2A170E',
+                'photoRadius' => '12px',
+                'heroPhotoRadius' => '12px',
+                'profilePhotoRadius' => '12px',
+                'fontHeading' => "'Press Start 2P', monospace",
+                'fontScript' => "'Silkscreen', monospace",
+                'fontBody' => "'Silkscreen', monospace",
+                'ornamentPrimary' => '#D4AF37',
+                'ornamentSecondary' => '#1B4332',
             ],
         ];
 
@@ -815,8 +815,9 @@
             $t16GalIdx++;
         }
 
-        // Theme 20 (Premium Serenade Dark Elegance) Bespoke Variables & Photo Assets
-        $isDarkElegance = ($currentThemeId == 20) || ($currentThemeSlug === 'premium-serenade-dark-elegance') || (request()->route('theme') == 20);
+        // Theme 20 (Premium Melayu Pixelated) Bespoke Variables & Photo Assets
+        $isMelayuPixelated = ($currentThemeId == 20) || ($currentThemeSlug === 'premium-melayu-pixelated') || ($currentThemeSlug === 'premium-serenade-dark-elegance') || (request()->route('theme') == 20);
+        $isDarkElegance = false;
 
         $t20DefaultCover = 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&auto=format&fit=crop&q=80';
         $t20DefaultHero = 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&auto=format&fit=crop&q=80';
@@ -872,6 +873,7 @@
         while (count($t20GalleryPhotos) < 6) {
             $t20GalleryPhotos[] = $t20DefaultSlides[count($t20GalleryPhotos) % 5];
         }
+        $t20GalleryPhotos = array_slice($t20GalleryPhotos, 0, 6);
 
         // Theme 13 (Premium Summer Vibes) Bespoke Variables & Photo Assets
         $isSummerVibes = ($currentThemeId == 13) || ($currentThemeSlug === 'premium-summer-vibes') || ($currentThemeSlug === 'premium-serenade-royal-blue') || (request()->route('theme') == 13);
@@ -2006,10 +2008,18 @@
             border: 1.5px solid rgba(255, 255, 255, 0.3) !important;
         }
 
-        /* ================= THEME 20: PREMIUM SERENADE DARK ELEGANCE BESPOKE STYLING ================= */
-        [data-theme-id="20"] {
-            background-color: #070807 !important;
-            color: #FAF7F2 !important;
+        /* ================= THEME 20: PREMIUM MELAYU PIXELATED BESPOKE STYLING ================= */
+        [data-theme-id="20"], [data-theme-slug="premium-melayu-pixelated"] {
+            background-color: #1A0E08 !important;
+        }
+
+        [data-theme-id="20"] #floating-autoscroll-container,
+        [data-theme-slug="premium-melayu-pixelated"] #floating-autoscroll-container,
+        [data-theme-id="20"] #floating-bottom-nav-wrapper,
+        [data-theme-slug="premium-melayu-pixelated"] #floating-bottom-nav-wrapper,
+        [data-theme-id="20"] #floating-music-container,
+        [data-theme-slug="premium-melayu-pixelated"] #floating-music-container {
+            display: none !important;
         }
 
         [data-theme-id="20"] #invitation-main-content {
@@ -6389,6 +6399,9 @@
       data-theme-slug="{{ $currentThemeSlug }}"
       data-tier="{{ $currentThemeTier }}">
 
+    @if($isMelayuPixelated)
+        @include('invitations.themes.premium-melayu-pixelated')
+    @else
     @if($currentThemeId == 15 || $isMidnightAmber)
     <!-- ================= THEME 15 CONTINUOUS WIND-BLOWN BLOSSOMS PARTICLES (GAMBAR 8) ================= -->
     <div id="amber-wind-particles" class="fixed inset-0 pointer-events-none z-[70] overflow-hidden select-none" style="perspective: 1200px;" aria-hidden="true">
@@ -22859,7 +22872,7 @@
             @endif
         </footer>
     </main>
-
+    @endif
 
     <!-- ================= 10. KOMPONEN MELAYANG (FLOATING UI) ================= -->
 

@@ -485,26 +485,26 @@ class ThemeSeeder extends Seeder
                 ]),
                 'is_active' => true,
             ],
-            // 20. Premium Serenade Dark Elegance
+            // 20. Premium Melayu Pixelated
             [
-                'name' => 'Premium Serenade Dark Elegance',
-                'slug' => 'premium-serenade-dark-elegance',
+                'name' => 'Premium Melayu Pixelated',
+                'slug' => 'premium-melayu-pixelated',
                 'tier' => 'premium',
                 'price' => 59000,
-                'description' => 'Cinematic Wide Spotlight foto horizontal sinematik lampu sorot dramatis, carbon noir #0D0D0D mawar hitam & garis tembaga, Mea Culpa + DM Serif Display, slow zoom & bara api hangat.',
-                'preview_image' => 'themes/premium-serenade-dark-elegance.jpg',
+                'description' => 'Undangan pernikahan interaktif bertema game retro pixel-art RPG adat Melayu. Dilengkapi analog joystick virtual untuk menjelajahi aula istana, pelaminan beranimasi, serta pop-up kartu pixelated yang memikat.',
+                'preview_image' => 'themes/premium-melayu-pixelated.jpg',
                 'theme_config' => json_encode([
-                    'layout' => 'cinematic_spotlight',
-                    'font_heading' => 'Mea Culpa',
-                    'font_body' => 'DM Serif Display',
-                    'google_fonts' => 'Mea+Culpa&family=DM+Serif+Display:ital@0;1',
-                    'bg_color' => '#0D0D0D',
-                    'bg_texture' => 'carbon_spotlight',
-                    'primary_color' => '#ea580c',
-                    'secondary_color' => '#c2410c',
-                    'accent_color' => '#fb923c',
-                    'text_color' => '#FAF5EE',
-                    'animation' => 'sparkle',
+                    'layout' => 'rpg_pixel_quest',
+                    'font_heading' => 'Press Start 2P',
+                    'font_body' => 'Silkscreen',
+                    'google_fonts' => 'Press+Start+2P&family=Silkscreen:wght@400;700',
+                    'bg_color' => '#FAF4E6',
+                    'bg_texture' => 'pixel_hall',
+                    'primary_color' => '#3D271D',
+                    'secondary_color' => '#064E3B',
+                    'accent_color' => '#D4AF37',
+                    'text_color' => '#3D271D',
+                    'animation' => 'pixel_walk',
                     'default_music' => 'Insya Allah (Acoustic Guitar Instrumental)',
                 ]),
                 'is_active' => true,
@@ -512,6 +512,19 @@ class ThemeSeeder extends Seeder
         ];
 
         foreach ($themes as $index => $themeData) {
+            $existingTheme = Theme::find($index + 1);
+            if ($existingTheme && ! empty($existingTheme->theme_config)) {
+                $existingConfig = is_array($existingTheme->theme_config)
+                    ? $existingTheme->theme_config
+                    : (json_decode($existingTheme->theme_config, true) ?? []);
+
+                if (isset($existingConfig['default_music_id'])) {
+                    $newConfig = json_decode($themeData['theme_config'], true) ?? [];
+                    $newConfig['default_music_id'] = $existingConfig['default_music_id'];
+                    $themeData['theme_config'] = json_encode($newConfig);
+                }
+            }
+
             Theme::updateOrCreate(
                 ['id' => $index + 1],
                 $themeData

@@ -132,7 +132,7 @@
 
         <!-- Dual-Layer Curved SVG Shape Divider at Bottom -->
         <div class="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none z-20 pointer-events-none">
-            <svg class="relative block w-full h-[60px] md:h-[100px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <svg class="relative block w-full h-[36px] sm:h-[46px] md:h-[58px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
                 <path d="M0,0 C180,95 380,-30 520,65 C680,165 920,15 1200,45 L1200,120 L0,120 Z" fill="#DBF6FF" opacity="0.3"></path>
                 <path d="M0,35 C320,125 620,15 920,85 C1060,115 1160,65 1200,55 L1200,120 L0,120 Z" fill="#FFFFFF"></path>
             </svg>
@@ -140,11 +140,11 @@
     </section>
 
     <!-- Featured Themes Section -->
-    <section id="tema-pilihan" class="relative py-24 bg-white border-b border-slate-200 overflow-hidden">
+    <section id="tema-pilihan" class="relative pt-8 sm:pt-12 md:pt-14 pb-20 sm:pb-24 bg-white border-b border-slate-200 overflow-hidden">
         @include('partials.side-geometric-mesh', ['hasTopWave' => true])
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 space-y-3">
+            <div class="text-center mb-10 sm:mb-12 space-y-3">
                 <span class="reveal-init reveal-down delay-100 inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#DBF6FF] text-[#0284C7] border border-[#BAEAF8]">
                     Koleksi Desain Pernikahan
                 </span>

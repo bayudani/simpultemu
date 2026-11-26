@@ -89,7 +89,7 @@
                         </ul>
                     </div>
                     <div class="pt-3 sm:pt-3.5">
-                        <button type="button" onclick="checkoutPackage('basic_addon_1', this)" class="w-full py-1.5 sm:py-2 px-3 rounded-xl border-2 border-[#FF2E3A] text-[#FF2E3A] hover:bg-[#FF2E3A] hover:text-white font-bold text-[11px] sm:text-xs text-center transition cursor-pointer flex items-center justify-center gap-1 shadow-2xs">
+                        <button type="button" id="btn-checkout-addon-1" onclick="checkoutPackage('basic_addon_1', this)" class="w-full py-1.5 sm:py-2 px-3 rounded-xl border-2 border-[#FF2E3A] text-[#FF2E3A] hover:bg-[#FF2E3A] hover:text-white font-bold text-[11px] sm:text-xs text-center transition cursor-pointer flex items-center justify-center gap-1 shadow-2xs">
                             <span>Dapatkan Sekarang</span>
                             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                         </button>
@@ -147,7 +147,7 @@
                         </ul>
                     </div>
                     <div class="pt-3 sm:pt-3.5">
-                        <button type="button" onclick="checkoutPackage('basic_addon_2', this)" class="w-full py-1.5 sm:py-2 px-3 rounded-xl border-2 border-[#FF2E3A] text-[#FF2E3A] hover:bg-[#FF2E3A] hover:text-white font-bold text-[11px] sm:text-xs text-center transition cursor-pointer flex items-center justify-center gap-1 shadow-2xs">
+                        <button type="button" id="btn-checkout-addon-2" onclick="checkoutPackage('basic_addon_2', this)" class="w-full py-1.5 sm:py-2 px-3 rounded-xl border-2 border-[#FF2E3A] text-[#FF2E3A] hover:bg-[#FF2E3A] hover:text-white font-bold text-[11px] sm:text-xs text-center transition cursor-pointer flex items-center justify-center gap-1 shadow-2xs">
                             <span>Dapatkan Sekarang</span>
                             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                         </button>
@@ -243,10 +243,10 @@
                         </svg>
                         <span>Simulasi:</span>
                     </span>
-                    <button type="button" onclick="simulateSandboxPayment('basic_addon_1')" class="px-2 py-0.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 text-[9.5px] sm:text-[10px] font-semibold transition cursor-pointer" title="Simulasi Bayar Add-On 1">
+                    <button type="button" id="sim-btn-addon-1" onclick="simulateSandboxPayment('basic_addon_1')" class="px-2 py-0.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 text-[9.5px] sm:text-[10px] font-semibold transition cursor-pointer" title="Simulasi Bayar Add-On 1">
                         + Add-On 1 (12 Tamu)
                     </button>
-                    <button type="button" onclick="simulateSandboxPayment('basic_addon_2')" class="px-2 py-0.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 text-[9.5px] sm:text-[10px] font-semibold transition cursor-pointer" title="Simulasi Bayar Add-On 2">
+                    <button type="button" id="sim-btn-addon-2" onclick="simulateSandboxPayment('basic_addon_2')" class="px-2 py-0.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 text-[9.5px] sm:text-[10px] font-semibold transition cursor-pointer" title="Simulasi Bayar Add-On 2">
                         + Add-On 2 (17 Tamu)
                     </button>
                     <button type="button" onclick="simulateSandboxPayment('premium')" class="px-2 py-0.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-[#FF2E3A] border border-rose-300 text-[9.5px] sm:text-[10px] font-bold transition cursor-pointer flex items-center gap-1" title="Simulasi Bayar Premium">
@@ -267,7 +267,11 @@
 </div>
 
 <!-- ================= DUITKU POPUP JS LOADER & CHECKOUT SCRIPT ================= -->
+@if(str_contains(config('services.duitku.base_url', ''), 'sandbox') || env('DUITKU_SANDBOX_MODE', true))
 <script src="https://app-sandbox.duitku.com/lib/js/duitku.js"></script>
+@else
+<script src="https://app.duitku.com/lib/js/duitku.js"></script>
+@endif
 <script>
 let currentUpgradeInvitationId = null;
 let currentFocusedTier = null;
@@ -307,6 +311,28 @@ function openUpgradeModal(invitationId = null, reasonText = '', focusedTier = nu
             premCard.classList.remove('opacity-60');
             premCard.classList.add('scale-[1.02]', 'ring-4', 'ring-[#FF2E3A]');
         }
+
+        // Nonaktifkan tombol Dapatkan Sekarang pada Add-On karena tema Premium hanya bisa dibuka lewat Paket Premium
+        const btnAddon1 = document.getElementById('btn-checkout-addon-1');
+        const btnAddon2 = document.getElementById('btn-checkout-addon-2');
+        if (btnAddon1) {
+            btnAddon1.disabled = true;
+            btnAddon1.classList.remove('border-[#FF2E3A]', 'text-[#FF2E3A]', 'hover:bg-[#FF2E3A]', 'hover:text-white', 'cursor-pointer');
+            btnAddon1.classList.add('bg-slate-100', 'border-slate-300', 'text-slate-400', 'cursor-not-allowed');
+            btnAddon1.innerHTML = '<span>Hanya untuk Tema Basic</span>';
+        }
+        if (btnAddon2) {
+            btnAddon2.disabled = true;
+            btnAddon2.classList.remove('border-[#FF2E3A]', 'text-[#FF2E3A]', 'hover:bg-[#FF2E3A]', 'hover:text-white', 'cursor-pointer');
+            btnAddon2.classList.add('bg-slate-100', 'border-slate-300', 'text-slate-400', 'cursor-not-allowed');
+            btnAddon2.innerHTML = '<span>Hanya untuk Tema Basic</span>';
+        }
+
+        const simBtn1 = document.getElementById('sim-btn-addon-1');
+        const simBtn2 = document.getElementById('sim-btn-addon-2');
+        if (simBtn1) simBtn1.classList.add('hidden');
+        if (simBtn2) simBtn2.classList.add('hidden');
+
         setTimeout(() => {
             if (premCard) {
                 premCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -324,6 +350,27 @@ function openUpgradeModal(invitationId = null, reasonText = '', focusedTier = nu
         if (premCard) {
             premCard.classList.remove('scale-[1.02]', 'ring-4', 'ring-[#FF2E3A]');
         }
+
+        // Aktifkan kembali tombol Add-On untuk tema Basic
+        const btnAddon1 = document.getElementById('btn-checkout-addon-1');
+        const btnAddon2 = document.getElementById('btn-checkout-addon-2');
+        if (btnAddon1) {
+            btnAddon1.disabled = false;
+            btnAddon1.classList.add('border-[#FF2E3A]', 'text-[#FF2E3A]', 'hover:bg-[#FF2E3A]', 'hover:text-white', 'cursor-pointer');
+            btnAddon1.classList.remove('bg-slate-100', 'border-slate-300', 'text-slate-400', 'cursor-not-allowed');
+            btnAddon1.innerHTML = '<span>Dapatkan Sekarang</span><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>';
+        }
+        if (btnAddon2) {
+            btnAddon2.disabled = false;
+            btnAddon2.classList.add('border-[#FF2E3A]', 'text-[#FF2E3A]', 'hover:bg-[#FF2E3A]', 'hover:text-white', 'cursor-pointer');
+            btnAddon2.classList.remove('bg-slate-100', 'border-slate-300', 'text-slate-400', 'cursor-not-allowed');
+            btnAddon2.innerHTML = '<span>Dapatkan Sekarang</span><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>';
+        }
+
+        const simBtn1 = document.getElementById('sim-btn-addon-1');
+        const simBtn2 = document.getElementById('sim-btn-addon-2');
+        if (simBtn1) simBtn1.classList.remove('hidden');
+        if (simBtn2) simBtn2.classList.remove('hidden');
     }
 
     if (modal) {
@@ -421,6 +468,10 @@ async function handlePaymentSuccess(result, packageTier, buttonEl = null, origin
 }
 
 async function simulateSandboxPayment(packageTier = 'premium') {
+    if (currentFocusedTier === 'premium' && (packageTier === 'basic_addon_1' || packageTier === 'basic_addon_2')) {
+        alert('Paket Add-On hanya untuk tema Basic. Untuk membuka tema Premium dan lanjut ke Langkah 2, silakan pilih Paket Premium (Rp 59.000).');
+        return;
+    }
     if (!confirm('Apakah Anda ingin menyimulasikan konfirmasi pembayaran Duitku berhasil untuk paket ' + packageTier.toUpperCase() + '?')) return;
     await handlePaymentSuccess({
         merchantOrderId: 'SIM-' + Date.now(),
@@ -429,6 +480,10 @@ async function simulateSandboxPayment(packageTier = 'premium') {
 }
 
 async function checkoutPackage(packageTier, buttonEl = null) {
+    if (currentFocusedTier === 'premium' && (packageTier === 'basic_addon_1' || packageTier === 'basic_addon_2')) {
+        alert('Paket Add-On hanya untuk tema Basic. Untuk membuka tema Premium dan lanjut ke Langkah 2, silakan pilih Paket Premium (Rp 59.000).');
+        return;
+    }
     let originalHtml = '';
     if (buttonEl) {
         originalHtml = buttonEl.innerHTML;

@@ -1,8 +1,8 @@
 @php
     $hasTopWave = $hasTopWave ?? false;
     $topMask = $hasTopWave
-        ? "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.05) 30px, rgba(0,0,0,0.5) 80px, black 160px)"
-        : "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 20px, black 60px)";
+        ? "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 12px, rgba(0,0,0,0.85) 30px, black 48px)"
+        : "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 15px, black 40px)";
 @endphp
 
 <!-- Left Flank Ornament: Blue geometric mesh + ambient glow + smooth gradient blur towards center -->
@@ -17,7 +17,7 @@
     <!-- 2. Geometric mesh lattice pattern with smooth horizontal opacity fade -->
     <div
         class="absolute inset-0"
-        style="background-image: url('/images/patterns/blue-geometric-mesh.svg?v=20261121_02'); background-repeat: repeat; background-size: 52px 52px; -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.28) 35%, rgba(0,0,0,0.08) 70%, rgba(0,0,0,0) 95%); mask-image: linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.28) 35%, rgba(0,0,0,0.08) 70%, rgba(0,0,0,0) 95%);"
+        style="background-image: url('/images/patterns/blue-geometric-mesh.svg?v=20261126_original_circle'); background-repeat: repeat; background-size: 52px 52px; -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.28) 35%, rgba(0,0,0,0.08) 70%, rgba(0,0,0,0) 95%); mask-image: linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.28) 35%, rgba(0,0,0,0.08) 70%, rgba(0,0,0,0) 95%);"
     ></div>
 
     <!-- 3. Soft gradient blur layer that diffuses the pattern towards the center -->
@@ -26,11 +26,11 @@
         style="-webkit-mask-image: linear-gradient(to right, transparent 20%, rgba(0,0,0,0.5) 55%, black 90%); mask-image: linear-gradient(to right, transparent 20%, rgba(0,0,0,0.5) 55%, black 90%);"
     ></div>
 
-    <!-- 4. Top wave soft blur diffuser to seamlessly melt into the wave -->
+    <!-- 4. Top wave soft blur diffuser to seamlessly melt into the wave without dense white fog -->
     @if($hasTopWave)
         <div
-            class="absolute top-0 left-0 right-0 h-32 md:h-48 backdrop-blur-[2px] md:backdrop-blur-[3px]"
-            style="-webkit-mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%); mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);"
+            class="absolute top-0 left-0 right-0 h-8 md:h-12 backdrop-blur-[1px]"
+            style="-webkit-mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.4) 40%, transparent 100%); mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.4) 40%, transparent 100%);"
         ></div>
     @endif
 </div>
@@ -47,7 +47,7 @@
     <!-- 2. Geometric mesh lattice pattern with smooth horizontal opacity fade -->
     <div
         class="absolute inset-0"
-        style="background-image: url('/images/patterns/blue-geometric-mesh.svg?v=20261121_02'); background-repeat: repeat; background-size: 52px 52px; -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.28) 35%, rgba(0,0,0,0.08) 70%, rgba(0,0,0,0) 95%); mask-image: linear-gradient(to left, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.28) 35%, rgba(0,0,0,0.08) 70%, rgba(0,0,0,0) 95%);"
+        style="background-image: url('/images/patterns/blue-geometric-mesh.svg?v=20261126_original_circle'); background-repeat: repeat; background-size: 52px 52px; -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.28) 35%, rgba(0,0,0,0.08) 70%, rgba(0,0,0,0) 95%); mask-image: linear-gradient(to left, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.28) 35%, rgba(0,0,0,0.08) 70%, rgba(0,0,0,0) 95%);"
     ></div>
 
     <!-- 3. Soft gradient blur layer that diffuses the pattern towards the center -->
@@ -56,11 +56,11 @@
         style="-webkit-mask-image: linear-gradient(to left, transparent 20%, rgba(0,0,0,0.5) 55%, black 90%); mask-image: linear-gradient(to left, transparent 20%, rgba(0,0,0,0.5) 55%, black 90%);"
     ></div>
 
-    <!-- 4. Top wave soft blur diffuser to seamlessly melt into the wave -->
+    <!-- 4. Top wave soft blur diffuser to seamlessly melt into the wave without dense white fog -->
     @if($hasTopWave)
         <div
-            class="absolute top-0 left-0 right-0 h-32 md:h-48 backdrop-blur-[2px] md:backdrop-blur-[3px]"
-            style="-webkit-mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%); mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);"
+            class="absolute top-0 left-0 right-0 h-8 md:h-12 backdrop-blur-[1px]"
+            style="-webkit-mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.4) 40%, transparent 100%); mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.4) 40%, transparent 100%);"
         ></div>
     @endif
 </div>

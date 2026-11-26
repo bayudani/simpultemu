@@ -10,9 +10,9 @@
     <div class="relative z-10 max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         
         <!-- Brand Header Section -->
-        <div class="text-center max-w-2xl mx-auto space-y-2.5 sm:space-y-3">
+        <div class="text-center max-w-3xl sm:max-w-4xl mx-auto space-y-3 sm:space-y-4">
             <!-- Modern Pill Badge -->
-            <div class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-[#DBF6FF] text-[#0284C7] text-[10px] sm:text-xs font-bold tracking-wider uppercase shadow-2xs">
+            <div class="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full bg-[#DBF6FF] text-[#0284C7] text-[10px] sm:text-xs font-bold tracking-wider uppercase shadow-2xs">
                 <svg class="w-3.5 h-3.5 text-[#0284C7]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                 </svg>
@@ -20,12 +20,12 @@
             </div>
             
             <!-- Headline Title -->
-            <h1 class="font-heading text-2xl sm:text-4xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            <h1 class="font-heading text-3xl sm:text-5xl lg:text-5xl xl:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
                 Pilih Paket Yang Sesuai Dengan <span class="text-[#FF2E3A]">Kebutuhanmu</span>
             </h1>
             
             <!-- Subtitle -->
-            <p class="font-sans text-slate-600 text-xs sm:text-base font-normal max-w-xl mx-auto leading-relaxed">
+            <p class="font-sans text-slate-600 text-xs sm:text-base md:text-lg font-normal max-w-xl mx-auto leading-relaxed">
                 Buat undangan lebih lengkap, semakin berkesan. Akses selamanya tanpa biaya langganan bulanan.
             </p>
         </div>
@@ -204,7 +204,6 @@
                         <div class="mt-1.5 sm:mt-2.5">
                             <span class="font-serif text-xl sm:text-3xl lg:text-4xl font-extrabold text-white">Rp59.000</span>
                         </div>
-                        <p class="text-[10px] sm:text-xs text-white/80 mt-0.5">Akses VIP seumur hidup</p>
                     </div>
 
                     <!-- Features List -->
@@ -227,6 +226,12 @@
                                     <svg class="w-2 h-2 sm:w-2.5 sm:h-2.5" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
                                 </span>
                                 <span>Buka Seluruh 20 Tema Eksklusif</span>
+                            </li>
+                            <li class="flex items-start gap-1.5 sm:gap-2.5 text-white/95">
+                                <span class="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-white text-[#FF2E3A] flex items-center justify-center shrink-0 mt-0.5">
+                                    <svg class="w-2 h-2 sm:w-2.5 sm:h-2.5" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                </span>
+                                <span>Akses Tema Menarik</span>
                             </li>
                         </ul>
                     </div>

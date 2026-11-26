@@ -27,15 +27,15 @@
             $faqs = [
                 [
                     'q' => 'Apakah SimpulTemu benar-benar gratis?',
-                    'a' => 'Ya, 100% gratis untuk seluruh 10 tema Basic! Anda dapat menggunakan fitur esensial seperti nama tamu personal, RSVP, ucapan doa, hitung mundur acara, navigasi Google Maps, dan info rekening/amplop digital tanpa biaya apa pun selamanya.'
+                    'a' => 'Ya, SimpulTemu 100% gratis untuk seluruh 10 pilihan tema Basic! Anda langsung mendapatkan kuota gratis hingga 5 nama tamu khusus dan 5 pilihan lagu latar romantis, lengkap dengan fitur esensial seperti RSVP, ucapan doa, hitung mundur acara, navigasi Google Maps, dan amplop digital tanpa biaya apa pun selamanya. Jika Anda membutuhkan kuota nama tamu atau pilihan lagu lebih banyak untuk tema Basic, tersedia opsi paket Add-On terjangkau (mulai Rp 17.000).'
                 ],
                 [
-                    'q' => 'Apa perbedaan paket Basic dan Premium?',
-                    'a' => 'Paket Basic memberikan 10 pilihan tema elegan siap pakai tanpa biaya dengan batas maksimal 20 tamu undangan. Sedangkan paket Premium (Rp 59.000 / undangan) membuka akses tamu undangan tanpa batas (unlimited), 10 tema eksklusif tambahan dengan desain mewah, pemutar musik latar otomatis/lagu kustom, upload foto galeri & prewedding beresolusi tinggi, serta efek animasi yang lebih kaya.'
+                    'q' => 'Apa perbedaan paket Basic, Add-On, dan Premium?',
+                    'a' => 'Paket Basic (Gratis) memberikan 10 tema estetik dengan kuota bawaan 5 nama tamu dan 5 lagu. Paket Add-On dirancang khusus untuk pengguna tema Basic yang ingin menambah kuota tanpa harus beralih tema (Add-On 1: total 12 tamu & 10 lagu seharga Rp 17.000; Add-On 2: total 17 tamu & akses 20 lagu seharga Rp 25.000). Sedangkan Paket Premium (Rp 59.000 / undangan) membuka seluruh 20 tema eksklusif luxury, tamu undangan tak terbatas, lagu tak terbatas termasuk upload musik sendiri, serta galeri foto & cerita cinta tanpa batas.'
                 ],
                 [
                     'q' => 'Bagaimana cara mengirimkan undangan ke para tamu?',
-                    'a' => 'Cukup tambahkan daftar nama tamu di dashboard. Sistem akan secara otomatis mengenerate tautan personal unik untuk masing-masing tamu (misal: simpultemu.my.id/u/radit-amanda?to=Bapak+Budi). Anda dapat langsung mengklik tombol bagikan via WhatsApp dengan draft pesan otomatis yang sudah tersusun rapi.'
+                    'a' => 'Cukup tambahkan daftar nama tamu di dashboard. Sistem akan secara otomatis mengenerate tautan personal unik untuk masing-masing tamu (misal: simpultemu.test/undangan/nama-mempelai/t/token?to=Nama+Tamu). Anda dapat langsung mengklik tombol bagikan via WhatsApp dengan draft pesan otomatis yang sudah tersusun rapi.'
                 ],
                 [
                     'q' => 'Apakah setiap tamu mendapatkan link dengan nama mereka sendiri?',
@@ -59,11 +59,11 @@
                 ],
                 [
                     'q' => 'Bisakah saya menambahkan lagu latar (background music) favorit?',
-                    'a' => 'Fitur musik latar tersedia pada tema Premium. Anda dapat memilih dari daftar lagu romantis yang kami sediakan atau memasukkan tautan musik pilihan Anda agar suasana undangan terasa semakin syahdu dan romantis.'
+                    'a' => 'Tentu bisa! Pada tema Basic gratis Anda dapat memilih dari 5 lagu romantis (dan hingga 20 lagu lewat paket Add-On). Sedangkan pada Paket Premium, Anda bebas memilih dari seluruh pustaka lagu atau mengunggah lagu kustom favorit Anda sendiri.'
                 ],
                 [
-                    'q' => 'Bagaimana alur pembayaran untuk tema Premium?',
-                    'a' => 'Pembayaran tema Premium dilakukan sekali di awal (Rp 59.000 / undangan) tanpa biaya tersembunyi. Didukung oleh integrasi gateway pembayaran Duitku Pop-up instan via QRIS, Virtual Account bank, dan e-wallet.'
+                    'q' => 'Bagaimana alur pembayaran untuk paket Add-On atau Premium?',
+                    'a' => 'Pembayaran dilakukan sekali bayar per undangan tanpa biaya langganan bulanan. Didukung oleh integrasi gateway pembayaran Duitku Pop-up instan via QRIS, Virtual Account bank, dan e-wallet yang langsung aktif otomatis seketika setelah pembayaran terverifikasi.'
                 ],
             ];
             @endphp

@@ -32,7 +32,7 @@
             </a>
             @if($isLimitReached)
                 <button type="button" onclick="openUpgradeModal({{ $invitation->id }}, 'Batas {{ $guestLimit }} tamu untuk {{ $packageLabel }} telah tercapai. Tambah kuota atau upgrade ke Premium sekarang!')" class="inline-flex items-center px-3.5 sm:px-4 py-2 border border-transparent shadow-xs text-xs sm:text-sm font-bold rounded-xl text-white bg-gradient-to-r from-amber-500 to-[#FF2E3A] hover:opacity-95 cursor-pointer">
-                    ✨ Tambah Kuota / Upgrade
+                    <svg class="w-3.5 h-3.5 inline-block mr-1 fill-current" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.2L12 16.8 5.7 21.2 8 14l-6-4.6h7.6z"/></svg>Tambah Kuota / Upgrade
                 </button>
             @else
                 <button type="button" onclick="document.getElementById('add-guest-modal').classList.remove('hidden')" class="inline-flex items-center px-3.5 sm:px-4 py-2 border border-transparent shadow-xs text-xs sm:text-sm font-semibold rounded-xl text-white bg-[#FF2E3A] hover:bg-[#E01E2A] cursor-pointer transition">

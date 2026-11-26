@@ -329,8 +329,8 @@
                     <!-- Banner Alert jika memilih Tema Premium -->
                     <div id="premium-theme-notice-banner" class="hidden p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-amber-50 via-rose-50 to-orange-50 border border-amber-300 text-amber-950 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs transition-all duration-300">
                         <div class="flex items-start gap-2.5">
-                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold shrink-0 shadow-xs mt-0.5">
-                                ⭐
+                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                                <svg class="w-4 h-4 fill-current text-white" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             </span>
                             <div>
                                 <h4 class="text-xs sm:text-sm font-bold text-slate-900" id="premium-banner-title">Tema Premium Serenade Terpilih (Rp 59.000 / undangan)</h4>
@@ -374,8 +374,8 @@
                         <!-- Banner Header Seksi Premium -->
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 sm:p-4.5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-orange-500/5 border border-amber-300/80 shadow-2xs">
                             <div class="flex items-center gap-3">
-                                <span class="w-10 h-10 rounded-2xl bg-gradient-to-br from-amber-500 to-rose-500 text-white flex items-center justify-center font-bold text-lg shadow-md shrink-0">
-                                    👑
+                                <span class="w-10 h-10 rounded-2xl bg-gradient-to-br from-amber-500 to-rose-500 text-white flex items-center justify-center font-bold shadow-md shrink-0">
+                                    <svg class="w-5 h-5 fill-current text-white" viewBox="0 0 24 24"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/></svg>
                                 </span>
                                 <div>
                                     <div class="flex items-center gap-2 flex-wrap">
@@ -550,8 +550,9 @@
                                 <div class="p-3.5 bg-white rounded-xl border border-[#E7E0D6] space-y-1.5">
                                     <label for="galleryPhotoInput" class="block text-xs font-semibold text-stone-700">Pilih / Tambah Foto Galeri (Bisa Pilih Banyak Sekaligus)</label>
                                     <input type="file" name="gallery_photos[]" id="galleryPhotoInput" multiple accept="image/jpeg,image/png,image/jpg,image/webp" class="block w-full text-xs text-stone-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-emerald-600/10 file:text-emerald-700 hover:file:bg-emerald-600/20 cursor-pointer">
-                                    <p id="theme-gallery-tip-text" class="text-[11px] text-stone-500 leading-relaxed">
-                                        ★ Pada tema ini, galeri dapat menampilkan hingga <strong>8 foto</strong> dengan tata letak estetik. Format: JPG, PNG, WebP (Maks 25MB per foto).
+                                    <p id="theme-gallery-tip-text" class="text-[11px] text-stone-500 leading-relaxed flex items-center gap-1.5">
+                                        <svg class="w-3.5 h-3.5 text-amber-500 fill-current shrink-0" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                        <span>Pada tema ini, galeri dapat menampilkan hingga <strong>6 foto</strong> dengan tata letak estetik. Format: JPG, PNG, WebP (Maks 25MB per foto).</span>
                                     </p>
                                 </div>
 
@@ -1449,21 +1450,25 @@
                                     <div id="step6-host-advanced-panel" class="hidden mt-3 pt-3 border-t border-emerald-200/70 space-y-2">
                                         <div class="flex items-center gap-1.5 flex-wrap">
                                             <span class="text-[11px] font-bold text-slate-700 mr-1">Pilih Mode:</span>
-                                            <button type="button" id="step6-host-pill-custom" onclick="setStep6HostMode('custom')" class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-600 text-white shadow-2xs transition cursor-pointer">
-                                                🌐 Online (Cloudflare)
+                                            <button type="button" id="step6-host-pill-custom" onclick="setStep6HostMode('custom')" class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-600 text-white shadow-2xs transition cursor-pointer flex items-center gap-1">
+                                                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                                                <span>Online (Cloudflare)</span>
                                             </button>
-                                            <button type="button" id="step6-host-pill-wifi" onclick="setStep6HostMode('wifi')" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition cursor-pointer">
-                                                📱 Wi-Fi Lokal
+                                            <button type="button" id="step6-host-pill-wifi" onclick="setStep6HostMode('wifi')" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition cursor-pointer flex items-center gap-1">
+                                                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                                                <span>Wi-Fi Lokal</span>
                                             </button>
-                                            <button type="button" id="step6-host-pill-local" onclick="setStep6HostMode('local')" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition cursor-pointer">
-                                                💻 Laptop (Localhost)
+                                            <button type="button" id="step6-host-pill-local" onclick="setStep6HostMode('local')" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition cursor-pointer flex items-center gap-1">
+                                                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                                <span>Laptop (Localhost)</span>
                                             </button>
                                         </div>
 
                                         <div id="step6-custom-host-container" class="flex items-center gap-2 pt-1">
                                             <input type="text" id="step6-custom-host-input" value="{{ request()->getSchemeAndHttpHost() }}" placeholder="https://domain-anda.com" oninput="onStep6CustomHostInput(this.value)" class="w-full px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-mono text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-400">
-                                            <button type="button" onclick="checkStep6CloudflareTunnel(true)" class="shrink-0 px-2.5 py-1.5 rounded-lg bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-[11px] font-bold transition cursor-pointer" title="Deteksi otomatis Cloudflare">
-                                                🔄 Cek
+                                            <button type="button" onclick="checkStep6CloudflareTunnel(true)" class="shrink-0 px-2.5 py-1.5 rounded-lg bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-[11px] font-bold transition cursor-pointer flex items-center gap-1" title="Deteksi otomatis Cloudflare">
+                                                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                                                <span>Cek</span>
                                             </button>
                                         </div>
                                     </div>
@@ -1508,7 +1513,7 @@
                                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                                             </svg>
-                                            <span>+ Simpan</span>
+                                            <span>Simpan</span>
                                         </button>
                                     </div>
                                     <p class="text-[11px] text-slate-500 leading-relaxed">
@@ -1600,7 +1605,7 @@
                                     <!-- Alert Saat Kuota Penuh (5 Tamu Terisi) -->
                                     <div id="step6-quota-limit-warning" class="hidden p-3 rounded-xl bg-amber-50 border border-amber-300 text-amber-900 text-xs space-y-2">
                                         <div class="flex items-start gap-2">
-                                            <span class="text-base shrink-0">⚠️</span>
+                                            <span class="shrink-0 text-amber-600 mt-0.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg></span>
                                             <span class="leading-relaxed"><strong>Batas Kuota Tercapai (5 Tamu):</strong> Tidak dapat menambah nama tamu baru lagi pada paket Basic. Anda tetap bisa <u>mengedit/mengganti nama tamu</u> di daftar secara <strong>Gratis</strong> kapan saja tanpa bayar, atau beli paket Add-On di bawah untuk menambah kuota!</span>
                                         </div>
                                         <button type="button" onclick="openUpgradeModal(window.CURRENT_INVITATION_ID, 'Batas maksimal 5 tamu paket Basic telah tercapai. Beli Add-On (mulai Rp17.000) atau upgrade ke Premium untuk menambah kuota tamu!', 'addon')" class="w-full py-1.5 px-3 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs transition cursor-pointer shadow-2xs text-center">
@@ -1634,7 +1639,7 @@
                                     </div>
                                     <div class="flex items-center justify-between text-[11px] text-slate-400">
                                         <span>Tekan <kbd class="px-1.5 py-0.5 rounded bg-white border border-slate-200 font-mono text-[10px] text-slate-600">Enter</kbd> untuk simpan</span>
-                                        <span class="text-emerald-600 font-medium">✓ Siap WhatsApp</span>
+                                        <span class="text-emerald-600 font-medium inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span>Siap WhatsApp</span></span>
                                     </div>
                                 </div>
 
@@ -1666,7 +1671,7 @@
                                         <svg class="w-4 h-4 text-sky-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                         </svg>
-                                        <span>💡 Ingin Ganti Nama Tamu? Bebas &amp; 100% Gratis!</span>
+                                        <svg class="w-4 h-4 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg><span>Ingin Ganti Nama Tamu? Bebas &amp; 100% Gratis!</span>
                                     </div>
                                     <div class="text-[11px] text-sky-900/90 leading-relaxed space-y-1 pl-6">
                                         <p>
@@ -1690,7 +1695,8 @@
                                     
                                     <!-- Pencarian Tamu -->
                                     <div id="step6-guest-search-container" class="relative sm:w-56">
-                                        <input type="text" id="step6-guest-search-input" oninput="filterStep6GuestList(this.value)" placeholder="🔍 Cari nama tamu..." class="w-full pl-8 pr-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-700 focus:outline-none focus:bg-white focus:border-slate-300 transition">
+                                        <div class="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none text-slate-400"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg></div>
+                                        <input type="text" id="step6-guest-search-input" oninput="filterStep6GuestList(this.value)" placeholder="Cari nama tamu..." class="w-full pl-8 pr-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-700 focus:outline-none focus:bg-white focus:border-slate-300 transition">
                                     </div>
                                 </div>
 
@@ -2444,7 +2450,7 @@ function onWizardPremiumUnlocked(invitationId) {
     const selectedWrapper = document.querySelector(`.theme-card-wrapper[data-theme-id="${activeThemeId}"]`);
     const themeName = selectedWrapper ? selectedWrapper.getAttribute('data-name') : 'Premium';
 
-    showToast(`✅ Pembayaran berhasil! Tema Premium ${themeName} terbuka. Melanjutkan ke Langkah 2...`);
+    showToast(`Pembayaran berhasil! Tema Premium ${themeName} terbuka. Melanjutkan ke Langkah 2...`);
 
     // Advance to Step 2 automatically
     setTimeout(() => {
@@ -2473,11 +2479,11 @@ function onWizardAddOnPurchased(packageTier, invitationId) {
     if (packageTier === 'basic_addon_1') {
         window.CURRENT_GUEST_LIMIT = 12;
         window.CURRENT_SONG_LIMIT = 10;
-        showToast('✅ Berhasil beli Add-On 1! Kuota bertambah menjadi 12 nama tamu & 10 lagu.');
+        showToast('Berhasil beli Add-On 1! Kuota bertambah menjadi 12 nama tamu & 10 lagu.');
     } else if (packageTier === 'basic_addon_2') {
         window.CURRENT_GUEST_LIMIT = 17;
         window.CURRENT_SONG_LIMIT = 20;
-        showToast('✅ Berhasil beli Add-On 2! Kuota bertambah menjadi 17 nama tamu & 20 lagu.');
+        showToast('Berhasil beli Add-On 2! Kuota bertambah menjadi 17 nama tamu & 20 lagu.');
     }
 
     if (typeof updateStep6GuestQuotaDisplay === 'function') {
@@ -3032,7 +3038,7 @@ function updateThemePhotoGuide(themeId) {
     const quotaBadge = document.getElementById('theme-gallery-quota-badge');
     const tipText = document.getElementById('theme-gallery-tip-text');
     if (quotaBadge) quotaBadge.innerText = `Kapasitas: ${config.galleryLimit} Slot Foto`;
-    if (tipText) tipText.innerHTML = `★ Pada tema ini, galeri dapat menampilkan hingga <strong>${config.galleryLimit} foto</strong> dengan tata letak estetik. Format: JPG, PNG, WebP (Maks 25MB per foto).`;
+    if (tipText) tipText.innerHTML = `<svg class="w-3.5 h-3.5 text-amber-500 fill-current shrink-0 inline-block -mt-0.5 mr-1" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span>Pada tema ini, galeri dapat menampilkan hingga <strong>${config.galleryLimit} foto</strong> dengan tata letak estetik. Format: JPG, PNG, WebP (Maks 25MB per foto).</span>`;
     if (typeof renderGallerySlotPlaceholders === 'function') {
         renderGallerySlotPlaceholders(config.galleryLimit || 8);
     }
@@ -3339,7 +3345,7 @@ function checkStep6CloudflareTunnel(userInitiated = false) {
                 setStep6HostMode('custom');
 
                 if (userInitiated && typeof showToast === 'function') {
-                    showToast('⚡ Link Cloudflare online terhubung!');
+                    showToast('Link Cloudflare online terhubung!');
                 }
             }
         })
@@ -3542,7 +3548,7 @@ function showGuestQuotaExceededModal(limit = 5) {
     if (limit === 12) tierName = 'Add-On 1';
     else if (limit === 17) tierName = 'Add-On 2';
 
-    const msg = `⚠️ <strong>Batas Kuota Tercapai (${limit} Tamu):</strong> Anda telah mencapai batas maksimal ${limit} nama tamu pada ${tierName}. Beli Add-On (mulai Rp17.000) atau upgrade ke Premium untuk menambah kuota nama tamu!<br><br>💡 <em>Tips Hemat: Anda tetap bisa <u>mengedit atau menghapus</u> nama tamu di daftar secara <strong>100% Gratis</strong> tanpa biaya tambahan kapan saja!</em>`;
+    const msg = `<strong>Batas Kuota Tercapai (${limit} Tamu):</strong> Anda telah mencapai batas maksimal ${limit} nama tamu pada ${tierName}. Beli Add-On (mulai Rp17.000) atau upgrade ke Premium untuk menambah kuota nama tamu!<br><br><em>Tips Hemat: Anda tetap bisa <u>mengedit atau menghapus</u> nama tamu di daftar secara <strong>100% Gratis</strong> tanpa biaya tambahan kapan saja!</em>`;
 
     if (typeof openUpgradeModal === 'function') {
         openUpgradeModal(window.CURRENT_INVITATION_ID, msg, 'addon');
@@ -3583,7 +3589,7 @@ function saveQuickGuestToStep6() {
     updateStep6GuestCountBadge();
     updateStep6GuestQuotaDisplay();
     renderStep6GuestsList();
-    if (typeof showToast === 'function') showToast(`✓ Tamu "${name}" disimpan ke daftar!`);
+    if (typeof showToast === 'function') showToast(`Tamu "${name}" disimpan ke daftar!`);
 }
 
 // ================= TAB 2: GUEST LIST & BULK ADD =================
@@ -3643,7 +3649,7 @@ function addGuestToStep6List() {
     updateStep6GuestCountBadge();
     updateStep6GuestQuotaDisplay();
     renderStep6GuestsList();
-    if (typeof showToast === 'function') showToast(`✓ Tamu "${name}" berhasil ditambahkan!`);
+    if (typeof showToast === 'function') showToast(`Tamu "${name}" berhasil ditambahkan!`);
 }
 
 function submitBulkGuestsToStep6() {
@@ -3658,7 +3664,7 @@ function submitBulkGuestsToStep6() {
     const limit = getEffectiveGuestLimit();
     if (limit !== null && (guestsList.length + lines.length) > limit) {
         const remaining = Math.max(0, limit - guestsList.length);
-        const msg = `⚠️ <strong>Melebihi Batas Kuota:</strong> Anda memasukkan ${lines.length} nama tamu, melebihi sisa kuota paket Anda (${remaining} slot tersisa dari maksimal ${limit} tamu). Silakan beli Add-On (mulai Rp17.000) atau upgrade ke Premium!`;
+        const msg = `<strong>Melebihi Batas Kuota:</strong> Anda memasukkan ${lines.length} nama tamu, melebihi sisa kuota paket Anda (${remaining} slot tersisa dari maksimal ${limit} tamu). Silakan beli Add-On (mulai Rp17.000) atau upgrade ke Premium!`;
         if (typeof openUpgradeModal === 'function') {
             openUpgradeModal(window.CURRENT_INVITATION_ID, msg, 'addon');
         } else {
@@ -3698,7 +3704,7 @@ function submitBulkGuestsToStep6() {
     updateStep6GuestCountBadge();
     updateStep6GuestQuotaDisplay();
     renderStep6GuestsList();
-    if (typeof showToast === 'function') showToast(`✓ Berhasil menambahkan ${addedCount} tamu!`);
+    if (typeof showToast === 'function') showToast(`Berhasil menambahkan ${addedCount} tamu!`);
 }
 
 function updateStep6GuestName(index, newName) {
@@ -3714,7 +3720,7 @@ function updateStep6GuestName(index, newName) {
         renderStep6GuestsList();
         updateStep6GuestQuotaDisplay();
         if (typeof showToast === 'function') {
-            showToast(`✓ Nama tamu diperbarui menjadi "${trimmed}". Link otomatis disesuaikan!`);
+            showToast(`Nama tamu diperbarui menjadi "${trimmed}". Link otomatis disesuaikan!`);
         }
     }
 }
@@ -3739,7 +3745,7 @@ function deleteStep6Guest(index) {
         updateStep6GuestCountBadge();
         updateStep6GuestQuotaDisplay();
         renderStep6GuestsList();
-        if (typeof showToast === 'function') showToast('✓ Tamu dihapus. 1 slot kuota kini kembali tersedia.');
+        if (typeof showToast === 'function') showToast('Tamu dihapus. 1 slot kuota kini kembali tersedia.');
     }
 }
 
@@ -3831,7 +3837,7 @@ function updateStep6GuestQuotaDisplay() {
 
     if (textEl) {
         if (isOverLimit) {
-            textEl.innerHTML = `<span class="text-rose-600 font-bold">⚠️ Melebihi Batas:</span> <strong>${count}</strong> dari maksimal <strong>${limit}</strong> Tamu (<span class="text-rose-600 font-bold">Kelebihan ${count - limit} tamu</span>)`;
+            textEl.innerHTML = `<span class="text-rose-600 font-bold">Melebihi Batas:</span> <strong>${count}</strong> dari maksimal <strong>${limit}</strong> Tamu (<span class="text-rose-600 font-bold">Kelebihan ${count - limit} tamu</span>)`;
         } else {
             textEl.innerHTML = `Terpakai: <strong>${count}</strong> dari <strong>${limit}</strong> Tamu (${remaining > 0 ? remaining + ' slot tersisa' : '<span class="text-rose-600 font-bold">Kuota Penuh</span>'})`;
         }
@@ -3854,7 +3860,7 @@ function updateStep6GuestQuotaDisplay() {
             if (isOverLimit) {
                 limitWarning.innerHTML = `
                     <div class="flex items-start gap-2">
-                        <span class="text-base shrink-0">⚠️</span>
+                        <span class="shrink-0 text-amber-600 mt-0.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg></span>
                         <div class="space-y-1">
                             <p class="font-bold text-rose-900 leading-tight">Melebihi Kuota Paket ${tierLabel}:</p>
                             <p class="text-[11px] text-rose-800 leading-relaxed">
@@ -4136,7 +4142,7 @@ function renderGallerySlotPlaceholders(limit = 8) {
                 <span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold ${
                     isFilled ? 'bg-emerald-600 text-white shadow-2xs' : 'bg-stone-100 text-stone-500 border border-stone-200'
                 }">
-                    ${isFilled ? '✓ ' : ''}Slot #${i}
+                    ${isFilled ? 'Slot ' : 'Slot '} #${i}
                 </span>
             `;
         }

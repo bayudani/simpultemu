@@ -1,7 +1,70 @@
 @extends('layouts.app')
 
-@section('title', 'Tanya Jawab (FAQ) - SimpulTemu Wedding')
-@section('description', 'Pertanyaan yang sering diajukan seputar pembuatan undangan digital pernikahan di SimpulTemu.')
+@section('title', 'Pertanyaan Umum (FAQ) Undangan Pernikahan Digital - SimpulTemu')
+@section('description', 'Jawaban lengkap cara membuat undangan pernikahan digital gratis, pembagian link nama tamu via WhatsApp, sistem RSVP, musik latar, amplop digital, dan pembayaran di SimpulTemu.')
+@section('keywords', 'faq undangan pernikahan digital, cara buat undangan pernikahan online, tanya jawab undangan digital gratis, cara kirim undangan whatsapp, rsvp undangan nikah, simpultemu')
+
+@php
+$faqs = [
+    [
+        'q' => 'Apakah SimpulTemu benar-benar gratis?',
+        'a' => 'Ya, SimpulTemu 100% gratis untuk seluruh 10 pilihan tema Basic! Anda langsung mendapatkan kuota gratis hingga 5 nama tamu khusus dan 5 pilihan lagu latar romantis, lengkap dengan fitur esensial seperti RSVP, ucapan doa, hitung mundur acara, navigasi Google Maps, dan amplop digital tanpa biaya apa pun selamanya. Jika Anda membutuhkan kuota nama tamu atau pilihan lagu lebih banyak untuk tema Basic, tersedia opsi paket Add-On terjangkau (mulai Rp 17.000).'
+    ],
+    [
+        'q' => 'Apa perbedaan paket Basic, Add-On, dan Premium?',
+        'a' => 'Paket Basic (Gratis) memberikan 10 tema estetik dengan kuota bawaan 5 nama tamu dan 5 lagu. Paket Add-On dirancang khusus untuk pengguna tema Basic yang ingin menambah kuota tanpa harus beralih tema (Add-On 1: total 12 tamu & 10 lagu seharga Rp 17.000; Add-On 2: total 17 tamu & akses 20 lagu seharga Rp 25.000). Sedangkan Paket Premium (Rp 59.000 / undangan) membuka seluruh 20 tema eksklusif luxury, tamu undangan tak terbatas, lagu tak terbatas termasuk upload musik sendiri, serta galeri foto & cerita cinta tanpa batas.'
+    ],
+    [
+        'q' => 'Bagaimana cara mengirimkan undangan ke para tamu?',
+        'a' => 'Cukup tambahkan daftar nama tamu di dashboard. Sistem akan secara otomatis mengenerate tautan personal unik untuk masing-masing tamu (misal: simpultemu.my.id/undangan/nama-mempelai/t/token?to=Nama+Tamu). Anda dapat langsung mengklik tombol bagikan via WhatsApp dengan draft pesan otomatis yang sudah tersusun rapi.'
+    ],
+    [
+        'q' => 'Apakah setiap tamu mendapatkan link dengan nama mereka sendiri?',
+        'a' => 'Tentu! Setiap tamu memiliki tautan personal yang menampilkan nama mereka secara eksklusif di layar pembuka undangan ("Kepada Yth: Bpk/Ibu [Nama Tamu]"). Hal ini memberikan kesan hangat, formal, dan sangat menghargai tamu yang Anda undang.'
+    ],
+    [
+        'q' => 'Berapa lama masa aktif undangan digital saya?',
+        'a' => 'Undangan digital Anda aktif selamanya tanpa batasan durasi atau biaya langganan bulanan. Anda dan keluarga dapat membuka kembali undangan ini kapan pun sebagai kenang-kenangan digital yang abadi.'
+    ],
+    [
+        'q' => 'Bisakah saya mengedit data undangan setelah dipublikasikan?',
+        'a' => 'Bisa dan bebas revisi kapan saja! Jika terdapat perubahan jam acara, lokasi gedung, atau nomor rekening hadiah, Anda cukup mengupdate data dari dashboard dan seluruh perubahan akan langsung sinkron secara real-time.'
+    ],
+    [
+        'q' => 'Bagaimana sistem konfirmasi kehadiran (RSVP) bekerja?',
+        'a' => 'Di halaman undangan terdapat formulir RSVP interaktif. Tamu dapat memilih konfirmasi "Hadir" atau "Tidak Hadir", memasukkan jumlah tamu yang mendampingi, serta menuliskan doa restu. Seluruh rekapitulasi RSVP masuk otomatis ke dashboard admin Anda.'
+    ],
+    [
+        'q' => 'Apakah undangan nyaman dibuka di berbagai tipe smartphone?',
+        'a' => 'Sangat nyaman. Seluruh tema SimpulTemu dirancang mobile-first dan responsif dengan rasio layar optimal untuk smartphone Android maupun iPhone, serta tetap tampil anggun di tablet dan laptop.'
+    ],
+    [
+        'q' => 'Bisakah saya menambahkan lagu latar (background music) favorit?',
+        'a' => 'Tentu bisa! Pada tema Basic gratis Anda dapat memilih dari 5 lagu romantis (dan hingga 20 lagu lewat paket Add-On). Sedangkan pada Paket Premium, Anda bebas memilih dari seluruh pustaka lagu atau mengunggah lagu kustom favorit Anda sendiri.'
+    ],
+    [
+        'q' => 'Bagaimana alur pembayaran untuk paket Add-On atau Premium?',
+        'a' => 'Pembayaran dilakukan sekali bayar per undangan tanpa biaya langganan bulanan. Didukung oleh integrasi gateway pembayaran Duitku Pop-up instan via QRIS, Virtual Account bank, dan e-wallet yang langsung aktif otomatis seketika setelah pembayaran terverifikasi.'
+    ],
+];
+
+$faqSchema = [
+    '@context' => 'https://schema.org',
+    '@type' => 'FAQPage',
+    'mainEntity' => array_map(fn ($item) => [
+        '@type' => 'Question',
+        'name' => $item['q'],
+        'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => $item['a'],
+        ],
+    ], $faqs),
+];
+@endphp
+
+@push('structured_data')
+<script type="application/ld+json">{!! json_encode($faqSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+@endpush
 
 @section('content')
 <div class="relative pt-24 sm:pt-32 pb-16 sm:pb-24 bg-[#F8FAFC] min-h-screen overflow-hidden">
@@ -23,50 +86,6 @@
 
         <!-- Interactive Accordion List -->
         <div class="space-y-4" id="faq-accordion">
-            @php
-            $faqs = [
-                [
-                    'q' => 'Apakah SimpulTemu benar-benar gratis?',
-                    'a' => 'Ya, SimpulTemu 100% gratis untuk seluruh 10 pilihan tema Basic! Anda langsung mendapatkan kuota gratis hingga 5 nama tamu khusus dan 5 pilihan lagu latar romantis, lengkap dengan fitur esensial seperti RSVP, ucapan doa, hitung mundur acara, navigasi Google Maps, dan amplop digital tanpa biaya apa pun selamanya. Jika Anda membutuhkan kuota nama tamu atau pilihan lagu lebih banyak untuk tema Basic, tersedia opsi paket Add-On terjangkau (mulai Rp 17.000).'
-                ],
-                [
-                    'q' => 'Apa perbedaan paket Basic, Add-On, dan Premium?',
-                    'a' => 'Paket Basic (Gratis) memberikan 10 tema estetik dengan kuota bawaan 5 nama tamu dan 5 lagu. Paket Add-On dirancang khusus untuk pengguna tema Basic yang ingin menambah kuota tanpa harus beralih tema (Add-On 1: total 12 tamu & 10 lagu seharga Rp 17.000; Add-On 2: total 17 tamu & akses 20 lagu seharga Rp 25.000). Sedangkan Paket Premium (Rp 59.000 / undangan) membuka seluruh 20 tema eksklusif luxury, tamu undangan tak terbatas, lagu tak terbatas termasuk upload musik sendiri, serta galeri foto & cerita cinta tanpa batas.'
-                ],
-                [
-                    'q' => 'Bagaimana cara mengirimkan undangan ke para tamu?',
-                    'a' => 'Cukup tambahkan daftar nama tamu di dashboard. Sistem akan secara otomatis mengenerate tautan personal unik untuk masing-masing tamu (misal: simpultemu.test/undangan/nama-mempelai/t/token?to=Nama+Tamu). Anda dapat langsung mengklik tombol bagikan via WhatsApp dengan draft pesan otomatis yang sudah tersusun rapi.'
-                ],
-                [
-                    'q' => 'Apakah setiap tamu mendapatkan link dengan nama mereka sendiri?',
-                    'a' => 'Tentu! Setiap tamu memiliki tautan personal yang menampilkan nama mereka secara eksklusif di layar pembuka undangan ("Kepada Yth: Bpk/Ibu [Nama Tamu]"). Hal ini memberikan kesan hangat, formal, dan sangat menghargai tamu yang Anda undang.'
-                ],
-                [
-                    'q' => 'Berapa lama masa aktif undangan digital saya?',
-                    'a' => 'Undangan digital Anda aktif selamanya tanpa batasan durasi atau biaya langganan bulanan. Anda dan keluarga dapat membuka kembali undangan ini kapan pun sebagai kenang-kenangan digital yang abadi.'
-                ],
-                [
-                    'q' => 'Bisakah saya mengedit data undangan setelah dipublikasikan?',
-                    'a' => 'Bisa dan bebas revisi kapan saja! Jika terdapat perubahan jam acara, lokasi gedung, atau nomor rekening hadiah, Anda cukup mengupdate data dari dashboard dan seluruh perubahan akan langsung sinkron secara real-time.'
-                ],
-                [
-                    'q' => 'Bagaimana sistem konfirmasi kehadiran (RSVP) bekerja?',
-                    'a' => 'Di halaman undangan terdapat formulir RSVP interaktif. Tamu dapat memilih konfirmasi "Hadir" atau "Tidak Hadir", memasukkan jumlah tamu yang mendampingi, serta menuliskan doa restu. Seluruh rekapitulasi RSVP masuk otomatis ke dashboard admin Anda.'
-                ],
-                [
-                    'q' => 'Apakah undangan nyaman dibuka di berbagai tipe smartphone?',
-                    'a' => 'Sangat nyaman. Seluruh tema SimpulTemu dirancang mobile-first dan responsif dengan rasio layar optimal untuk smartphone Android maupun iPhone, serta tetap tampil anggun di tablet dan laptop.'
-                ],
-                [
-                    'q' => 'Bisakah saya menambahkan lagu latar (background music) favorit?',
-                    'a' => 'Tentu bisa! Pada tema Basic gratis Anda dapat memilih dari 5 lagu romantis (dan hingga 20 lagu lewat paket Add-On). Sedangkan pada Paket Premium, Anda bebas memilih dari seluruh pustaka lagu atau mengunggah lagu kustom favorit Anda sendiri.'
-                ],
-                [
-                    'q' => 'Bagaimana alur pembayaran untuk paket Add-On atau Premium?',
-                    'a' => 'Pembayaran dilakukan sekali bayar per undangan tanpa biaya langganan bulanan. Didukung oleh integrasi gateway pembayaran Duitku Pop-up instan via QRIS, Virtual Account bank, dan e-wallet yang langsung aktif otomatis seketika setelah pembayaran terverifikasi.'
-                ],
-            ];
-            @endphp
 
             @foreach($faqs as $index => $faq)
             <div class="faq-item bg-white rounded-2xl border border-slate-200 shadow-sm hover:border-[#FF2E3A]/40 transition-all duration-300 overflow-hidden">

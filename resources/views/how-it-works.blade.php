@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Cara Kerja - SimpulTemu Wedding')
-@section('description', 'Alur terstruktur 6 langkah praktis membuat undangan digital pernikahan di SimpulTemu.')
+@section('title', 'Cara Membuat Undangan Pernikahan Digital Praktis 6 Langkah - SimpulTemu')
+@section('description', 'Panduan cara membuat undangan pernikahan digital online dalam hitungan menit: pilih tema, isi data mempelai & acara, unggah foto & musik, lalu bagikan link personal ke tamu via WhatsApp.')
+@section('keywords', 'cara membuat undangan pernikahan digital, tutorial buat undangan online gratis, langkah membuat undangan nikah digital, sebar undangan whatsapp, simpultemu')
 
 @section('content')
 <div class="relative pt-24 sm:pt-32 pb-16 sm:pb-24 bg-[#F8FAFC] min-h-screen overflow-hidden">

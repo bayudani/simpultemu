@@ -3,8 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Simpultemu - Buat Undangan Pernikahan Digital Praktis & Modern')</title>
-    <meta name="description" content="@yield('description', 'Wujudkan undangan pernikahan digital impian dalam hitungan menit. Lengkap dengan fitur RSVP, musik latar, galeri foto, peta lokasi, dan amplop digital. Mulai buat undanganmu sekarang di Simpultemu.')">
+    @php
+        $seoTitle = trim($__env->yieldContent('title', 'SimpulTemu - Buat Undangan Pernikahan Digital Online Gratis & Modern'));
+        $seoDescription = trim($__env->yieldContent('description', 'Wujudkan undangan pernikahan digital impian dalam hitungan menit. Lengkap dengan fitur nama tamu personal, RSVP, musik latar, galeri foto, peta lokasi Google Maps, dan amplop digital. Mulai gratis di SimpulTemu.'));
+        $seoKeywords = trim($__env->yieldContent('keywords', 'undangan pernikahan digital, undangan pernikahan online, buat undangan nikah gratis, undangan digital gratis, website undangan pernikahan modern, template undangan pernikahan, undangan online whatsapp, undangan digital rsvp, amplop digital pernikahan, simpultemu'));
+        $websiteSchema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'WebSite',
+            'name' => 'SimpulTemu',
+            'alternateName' => ['Simpultemu', 'SimpulTemu Wedding', 'Undangan Digital SimpulTemu'],
+            'url' => url('/'),
+            'description' => 'Platform pembuatan undangan pernikahan digital online praktis & modern di Indonesia.',
+        ];
+        $organizationSchema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'Organization',
+            'name' => 'SimpulTemu',
+            'url' => url('/'),
+            'logo' => asset('images/logo/logo-icon.png'),
+        ];
+    @endphp
+    <title>{{ $seoTitle }}</title>
+    <meta name="description" content="{{ $seoDescription }}">
+    <meta name="keywords" content="{{ $seoKeywords }}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{ url()->current() }}">
 
@@ -12,15 +33,21 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:site_name" content="SimpulTemu">
-    <meta property="og:title" content="@yield('og_title', 'Simpultemu - Undangan Pernikahan Digital Praktis & Modern')">
-    <meta property="og:description" content="@yield('og_description', 'Wujudkan undangan pernikahan digital impian dalam hitungan menit. Lengkap dengan fitur RSVP, musik latar, galeri foto, peta lokasi, dan amplop digital.')">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:title" content="@yield('og_title', $seoTitle)">
+    <meta property="og:description" content="@yield('og_description', $seoDescription)">
     <meta property="og:image" content="@yield('og_image', asset('images/hero-banner.png'))">
     <meta name="google-site-verification" content="GJrrJ1i_rESYWb1Krvsk2_19S31ZWjguQMfWMImE_gU" />
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('og_title', 'Simpultemu - Undangan Pernikahan Digital Praktis & Modern')">
-    <meta name="twitter:description" content="@yield('og_description', 'Wujudkan undangan pernikahan digital impian dalam hitungan menit. Lengkap dengan fitur RSVP, musik latar, galeri foto, peta lokasi, dan amplop digital.')">
+    <meta name="twitter:title" content="@yield('og_title', $seoTitle)">
+    <meta name="twitter:description" content="@yield('og_description', $seoDescription)">
     <meta name="twitter:image" content="@yield('og_image', asset('images/hero-banner.png'))">
+
+    <!-- Structured Data (JSON-LD) for Google Search -->
+    <script type="application/ld+json">{!! json_encode($websiteSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+    <script type="application/ld+json">{!! json_encode($organizationSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+    @stack('structured_data')
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

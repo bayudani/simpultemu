@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Pilih Paket Yang Sesuai Dengan Kebutuhanmu - SimpulTemu')
-@section('description', 'Pilihan paket undangan digital pernikahan transparan, tanpa biaya tersembunyi. Mulai gratis atau upgrade untuk kapasitas tamu & lagu lebih banyak.')
+@section('title', 'Harga & Paket Undangan Pernikahan Digital Gratis hingga Premium - SimpulTemu')
+@section('description', 'Buat undangan pernikahan online gratis selamanya dengan 10 tema Basic, atau tambah kuota tamu dan lagu lewat Add-On terjangkau serta Paket Premium Rp 59.000 sekali bayar tanpa biaya bulanan.')
+@section('keywords', 'harga undangan pernikahan digital, undangan pernikahan online gratis, paket undangan digital murah, undangan nikah sekali bayar, buat undangan online gratis, simpultemu')
 
 @section('content')
 <div class="relative pt-24 sm:pt-32 pb-10 sm:pb-16 md:pb-20 bg-[#FAF8F5]/60 min-h-screen overflow-hidden">

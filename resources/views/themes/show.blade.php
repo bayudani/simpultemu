@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
-@section('title', $theme->name . ' - SimpulTemu Wedding')
-@section('description', $theme->description)
+@section('title', 'Tema Undangan Digital ' . $theme->name . ' - SimpulTemu')
+@section('description', ($theme->description ?: 'Desain undangan pernikahan digital ' . $theme->name) . ' — Coba demo live dan buat undangan pernikahan online di SimpulTemu.')
+@section('keywords', 'tema undangan digital ' . strtolower($theme->name) . ', template undangan pernikahan, undangan pernikahan online, desain undangan digital, simpultemu')
 
 @push('styles')
 <style>

@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'SimpulTemu - Buat Undangan Pernikahan Digital Praktis & Modern')
-@section('description', 'Rayakan momen berharga pernikahanmu dengan undangan digital eksklusif yang dirancang elegan, interaktif, dan mudah dibagikan kepada keluarga serta kerabat tercinta.')
+@section('title', 'SimpulTemu - Buat Undangan Pernikahan Digital Online Gratis & Modern')
+@section('description', 'Buat undangan pernikahan digital online gratis dan praktis di SimpulTemu. Dilengkapi 20 pilihan tema modern, nama tamu personal, RSVP, musik latar, galeri foto, peta Google Maps, dan amplop digital.')
+@section('keywords', 'undangan pernikahan digital, undangan pernikahan online, buat undangan pernikahan gratis, website undangan nikah, template undangan pernikahan modern, undangan digital whatsapp, undangan rsvp online, amplop digital, simpultemu')
 
 @section('content')
     <!-- Hero Section - Landscape Couple & Smartphone Mockup -->
@@ -29,11 +30,11 @@
                         </div>
                     </div>
 
-                    <!-- Main Heading: Solusi Undangan Digital Untuk Hari Pernikahanmu Modern & Praktis (3 Baris) -->
+                    <!-- Main Heading: Solusi Undangan Digital Modern & Praktis Untuk Hari Pernikahanmu (3 Baris) -->
                     <h1 class="reveal-init reveal-up delay-250 text-white font-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[38px] xl:text-[44px] 2xl:text-[48px] leading-[1.18] tracking-tight">
                         <span class="block">Solusi Undangan Digital</span>
-                        <span class="block">Untuk Hari Pernikahanmu</span>
                         <span class="block text-[#FF2E3A]">Modern &amp; Praktis</span>
+                        <span class="block">Untuk Hari Pernikahanmu</span>
                     </h1>
 
                     <p class="reveal-init reveal-up delay-400 font-sans text-slate-300 text-xs sm:text-sm lg:text-base font-normal leading-relaxed max-w-lg mx-auto lg:mx-0">

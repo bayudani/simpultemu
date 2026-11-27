@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $invitation->groom_nickname ?? 'Rian' }} &amp; {{ $invitation->bride_nickname ?? 'Maya' }} - Undangan Pernikahan</title>
-    <meta name="description" content="Undangan pernikahan {{ $invitation->groom_name ?? 'Rian Pratama' }} dan {{ $invitation->bride_name ?? 'Maya Anggraini' }}">
+    <title>{{ $invitation->groom_nickname ?? 'Rian' }} &amp; {{ $invitation->bride_nickname ?? 'Maya' }} - Undangan Pernikahan Digital</title>
+    <meta name="description" content="Undangan pernikahan digital {{ $invitation->groom_name ?? 'Rian Pratama' }} dan {{ $invitation->bride_name ?? 'Maya Anggraini' }}. Lihat detail acara, peta lokasi, dan kirim ucapan serta konfirmasi kehadiran (RSVP) secara online di SimpulTemu.">
+    <meta name="keywords" content="undangan pernikahan, {{ $invitation->groom_nickname ?? 'Rian' }} dan {{ $invitation->bride_nickname ?? 'Maya' }}, {{ $invitation->groom_name ?? 'Rian Pratama' }}, {{ $invitation->bride_name ?? 'Maya Anggraini' }}, undangan pernikahan online, undangan digital, simpultemu">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{ url()->current() }}">
     <meta property="og:title" content="The Wedding of {{ $invitation->groom_nickname ?? 'Rian' }} &amp; {{ $invitation->bride_nickname ?? 'Maya' }}">

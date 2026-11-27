@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title', 'Tentang SimpulTemu - Platform Undangan Pernikahan Digital Modern')
+@section('description', 'Mengenal SimpulTemu, platform pembuatan undangan pernikahan digital online yang membantu calon pengantin membuat dan membagikan undangan elegan secara praktis.')
+@section('keywords', 'tentang simpultemu, platform undangan pernikahan digital, website undangan pernikahan indonesia, undangan online praktis, simpultemu')
+
 @section('content')
 <div class="relative pt-24 sm:pt-32 pb-12 bg-white overflow-hidden">
     @include('partials.side-diamond-ornament')

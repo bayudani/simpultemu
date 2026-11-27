@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Katalog Tema - SimpulTemu Wedding')
-@section('description', 'Koleksi 20 tema undangan pernikahan digital mewah, hangat, dan berkelas dengan arsitektur Dynamic Multi-Theme Engine.')
+@section('title', 'Katalog 20 Tema Undangan Pernikahan Digital Gratis & Premium - SimpulTemu')
+@section('description', 'Jelajahi 20 pilihan desain dan template undangan pernikahan digital elegan, adat, minimalis, hingga modern. Coba demo live gratis dan sesuaikan undangan online pernikahanmu.')
+@section('keywords', 'tema undangan pernikahan digital, template undangan pernikahan, desain undangan nikah online, contoh undangan pernikahan digital, tema undangan gratis, tema undangan mewah, simpultemu')
 
 @push('styles')
 <style>

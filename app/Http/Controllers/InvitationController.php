@@ -6,12 +6,14 @@ use App\Models\Invitation;
 use App\Models\InvitationGuest;
 use App\Models\Music;
 use App\Models\Theme;
+use App\Services\ImageCompressionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class InvitationController extends Controller
 {
+    public function __construct(public ImageCompressionService $imageCompressor) {}
     public function index(Request $request)
     {
         $invitations = $request->user()->invitations()->with('theme')->latest()->get();
@@ -180,16 +182,10 @@ class InvitationController extends Controller
         $invitation->status = 'draft';
         $invitation->save();
 
-        if ($request->hasFile('gallery_photos')) {
-            foreach ($request->file('gallery_photos') as $idx => $photoFile) {
-                if ($photoFile && $photoFile->isValid()) {
-                    $path = $photoFile->store('invitations/'.$invitation->id.'/photos', 'public');
-                    $invitation->photos()->create([
-                        'path' => $path,
-                        'sort_order' => $invitation->photos()->count() + $idx,
-                    ]);
-                }
-            }
+        $this->handleGalleryPhotosUpload($request, $invitation);
+
+        if ($request->has('guests_json')) {
+            $this->syncGuestsFromJson($invitation, $request->input('guests_json'), $request->user());
         }
 
         if (! empty($invitation->gift_bank_name) && ! empty($invitation->gift_account_number)) {
@@ -528,17 +524,7 @@ class InvitationController extends Controller
             ]);
         }
 
-        if ($request->hasFile('gallery_photos')) {
-            foreach ($request->file('gallery_photos') as $idx => $photoFile) {
-                if ($photoFile && $photoFile->isValid()) {
-                    $path = $photoFile->store('invitations/'.$invitation->id.'/photos', 'public');
-                    $invitation->photos()->create([
-                        'path' => $path,
-                        'sort_order' => $invitation->photos()->count() + $idx,
-                    ]);
-                }
-            }
-        }
+        $this->handleGalleryPhotosUpload($request, $invitation);
 
         if ($request->filled('guests_json')) {
             $guestsData = json_decode($request->input('guests_json'), true);
@@ -880,62 +866,10 @@ class InvitationController extends Controller
             );
         }
 
-        if ($request->hasFile('gallery_photos')) {
-            foreach ($request->file('gallery_photos') as $idx => $photoFile) {
-                if ($photoFile && $photoFile->isValid()) {
-                    $path = $photoFile->store('invitations/'.$invitation->id.'/photos', 'public');
-                    $invitation->photos()->create([
-                        'path' => $path,
-                        'sort_order' => $invitation->photos()->count() + $idx,
-                    ]);
-                }
-            }
-        }
+        $this->handleGalleryPhotosUpload($request, $invitation);
 
         if ($request->has('guests_json')) {
-            $guestsData = json_decode($request->input('guests_json'), true);
-            if (is_array($guestsData)) {
-                $guestLimit = $invitation->getGuestLimit() ?? ($request->user()?->hasLifetimePremium() ? null : 5);
-                $keptIds = [];
-                $count = 0;
-                foreach ($guestsData as $g) {
-                    if ($guestLimit !== null && $count >= $guestLimit) {
-                        break;
-                    }
-                    $gId = is_array($g) ? ($g['id'] ?? null) : null;
-                    $gName = is_array($g) ? trim($g['name'] ?? '') : trim($g);
-                    $gPhone = is_array($g) ? trim($g['phone'] ?? '') : null;
-
-                    if (! empty($gName)) {
-                        $token = is_array($g) && ! empty($g['token']) ? $g['token'] : strtoupper(Str::random(8));
-                        $invitationUrl = route('invitation.show', $invitation->slug).'?to='.urlencode($gName);
-
-                        if ($gId && $existing = $invitation->guests()->find($gId)) {
-                            $existing->update([
-                                'name' => $gName,
-                                'phone' => $gPhone,
-                                'invitation_url' => $invitationUrl,
-                            ]);
-                            $keptIds[] = $existing->id;
-                            $count++;
-                        } else {
-                            $newGuest = $invitation->guests()->create([
-                                'name' => $gName,
-                                'phone' => $gPhone,
-                                'unique_token' => $token,
-                                'invitation_url' => $invitationUrl,
-                            ]);
-                            $keptIds[] = $newGuest->id;
-                            $count++;
-                        }
-                    }
-                }
-                if (count($keptIds) > 0) {
-                    $invitation->guests()->whereNotIn('id', $keptIds)->delete();
-                } elseif (count($guestsData) === 0) {
-                    $invitation->guests()->delete();
-                }
-            }
+            $this->syncGuestsFromJson($invitation, $request->input('guests_json'), $request->user());
         }
 
         $msg = ($invitation->status === 'published')
@@ -1112,12 +1046,14 @@ class InvitationController extends Controller
             $q->where('status', 'approved')->latest();
         }]);
 
-        if (view()->exists('invitations.themes.'.$invitation->theme->slug) || view()->exists('invitations.show')) {
+        $themeSlug = $invitation->theme?->slug ?? '';
+
+        if (($themeSlug && view()->exists('invitations.themes.'.$themeSlug)) || view()->exists('invitations.show')) {
             return view('invitations.show', compact('invitation'));
         }
 
-        if (view()->exists('themes.'.$invitation->theme->slug.'.invitation')) {
-            return view('themes.'.$invitation->theme->slug.'.invitation', compact('invitation'));
+        if ($themeSlug && view()->exists('themes.'.$themeSlug.'.invitation')) {
+            return view('themes.'.$themeSlug.'.invitation', compact('invitation'));
         }
 
         abort(500, 'Theme template not found');
@@ -1144,44 +1080,126 @@ class InvitationController extends Controller
         }]);
 
         $guestName = $guest->name;
+        $themeSlug = $invitation->theme?->slug ?? '';
 
-        if (view()->exists('invitations.themes.'.$invitation->theme->slug)) {
-            return view('invitations.show', compact('invitation', 'guest'));
+        if (($themeSlug && view()->exists('invitations.themes.'.$themeSlug)) || view()->exists('invitations.show')) {
+            return view('invitations.show', compact('invitation', 'guest', 'guestName'));
         }
 
-        if (view()->exists('themes.'.$invitation->theme->slug.'.invitation')) {
-            return view('themes.'.$invitation->theme->slug.'.invitation', compact('invitation', 'guest', 'guestName'));
+        if ($themeSlug && view()->exists('themes.'.$themeSlug.'.invitation')) {
+            return view('themes.'.$themeSlug.'.invitation', compact('invitation', 'guest', 'guestName'));
         }
 
         abort(500, 'Theme template not found');
     }
 
+    private function syncGuestsFromJson(Invitation $invitation, ?string $guestsJson, ?object $user = null): void
+    {
+        $guestsData = json_decode((string) $guestsJson, true);
+        if (! is_array($guestsData)) {
+            return;
+        }
+
+        $guestLimit = $invitation->getGuestLimit() ?? ($user?->hasLifetimePremium() ? null : 5);
+        $keptIds = [];
+        $count = 0;
+
+        foreach ($guestsData as $g) {
+            if ($guestLimit !== null && $count >= $guestLimit) {
+                break;
+            }
+            $gId = is_array($g) ? ($g['id'] ?? null) : null;
+            $gName = is_array($g) ? trim($g['name'] ?? '') : trim($g);
+            $gPhone = is_array($g) ? trim($g['phone'] ?? '') : null;
+
+            if (! empty($gName)) {
+                $token = is_array($g) && ! empty($g['token']) ? $g['token'] : strtoupper(Str::random(8));
+                $invitationUrl = route('invitation.show', $invitation->slug).'?to='.urlencode($gName);
+
+                if ($gId && $existing = $invitation->guests()->find($gId)) {
+                    $existing->update([
+                        'name' => $gName,
+                        'phone' => $gPhone,
+                        'invitation_url' => $invitationUrl,
+                    ]);
+                    $keptIds[] = $existing->id;
+                    $count++;
+                } else {
+                    $newGuest = $invitation->guests()->create([
+                        'name' => $gName,
+                        'phone' => $gPhone,
+                        'unique_token' => $token,
+                        'invitation_url' => $invitationUrl,
+                    ]);
+                    $keptIds[] = $newGuest->id;
+                    $count++;
+                }
+            }
+        }
+
+        if (count($keptIds) > 0) {
+            $invitation->guests()->whereNotIn('id', $keptIds)->delete();
+        } elseif (count($guestsData) === 0) {
+            $invitation->guests()->delete();
+        }
+    }
+
+    private function handleGalleryPhotosUpload(Request $request, Invitation $invitation): void
+    {
+        if (! $request->hasFile('gallery_photos')) {
+            return;
+        }
+
+        $baseSortOrder = $invitation->photos()->count();
+        foreach ($request->file('gallery_photos') as $idx => $photoFile) {
+            if ($photoFile && $photoFile->isValid()) {
+                $path = $this->imageCompressor->compressAndStoreUploadedFile(
+                    $photoFile,
+                    'invitations/'.$invitation->id.'/photos',
+                    'public',
+                    1600,
+                    80,
+                );
+                $invitation->photos()->create([
+                    'path' => $path,
+                    'sort_order' => $baseSortOrder + $idx,
+                ]);
+            }
+        }
+    }
+
     private function handlePhotoUpload(Request $request, string $fileKey, ?string $existingPath = null): ?string
     {
+        $maxDimension = match ($fileKey) {
+            'groom_photo', 'bride_photo' => 900,
+            'custom_ornament_header', 'custom_ornament_side' => 1200,
+            default => 1600,
+        };
+        $preserveAlpha = str_starts_with($fileKey, 'custom_ornament_');
+
         if ($request->hasFile($fileKey) && $request->file($fileKey)->isValid()) {
-            return $request->file($fileKey)->store('invitations/photos', 'public');
+            return $this->imageCompressor->compressAndStoreUploadedFile(
+                $request->file($fileKey),
+                'invitations/photos',
+                'public',
+                $maxDimension,
+                80,
+                $preserveAlpha,
+            );
         }
 
         $base64Key = $fileKey.'_base64';
         if ($request->filled($base64Key) && Str::startsWith($request->input($base64Key), 'data:image/')) {
-            $base64Data = $request->input($base64Key);
-            $ext = 'jpg';
-            if (preg_match('/^data:image\/([a-zA-Z0-9\+\-]+);base64,/', $base64Data, $type)) {
-                $base64Data = substr($base64Data, strpos($base64Data, ',') + 1);
-                $rawExt = strtolower($type[1]);
-                $ext = match ($rawExt) {
-                    'jpeg' => 'jpg',
-                    'png' => 'png',
-                    'webp' => 'webp',
-                    default => 'jpg',
-                };
-            }
-            $decoded = base64_decode($base64Data);
-            if ($decoded !== false && strlen($decoded) > 0) {
-                $fileName = 'invitations/photos/'.Str::random(40).'.'.$ext;
-                Storage::disk('public')->put($fileName, $decoded);
-
-                return $fileName;
+            $compressedPath = $this->imageCompressor->compressAndStoreBase64(
+                $request->input($base64Key),
+                'invitations/photos',
+                'public',
+                $maxDimension,
+                80,
+                $preserveAlpha,
+            );
+            if ($compressedPath !== null) {
+                return $compressedPath;
             }
         }
 

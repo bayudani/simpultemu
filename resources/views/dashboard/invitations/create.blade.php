@@ -501,7 +501,7 @@
 
                             <div class="flex flex-col sm:flex-row items-center gap-4 pt-1">
                                 <div class="w-24 h-32 rounded-xl overflow-hidden border-2 border-[#8B1E2D]/40 bg-white flex items-center justify-center shrink-0 shadow-md relative group">
-                                    <img id="preview-background-photo" src="{{ isset($invitation) && $invitation->background_photo ? Storage::url($invitation->background_photo) : '' }}" class="{{ isset($invitation) && $invitation->background_photo ? '' : 'hidden' }} w-full h-full object-cover">
+                                    <img id="preview-background-photo" src="{{ isset($invitation) && $invitation->background_photo ? (Str::startsWith($invitation->background_photo, ['http://', 'https://']) ? $invitation->background_photo : asset('storage/'.ltrim($invitation->background_photo, '/'))) : '' }}" class="{{ isset($invitation) && $invitation->background_photo ? '' : 'hidden' }} w-full h-full object-cover">
                                     <div id="fallback-background-photo" class="{{ isset($invitation) && $invitation->background_photo ? 'hidden' : '' }} flex flex-col items-center justify-center text-stone-400 p-2 text-center">
                                         <svg class="w-8 h-8 text-stone-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                                         <span class="text-[9px] mt-1 font-medium">Cover Kosong</span>
@@ -561,7 +561,7 @@
                                     @if(isset($invitation) && $invitation->photos && $invitation->photos->count() > 0)
                                         @foreach($invitation->photos as $idx => $photo)
                                         <div class="relative group rounded-xl overflow-hidden border border-[#E7E0D6] bg-white shadow-xs aspect-[4/3]" data-photo-id="{{ $photo->id }}">
-                                            <img src="{{ Storage::url($photo->path) }}" class="w-full h-full object-cover">
+                                            <img src="{{ Str::startsWith($photo->path, ['http://', 'https://']) ? $photo->path : asset('storage/'.ltrim($photo->path, '/')) }}" class="w-full h-full object-cover">
                                             <span class="absolute bottom-1.5 left-1.5 px-1.5 py-0.5 rounded bg-black/60 text-white text-[9px] font-mono">
                                                 Slot #{{ $idx + 1 }}
                                             </span>
@@ -607,7 +607,7 @@
                                     <!-- Story Photo 1 -->
                                     <div id="slot-story-photo-1" class="flex items-center gap-3 p-3 bg-white rounded-xl border border-[#E7E0D6] shadow-2xs">
                                         <div class="w-20 h-24 rounded-lg overflow-hidden border border-stone-300 bg-stone-100 shrink-0 relative flex items-center justify-center">
-                                            <img id="preview-story-photo-1" src="{{ isset($invitation) && $invitation->story_photo_1 ? Storage::url($invitation->story_photo_1) : '' }}" class="{{ isset($invitation) && $invitation->story_photo_1 ? '' : 'hidden' }} w-full h-full object-cover">
+                                            <img id="preview-story-photo-1" src="{{ isset($invitation) && $invitation->story_photo_1 ? (Str::startsWith($invitation->story_photo_1, ['http://', 'https://']) ? $invitation->story_photo_1 : asset('storage/'.ltrim($invitation->story_photo_1, '/'))) : '' }}" class="{{ isset($invitation) && $invitation->story_photo_1 ? '' : 'hidden' }} w-full h-full object-cover">
                                             <div id="fallback-story-photo-1" class="{{ isset($invitation) && $invitation->story_photo_1 ? 'hidden' : '' }} text-stone-400 text-center p-1">
                                                 <svg class="w-6 h-6 mx-auto text-stone-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                                                 <span class="text-[8px] font-medium">Foto Cerita 1</span>
@@ -624,7 +624,7 @@
                                     <!-- Story Photo 2 -->
                                     <div id="slot-story-photo-2" class="flex items-center gap-3 p-3 bg-white rounded-xl border border-[#E7E0D6] shadow-2xs">
                                         <div class="w-20 h-24 rounded-lg overflow-hidden border border-stone-300 bg-stone-100 shrink-0 relative flex items-center justify-center">
-                                            <img id="preview-story-photo-2" src="{{ isset($invitation) && $invitation->story_photo_2 ? Storage::url($invitation->story_photo_2) : '' }}" class="{{ isset($invitation) && $invitation->story_photo_2 ? '' : 'hidden' }} w-full h-full object-cover">
+                                            <img id="preview-story-photo-2" src="{{ isset($invitation) && $invitation->story_photo_2 ? (Str::startsWith($invitation->story_photo_2, ['http://', 'https://']) ? $invitation->story_photo_2 : asset('storage/'.ltrim($invitation->story_photo_2, '/'))) : '' }}" class="{{ isset($invitation) && $invitation->story_photo_2 ? '' : 'hidden' }} w-full h-full object-cover">
                                             <div id="fallback-story-photo-2" class="{{ isset($invitation) && $invitation->story_photo_2 ? 'hidden' : '' }} text-stone-400 text-center p-1">
                                                 <svg class="w-6 h-6 mx-auto text-stone-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                                                 <span class="text-[8px] font-medium">Foto Cerita 2</span>
@@ -641,7 +641,7 @@
                                     <!-- Story Photo 3 -->
                                     <div id="slot-story-photo-3" class="flex items-center gap-3 p-3 bg-white rounded-xl border border-[#E7E0D6] shadow-2xs">
                                         <div class="w-20 h-24 rounded-lg overflow-hidden border border-stone-300 bg-stone-100 shrink-0 relative flex items-center justify-center">
-                                            <img id="preview-story-photo-3" src="{{ isset($invitation) && $invitation->story_photo_3 ? Storage::url($invitation->story_photo_3) : '' }}" class="{{ isset($invitation) && $invitation->story_photo_3 ? '' : 'hidden' }} w-full h-full object-cover">
+                                            <img id="preview-story-photo-3" src="{{ isset($invitation) && $invitation->story_photo_3 ? (Str::startsWith($invitation->story_photo_3, ['http://', 'https://']) ? $invitation->story_photo_3 : asset('storage/'.ltrim($invitation->story_photo_3, '/'))) : '' }}" class="{{ isset($invitation) && $invitation->story_photo_3 ? '' : 'hidden' }} w-full h-full object-cover">
                                             <div id="fallback-story-photo-3" class="{{ isset($invitation) && $invitation->story_photo_3 ? 'hidden' : '' }} text-stone-400 text-center p-1">
                                                 <svg class="w-6 h-6 mx-auto text-stone-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                                                 <span class="text-[8px] font-medium">Foto Cerita 3</span>
@@ -658,7 +658,7 @@
                                     <!-- Story Photo 4 -->
                                     <div id="slot-story-photo-4" class="flex items-center gap-3 p-3 bg-white rounded-xl border border-[#E7E0D6] shadow-2xs hidden">
                                         <div class="w-20 h-24 rounded-lg overflow-hidden border border-stone-300 bg-stone-100 shrink-0 relative flex items-center justify-center">
-                                            <img id="preview-story-photo-4" src="{{ isset($invitation) && $invitation->story_photo_4 ? Storage::url($invitation->story_photo_4) : '' }}" class="{{ isset($invitation) && $invitation->story_photo_4 ? '' : 'hidden' }} w-full h-full object-cover">
+                                            <img id="preview-story-photo-4" src="{{ isset($invitation) && $invitation->story_photo_4 ? (Str::startsWith($invitation->story_photo_4, ['http://', 'https://']) ? $invitation->story_photo_4 : asset('storage/'.ltrim($invitation->story_photo_4, '/'))) : '' }}" class="{{ isset($invitation) && $invitation->story_photo_4 ? '' : 'hidden' }} w-full h-full object-cover">
                                             <div id="fallback-story-photo-4" class="{{ isset($invitation) && $invitation->story_photo_4 ? 'hidden' : '' }} text-stone-400 text-center p-1">
                                                 <svg class="w-6 h-6 mx-auto text-stone-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                                                 <span class="text-[8px] font-medium">Foto Cerita 4</span>
@@ -694,7 +694,7 @@
 
                             <div class="flex flex-col sm:flex-row items-center gap-4 pt-1">
                                 <div class="w-24 h-32 rounded-xl border border-stone-300 bg-white flex items-center justify-center shrink-0 shadow-xs relative overflow-hidden group">
-                                    <img id="preview-countdown-photo" src="{{ isset($invitation) && $invitation->countdown_photo ? Storage::url($invitation->countdown_photo) : '' }}" class="{{ isset($invitation) && $invitation->countdown_photo ? '' : 'hidden' }} w-full h-full object-cover">
+                                    <img id="preview-countdown-photo" src="{{ isset($invitation) && $invitation->countdown_photo ? (Str::startsWith($invitation->countdown_photo, ['http://', 'https://']) ? $invitation->countdown_photo : asset('storage/'.ltrim($invitation->countdown_photo, '/'))) : '' }}" class="{{ isset($invitation) && $invitation->countdown_photo ? '' : 'hidden' }} w-full h-full object-cover">
                                     <div id="fallback-countdown-photo" class="{{ isset($invitation) && $invitation->countdown_photo ? 'hidden' : '' }} flex flex-col items-center justify-center text-stone-400 p-2 text-center">
                                         <svg class="w-8 h-8 text-stone-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                                         <span class="text-[9px] mt-1 font-medium">Latar Kosong</span>
@@ -779,7 +779,7 @@
                                 
                                 <div id="groom-avatar-upload-box" class="flex items-center gap-3">
                                     <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-[#FF2E3A] bg-white flex items-center justify-center shrink-0 shadow-sm relative">
-                                        <img id="preview-groom-avatar" src="{{ isset($invitation) && $invitation->groom_photo ? Storage::url($invitation->groom_photo) : '' }}" class="{{ isset($invitation) && $invitation->groom_photo ? '' : 'hidden' }} w-full h-full object-cover">
+                                        <img id="preview-groom-avatar" src="{{ isset($invitation) && $invitation->groom_photo ? (Str::startsWith($invitation->groom_photo, ['http://', 'https://']) ? $invitation->groom_photo : asset('storage/'.ltrim($invitation->groom_photo, '/'))) : '' }}" class="{{ isset($invitation) && $invitation->groom_photo ? '' : 'hidden' }} w-full h-full object-cover">
                                         <div id="fallback-groom-avatar" class="{{ isset($invitation) && $invitation->groom_photo ? 'hidden' : '' }} w-10 h-10 text-stone-400 p-1">
                                             <svg class="w-full h-full" viewBox="0 0 64 64" fill="currentColor">
                                                 <path d="M32 10a12 12 0 100 24 12 12 0 000-24zm0 28c-14.33 0-26 10.45-26 23.33 0 1.47 1.2 2.67 2.67 2.67h46.66c1.47 0 2.67-1.2 2.67-2.67C58 48.45 46.33 38 32 38z"/>
@@ -838,7 +838,7 @@
 
                                 <div id="bride-avatar-upload-box" class="flex items-center gap-3">
                                     <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-[#FF2E3A] bg-white flex items-center justify-center shrink-0 shadow-sm relative">
-                                        <img id="preview-bride-avatar" src="{{ isset($invitation) && $invitation->bride_photo ? Storage::url($invitation->bride_photo) : '' }}" class="{{ isset($invitation) && $invitation->bride_photo ? '' : 'hidden' }} w-full h-full object-cover">
+                                        <img id="preview-bride-avatar" src="{{ isset($invitation) && $invitation->bride_photo ? (Str::startsWith($invitation->bride_photo, ['http://', 'https://']) ? $invitation->bride_photo : asset('storage/'.ltrim($invitation->bride_photo, '/'))) : '' }}" class="{{ isset($invitation) && $invitation->bride_photo ? '' : 'hidden' }} w-full h-full object-cover">
                                         <div id="fallback-bride-avatar" class="{{ isset($invitation) && $invitation->bride_photo ? 'hidden' : '' }} w-10 h-10 text-stone-400 p-1">
                                             <svg class="w-full h-full" viewBox="0 0 64 64" fill="currentColor">
                                                 <path d="M32 8c-6.63 0-12 5.37-12 12 0 5.4 3.58 9.97 8.5 11.45-12.87 2.22-22.5 12.18-22.5 24.55 0 1.1.9 2 2 2h48c1.1 0 2-.9 2-2 0-12.37-9.63-22.33-22.5-24.55C40.42 29.97 44 25.4 44 20c0-6.63-5.37-12-12-12z"/>
@@ -1021,7 +1021,7 @@
 
                     <!-- Hidden Cover Photo Reference for Step 5 Script -->
                     <div class="hidden">
-                        <img id="preview-background-photo-step5" src="{{ isset($invitation) && $invitation->background_photo ? Storage::url($invitation->background_photo) : '' }}" class="{{ isset($invitation) && $invitation->background_photo ? '' : 'hidden' }}">
+                        <img id="preview-background-photo-step5" src="{{ isset($invitation) && $invitation->background_photo ? (Str::startsWith($invitation->background_photo, ['http://', 'https://']) ? $invitation->background_photo : asset('storage/'.ltrim($invitation->background_photo, '/'))) : '' }}" class="{{ isset($invitation) && $invitation->background_photo ? '' : 'hidden' }}">
                         <div id="fallback-background-photo-step5" class="{{ isset($invitation) && $invitation->background_photo ? 'hidden' : '' }}"></div>
                     </div>
 
@@ -1172,7 +1172,7 @@
                             @if(isset($invitation) && $invitation->photos && $invitation->photos->count() > 0)
                                 @foreach($invitation->photos as $idx => $photo)
                                 <div class="relative group rounded-xl overflow-hidden border border-[#E7E0D6] bg-white shadow-xs aspect-[4/3]">
-                                    <img src="{{ Storage::url($photo->path) }}" class="w-full h-full object-cover">
+                                    <img src="{{ Str::startsWith($photo->path, ['http://', 'https://']) ? $photo->path : asset('storage/'.ltrim($photo->path, '/')) }}" class="w-full h-full object-cover">
                                     <span class="absolute bottom-1.5 left-1.5 px-1.5 py-0.5 rounded bg-black/60 text-white text-[9px] font-mono">
                                         #{{ $idx + 1 }}
                                     </span>
@@ -1396,19 +1396,30 @@
                         @php
                             $isPublished = isset($invitation) && $invitation->exists && $invitation->isPublished();
                         @endphp
-                        <div id="step6-draft-banner" class="{{ $isPublished ? 'hidden' : '' }} p-4 rounded-2xl bg-amber-50 border border-amber-200/80 text-amber-900 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div id="step6-draft-banner" class="{{ $isPublished ? 'hidden' : '' }} p-4 rounded-2xl bg-amber-50 border-2 border-amber-300/90 text-amber-900 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
                             <div class="flex items-start gap-2.5">
                                 <svg class="w-5 h-5 text-amber-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                                 </svg>
                                 <div>
-                                    <p class="text-xs font-bold text-amber-900">Undangan Berstatus Draf</p>
-                                    <p class="text-[11px] text-amber-700 mt-0.5">Tamu tidak dapat mengakses tautan sebelum undangan ini dipublikasikan.</p>
+                                    <p class="text-xs font-bold text-amber-900">Undangan Belum Dipublikasikan (Status Draf) — Tombol Salin Link Terkunci</p>
+                                    <p class="text-[11px] text-amber-800 mt-0.5 leading-relaxed">Tamu akan mengalami error 404 jika link dibuka sebelum dipublikasikan. Klik <strong>Publikasikan Sekarang</strong> terlebih dahulu agar tombol Salin Link, Buka, &amp; WhatsApp aktif.</p>
                                 </div>
                             </div>
-                            <button type="button" onclick="submitFormWithAction('publish')" class="w-full sm:w-auto px-3.5 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold shadow-xs transition cursor-pointer">
+                            <button type="button" id="step6-banner-publish-btn" onclick="submitFormWithAction('publish')" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold shadow-xs transition cursor-pointer shrink-0">
                                 Publikasikan Sekarang
                             </button>
+                        </div>
+
+                        <!-- Published Active Status Banner -->
+                        <div id="step6-published-banner" class="{{ $isPublished ? '' : 'hidden' }} p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200/90 text-emerald-900 flex items-center gap-2.5 shadow-2xs">
+                            <svg class="w-5 h-5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <div>
+                                <p class="text-xs font-bold text-emerald-900">Undangan Sudah Dipublikasikan &amp; Aktif</p>
+                                <p class="text-[11px] text-emerald-700 mt-0.5">Seluruh link undangan, tombol Salin, Buka, dan Kirim WhatsApp sudah aktif dan siap diakses oleh tamu.</p>
+                            </div>
                         </div>
 
                         <!-- ================= TAB 1: KIRIM CEPAT (1 TAMU) - LANDSCAPE GRID ================= -->
@@ -1476,12 +1487,17 @@
 
                                 <!-- Bagian: Link Langsung & Salin Cepat -->
                                 <div class="p-4 rounded-2xl bg-slate-50/80 border border-slate-200/90 shadow-2xs space-y-2">
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">
-                                        Tautan Undangan Digital
-                                    </label>
+                                    <div class="flex items-center justify-between gap-2">
+                                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                                            Tautan Undangan Digital
+                                        </label>
+                                        <span id="step6-url-lock-badge" class="{{ $isPublished ? 'hidden' : '' }} px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-300">
+                                            Terkunci (Belum Publikasi)
+                                        </span>
+                                    </div>
                                     <div class="flex items-center gap-2">
                                         <div class="relative flex-1">
-                                            <input type="text" id="step6-url-input" readonly class="w-full pl-3 pr-8 py-2.5 rounded-xl bg-white border border-slate-200 text-xs sm:text-sm font-mono text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#FF2E3A]/20 select-all cursor-pointer" onclick="this.select()">
+                                            <input type="text" id="step6-url-input" readonly class="w-full pl-3 pr-8 py-2.5 rounded-xl bg-white border border-slate-200 text-xs sm:text-sm font-mono text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#FF2E3A]/20 select-all cursor-pointer" onclick="handleStep6UrlInputClick(this)">
                                         </div>
                                         <button type="button" id="step6-btn-copy-main-link" onclick="copyStep6MainLink()" class="px-3.5 py-2.5 rounded-xl bg-[#FF2E3A] hover:bg-[#E01E2A] text-white text-xs font-semibold shadow-[0_4px_12px_rgba(255,46,58,0.25)] flex items-center gap-1.5 shrink-0 transition cursor-pointer">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1489,12 +1505,15 @@
                                             </svg>
                                             <span id="step6-copy-main-btn-text">Salin</span>
                                         </button>
-                                        <a id="step6-open-link" href="#" target="_blank" class="p-2.5 rounded-xl border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 text-slate-600 text-xs font-semibold flex items-center justify-center shrink-0 transition" title="Buka Undangan di Tab Baru">
+                                        <a id="step6-open-link" href="#" target="_blank" onclick="return handleStep6OpenLinkClick(event)" class="p-2.5 rounded-xl border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 text-slate-600 text-xs font-semibold flex items-center justify-center shrink-0 transition" title="Buka Undangan di Tab Baru">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                                             </svg>
                                         </a>
                                     </div>
+                                    <p id="step6-url-lock-note" class="{{ $isPublished ? 'hidden' : '' }} text-[11px] text-amber-700 font-medium">
+                                        Publikasikan undangan terlebih dahulu agar tombol Salin dan tautan dapat digunakan oleh tamu.
+                                    </p>
                                 </div>
 
                                 <!-- Bagian: Personalisasi Nama Tamu Cepat -->
@@ -1535,7 +1554,7 @@
                                         <button type="button" onclick="resetStep6WhatsAppTemplate()" class="px-2 py-1 rounded-lg text-xs text-slate-500 hover:text-slate-700 font-medium hover:bg-slate-200/60 transition cursor-pointer" title="Kembalikan format standar">
                                             Reset
                                         </button>
-                                        <button type="button" onclick="copyStep6WhatsappText()" class="px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-xs font-semibold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 border border-emerald-200/80 cursor-pointer">
+                                        <button type="button" id="step6-copy-wa-btn" onclick="copyStep6WhatsappText()" class="px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-xs font-semibold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 border border-emerald-200/80 cursor-pointer">
                                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                             </svg>
@@ -1555,11 +1574,11 @@
                                 </div>
                                 
                                 <!-- Tombol Utama Kirim WhatsApp -->
-                                <a id="step6-wa-btn" href="#" target="_blank" onclick="ensureStep6Published()" class="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-semibold text-sm shadow-[0_4px_14px_rgba(16,185,129,0.3)] hover:scale-[1.005] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer">
+                                <a id="step6-wa-btn" href="#" target="_blank" onclick="return handleStep6WaClick(event)" class="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-semibold text-sm shadow-[0_4px_14px_rgba(16,185,129,0.3)] hover:scale-[1.005] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer">
                                     <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
                                         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                                     </svg>
-                                    <span>Buka &amp; Kirim via WhatsApp</span>
+                                    <span id="step6-wa-btn-label">Buka &amp; Kirim via WhatsApp</span>
                                 </a>
                             </div>
                         </div>
@@ -2067,14 +2086,14 @@ function showToast(msg) {
 }
 
 // State foto preview
-let currentGroomPhotoUrl = "{{ isset($invitation) && $invitation->groom_photo ? Storage::url($invitation->groom_photo) : '' }}";
-let currentBridePhotoUrl = "{{ isset($invitation) && $invitation->bride_photo ? Storage::url($invitation->bride_photo) : '' }}";
-let currentBackgroundPhotoUrl = "{{ isset($invitation) && $invitation->background_photo ? Storage::url($invitation->background_photo) : '' }}";
-let currentCountdownPhotoUrl = "{{ isset($invitation) && $invitation->countdown_photo ? Storage::url($invitation->countdown_photo) : '' }}";
-let currentStoryPhoto1Url = "{{ isset($invitation) && $invitation->story_photo_1 ? Storage::url($invitation->story_photo_1) : '' }}";
-let currentStoryPhoto2Url = "{{ isset($invitation) && $invitation->story_photo_2 ? Storage::url($invitation->story_photo_2) : '' }}";
-let currentStoryPhoto3Url = "{{ isset($invitation) && $invitation->story_photo_3 ? Storage::url($invitation->story_photo_3) : '' }}";
-let currentStoryPhoto4Url = "{{ isset($invitation) && $invitation->story_photo_4 ? Storage::url($invitation->story_photo_4) : '' }}";
+let currentGroomPhotoUrl = "{{ isset($invitation) && $invitation->groom_photo ? (Str::startsWith($invitation->groom_photo, ['http://', 'https://']) ? $invitation->groom_photo : asset('storage/'.ltrim($invitation->groom_photo, '/'))) : '' }}";
+let currentBridePhotoUrl = "{{ isset($invitation) && $invitation->bride_photo ? (Str::startsWith($invitation->bride_photo, ['http://', 'https://']) ? $invitation->bride_photo : asset('storage/'.ltrim($invitation->bride_photo, '/'))) : '' }}";
+let currentBackgroundPhotoUrl = "{{ isset($invitation) && $invitation->background_photo ? (Str::startsWith($invitation->background_photo, ['http://', 'https://']) ? $invitation->background_photo : asset('storage/'.ltrim($invitation->background_photo, '/'))) : '' }}";
+let currentCountdownPhotoUrl = "{{ isset($invitation) && $invitation->countdown_photo ? (Str::startsWith($invitation->countdown_photo, ['http://', 'https://']) ? $invitation->countdown_photo : asset('storage/'.ltrim($invitation->countdown_photo, '/'))) : '' }}";
+let currentStoryPhoto1Url = "{{ isset($invitation) && $invitation->story_photo_1 ? (Str::startsWith($invitation->story_photo_1, ['http://', 'https://']) ? $invitation->story_photo_1 : asset('storage/'.ltrim($invitation->story_photo_1, '/'))) : '' }}";
+let currentStoryPhoto2Url = "{{ isset($invitation) && $invitation->story_photo_2 ? (Str::startsWith($invitation->story_photo_2, ['http://', 'https://']) ? $invitation->story_photo_2 : asset('storage/'.ltrim($invitation->story_photo_2, '/'))) : '' }}";
+let currentStoryPhoto3Url = "{{ isset($invitation) && $invitation->story_photo_3 ? (Str::startsWith($invitation->story_photo_3, ['http://', 'https://']) ? $invitation->story_photo_3 : asset('storage/'.ltrim($invitation->story_photo_3, '/'))) : '' }}";
+let currentStoryPhoto4Url = "{{ isset($invitation) && $invitation->story_photo_4 ? (Str::startsWith($invitation->story_photo_4, ['http://', 'https://']) ? $invitation->story_photo_4 : asset('storage/'.ltrim($invitation->story_photo_4, '/'))) : '' }}";
 let activeThemeId = parseInt(document.querySelector('.theme-radio-input:checked')?.value || 1);
 let isUserPremium = @json((bool) (auth()->user()?->isPremium() ?? false));
 let isInvitationPremium = @json((bool) (isset($invitation) && $invitation && $invitation->is_premium));
@@ -3118,6 +3137,7 @@ function updateTheme7PhotoToggles() {
     $defaultWaTemplate = "Kepada Yth. {nama_tamu},\n\nTanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri hari bahagia pernikahan kami.\n\nInformasi lengkap & link undangan digital:\n{link_undangan}\n\nMerupakan suatu kehormatan dan kebahagiaan bagi kami apabila berkenan hadir dan memberikan doa restu.\n\nTerima kasih,\n[Nama Mempelai]";
     $currentWaTemplate = old('whatsapp_template', (isset($invitation) && $invitation ? $invitation->whatsapp_template : null) ?? $defaultWaTemplate);
 @endphp
+let step6IsPublished = @json((bool) (isset($invitation) && $invitation->exists && $invitation->isPublished()));
 let guestsList = @json($initialGuestsList);
 let step6ActiveTab = 'quick';
 let step6HostMode = 'custom';
@@ -3127,7 +3147,7 @@ let step6MasterTemplate = @json($currentWaTemplate);
 
 function isStep6ProductionDomain() {
     const host = window.location.hostname.toLowerCase();
-    return !host.includes('test') && !host.includes('localhost') && !host.includes('127.0.0.1') && !host.includes('trycloudflare.com');
+    return !host.endsWith('.test') && host !== 'localhost' && !host.includes('127.0.0.1') && !host.includes('trycloudflare.com');
 }
 
 function escapeHtml(str) {
@@ -3474,35 +3494,126 @@ function fallbackClipboardCopy(text, onSuccess) {
     document.body.removeChild(temp);
 }
 
-function ensureStep6Published() {
-    const invIdInput = document.querySelector('input[name="invitation_id"]');
-    const invId = invIdInput ? invIdInput.value : ('{{ isset($invitation) ? $invitation->id : "" }}');
-    if (!invId) return;
+function notifyStep6MustPublish(event = null) {
+    if (event && typeof event.preventDefault === 'function') {
+        event.preventDefault();
+    }
+    if (typeof showToast === 'function') {
+        showToast('Publikasikan undangan terlebih dahulu sebelum menyalin atau membagikan link!');
+    } else {
+        alert('Publikasikan undangan terlebih dahulu sebelum menyalin atau membagikan link!');
+    }
+    const banner = document.getElementById('step6-draft-banner');
+    if (banner) {
+        banner.classList.remove('hidden');
+        banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        banner.classList.add('ring-4', 'ring-amber-400/50');
+        setTimeout(() => banner.classList.remove('ring-4', 'ring-amber-400/50'), 1400);
+    }
+    return false;
+}
 
+function syncStep6PublishUI() {
     const draftBanner = document.getElementById('step6-draft-banner');
-    if (draftBanner && !draftBanner.classList.contains('hidden')) {
-        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
-        fetch(`/dashboard/undangan/${invId}/publish`, {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': csrfToken,
-                'Accept': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest'
-            }
-        })
-        .then(res => res.json())
-        .then(data => {
-            draftBanner.classList.add('hidden');
-            if (typeof showToast === 'function') {
-                showToast('Undangan berhasil dipublikasikan! Tautan kini aktif untuk semua tamu.');
-            }
-        })
-        .catch(err => console.log('Auto-publish error:', err));
+    const publishedBanner = document.getElementById('step6-published-banner');
+    const lockBadge = document.getElementById('step6-url-lock-badge');
+    const lockNote = document.getElementById('step6-url-lock-note');
+    const urlInput = document.getElementById('step6-url-input');
+    const copyMainBtn = document.getElementById('step6-btn-copy-main-link');
+    const copyMainText = document.getElementById('step6-copy-main-btn-text');
+    const openLink = document.getElementById('step6-open-link');
+    const copyWaBtn = document.getElementById('step6-copy-wa-btn');
+    const waBtn = document.getElementById('step6-wa-btn');
+    const waBtnLabel = document.getElementById('step6-wa-btn-label');
+
+    if (step6IsPublished) {
+        if (draftBanner) draftBanner.classList.add('hidden');
+        if (publishedBanner) publishedBanner.classList.remove('hidden');
+        if (lockBadge) lockBadge.classList.add('hidden');
+        if (lockNote) lockNote.classList.add('hidden');
+        if (urlInput) {
+            urlInput.className = 'w-full pl-3 pr-8 py-2.5 rounded-xl bg-white border border-slate-200 text-xs sm:text-sm font-mono text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#FF2E3A]/20 select-all cursor-pointer';
+            urlInput.title = 'Klik untuk memilih tautan';
+        }
+        if (copyMainBtn) {
+            copyMainBtn.disabled = false;
+            copyMainBtn.className = 'px-3.5 py-2.5 rounded-xl bg-[#FF2E3A] hover:bg-[#E01E2A] text-white text-xs font-semibold shadow-[0_4px_12px_rgba(255,46,58,0.25)] flex items-center gap-1.5 shrink-0 transition cursor-pointer';
+            copyMainBtn.title = 'Salin link undangan';
+        }
+        if (copyMainText) copyMainText.innerText = 'Salin';
+        if (openLink) {
+            openLink.className = 'p-2.5 rounded-xl border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 text-slate-600 text-xs font-semibold flex items-center justify-center shrink-0 transition';
+            openLink.title = 'Buka Undangan di Tab Baru';
+        }
+        if (copyWaBtn) {
+            copyWaBtn.disabled = false;
+            copyWaBtn.className = 'px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-xs font-semibold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 border border-emerald-200/80 cursor-pointer';
+            copyWaBtn.title = 'Salin pesan WhatsApp';
+        }
+        if (waBtn) {
+            waBtn.className = 'w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-semibold text-sm shadow-[0_4px_14px_rgba(16,185,129,0.3)] hover:scale-[1.005] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer';
+            waBtn.title = 'Buka dan kirim lewat WhatsApp';
+        }
+        if (waBtnLabel) waBtnLabel.innerText = 'Buka & Kirim via WhatsApp';
+    } else {
+        if (draftBanner) draftBanner.classList.remove('hidden');
+        if (publishedBanner) publishedBanner.classList.add('hidden');
+        if (lockBadge) lockBadge.classList.remove('hidden');
+        if (lockNote) lockNote.classList.remove('hidden');
+        if (urlInput) {
+            urlInput.className = 'w-full pl-3 pr-8 py-2.5 rounded-xl bg-slate-100 border border-slate-200 text-xs sm:text-sm font-mono text-slate-400 select-none cursor-not-allowed';
+            urlInput.title = 'Publikasikan undangan terlebih dahulu agar link aktif';
+        }
+        if (copyMainBtn) {
+            copyMainBtn.disabled = true;
+            copyMainBtn.className = 'px-3.5 py-2.5 rounded-xl bg-slate-200 text-slate-400 border border-slate-300/80 text-xs font-semibold flex items-center gap-1.5 shrink-0 cursor-not-allowed';
+            copyMainBtn.title = 'Publikasikan undangan terlebih dahulu untuk menyalin link';
+        }
+        if (copyMainText) copyMainText.innerText = 'Terkunci';
+        if (openLink) {
+            openLink.className = 'p-2.5 rounded-xl border border-slate-200 bg-slate-100 text-slate-300 text-xs font-semibold flex items-center justify-center shrink-0 cursor-not-allowed';
+            openLink.title = 'Publikasikan undangan terlebih dahulu untuk membuka link';
+        }
+        if (copyWaBtn) {
+            copyWaBtn.disabled = true;
+            copyWaBtn.className = 'px-2.5 py-1 rounded-lg bg-slate-100 text-xs font-semibold text-slate-400 flex items-center gap-1 border border-slate-200 cursor-not-allowed';
+            copyWaBtn.title = 'Publikasikan undangan terlebih dahulu';
+        }
+        if (waBtn) {
+            waBtn.className = 'w-full py-3 px-4 rounded-xl bg-slate-200 text-slate-400 border border-slate-300 font-semibold text-sm flex items-center justify-center gap-2 cursor-not-allowed';
+            waBtn.title = 'Publikasikan undangan terlebih dahulu untuk mengirim via WhatsApp';
+        }
+        if (waBtnLabel) waBtnLabel.innerText = 'Terkunci — Publikasikan Undangan Dulu';
     }
 }
 
+function handleStep6UrlInputClick(inputEl) {
+    if (!step6IsPublished) {
+        notifyStep6MustPublish();
+        return;
+    }
+    if (inputEl) inputEl.select();
+}
+
+function handleStep6OpenLinkClick(event) {
+    if (!step6IsPublished) {
+        return notifyStep6MustPublish(event);
+    }
+    return true;
+}
+
+function handleStep6WaClick(event) {
+    if (!step6IsPublished) {
+        return notifyStep6MustPublish(event);
+    }
+    return true;
+}
+
 function copyStep6MainLink() {
-    ensureStep6Published();
+    if (!step6IsPublished) {
+        notifyStep6MustPublish();
+        return;
+    }
     const urlInput = document.getElementById('step6-url-input');
     if (!urlInput) return;
     copyToClipboard(urlInput.value, () => {
@@ -3517,6 +3628,10 @@ function copyStep6MainLink() {
 }
 
 function copyStep6WhatsappText() {
+    if (!step6IsPublished) {
+        notifyStep6MustPublish();
+        return;
+    }
     const waPreview = document.getElementById('step6-whatsapp-preview');
     if (!waPreview) return;
     copyToClipboard(waPreview.value, () => {
@@ -3750,6 +3865,10 @@ function deleteStep6Guest(index) {
 }
 
 function copyStep6GuestLink(index, btn) {
+    if (!step6IsPublished) {
+        notifyStep6MustPublish();
+        return;
+    }
     const guest = guestsList[index];
     if (!guest) return;
     const link = getStep6InvitationUrl(guest.name);
@@ -3764,6 +3883,10 @@ function copyStep6GuestLink(index, btn) {
 }
 
 function shareStep6GuestWhatsApp(index) {
+    if (!step6IsPublished) {
+        notifyStep6MustPublish();
+        return;
+    }
     const guest = guestsList[index];
     if (!guest) return;
     const guestName = guest.name || 'Tamu Undangan';
@@ -3932,6 +4055,44 @@ function renderStep6GuestsList(filteredList = null) {
         const realIndex = guestsList.indexOf(guest);
         const actualIdx = realIndex !== -1 ? realIndex : idx;
 
+        const copyBtnHtml = step6IsPublished
+            ? `<button type="button" onclick="copyStep6GuestLink(${actualIdx}, this)" class="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-semibold flex items-center gap-1 transition cursor-pointer" title="Salin link khusus tamu ini">
+                    <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                    <span>Salin</span>
+               </button>`
+            : `<button type="button" onclick="notifyStep6MustPublish()" class="px-2.5 py-1.5 rounded-lg bg-slate-100 text-slate-400 border border-slate-200 text-[11px] font-semibold flex items-center gap-1 cursor-not-allowed opacity-75" title="Publikasikan undangan terlebih dahulu untuk menyalin link">
+                    <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    <span>Salin</span>
+               </button>`;
+
+        const waBtnHtml = step6IsPublished
+            ? `<a href="${waHref}" target="_blank" class="px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-semibold flex items-center gap-1 transition shadow-2xs cursor-pointer" title="Kirim via WhatsApp">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    <span>WA</span>
+               </a>`
+            : `<button type="button" onclick="notifyStep6MustPublish()" class="px-2.5 py-1.5 rounded-lg bg-slate-200 text-slate-400 text-[11px] font-semibold flex items-center gap-1 cursor-not-allowed opacity-75" title="Publikasikan undangan terlebih dahulu untuk mengirim WhatsApp">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    <span>WA</span>
+               </button>`;
+
+        const urlBarHtml = step6IsPublished
+            ? `<div class="flex items-center gap-1.5 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200 text-[11px] font-mono text-slate-500">
+                    <span class="text-slate-400 font-sans text-[10px] uppercase font-bold shrink-0">Link:</span>
+                    <span class="truncate flex-1 select-all" title="${guestLink}">${guestLink}</span>
+                    <a href="${guestLink}" target="_blank" class="text-sky-600 hover:underline font-sans font-semibold shrink-0 text-[10px] flex items-center gap-0.5">
+                        <span>Buka</span>
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+               </div>`
+            : `<div class="flex items-center gap-1.5 bg-slate-100/80 px-2.5 py-1 rounded-lg border border-slate-200 text-[11px] font-mono text-slate-400 select-none opacity-80">
+                    <span class="px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 font-sans text-[9px] font-bold shrink-0">TERKUNCI</span>
+                    <span class="truncate flex-1" title="Publikasikan undangan terlebih dahulu">${guestLink}</span>
+                    <button type="button" onclick="notifyStep6MustPublish()" class="text-slate-400 font-sans font-semibold shrink-0 text-[10px] flex items-center gap-0.5 cursor-not-allowed">
+                        <span>Buka</span>
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    </button>
+               </div>`;
+
         html += `
             <div class="p-3 bg-white hover:bg-slate-50 border border-slate-200/90 rounded-2xl space-y-2 transition shadow-2xs">
                 <div class="flex items-center justify-between gap-2">
@@ -3951,14 +4112,8 @@ function renderStep6GuestsList(filteredList = null) {
                             <svg class="w-3.5 h-3.5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
                             <span>Edit</span>
                         </button>
-                        <button type="button" onclick="copyStep6GuestLink(${actualIdx}, this)" class="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-semibold flex items-center gap-1 transition cursor-pointer" title="Salin link khusus tamu ini">
-                            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
-                            <span>Salin</span>
-                        </button>
-                        <a href="${waHref}" target="_blank" class="px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-semibold flex items-center gap-1 transition shadow-2xs cursor-pointer" title="Kirim via WhatsApp">
-                            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                            <span>WA</span>
-                        </a>
+                        ${copyBtnHtml}
+                        ${waBtnHtml}
                         <button type="button" onclick="deleteStep6Guest(${actualIdx})" class="p-1 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition cursor-pointer" title="Hapus tamu (membebaskan 1 kuota)">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                         </button>
@@ -3966,14 +4121,7 @@ function renderStep6GuestsList(filteredList = null) {
                 </div>
 
                 <!-- URL preview bar -->
-                <div class="flex items-center gap-1.5 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200 text-[11px] font-mono text-slate-500">
-                    <span class="text-slate-400 font-sans text-[10px] uppercase font-bold shrink-0">Link:</span>
-                    <span class="truncate flex-1 select-all" title="${guestLink}">${guestLink}</span>
-                    <a href="${guestLink}" target="_blank" class="text-sky-600 hover:underline font-sans font-semibold shrink-0 text-[10px] flex items-center gap-0.5">
-                        <span>Buka</span>
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </a>
-                </div>
+                ${urlBarHtml}
             </div>
         `;
     });
@@ -4011,6 +4159,7 @@ function initStep6ShareCard() {
     if (subTitle) subTitle.innerText = `${groomNick} & ${brideNick}`;
 
     checkStep6CloudflareTunnel(false);
+    syncStep6PublishUI();
     updateStep6GuestCountBadge();
     updateStep6GuestQuotaDisplay();
     renderStep6GuestsList();
@@ -4098,30 +4247,123 @@ function updateCountdown() {
     }
 }
 
-// Avatar FileReader Setup
+// Kompresi foto otomatis di sisi browser sebelum upload (ringan & cepat di hosting)
+async function compressImageForUpload(file, { maxDimension = 1600, quality = 0.82, preserveAlpha = false } = {}) {
+    if (!file || !file.type || !file.type.startsWith('image/')) {
+        return file;
+    }
+
+    return new Promise((resolve) => {
+        const img = new Image();
+        const objectUrl = URL.createObjectURL(file);
+
+        img.onload = function() {
+            URL.revokeObjectURL(objectUrl);
+
+            let width = img.naturalWidth || img.width;
+            let height = img.naturalHeight || img.height;
+            if (!width || !height) {
+                resolve(file);
+                return;
+            }
+
+            const largest = Math.max(width, height);
+            if (largest > maxDimension) {
+                const ratio = maxDimension / largest;
+                width = Math.max(1, Math.round(width * ratio));
+                height = Math.max(1, Math.round(height * ratio));
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) {
+                resolve(file);
+                return;
+            }
+
+            ctx.drawImage(img, 0, 0, width, height);
+
+            const isAlphaType = preserveAlpha || file.type === 'image/png' || file.type === 'image/webp';
+            const targetMime = isAlphaType ? 'image/webp' : 'image/jpeg';
+            const baseName = (file.name || 'photo').replace(/\.[^/.]+$/, '');
+
+            canvas.toBlob((blob) => {
+                if (!blob) {
+                    resolve(file);
+                    return;
+                }
+                if (largest <= maxDimension && blob.size >= file.size) {
+                    resolve(file);
+                    return;
+                }
+                const resolvedType = blob.type || targetMime;
+                const finalExt = resolvedType === 'image/png' ? 'png' : (resolvedType === 'image/webp' ? 'webp' : 'jpg');
+                const compressedFile = new File([blob], `${baseName}.${finalExt}`, {
+                    type: resolvedType,
+                    lastModified: Date.now(),
+                });
+                resolve(compressedFile);
+            }, targetMime, quality);
+        };
+
+        img.onerror = function() {
+            URL.revokeObjectURL(objectUrl);
+            resolve(file);
+        };
+
+        img.src = objectUrl;
+    });
+}
+
+// Avatar & Single Photo Setup dengan kompresi otomatis
 function setupAvatarReader(inputId, previewImgId, fallbackId, onUpdate) {
     const input = document.getElementById(inputId);
     if (!input) return;
 
-    input.addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(evt) {
-                const url = evt.target.result;
-                const pImg = document.getElementById(previewImgId);
-                const fb = document.getElementById(fallbackId);
-                if (pImg) {
-                    pImg.src = url;
-                    pImg.classList.remove('hidden');
-                }
-                if (fb) fb.classList.add('hidden');
-                const b64 = document.getElementById(inputId + '_base64');
-                if (b64) b64.value = url;
-                onUpdate(url);
-            };
-            reader.readAsDataURL(file);
+    const maxDimension = (inputId === 'groom_photo' || inputId === 'bride_photo')
+        ? 900
+        : (inputId.startsWith('custom_ornament_') ? 1200 : 1600);
+    const preserveAlpha = inputId.startsWith('custom_ornament_');
+
+    input.addEventListener('change', async function(e) {
+        const rawFile = e.target.files[0];
+        if (!rawFile) return;
+
+        const compressedFile = await compressImageForUpload(rawFile, {
+            maxDimension,
+            quality: 0.82,
+            preserveAlpha,
+        });
+
+        let assignedToInput = false;
+        try {
+            if (typeof DataTransfer !== 'undefined') {
+                const dt = new DataTransfer();
+                dt.items.add(compressedFile);
+                input.files = dt.files;
+                assignedToInput = true;
+            }
+        } catch (err) {
+            assignedToInput = false;
         }
+
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+            const url = evt.target.result;
+            const pImg = document.getElementById(previewImgId);
+            const fb = document.getElementById(fallbackId);
+            if (pImg) {
+                pImg.src = url;
+                pImg.classList.remove('hidden');
+            }
+            if (fb) fb.classList.add('hidden');
+            const b64 = document.getElementById(inputId + '_base64');
+            if (b64) b64.value = assignedToInput ? '' : url;
+            onUpdate(url);
+        };
+        reader.readAsDataURL(compressedFile);
     });
 }
 
@@ -4170,23 +4412,38 @@ function renderGallerySlotPlaceholders(limit = 8) {
 
 const galleryPhotoInput = document.getElementById('galleryPhotoInput');
 if (galleryPhotoInput) {
-    galleryPhotoInput.addEventListener('change', function(e) {
+    galleryPhotoInput.addEventListener('change', async function(e) {
         const container = document.getElementById('newPhotosPreviewContainer');
         if (!container) return;
         container.innerHTML = '';
-        const files = Array.from(e.target.files);
+        const rawFiles = Array.from(e.target.files);
         const existingCount = document.querySelectorAll('#photoGalleryContainer [data-photo-id]').length;
         const cfg = (typeof THEME_PHOTO_CONFIG !== 'undefined' && typeof activeThemeId !== 'undefined' && THEME_PHOTO_CONFIG[activeThemeId]) 
             ? THEME_PHOTO_CONFIG[activeThemeId] 
             : { galleryLimit: 8 };
 
-        if (files.length === 0) {
+        if (rawFiles.length === 0) {
             renderGallerySlotPlaceholders(cfg.galleryLimit || 8);
             return;
         }
 
-        files.forEach((file, idx) => {
+        const compressedFiles = await Promise.all(
+            rawFiles.map(file => compressImageForUpload(file, { maxDimension: 1600, quality: 0.82, preserveAlpha: false }))
+        );
+
+        try {
+            if (typeof DataTransfer !== 'undefined') {
+                const dt = new DataTransfer();
+                compressedFiles.forEach(f => dt.items.add(f));
+                galleryPhotoInput.files = dt.files;
+            }
+        } catch (err) {
+            // Keep original files if DataTransfer assignment is unsupported
+        }
+
+        compressedFiles.forEach((file, idx) => {
             const slotNum = existingCount + idx + 1;
+            const sizeKb = Math.max(1, Math.round(file.size / 1024));
             const reader = new FileReader();
             reader.onload = function(evt) {
                 const div = document.createElement('div');
@@ -4194,7 +4451,7 @@ if (galleryPhotoInput) {
                 div.innerHTML = `
                     <img src="${evt.target.result}" class="w-full h-full object-cover">
                     <span class="absolute top-1.5 left-1.5 px-2 py-0.5 rounded-full bg-emerald-600 text-white text-[9px] font-bold shadow-xs">
-                        Slot #${slotNum} • Siap Unggah
+                        Slot #${slotNum} • ${sizeKb} KB
                     </span>
                 `;
                 container.appendChild(div);
@@ -4527,6 +4784,9 @@ document.addEventListener('DOMContentLoaded', function() {
     updateTheme7PhotoToggles();
     initStep6ShareCard();
     syncAllFields();
+    @if(session('published_url') || request()->query('step') == 6)
+    goToStep(6);
+    @endif
     setInterval(updateCountdown, 1000);
     // Heartbeat auto-refresh CSRF & keep session alive every 5 minutes
     setInterval(refreshCsrfToken, 5 * 60 * 1000);

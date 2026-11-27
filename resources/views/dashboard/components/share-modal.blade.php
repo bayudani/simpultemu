@@ -51,14 +51,25 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
                     </svg>
                     <div>
-                        <p class="text-xs font-bold text-amber-900">Undangan Berstatus Draf</p>
-                        <p class="text-[11px] text-amber-700 mt-0.5">Tamu tidak dapat mengakses tautan sebelum undangan ini dipublikasikan.</p>
+                        <p class="text-xs font-bold text-amber-900">Undangan Berstatus Draf (Tautan Terkunci)</p>
+                        <p class="text-[11px] text-amber-700 mt-0.5">Tautan belum aktif dan tombol Salin, Buka, serta WhatsApp dikunci sampai Anda klik Publikasikan Sekarang agar tamu tidak menemui error 404.</p>
                     </div>
                 </div>
                 <div class="shrink-0">
                     <button type="button" id="share-modal-publish-btn" onclick="publishShareModalInvitation()" class="w-full sm:w-auto px-3.5 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold shadow-xs transition cursor-pointer">
                         Publikasikan Sekarang
                     </button>
+                </div>
+            </div>
+
+            <!-- Published Status Active Banner (Shown when status is published) -->
+            <div id="share-modal-published-banner" class="hidden p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200/80 text-emerald-900 flex items-center gap-2.5">
+                <svg class="w-5 h-5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <div>
+                    <p class="text-xs font-bold text-emerald-900">Undangan Sudah Dipublikasikan &amp; Aktif</p>
+                    <p class="text-[11px] text-emerald-700 mt-0.5">Tautan sudah dapat disalin, dibuka, dan dibagikan ke WhatsApp tamu.</p>
                 </div>
             </div>
 
@@ -123,12 +134,18 @@
 
                     <!-- Bagian: Link Langsung & Salin Cepat -->
                     <div class="p-4 rounded-2xl bg-slate-50/80 border border-slate-200/90 shadow-2xs space-y-2">
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">
-                            Tautan Undangan Digital
-                        </label>
+                        <div class="flex items-center justify-between gap-2 flex-wrap">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                                Tautan Undangan Digital
+                            </label>
+                            <span id="share-modal-url-lock-badge" class="hidden inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-200 text-[10px] font-semibold">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                                Terkunci (Belum Publikasi)
+                            </span>
+                        </div>
                         <div class="flex items-center gap-2">
                             <div class="relative flex-1">
-                                <input type="text" id="share-modal-url-input" readonly class="w-full pl-3 pr-8 py-2.5 rounded-xl bg-white border border-slate-200 text-xs sm:text-sm font-mono text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#FF2E3A]/20 select-all cursor-pointer" onclick="this.select()">
+                                <input type="text" id="share-modal-url-input" readonly class="w-full pl-3 pr-8 py-2.5 rounded-xl bg-white border border-slate-200 text-xs sm:text-sm font-mono text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#FF2E3A]/20 select-all cursor-pointer" onclick="handleShareModalUrlClick(this)">
                             </div>
                             <button type="button" id="btn-copy-main-link" onclick="copyShareModalLink()" class="px-3.5 py-2.5 rounded-xl bg-[#FF2E3A] hover:bg-[#E01E2A] text-white text-xs font-semibold shadow-[0_4px_12px_rgba(255,46,58,0.25)] flex items-center gap-1.5 shrink-0 transition cursor-pointer">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -136,12 +153,15 @@
                                 </svg>
                                 <span id="copy-main-btn-text">Salin</span>
                             </button>
-                            <a id="share-modal-open-link" href="#" target="_blank" class="p-2.5 rounded-xl border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 text-slate-600 text-xs font-semibold flex items-center justify-center shrink-0 transition" title="Buka Undangan di Tab Baru">
+                            <a id="share-modal-open-link" href="#" target="_blank" onclick="return handleShareModalOpenClick(event)" class="p-2.5 rounded-xl border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 text-slate-600 text-xs font-semibold flex items-center justify-center shrink-0 transition" title="Buka Undangan di Tab Baru">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                                 </svg>
                             </a>
                         </div>
+                        <p id="share-modal-url-lock-note" class="hidden text-[11px] text-amber-700 font-medium">
+                            Publikasikan undangan terlebih dahulu agar tautan aktif dan dapat disalin tanpa error 404.
+                        </p>
                     </div>
 
                     <!-- Bagian: Personalisasi Nama Tamu Cepat -->
@@ -178,7 +198,7 @@
                             </label>
                             <p class="text-[11px] text-slate-500">Pesan otomatis yang dikirim ke kontak WhatsApp tamu.</p>
                         </div>
-                        <button type="button" onclick="copyShareModalWhatsappText()" class="px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-xs font-semibold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 border border-emerald-200/80 cursor-pointer">
+                        <button type="button" id="share-modal-copy-wa-btn" onclick="copyShareModalWhatsappText()" class="px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-xs font-semibold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 border border-emerald-200/80 cursor-pointer">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                             </svg>
@@ -190,11 +210,11 @@
                     </div>
                     
                     <!-- Tombol Utama Kirim WhatsApp -->
-                    <a id="share-modal-wa-btn" href="#" target="_blank" onclick="ensureShareModalPublished()" class="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-semibold text-sm shadow-[0_4px_14px_rgba(16,185,129,0.3)] hover:scale-[1.005] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer">
+                    <a id="share-modal-wa-btn" href="#" target="_blank" onclick="return handleShareModalWaClick(event)" class="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-semibold text-sm shadow-[0_4px_14px_rgba(16,185,129,0.3)] hover:scale-[1.005] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer">
                         <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
                             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                         </svg>
-                        <span>Buka &amp; Kirim via WhatsApp</span>
+                        <span id="share-modal-wa-btn-label">Buka &amp; Kirim via WhatsApp</span>
                     </a>
                 </div>
             </div>
@@ -354,7 +374,7 @@ const detectedWifiHost = 'http://172.16.170.222:8000';
 
 function isProductionDomain() {
     const host = window.location.hostname.toLowerCase();
-    return !host.includes('test') && !host.includes('localhost') && !host.includes('127.0.0.1') && !host.includes('trycloudflare.com');
+    return !host.endsWith('.test') && host !== 'localhost' && !host.includes('127.0.0.1') && !host.includes('trycloudflare.com');
 }
 
 function getShareBaseOrigin() {
@@ -620,19 +640,12 @@ function openShareModal(data) {
     if (subtitleEl) subtitleEl.innerText = `${currentShareData.groom} & ${currentShareData.bride}`;
     if (guestInput) guestInput.value = '';
 
-    if (draftBanner) {
-        if (currentShareData.status === 'draft') {
-            draftBanner.classList.remove('hidden');
-        } else {
-            draftBanner.classList.add('hidden');
-        }
-    }
-
     if (tamuLink) tamuLink.href = currentShareData.tamuUrl;
 
     // Reset view to Quick Share tab by default
     switchShareTab('quick');
     renderShareUrls('');
+    syncShareModalPublishUI();
 
     // Fetch guests for this invitation via AJAX
     fetchModalGuests();
@@ -776,6 +789,7 @@ function renderModalGuestsList(filteredGuests = null) {
     }
 
     const baseInvUrl = getShareBaseInvitationUrl();
+    const isPublished = isShareModalPublished();
     let html = '';
 
     listToRender.forEach((guest, idx) => {
@@ -784,6 +798,36 @@ function renderModalGuestsList(filteredGuests = null) {
         const phone = guest.phone ? guest.phone.replace(/[^0-9]/g, '') : '';
         const guestWaMsg = composeWhatsAppMessage(guestName, guestLink);
         const waHref = phone ? `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(guestWaMsg)}` : `https://api.whatsapp.com/send?text=${encodeURIComponent(guestWaMsg)}`;
+
+        const copyBtnHtml = isPublished
+            ? `<button type="button" onclick="copyCustomLink('${escapeHtml(guestLink)}', this)" class="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-semibold flex items-center gap-1 transition cursor-pointer" title="Salin link khusus tamu ini">
+                    <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                    <span>Salin</span>
+               </button>`
+            : `<button type="button" onclick="notifyShareModalMustPublish()" aria-disabled="true" class="px-2.5 py-1.5 rounded-lg bg-slate-100 text-slate-400 border border-slate-200 text-[11px] font-semibold flex items-center gap-1 cursor-not-allowed opacity-75" title="Publikasikan undangan terlebih dahulu untuk menyalin link">
+                    <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    <span>Salin</span>
+               </button>`;
+
+        const waBtnHtml = isPublished
+            ? `<a href="${waHref}" target="_blank" class="px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-semibold flex items-center gap-1 transition shadow-2xs cursor-pointer" title="Kirim via WhatsApp">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    <span>WA</span>
+               </a>`
+            : `<button type="button" onclick="notifyShareModalMustPublish()" aria-disabled="true" class="px-2.5 py-1.5 rounded-lg bg-slate-200 text-slate-400 text-[11px] font-semibold flex items-center gap-1 cursor-not-allowed opacity-80" title="Publikasikan undangan terlebih dahulu untuk kirim WhatsApp">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    <span>WA</span>
+               </button>`;
+
+        const openBarBtnHtml = isPublished
+            ? `<a href="${guestLink}" target="_blank" class="text-sky-600 hover:underline font-sans font-semibold shrink-0 text-[10px] flex items-center gap-0.5">
+                    <span>Buka</span>
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+               </a>`
+            : `<button type="button" onclick="notifyShareModalMustPublish()" aria-disabled="true" class="text-slate-400 font-sans font-semibold shrink-0 text-[10px] flex items-center gap-0.5 cursor-not-allowed" title="Publikasikan undangan terlebih dahulu">
+                    <span>Terkunci</span>
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+               </button>`;
 
         html += `
             <div class="p-3 bg-white hover:bg-slate-50 border border-slate-200/90 rounded-2xl space-y-2 transition shadow-2xs">
@@ -798,14 +842,8 @@ function renderModalGuestsList(filteredGuests = null) {
 
                     <!-- Action buttons -->
                     <div class="flex items-center gap-1.5 shrink-0">
-                        <button type="button" onclick="copyCustomLink('${escapeHtml(guestLink)}', this)" class="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-semibold flex items-center gap-1 transition cursor-pointer" title="Salin link khusus tamu ini">
-                            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
-                            <span>Salin</span>
-                        </button>
-                        <a href="${waHref}" target="_blank" class="px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-semibold flex items-center gap-1 transition shadow-2xs cursor-pointer" title="Kirim via WhatsApp">
-                            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                            <span>WA</span>
-                        </a>
+                        ${copyBtnHtml}
+                        ${waBtnHtml}
                         <button type="button" onclick="deleteGuestFromModal(${guest.id})" class="p-1 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition cursor-pointer" title="Hapus tamu">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                         </button>
@@ -815,11 +853,8 @@ function renderModalGuestsList(filteredGuests = null) {
                 <!-- URL preview bar -->
                 <div class="flex items-center gap-1.5 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200 text-[11px] font-mono text-slate-500">
                     <span class="text-slate-400 font-sans text-[10px] uppercase font-bold shrink-0">Link:</span>
-                    <span class="truncate flex-1 select-all" title="${guestLink}">${guestLink}</span>
-                    <a href="${guestLink}" target="_blank" class="text-sky-600 hover:underline font-sans font-semibold shrink-0 text-[10px] flex items-center gap-0.5">
-                        <span>Buka</span>
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </a>
+                    <span class="truncate flex-1 ${isPublished ? 'select-all text-slate-600' : 'select-none text-slate-400 opacity-75'}" title="${isPublished ? escapeHtml(guestLink) : 'Publikasikan undangan terlebih dahulu'}">${escapeHtml(guestLink)}</span>
+                    ${openBarBtnHtml}
                 </div>
             </div>
         `;
@@ -1037,7 +1072,150 @@ function deleteGuestFromModal(guestId) {
     .catch(err => console.error(err));
 }
 
+function isShareModalPublished() {
+    return Boolean(currentShareData && currentShareData.status === 'published');
+}
+
+function notifyShareModalMustPublish() {
+    showShareToast('Publikasikan undangan terlebih dahulu! Klik tombol Publikasikan Sekarang di atas agar tautan aktif dan dapat disalin.', 'warning');
+    const draftBanner = document.getElementById('share-modal-draft-banner');
+    if (draftBanner && !draftBanner.classList.contains('hidden')) {
+        draftBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+}
+
+function syncShareModalPublishUI() {
+    const isPublished = isShareModalPublished();
+    const draftBanner = document.getElementById('share-modal-draft-banner');
+    const publishedBanner = document.getElementById('share-modal-published-banner');
+    const urlInput = document.getElementById('share-modal-url-input');
+    const urlLockBadge = document.getElementById('share-modal-url-lock-badge');
+    const urlLockNote = document.getElementById('share-modal-url-lock-note');
+    const copyMainBtn = document.getElementById('btn-copy-main-link');
+    const copyMainBtnText = document.getElementById('copy-main-btn-text');
+    const openLink = document.getElementById('share-modal-open-link');
+    const copyWaBtn = document.getElementById('share-modal-copy-wa-btn');
+    const copyWaLabel = document.getElementById('copy-wa-text-label');
+    const waPreview = document.getElementById('share-modal-whatsapp-preview');
+    const waBtn = document.getElementById('share-modal-wa-btn');
+    const waBtnLabel = document.getElementById('share-modal-wa-btn-label');
+
+    if (draftBanner) draftBanner.classList.toggle('hidden', isPublished);
+    if (publishedBanner) publishedBanner.classList.toggle('hidden', !isPublished);
+    if (urlLockBadge) urlLockBadge.classList.toggle('hidden', isPublished);
+    if (urlLockNote) urlLockNote.classList.toggle('hidden', isPublished);
+
+    if (urlInput) {
+        if (isPublished) {
+            urlInput.classList.remove('select-none', 'cursor-not-allowed', 'bg-slate-100', 'text-slate-400');
+            urlInput.classList.add('select-all', 'cursor-pointer', 'bg-white', 'text-slate-700');
+            urlInput.title = 'Klik untuk memilih seluruh tautan';
+        } else {
+            urlInput.classList.remove('select-all', 'cursor-pointer', 'bg-white', 'text-slate-700');
+            urlInput.classList.add('select-none', 'cursor-not-allowed', 'bg-slate-100', 'text-slate-400');
+            urlInput.title = 'Publikasikan undangan terlebih dahulu untuk menyalin tautan';
+        }
+    }
+
+    if (copyMainBtn) {
+        if (isPublished) {
+            copyMainBtn.classList.remove('bg-slate-200', 'text-slate-500', 'cursor-not-allowed', 'opacity-80');
+            copyMainBtn.classList.add('bg-[#FF2E3A]', 'hover:bg-[#E01E2A]', 'text-white', 'shadow-[0_4px_12px_rgba(255,46,58,0.25)]', 'cursor-pointer');
+            copyMainBtn.title = 'Salin tautan undangan';
+            if (copyMainBtnText && copyMainBtnText.innerText === 'Terkunci') copyMainBtnText.innerText = 'Salin';
+        } else {
+            copyMainBtn.classList.remove('bg-[#FF2E3A]', 'hover:bg-[#E01E2A]', 'text-white', 'shadow-[0_4px_12px_rgba(255,46,58,0.25)]', 'cursor-pointer');
+            copyMainBtn.classList.add('bg-slate-200', 'text-slate-500', 'cursor-not-allowed', 'opacity-80');
+            copyMainBtn.title = 'Publikasikan undangan terlebih dahulu untuk menyalin tautan';
+            if (copyMainBtnText) copyMainBtnText.innerText = 'Terkunci';
+        }
+    }
+
+    if (openLink) {
+        if (isPublished) {
+            openLink.removeAttribute('aria-disabled');
+            openLink.classList.remove('bg-slate-100', 'text-slate-400', 'cursor-not-allowed', 'opacity-75');
+            openLink.classList.add('hover:border-slate-300', 'bg-white', 'hover:bg-slate-50', 'text-slate-600', 'cursor-pointer');
+            openLink.title = 'Buka Undangan di Tab Baru';
+        } else {
+            openLink.setAttribute('aria-disabled', 'true');
+            openLink.classList.remove('hover:border-slate-300', 'bg-white', 'hover:bg-slate-50', 'text-slate-600', 'cursor-pointer');
+            openLink.classList.add('bg-slate-100', 'text-slate-400', 'cursor-not-allowed', 'opacity-75');
+            openLink.title = 'Publikasikan undangan terlebih dahulu';
+        }
+    }
+
+    if (copyWaBtn) {
+        if (isPublished) {
+            copyWaBtn.classList.remove('bg-slate-100', 'text-slate-400', 'border-slate-200', 'cursor-not-allowed', 'opacity-80');
+            copyWaBtn.classList.add('bg-emerald-50', 'hover:bg-emerald-100', 'text-emerald-700', 'hover:text-emerald-800', 'border-emerald-200/80', 'cursor-pointer');
+            copyWaBtn.title = 'Salin pesan WhatsApp';
+            if (copyWaLabel && copyWaLabel.innerText === 'Terkunci') copyWaLabel.innerText = 'Salin Pesan';
+        } else {
+            copyWaBtn.classList.remove('bg-emerald-50', 'hover:bg-emerald-100', 'text-emerald-700', 'hover:text-emerald-800', 'border-emerald-200/80', 'cursor-pointer');
+            copyWaBtn.classList.add('bg-slate-100', 'text-slate-400', 'border-slate-200', 'cursor-not-allowed', 'opacity-80');
+            copyWaBtn.title = 'Publikasikan undangan terlebih dahulu untuk menyalin pesan';
+            if (copyWaLabel) copyWaLabel.innerText = 'Terkunci';
+        }
+    }
+
+    if (waPreview) {
+        if (isPublished) {
+            waPreview.classList.remove('select-none', 'bg-slate-100', 'text-slate-400', 'opacity-80');
+            waPreview.classList.add('select-all', 'bg-white', 'text-slate-700');
+        } else {
+            waPreview.classList.remove('select-all', 'bg-white', 'text-slate-700');
+            waPreview.classList.add('select-none', 'bg-slate-100', 'text-slate-400', 'opacity-80');
+        }
+    }
+
+    if (waBtn) {
+        if (isPublished) {
+            waBtn.removeAttribute('aria-disabled');
+            waBtn.classList.remove('bg-slate-200', 'text-slate-500', 'cursor-not-allowed', 'opacity-85');
+            waBtn.classList.add('bg-emerald-600', 'hover:bg-emerald-700', 'active:bg-emerald-800', 'text-white', 'shadow-[0_4px_14px_rgba(16,185,129,0.3)]', 'hover:scale-[1.005]', 'active:scale-[0.99]', 'cursor-pointer');
+            if (waBtnLabel) waBtnLabel.textContent = 'Buka & Kirim via WhatsApp';
+        } else {
+            waBtn.setAttribute('aria-disabled', 'true');
+            waBtn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700', 'active:bg-emerald-800', 'text-white', 'shadow-[0_4px_14px_rgba(16,185,129,0.3)]', 'hover:scale-[1.005]', 'active:scale-[0.99]', 'cursor-pointer');
+            waBtn.classList.add('bg-slate-200', 'text-slate-500', 'cursor-not-allowed', 'opacity-85');
+            if (waBtnLabel) waBtnLabel.textContent = 'Publikasikan Dulu untuk Kirim WhatsApp';
+        }
+    }
+}
+
+function handleShareModalUrlClick(inputEl) {
+    if (!isShareModalPublished()) {
+        if (inputEl && typeof inputEl.blur === 'function') inputEl.blur();
+        notifyShareModalMustPublish();
+        return;
+    }
+    if (inputEl && typeof inputEl.select === 'function') inputEl.select();
+}
+
+function handleShareModalOpenClick(event) {
+    if (!isShareModalPublished()) {
+        if (event) event.preventDefault();
+        notifyShareModalMustPublish();
+        return false;
+    }
+    return true;
+}
+
+function handleShareModalWaClick(event) {
+    if (!isShareModalPublished()) {
+        if (event) event.preventDefault();
+        notifyShareModalMustPublish();
+        return false;
+    }
+    return true;
+}
+
 function copyCustomLink(link, btnElement) {
+    if (!isShareModalPublished()) {
+        notifyShareModalMustPublish();
+        return;
+    }
     copyToClipboardCustom(link, 'Link tamu berhasil disalin!');
     if (btnElement) {
         const span = btnElement.querySelector('span');
@@ -1071,17 +1249,25 @@ function publishShareModalInvitation(callback) {
             'X-Requested-With': 'XMLHttpRequest'
         }
     })
-    .then(res => res.json())
+    .then(res => {
+        if (!res.ok) throw new Error('Publish gagal');
+        return res.json();
+    })
     .then(data => {
-        currentShareData.status = 'published';
-        const draftBanner = document.getElementById('share-modal-draft-banner');
-        if (draftBanner) draftBanner.classList.add('hidden');
-        showShareToast('Undangan berhasil dipublikasikan! Tautan kini aktif untuk semua tamu.', 'success');
+        currentShareData.status = data.status || 'published';
+        syncShareModalPublishUI();
+        renderModalGuestsList();
+
+        const triggerBtn = document.querySelector(`.btn-share-invitation[data-id="${currentShareData.id}"]`);
+        if (triggerBtn) {
+            triggerBtn.dataset.status = 'published';
+        }
+
+        showShareToast('Undangan berhasil dipublikasikan! Tautan dan tombol salin kini aktif.', 'success');
         if (typeof callback === 'function') callback();
     })
     .catch(err => {
-        showShareToast('Gagal mempublikasikan undangan otomatis.', 'error');
-        if (typeof callback === 'function') callback();
+        showShareToast('Gagal mempublikasikan undangan. Pastikan undangan siap dipublikasikan lalu coba lagi.', 'error');
     })
     .finally(() => {
         if (btn) {
@@ -1091,14 +1277,11 @@ function publishShareModalInvitation(callback) {
     });
 }
 
-function ensureShareModalPublished() {
-    if (currentShareData && currentShareData.status === 'draft') {
-        publishShareModalInvitation();
-    }
-}
-
 function copyShareModalLink() {
-    ensureShareModalPublished();
+    if (!isShareModalPublished()) {
+        notifyShareModalMustPublish();
+        return;
+    }
     const urlInput = document.getElementById('share-modal-url-input');
     if (!urlInput) return;
 
@@ -1112,6 +1295,10 @@ function copyShareModalLink() {
 }
 
 function copyShareModalWhatsappText() {
+    if (!isShareModalPublished()) {
+        notifyShareModalMustPublish();
+        return;
+    }
     const waPreview = document.getElementById('share-modal-whatsapp-preview');
     if (!waPreview) return;
 

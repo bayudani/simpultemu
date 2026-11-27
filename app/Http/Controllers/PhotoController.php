@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Invitation;
 use App\Models\InvitationPhoto;
+use App\Services\ImageCompressionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
 {
+    public function __construct(public ImageCompressionService $imageCompressor) {}
+
     public function store(Request $request, Invitation $invitation)
     {
         $this->authorize('update', $invitation);
@@ -18,7 +21,13 @@ class PhotoController extends Controller
             'slot' => 'nullable|string',
         ]);
 
-        $path = $request->file('photo')->store('invitations/'.$invitation->id.'/photos', 'public');
+        $path = $this->imageCompressor->compressAndStoreUploadedFile(
+            $request->file('photo'),
+            'invitations/'.$invitation->id.'/photos',
+            'public',
+            1600,
+            80,
+        );
 
         $photo = $invitation->photos()->create([
             'path' => $path,
@@ -30,7 +39,7 @@ class PhotoController extends Controller
             'success' => true,
             'photo' => [
                 'id' => $photo->id,
-                'url' => Storage::url($photo->path),
+                'url' => asset('storage/'.ltrim($photo->path, '/')),
                 'slot' => $photo->slot,
             ],
         ]);

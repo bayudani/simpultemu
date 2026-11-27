@@ -46,6 +46,23 @@ Route::get('/sitemap.xml', function () {
         ->header('Content-Type', 'text/xml; charset=utf-8');
 })->name('sitemap');
 
+// Fallback media server untuk shared hosting saat symlink public/storage tidak tersedia atau bermasalah
+Route::get('/storage/{path}', function (string $path) {
+    $cleanPath = ltrim(str_replace(['..', '\\'], ['', '/'], $path), '/');
+    if ($cleanPath === '') {
+        abort(404);
+    }
+
+    $fullPath = storage_path('app/public/'.$cleanPath);
+    if (! is_file($fullPath)) {
+        abort(404);
+    }
+
+    return response()->file($fullPath, [
+        'Cache-Control' => 'public, max-age=31536000',
+    ]);
+})->where('path', '.*')->name('storage.fallback');
+
 // CSRF & Session Keepalive Refresh endpoint
 Route::get('/refresh-csrf', function () {
     return response()->json([

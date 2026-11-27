@@ -20,7 +20,7 @@
 <section id="section-hero" class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 py-16 overflow-hidden">
     <!-- Header Garland -->
     <div class="w-64 max-w-xs mx-auto mb-4 anim-ethereal-float">
-        <img src="{{ !empty($invitation->custom_ornament_header) ? Storage::url($invitation->custom_ornament_header) : asset('images/themes/ethereal-bloom/floral-header-garland.png') }}" alt="" class="w-full h-auto object-contain">
+        <img src="{{ !empty($invitation->custom_ornament_header) ? (Str::startsWith($invitation->custom_ornament_header, ['http://', 'https://']) ? $invitation->custom_ornament_header : asset('storage/'.ltrim($invitation->custom_ornament_header, '/'))) : asset('images/themes/ethereal-bloom/floral-header-garland.png') }}" alt="" class="w-full h-auto object-contain">
     </div>
 
     <p class="text-xs uppercase tracking-[0.35em] text-blue-600 font-semibold mb-2">WEDDING INVITATION</p>
@@ -36,7 +36,10 @@
         <!-- Portrait Inside Wreath -->
         <div class="w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden shadow-xl ring-4 ring-white/80">
             @php
-                $heroPhoto = !empty($invitation->cover_photo) ? Storage::url($invitation->cover_photo) : (!empty($invitation->background_photo) ? Storage::url($invitation->background_photo) : 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop&q=80');
+                $rawHeroPhoto = !empty($invitation->cover_photo) ? $invitation->cover_photo : ($invitation->background_photo ?? null);
+                $heroPhoto = $rawHeroPhoto
+                    ? (Str::startsWith($rawHeroPhoto, ['http://', 'https://']) ? $rawHeroPhoto : asset('storage/'.ltrim($rawHeroPhoto, '/')))
+                    : 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop&q=80';
             @endphp
             <img src="{{ $heroPhoto }}" alt="Couple" class="w-full h-full object-cover">
         </div>
@@ -77,7 +80,7 @@
 <section class="py-16 px-4 text-center bg-white/70 backdrop-blur-sm border-y border-blue-100">
     <div class="max-w-2xl mx-auto space-y-4">
         <div class="w-48 max-w-xs mx-auto mb-2">
-            <img src="{{ !empty($invitation->custom_ornament_header) ? Storage::url($invitation->custom_ornament_header) : asset('images/themes/ethereal-bloom/floral-header-garland.png') }}" alt="" class="w-full h-auto object-contain">
+            <img src="{{ !empty($invitation->custom_ornament_header) ? (Str::startsWith($invitation->custom_ornament_header, ['http://', 'https://']) ? $invitation->custom_ornament_header : asset('storage/'.ltrim($invitation->custom_ornament_header, '/'))) : asset('images/themes/ethereal-bloom/floral-header-garland.png') }}" alt="" class="w-full h-auto object-contain">
         </div>
         <h2 class="text-3xl font-script text-[#1D4ED8]">Salam Pembuka</h2>
         <p class="text-xs uppercase tracking-widest text-slate-500 font-semibold">Atas Rahmat Tuhan Yang Maha Esa</p>
@@ -163,7 +166,7 @@
 
         <!-- Garland Divider -->
         <div class="w-48 mx-auto opacity-75">
-            <img src="{{ !empty($invitation->custom_ornament_header) ? Storage::url($invitation->custom_ornament_header) : asset('images/themes/ethereal-bloom/floral-header-garland.png') }}" alt="" class="w-full h-auto object-contain">
+            <img src="{{ !empty($invitation->custom_ornament_header) ? (Str::startsWith($invitation->custom_ornament_header, ['http://', 'https://']) ? $invitation->custom_ornament_header : asset('storage/'.ltrim($invitation->custom_ornament_header, '/'))) : asset('images/themes/ethereal-bloom/floral-header-garland.png') }}" alt="" class="w-full h-auto object-contain">
         </div>
 
         <!-- Event 2: Akad Pernikahan -->
@@ -181,7 +184,7 @@
 
         <!-- Garland Divider -->
         <div class="w-48 mx-auto opacity-75">
-            <img src="{{ !empty($invitation->custom_ornament_header) ? Storage::url($invitation->custom_ornament_header) : asset('images/themes/ethereal-bloom/floral-header-garland.png') }}" alt="" class="w-full h-auto object-contain">
+            <img src="{{ !empty($invitation->custom_ornament_header) ? (Str::startsWith($invitation->custom_ornament_header, ['http://', 'https://']) ? $invitation->custom_ornament_header : asset('storage/'.ltrim($invitation->custom_ornament_header, '/'))) : asset('images/themes/ethereal-bloom/floral-header-garland.png') }}" alt="" class="w-full h-auto object-contain">
         </div>
 
         <!-- Event 3: Makan Malam -->
@@ -332,7 +335,7 @@
         <!-- Couple Portrait in Round Floral Frame -->
         <div class="relative w-48 h-48 mx-auto flex items-center justify-center">
             <div class="w-36 h-36 rounded-full overflow-hidden shadow-lg ring-4 ring-white">
-                <img src="{{ !empty($invitation->cover_photo) ? Storage::url($invitation->cover_photo) : (!empty($invitation->background_photo) ? Storage::url($invitation->background_photo) : 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop&q=80') }}" alt="Closing" class="w-full h-full object-cover">
+                <img src="{{ $heroPhoto }}" alt="Closing" class="w-full h-full object-cover">
             </div>
             <img src="{{ asset('images/themes/ethereal-bloom/floral-frame-round.png') }}" alt="" class="absolute inset-0 w-full h-full object-contain pointer-events-none z-10">
         </div>

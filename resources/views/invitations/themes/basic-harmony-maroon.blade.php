@@ -12,9 +12,10 @@
 
 <!-- HERO SECTION (SEAMLESS DAMASK BLEND - NO ABRUPT SOLID BLOCKS) -->
 <section id="section-cover" class="relative min-h-screen flex items-center justify-center text-white overflow-hidden">
-    @if($invitation->photos->first() || $invitation->cover_photo)
+    @if($invitation->cover_photo || $invitation->photos->first())
+    @php $coverSrc = $invitation->cover_photo ?? $invitation->photos->first()->path; @endphp
     <div class="absolute inset-0 opacity-20">
-        <img src="{{ Storage::url($invitation->cover_photo ?? $invitation->photos->first()->path) }}" class="w-full h-full object-cover" alt="Cover">
+        <img src="{{ Str::startsWith($coverSrc, ['http://', 'https://']) ? $coverSrc : asset('storage/'.ltrim($coverSrc, '/')) }}" class="w-full h-full object-cover" alt="Cover">
     </div>
     @endif
     <div class="absolute inset-0 bg-black/20"></div>

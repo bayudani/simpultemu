@@ -2011,6 +2011,9 @@ let currentMusicCategoryFilter = 'all';
 function openMusicLibraryModal() {
     const modal = document.getElementById('music-library-modal');
     if (!modal) return;
+    if (typeof window.syncMusicPackageUI === 'function') {
+        window.syncMusicPackageUI();
+    }
     renderMusicLibraryList();
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
@@ -2189,6 +2192,16 @@ function selectTrackFromLibrary(trackId) {
  * Direct file upload handler from inside Music Library Modal
  */
 function handleModalCustomAudioUpload(fileInput) {
+    if ((window.CURRENT_USER_PACKAGE_TIER || 'basic') !== 'premium') {
+        if (fileInput) fileInput.value = '';
+        if (typeof openUpgradeModal === 'function') {
+            openUpgradeModal(window.CURRENT_INVITATION_ID, 'Upload lagu MP3 sendiri hanya tersedia pada Paket Premium (Rp59.000).', 'premium');
+        } else {
+            alert('Upload lagu MP3 sendiri hanya tersedia pada Paket Premium (Rp59.000).');
+        }
+        return;
+    }
+
     const file = fileInput.files && fileInput.files[0];
     if (!file) return;
 

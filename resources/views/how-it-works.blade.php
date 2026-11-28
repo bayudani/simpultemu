@@ -5,8 +5,8 @@
 @section('keywords', 'cara membuat undangan pernikahan digital, tutorial buat undangan online gratis, langkah membuat undangan nikah digital, sebar undangan whatsapp, simpultemu')
 
 @section('content')
-<div class="relative pt-24 sm:pt-32 pb-16 sm:pb-24 bg-[#F8FAFC] min-h-screen overflow-hidden">
-    @include('partials.side-diamond-ornament')
+<div class="relative pt-24 sm:pt-32 pb-16 sm:pb-24 min-h-screen overflow-hidden" style="background-color: #F2FBFF;">
+    @include('partials.light-blue-square-grid')
 
     <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header -->
@@ -14,7 +14,7 @@
             <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-[#DBF6FF] text-[#0284C7] border border-[#BAEAF8]">
                 Alur Praktis 6 Langkah
             </span>
-            <h1 class="font-serif text-3xl sm:text-5xl font-bold text-slate-900 tracking-tight">
+            <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight" style="color: #162E54;">
                 Cara Kerja Membuat <span class="italic text-[#FF2E3A]">Undangan Impian</span>
             </h1>
             <p class="font-sans text-slate-600 text-base sm:text-lg font-light leading-relaxed max-w-2xl mx-auto">

@@ -175,16 +175,16 @@
             <table class="w-full text-left text-sm">
                 <thead>
                     <tr class="bg-slate-50/90 border-b border-slate-100 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                        <th class="py-3 px-2 w-24 text-center whitespace-nowrap" title="Urutan nomor posisi lagu secara global">Urutan No.</th>
-                        <th class="py-3 px-2 w-20 text-center whitespace-nowrap" title="Nomor urut lagu di dalam paketnya">No. Paket</th>
+                        <th class="py-3 px-2 w-20 text-center whitespace-nowrap" title="Urutan nomor posisi lagu secara global">Urutan No.</th>
+                        <th class="py-3 px-2 w-18 text-center whitespace-nowrap" title="Nomor urut lagu di dalam paketnya">No. Paket</th>
                         <th class="py-3 px-2 w-10 text-center whitespace-nowrap">Putar</th>
-                        <th class="py-3 px-3 min-w-[200px]">Judul Lagu &amp; Artis</th>
+                        <th class="py-3 px-3 min-w-[160px]">Judul Lagu &amp; Artis</th>
                         <th class="py-3 px-2.5 whitespace-nowrap">Paket Akses Lagu</th>
                         <th class="py-3 px-2 text-center whitespace-nowrap">Tipe Sumber</th>
                         <th class="py-3 px-2 text-center whitespace-nowrap">Durasi</th>
                         <th class="py-3 px-2 text-center whitespace-nowrap">Dipakai di</th>
                         <th class="py-3 px-2.5 text-center whitespace-nowrap">Status</th>
-                        <th class="py-3 px-3 text-right whitespace-nowrap sticky right-0 bg-slate-50/95 backdrop-blur-xs z-10 shadow-[-6px_0_10px_-4px_rgba(0,0,0,0.06)]">Aksi</th>
+                        <th class="py-3 px-3 text-right whitespace-nowrap">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
@@ -311,15 +311,15 @@
                         <td class="py-3 px-2.5 text-center align-middle whitespace-nowrap">
                             <form action="{{ route('admin.music.toggleActive', $item) }}" method="POST" class="inline">
                                 @csrf
-                                <button type="submit" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold border transition cursor-pointer {{ $item->is_active ? 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200' }}" title="{{ $item->is_active ? 'Klik untuk nonaktifkan' : 'Klik untuk aktifkan' }}">
-                                    <span class="w-1.5 h-1.5 rounded-full {{ $item->is_active ? 'bg-emerald-500' : 'bg-slate-400' }}"></span>
+                                <button type="submit" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold border transition cursor-pointer whitespace-nowrap {{ $item->is_active ? 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200' }}" title="{{ $item->is_active ? 'Klik untuk nonaktifkan' : 'Klik untuk aktifkan' }}">
+                                    <span class="w-1.5 h-1.5 rounded-full shrink-0 {{ $item->is_active ? 'bg-emerald-500' : 'bg-slate-400' }}"></span>
                                     <span>{{ $item->is_active ? 'Aktif' : 'Non-aktif' }}</span>
                                 </button>
                             </form>
                         </td>
 
-                        <!-- 7. Actions (Sticky di Kanan) -->
-                        <td class="py-3 px-3 text-right align-middle whitespace-nowrap sticky right-0 bg-white group-hover:bg-slate-50/95 transition-colors z-10 shadow-[-6px_0_10px_-4px_rgba(0,0,0,0.06)]">
+                        <!-- 7. Actions -->
+                        <td class="py-3 px-3 text-right align-middle whitespace-nowrap">
                             <div class="flex items-center justify-end gap-1">
                                 <!-- Toggle Active Status Icon -->
                                 <form action="{{ route('admin.music.toggleActive', $item) }}" method="POST" class="inline">

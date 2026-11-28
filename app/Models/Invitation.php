@@ -67,6 +67,9 @@ class Invitation extends Model
         'status',
         'is_premium',
         'package_tier',
+        'payment_status',
+        'paid_amount',
+        'paid_at',
         'published_at',
     ];
 
@@ -78,6 +81,8 @@ class Invitation extends Model
         'show_quote' => 'boolean',
         'show_love_story' => 'boolean',
         'is_premium' => 'boolean',
+        'paid_amount' => 'integer',
+        'paid_at' => 'datetime',
         'love_stories' => 'array',
         'published_at' => 'datetime',
     ];
@@ -355,7 +360,43 @@ class Invitation extends Model
             'basic_addon_1' => 'Add-On Paket Basic 1',
             'basic_addon_2' => 'Add-On Paket Basic 2',
             'premium' => 'Premium',
-            default => 'Basic (Gratis)',
+            default => $this->payment_status === 'paid' ? 'Basic (Berbayar)' : 'Basic (Gratis)',
+        };
+    }
+
+    public function getPackageShortName(): string
+    {
+        return match ($this->getPackageTier()) {
+            'basic_addon_1' => 'Add-On Basic 1',
+            'basic_addon_2' => 'Add-On Basic 2',
+            'premium' => 'Premium',
+            default => 'Basic',
+        };
+    }
+
+    public function getPaymentStatusKey(): string
+    {
+        if ($this->user && $this->user->hasLifetimePremium()) {
+            return 'paid';
+        }
+
+        if ($this->payment_status === 'paid' || $this->is_premium || in_array($this->package_tier, ['basic_addon_1', 'basic_addon_2', 'premium'], true)) {
+            return 'paid';
+        }
+
+        if ($this->payment_status === 'unpaid') {
+            return 'unpaid';
+        }
+
+        return 'free';
+    }
+
+    public function getPaymentStatusLabel(): string
+    {
+        return match ($this->getPaymentStatusKey()) {
+            'paid' => 'Lunas',
+            'unpaid' => 'Belum Dibayar',
+            default => 'Gratis',
         };
     }
 
@@ -377,6 +418,34 @@ class Invitation extends Model
             'premium' => null,
             default => 5,
         };
+    }
+
+    public function canUploadCustomMusic(): bool
+    {
+        return $this->getPackageTier() === 'premium';
+    }
+
+    public function canBePublished(?Theme $targetTheme = null): bool
+    {
+        $user = $this->user;
+        if ($user && $user->hasLifetimePremium()) {
+            return true;
+        }
+
+        $theme = $targetTheme ?? $this->theme;
+        if ($theme && $theme->isPremium() && ! $this->is_premium) {
+            return false;
+        }
+
+        if ($this->getPaymentStatusKey() === 'unpaid') {
+            return false;
+        }
+
+        if ($this->getPaymentStatusKey() === 'free' && $user && $user->has_used_free_quota && $this->published_at === null) {
+            return false;
+        }
+
+        return true;
     }
 
     public function canAddGuest(int $additional = 1): bool

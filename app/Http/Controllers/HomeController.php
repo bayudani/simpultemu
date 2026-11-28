@@ -9,6 +9,7 @@ class HomeController extends Controller
     public function index()
     {
         $themes = Theme::where('is_active', true)
+            ->where('tier', 'basic')
             ->limit(8)
             ->get()
             ->map(function ($theme) {

@@ -358,7 +358,7 @@
                                     {{ $basicThemes->count() }} Tema Gratis
                                 </span>
                             </div>
-                            <span class="text-[11px] text-stone-400 font-medium hidden sm:inline">Gratis selamanya tanpa syarat</span>
+                            <span class="text-[11px] text-stone-500 font-medium hidden sm:inline">Gratis undangan pertama (ke-2 dst Rp10.000/undangan)</span>
                         </div>
 
                         <!-- Grid Tema Basic (5 Kolom di Layar Lebar, 2 Kolom di Mobile) -->
@@ -1278,7 +1278,7 @@
                                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12 0c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
                                         </svg>
-                                        <span>Pilih dari Pustaka (20 Lagu)</span>
+                                        <span id="music-library-btn-label">Pilih dari Pustaka</span>
                                     </button>
                                     <button type="button" onclick="toggleMockupMusic()" class="px-3 py-2 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-xl text-xs font-semibold transition shadow-2xs flex items-center justify-center gap-1 cursor-pointer" title="Putar/Jeda Preview">
                                         <svg class="w-3.5 h-3.5 text-stone-600" fill="currentColor" viewBox="0 0 24 24">
@@ -1289,12 +1289,29 @@
                                 </div>
                             </div>
 
+                            @php
+                                $canUploadCustomMusic = (isset($invitation) && $invitation->exists)
+                                    ? $invitation->canUploadCustomMusic()
+                                    : (auth()->user()?->hasLifetimePremium() || ($pendingSlotTier ?? '') === 'premium');
+                            @endphp
                             <div class="p-3.5 bg-white border border-[#E7E0D6] rounded-xl flex flex-col justify-between space-y-2">
                                 <div>
-                                    <label for="custom_music" class="block text-xs font-semibold text-stone-700 mb-1">Upload MP3 Kustom (Opsional)</label>
-                                    <p class="text-[11px] text-stone-400">Gunakan file audio sendiri jika tidak ingin menggunakan pustaka preset.</p>
+                                    <div class="flex items-center justify-between gap-2">
+                                        <label for="custom_music" class="block text-xs font-semibold text-stone-700 mb-1">Upload MP3 Kustom (Khusus Premium)</label>
+                                        <span id="step5-custom-music-badge" class="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase {{ $canUploadCustomMusic ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800 border border-amber-200' }}">
+                                            {{ $canUploadCustomMusic ? 'Aktif' : 'Terkunci' }}
+                                        </span>
+                                    </div>
+                                    <p class="text-[11px] text-stone-400">Gunakan file audio sendiri pada Paket Premium (Rp59.000).</p>
                                 </div>
-                                <input type="file" name="custom_music" id="custom_music" accept="audio/mpeg,audio/mp3" class="block w-full text-xs text-stone-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-[#DBF6FF] file:text-[#0284C7] hover:file:bg-[#BAEAF8] cursor-pointer">
+                                <div id="step5-custom-music-unlocked" class="{{ $canUploadCustomMusic ? '' : 'hidden' }}">
+                                    <input type="file" name="custom_music" id="custom_music" accept="audio/mpeg,audio/mp3" class="block w-full text-xs text-stone-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-[#DBF6FF] file:text-[#0284C7] hover:file:bg-[#BAEAF8] cursor-pointer">
+                                </div>
+                                <div id="step5-custom-music-locked" class="{{ $canUploadCustomMusic ? 'hidden' : '' }}">
+                                    <button type="button" onclick="openUpgradeModal(window.CURRENT_INVITATION_ID, 'Upload lagu MP3 kustom sendiri tersedia pada Paket Premium (Rp59.000).', 'premium')" class="w-full py-2 px-3 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 text-xs font-bold transition cursor-pointer">
+                                        Upgrade ke Premium untuk Upload Lagu
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1861,11 +1878,14 @@
             </div>
             <div class="shrink-0 flex items-center gap-2">
                 <input type="file" id="modal_custom_music_input" accept="audio/mpeg,audio/mp3,audio/*" onchange="handleModalCustomAudioUpload(this)" class="hidden">
-                <button type="button" onclick="document.getElementById('modal_custom_music_input').click()" class="w-full sm:w-auto px-3.5 py-1.5 bg-[#FF2E3A] hover:bg-[#E01E2A] text-white rounded-xl text-xs font-semibold transition shadow-xs flex items-center justify-center gap-1.5 cursor-pointer">
+                <button type="button" id="modal-custom-music-unlocked-btn" onclick="document.getElementById('modal_custom_music_input').click()" class="w-full sm:w-auto px-3.5 py-1.5 bg-[#FF2E3A] hover:bg-[#E01E2A] text-white rounded-xl text-xs font-semibold transition shadow-xs flex items-center justify-center gap-1.5 cursor-pointer">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
                     </svg>
                     <span>Upload Lagu Sendiri (.mp3)</span>
+                </button>
+                <button type="button" id="modal-custom-music-locked-btn" onclick="openUpgradeModal(window.CURRENT_INVITATION_ID, 'Upload lagu MP3 sendiri tersedia pada Paket Premium (Rp59.000).', 'premium')" class="hidden w-full sm:w-auto px-3.5 py-1.5 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold transition shadow-xs flex items-center justify-center gap-1.5 cursor-pointer">
+                    <span>Upgrade Premium (Upload MP3)</span>
                 </button>
             </div>
         </div>
@@ -1918,11 +1938,22 @@
 @endsection
 
 @push('scripts')
+@php
+    $effectiveInitialTier = (isset($invitation) && $invitation->exists)
+        ? $invitation->getPackageTier()
+        : ((auth()->user()?->hasLifetimePremium() || ($pendingSlotTier ?? '') === 'premium') ? 'premium' : 'basic');
+    $effectiveGuestLimit = (isset($invitation) && $invitation->exists)
+        ? $invitation->getGuestLimit()
+        : ($effectiveInitialTier === 'premium' ? null : 5);
+    $effectiveSongLimit = (isset($invitation) && $invitation->exists)
+        ? $invitation->getSongLimit()
+        : ($effectiveInitialTier === 'premium' ? null : 5);
+@endphp
 <script>
     window.CURRENT_INVITATION_ID = @json($invitation->id ?? null);
-    window.CURRENT_USER_PACKAGE_TIER = @json(isset($invitation) && $invitation ? $invitation->getPackageTier() : (auth()->user()?->getPackageTier() ?? 'basic'));
-    window.CURRENT_GUEST_LIMIT = @json(isset($invitation) && $invitation ? $invitation->getGuestLimit() : (auth()->user()?->getGuestLimit() ?? 5));
-    window.CURRENT_SONG_LIMIT = @json(isset($invitation) && $invitation ? $invitation->getSongLimit() : (auth()->user()?->getSongLimit() ?? 5));
+    window.CURRENT_USER_PACKAGE_TIER = @json($effectiveInitialTier);
+    window.CURRENT_GUEST_LIMIT = @json($effectiveGuestLimit);
+    window.CURRENT_SONG_LIMIT = @json($effectiveSongLimit);
     @if(isset($music) && count($music) > 0)
     window.DYNAMIC_MUSIC_TRACKS = @json($music);
     @endif
@@ -2095,8 +2126,8 @@ let currentStoryPhoto2Url = "{{ isset($invitation) && $invitation->story_photo_2
 let currentStoryPhoto3Url = "{{ isset($invitation) && $invitation->story_photo_3 ? (Str::startsWith($invitation->story_photo_3, ['http://', 'https://']) ? $invitation->story_photo_3 : asset('storage/'.ltrim($invitation->story_photo_3, '/'))) : '' }}";
 let currentStoryPhoto4Url = "{{ isset($invitation) && $invitation->story_photo_4 ? (Str::startsWith($invitation->story_photo_4, ['http://', 'https://']) ? $invitation->story_photo_4 : asset('storage/'.ltrim($invitation->story_photo_4, '/'))) : '' }}";
 let activeThemeId = parseInt(document.querySelector('.theme-radio-input:checked')?.value || 1);
-let isUserPremium = @json((bool) (auth()->user()?->isPremium() ?? false));
-let isInvitationPremium = @json((bool) (isset($invitation) && $invitation && $invitation->is_premium));
+let isUserPremium = @json((bool) (auth()->user()?->hasLifetimePremium() ?? false));
+let isInvitationPremium = @json((bool) ((isset($invitation) && $invitation && $invitation->is_premium) || (($pendingSlotTier ?? '') === 'premium')));
 
 // Helper untuk memperbarui CSRF token dan menjaga sesi tetap aktif
 async function refreshCsrfToken() {
@@ -2442,9 +2473,42 @@ function triggerEditorPremiumUpgrade(themeId = null, themeName = null, isStepGat
     });
 }
 
+function syncMusicPackageUI() {
+    const tier = window.CURRENT_USER_PACKAGE_TIER || 'basic';
+    const isPrem = (tier === 'premium') || isUserPremium || isInvitationPremium;
+
+    const btnLabel = document.getElementById('music-library-btn-label');
+    if (btnLabel) {
+        if (isPrem) btnLabel.innerText = 'Pilih dari Pustaka (Semua Lagu)';
+        else if (tier === 'basic_addon_2') btnLabel.innerText = 'Pilih dari Pustaka (20 Lagu Add-On 2)';
+        else if (tier === 'basic_addon_1') btnLabel.innerText = 'Pilih dari Pustaka (10 Lagu Add-On 1)';
+        else btnLabel.innerText = 'Pilih dari Pustaka (5 Lagu Basic)';
+    }
+
+    const unlockedBox = document.getElementById('step5-custom-music-unlocked');
+    const lockedBox = document.getElementById('step5-custom-music-locked');
+    const badge = document.getElementById('step5-custom-music-badge');
+    if (unlockedBox) unlockedBox.classList.toggle('hidden', !isPrem);
+    if (lockedBox) lockedBox.classList.toggle('hidden', isPrem);
+    if (badge) {
+        badge.innerText = isPrem ? 'Aktif' : 'Terkunci';
+        badge.className = isPrem
+            ? 'px-2 py-0.5 rounded-full text-[9px] font-bold uppercase bg-emerald-100 text-emerald-800'
+            : 'px-2 py-0.5 rounded-full text-[9px] font-bold uppercase bg-amber-100 text-amber-800 border border-amber-200';
+    }
+
+    const modalUnlocked = document.getElementById('modal-custom-music-unlocked-btn');
+    const modalLocked = document.getElementById('modal-custom-music-locked-btn');
+    if (modalUnlocked) modalUnlocked.classList.toggle('hidden', !isPrem);
+    if (modalLocked) modalLocked.classList.toggle('hidden', isPrem);
+}
+window.syncMusicPackageUI = syncMusicPackageUI;
+
 function onWizardPremiumUnlocked(invitationId) {
-    isUserPremium = true;
     isInvitationPremium = true;
+    window.CURRENT_USER_PACKAGE_TIER = 'premium';
+    window.CURRENT_GUEST_LIMIT = null;
+    window.CURRENT_SONG_LIMIT = null;
 
     let input = document.getElementById('invitation_id_input');
     if (!input) {
@@ -2457,6 +2521,7 @@ function onWizardPremiumUnlocked(invitationId) {
     }
     if (input && invitationId) {
         input.value = invitationId;
+        window.CURRENT_INVITATION_ID = invitationId;
     }
 
     // Refresh active theme radio state
@@ -2466,10 +2531,15 @@ function onWizardPremiumUnlocked(invitationId) {
         handleThemeChange(radio);
     }
 
+    syncMusicPackageUI();
+    if (typeof updateStep6GuestQuotaDisplay === 'function') {
+        updateStep6GuestQuotaDisplay();
+    }
+
     const selectedWrapper = document.querySelector(`.theme-card-wrapper[data-theme-id="${activeThemeId}"]`);
     const themeName = selectedWrapper ? selectedWrapper.getAttribute('data-name') : 'Premium';
 
-    showToast(`Pembayaran berhasil! Tema Premium ${themeName} terbuka. Melanjutkan ke Langkah 2...`);
+    showToast(`Pembayaran berhasil! Tema Premium ${themeName} terbuka untuk undangan ini. Melanjutkan ke Langkah 2...`);
 
     // Advance to Step 2 automatically
     setTimeout(() => {
@@ -2498,13 +2568,14 @@ function onWizardAddOnPurchased(packageTier, invitationId) {
     if (packageTier === 'basic_addon_1') {
         window.CURRENT_GUEST_LIMIT = 12;
         window.CURRENT_SONG_LIMIT = 10;
-        showToast('Berhasil beli Add-On 1! Kuota bertambah menjadi 12 nama tamu & 10 lagu.');
+        showToast('Berhasil beli Add-On 1! Kuota undangan ini bertambah menjadi 12 nama tamu & 10 lagu.');
     } else if (packageTier === 'basic_addon_2') {
         window.CURRENT_GUEST_LIMIT = 17;
         window.CURRENT_SONG_LIMIT = 20;
-        showToast('Berhasil beli Add-On 2! Kuota bertambah menjadi 17 nama tamu & 20 lagu.');
+        showToast('Berhasil beli Add-On 2! Kuota undangan ini bertambah menjadi 17 nama tamu & 20 lagu.');
     }
 
+    syncMusicPackageUI();
     if (typeof updateStep6GuestQuotaDisplay === 'function') {
         updateStep6GuestQuotaDisplay();
     }
@@ -4782,10 +4853,20 @@ document.addEventListener('DOMContentLoaded', function() {
     updateWhatsAppPreview();
     updateGuestsJsonInput();
     updateTheme7PhotoToggles();
+    syncMusicPackageUI();
     initStep6ShareCard();
     syncAllFields();
     @if(session('published_url') || request()->query('step') == 6)
     goToStep(6);
+    @endif
+    @if(session('show_upgrade_modal'))
+    if (typeof openUpgradeModal === 'function') {
+        openUpgradeModal(@json(session('upgrade_invitation_id')), @json(session('info') ?? session('error') ?? ''), 'premium');
+    }
+    @elseif(session('show_slot_payment_modal'))
+    if (typeof openNewInvitationModal === 'function') {
+        openNewInvitationModal(@json(session('upgrade_invitation_id')), @json(session('error') ?? ''));
+    }
     @endif
     setInterval(updateCountdown, 1000);
     // Heartbeat auto-refresh CSRF & keep session alive every 5 minutes

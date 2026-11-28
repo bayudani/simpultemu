@@ -6,38 +6,75 @@ use App\Models\Invitation;
 use App\Models\InvitationGuest;
 use App\Models\Music;
 use App\Models\Theme;
+use App\Models\User;
 use App\Services\ImageCompressionService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class InvitationController extends Controller
 {
     public function __construct(public ImageCompressionService $imageCompressor) {}
+
     public function index(Request $request)
     {
-        $invitations = $request->user()->invitations()->with('theme')->latest()->get();
+        $user = $request->user();
+        $invitations = $user->invitations()->with('theme')->latest()->get();
 
-        return view('dashboard.invitations.index', compact('invitations'));
+        return view('dashboard.invitations.index', compact('invitations', 'user'));
     }
 
     public function create(Request $request)
     {
+        $user = $request->user();
+
+        if (! $user->canStartNewInvitation()) {
+            $pendingFreeDraft = $user->invitations()
+                ->where('payment_status', 'free')
+                ->where('status', 'draft')
+                ->latest()
+                ->first();
+
+            return view('dashboard.invitations.quota-gate', [
+                'user' => $user,
+                'pendingFreeDraft' => $pendingFreeDraft,
+                'selectedThemeId' => $request->query('theme_id'),
+            ]);
+        }
+
         $themes = Theme::where('is_active', true)->get();
         $music = Music::where('is_active', true)->orderBy('order', 'asc')->get();
         $selectedThemeId = $request->query('theme_id');
 
-        return view('dashboard.invitations.create', compact('themes', 'music', 'selectedThemeId'));
+        $pendingSlotTier = 'basic_free';
+        if ($user->hasLifetimePremium() || $user->premium_invitation_credits > 0) {
+            $pendingSlotTier = 'premium';
+        } elseif ($user->basic_invitation_credits > 0) {
+            $pendingSlotTier = 'basic_paid';
+        }
+
+        return view('dashboard.invitations.create', compact('themes', 'music', 'selectedThemeId', 'pendingSlotTier'));
     }
 
     public function saveDraft(Request $request)
     {
-        $userId = $request->user()->id;
+        $user = $request->user();
+        $userId = $user->id;
         $invitationId = $request->input('invitation_id') ?: $request->input('id');
 
         $invitation = null;
         if ($invitationId) {
             $invitation = Invitation::where('user_id', $userId)->find($invitationId);
+        }
+
+        $isNewInvitation = ! $invitation;
+        if ($isNewInvitation && ! $user->canStartNewInvitation()) {
+            return response()->json([
+                'success' => false,
+                'requires_slot_purchase' => true,
+                'message' => 'Kuota undangan gratis pertama sudah digunakan. Silakan beli slot undangan baru (Rp 10.000 untuk Basic atau Rp 59.000 untuk Premium) terlebih dahulu.',
+            ], 402);
         }
 
         if (! $invitation) {
@@ -108,10 +145,6 @@ class InvitationController extends Controller
             $invitation->love_stories = array_values(array_filter($request->input('love_stories', []), fn ($item) => ! empty($item['year']) || ! empty($item['title'])));
         }
 
-        if ($request->filled('music_id')) {
-            $invitation->music_id = $request->input('music_id');
-        }
-
         $invitation->gift_bank_name = $request->input('gift_bank_name', $invitation->gift_bank_name);
         $invitation->gift_account_number = $request->input('gift_account_number', $invitation->gift_account_number);
         $invitation->gift_account_holder = $request->input('gift_account_holder', $invitation->gift_account_holder);
@@ -176,10 +209,78 @@ class InvitationController extends Controller
         }
 
         if ($request->hasFile('custom_music') && $request->file('custom_music')->isValid()) {
+            $canUploadCustom = $invitation->exists
+                ? $invitation->canUploadCustomMusic()
+                : ($user->hasLifetimePremium() || $user->premium_invitation_credits > 0);
+            if (! $canUploadCustom) {
+                return response()->json([
+                    'success' => false,
+                    'requires_upgrade' => true,
+                    'invitation_id' => $invitation->id,
+                    'message' => 'Upload musik kustom hanya tersedia pada Paket Premium (Rp 59.000).',
+                ], 422);
+            }
             $invitation->custom_music_path = $request->file('custom_music')->store('invitations/music', 'public');
         }
 
-        $invitation->status = 'draft';
+        $invitation->status = $invitation->exists ? $invitation->status : 'draft';
+
+        if (! $invitation->exists) {
+            $allocated = DB::transaction(function () use ($userId, $invitation) {
+                $lockedUser = User::lockForUpdate()->findOrFail($userId);
+
+                if ($lockedUser->hasLifetimePremium()) {
+                    $invitation->package_tier = 'premium';
+                    $invitation->is_premium = true;
+                    $invitation->payment_status = 'paid';
+                    $invitation->paid_amount = 0;
+                    $invitation->paid_at = now();
+                } elseif ($lockedUser->premium_invitation_credits > 0) {
+                    $lockedUser->decrement('premium_invitation_credits');
+                    $invitation->package_tier = 'premium';
+                    $invitation->is_premium = true;
+                    $invitation->payment_status = 'paid';
+                    $invitation->paid_amount = 59000;
+                    $invitation->paid_at = now();
+                } elseif ($lockedUser->basic_invitation_credits > 0) {
+                    $lockedUser->decrement('basic_invitation_credits');
+                    $invitation->package_tier = 'basic';
+                    $invitation->is_premium = false;
+                    $invitation->payment_status = 'paid';
+                    $invitation->paid_amount = 10000;
+                    $invitation->paid_at = now();
+                } elseif ($lockedUser->canUseFreeQuota()) {
+                    $invitation->package_tier = 'basic';
+                    $invitation->is_premium = false;
+                    $invitation->payment_status = 'free';
+                    $invitation->paid_amount = 0;
+                } else {
+                    return false;
+                }
+
+                return true;
+            });
+
+            if (! $allocated) {
+                return response()->json([
+                    'success' => false,
+                    'requires_slot_purchase' => true,
+                    'message' => 'Kuota undangan gratis pertama sudah digunakan. Silakan beli slot undangan baru terlebih dahulu.',
+                ], 402);
+            }
+        }
+
+        $invitation->setRelation('user', $user);
+
+        if ($request->filled('music_id')) {
+            $requestedMusic = Music::find($request->input('music_id'));
+            if ($requestedMusic && $invitation->canAccessMusic($requestedMusic)) {
+                $invitation->music_id = $requestedMusic->id;
+            } elseif (! $invitation->music_id) {
+                $invitation->music_id = Music::where('tier', 'basic')->orderBy('order')->value('id');
+            }
+        }
+
         $invitation->save();
 
         $this->handleGalleryPhotosUpload($request, $invitation);
@@ -332,13 +433,31 @@ class InvitationController extends Controller
             'bride_photo.max' => 'Ukuran foto mempelai wanita maksimal 25MB.',
         ]);
 
+        $user = $request->user();
         $invitation = null;
         if ($request->filled('invitation_id')) {
-            $invitation = Invitation::where('user_id', $request->user()->id)->find($request->input('invitation_id'));
+            $invitation = Invitation::where('user_id', $user->id)->find($request->input('invitation_id'));
+        }
+
+        if (! $invitation && ! $user->canStartNewInvitation()) {
+            $msg = 'Kuota undangan gratis pertama sudah digunakan. Silakan beli slot undangan baru (Rp 10.000 Basic atau Rp 59.000 Premium) untuk membuat undangan berikutnya.';
+            if ($request->wantsJson() || $request->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'requires_slot_purchase' => true,
+                    'message' => $msg,
+                ], 402);
+            }
+
+            return redirect()
+                ->route('dashboard.invitations.create')
+                ->with('error', $msg)
+                ->with('show_slot_payment_modal', true);
         }
 
         $theme = Theme::findOrFail($validated['theme_id']);
-        $hasPremiumAccess = $request->user()->hasLifetimePremium() || ($invitation && $invitation->is_premium);
+        $hasPremiumCreditForNew = ! $invitation && ($user->premium_invitation_credits > 0);
+        $hasPremiumAccess = $user->hasLifetimePremium() || $hasPremiumCreditForNew || ($invitation && $invitation->is_premium);
         $needsPremiumUpgrade = $theme->isPremium() && ! $hasPremiumAccess;
 
         // Penanganan Foto Mempelai Pria (Groom)
@@ -439,6 +558,26 @@ class InvitationController extends Controller
         if ($request->hasFile('custom_music')) {
             $file = $request->file('custom_music');
             if ($file->isValid()) {
+                $canUploadCustom = $user->hasLifetimePremium()
+                    || (! $invitation && $user->premium_invitation_credits > 0)
+                    || ($invitation && $invitation->canUploadCustomMusic());
+                if (! $canUploadCustom) {
+                    $msg = 'Upload musik kustom hanya tersedia untuk Paket Premium (Rp 59.000).';
+                    if ($request->wantsJson() || $request->ajax()) {
+                        return response()->json([
+                            'success' => false,
+                            'requires_upgrade' => true,
+                            'invitation_id' => $invitation?->id,
+                            'message' => $msg,
+                        ], 422);
+                    }
+
+                    return back()
+                        ->withInput()
+                        ->with('error', $msg)
+                        ->with('show_upgrade_modal', true)
+                        ->with('upgrade_invitation_id', $invitation?->id);
+                }
                 $validated['custom_music_path'] = $file->store('invitations/music', 'public');
             }
         }
@@ -479,41 +618,126 @@ class InvitationController extends Controller
         }
         $validated['slug'] = $finalSlug;
 
-        if ($theme->isPremium()) {
-            if ($hasPremiumAccess) {
+        if ($invitation) {
+            if ($invitation->is_premium || $user->hasLifetimePremium()) {
                 $validated['is_premium'] = true;
                 $validated['package_tier'] = 'premium';
             } else {
                 $validated['is_premium'] = false;
-                $validated['package_tier'] = 'basic';
+                $validated['package_tier'] = $invitation->getPackageTier();
             }
+            $validated['payment_status'] = $invitation->getPaymentStatusKey();
         } else {
-            if ($invitation && $invitation->is_premium) {
-                $validated['is_premium'] = true;
-                $validated['package_tier'] = 'premium';
-            } else {
-                $validated['is_premium'] = false;
-                $userTier = $request->user()->getPackageTier();
-                $validated['package_tier'] = ($userTier !== 'premium') ? $userTier : 'basic';
+            $slotAllocation = DB::transaction(function () use ($user, $hasPremiumAccess) {
+                $lockedUser = User::lockForUpdate()->findOrFail($user->id);
+
+                if ($lockedUser->hasLifetimePremium()) {
+                    return [
+                        'is_premium' => true,
+                        'package_tier' => 'premium',
+                        'payment_status' => 'paid',
+                        'paid_amount' => 0,
+                        'paid_at' => now(),
+                    ];
+                }
+
+                if ($lockedUser->premium_invitation_credits > 0) {
+                    $lockedUser->decrement('premium_invitation_credits');
+
+                    return [
+                        'is_premium' => true,
+                        'package_tier' => 'premium',
+                        'payment_status' => 'paid',
+                        'paid_amount' => 59000,
+                        'paid_at' => now(),
+                    ];
+                }
+
+                if ($lockedUser->basic_invitation_credits > 0) {
+                    $lockedUser->decrement('basic_invitation_credits');
+
+                    return [
+                        'is_premium' => false,
+                        'package_tier' => 'basic',
+                        'payment_status' => 'paid',
+                        'paid_amount' => 10000,
+                        'paid_at' => now(),
+                    ];
+                }
+
+                if ($lockedUser->canUseFreeQuota()) {
+                    return [
+                        'is_premium' => false,
+                        'package_tier' => 'basic',
+                        'payment_status' => 'free',
+                        'paid_amount' => 0,
+                        'paid_at' => null,
+                    ];
+                }
+
+                return null;
+            });
+
+            if ($slotAllocation === null) {
+                $msg = 'Kuota undangan gratis pertama sudah digunakan. Silakan beli slot undangan baru (Rp 10.000 Basic atau Rp 59.000 Premium).';
+                if ($request->wantsJson() || $request->ajax()) {
+                    return response()->json([
+                        'success' => false,
+                        'requires_slot_purchase' => true,
+                        'message' => $msg,
+                    ], 402);
+                }
+
+                return redirect()->route('dashboard.invitations.create')->with('error', $msg);
+            }
+
+            $validated['is_premium'] = $slotAllocation['is_premium'];
+            $validated['package_tier'] = $slotAllocation['package_tier'];
+            $validated['payment_status'] = $slotAllocation['payment_status'];
+            $validated['paid_amount'] = $slotAllocation['paid_amount'];
+            $validated['paid_at'] = $slotAllocation['paid_at'];
+            $hasPremiumAccess = $hasPremiumAccess || $slotAllocation['is_premium'];
+            $needsPremiumUpgrade = $theme->isPremium() && ! $hasPremiumAccess;
+        }
+
+        // Enforce music tier restriction in backend
+        $tempInv = $invitation ? clone $invitation : new Invitation;
+        $tempInv->package_tier = $validated['package_tier'];
+        $tempInv->is_premium = $validated['is_premium'];
+        $tempInv->payment_status = $validated['payment_status'];
+        $tempInv->setRelation('user', $user);
+
+        $needsMusicUpgrade = false;
+        if (! empty($validated['music_id'])) {
+            $requestedMusic = Music::find($validated['music_id']);
+            if ($requestedMusic && ! $tempInv->canAccessMusic($requestedMusic)) {
+                unset($validated['music_id']);
+                $needsMusicUpgrade = true;
             }
         }
 
         // Action check (publish or draft)
-        if (($request->input('action') === 'publish' || $request->input('status') === 'published') && ! $needsPremiumUpgrade) {
-            $validated['status'] = 'published';
-            $validated['published_at'] = now();
-        } else {
-            $validated['status'] = 'draft';
-        }
+        $wantsPublish = ($request->input('action') === 'publish' || $request->input('status') === 'published');
+        $needsSlotPaymentForPublish = ! $user->hasLifetimePremium() && (
+            $validated['payment_status'] === 'unpaid'
+            || ($validated['payment_status'] === 'free' && $user->has_used_free_quota && (! $invitation || $invitation->published_at === null))
+        );
 
-        if (! $invitation && $request->filled('invitation_id')) {
-            $invitation = Invitation::where('user_id', $request->user()->id)->find($request->input('invitation_id'));
+        if ($wantsPublish && ! $needsPremiumUpgrade && ! $needsMusicUpgrade && ! $needsSlotPaymentForPublish) {
+            $validated['status'] = 'published';
+            $validated['published_at'] = ($invitation && $invitation->published_at) ? $invitation->published_at : now();
+        } else {
+            $validated['status'] = ($invitation && $invitation->isPublished()) ? 'published' : 'draft';
         }
 
         if ($invitation) {
             $invitation->update($validated);
         } else {
             $invitation = Invitation::create($validated);
+        }
+
+        if ($invitation->isPublished() && ! $user->hasLifetimePremium()) {
+            $user->markFreeQuotaUsed();
         }
 
         if (! empty($validated['gift_bank_name']) && ! empty($validated['gift_account_number'])) {
@@ -529,7 +753,7 @@ class InvitationController extends Controller
         if ($request->filled('guests_json')) {
             $guestsData = json_decode($request->input('guests_json'), true);
             if (is_array($guestsData)) {
-                $guestLimit = $invitation->getGuestLimit() ?? ($request->user()?->hasLifetimePremium() ? null : 5);
+                $guestLimit = $invitation->getGuestLimit();
                 $currentCount = $invitation->guests()->count();
                 foreach ($guestsData as $g) {
                     if ($guestLimit !== null && $currentCount >= $guestLimit) {
@@ -585,6 +809,22 @@ class InvitationController extends Controller
                 ->with('show_upgrade_modal', true)
                 ->with('upgrade_invitation_id', $invitation->id)
                 ->with('info', 'Undangan bertema Premium berhasil disimpan sebagai draf! Silakan selesaikan pembayaran Duitku (Rp 59.000) untuk mempublikasikannya.');
+        }
+
+        if ($needsSlotPaymentForPublish) {
+            return redirect()
+                ->route('dashboard.invitations.edit', $invitation)
+                ->with('show_slot_payment_modal', true)
+                ->with('upgrade_invitation_id', $invitation->id)
+                ->with('error', 'Kuota undangan gratis akun ini sudah terpakai. Silakan selesaikan pembayaran Rp 10.000 (Basic) atau upgrade Premium untuk mempublikasikan undangan ini.');
+        }
+
+        if ($needsMusicUpgrade && $wantsPublish) {
+            return redirect()
+                ->route('dashboard.invitations.edit', $invitation)
+                ->with('show_upgrade_modal', true)
+                ->with('upgrade_invitation_id', $invitation->id)
+                ->with('info', 'Lagu yang dipilih memerlukan Add-On atau Paket Premium. Undangan disimpan sebagai draf.');
         }
 
         $redirect = redirect()->route('dashboard.invitations.edit', $invitation)->with('success', $msg);
@@ -788,9 +1028,28 @@ class InvitationController extends Controller
         }
         $invitation->save();
 
+        $user = $request->user();
+
         if ($request->hasFile('custom_music')) {
             $file = $request->file('custom_music');
             if ($file->isValid()) {
+                if (! $invitation->canUploadCustomMusic()) {
+                    $msg = 'Upload musik kustom hanya tersedia untuk Paket Premium (Rp 59.000) pada undangan ini.';
+                    if ($request->wantsJson() || $request->ajax()) {
+                        return response()->json([
+                            'success' => false,
+                            'requires_upgrade' => true,
+                            'invitation_id' => $invitation->id,
+                            'message' => $msg,
+                        ], 422);
+                    }
+
+                    return back()
+                        ->withInput()
+                        ->with('error', $msg)
+                        ->with('show_upgrade_modal', true)
+                        ->with('upgrade_invitation_id', $invitation->id);
+                }
                 $validated['custom_music_path'] = $file->store('invitations/music', 'public');
             }
         }
@@ -823,23 +1082,36 @@ class InvitationController extends Controller
 
         $targetThemeId = $validated['theme_id'] ?? $invitation->theme_id;
         $theme = Theme::find($targetThemeId);
-        $hasPremiumAccess = $request->user()->hasLifetimePremium() || $invitation->is_premium;
+        $hasPremiumAccess = $user->hasLifetimePremium() || $invitation->is_premium;
         $needsPremiumUpgrade = $theme && $theme->isPremium() && ! $hasPremiumAccess;
 
-        if ($theme && $theme->isPremium()) {
-            if ($hasPremiumAccess) {
-                $validated['is_premium'] = true;
-                $validated['package_tier'] = 'premium';
-            } else {
-                $validated['is_premium'] = false;
-                $validated['package_tier'] = 'basic';
+        if ($invitation->is_premium || $user->hasLifetimePremium()) {
+            $validated['is_premium'] = true;
+            $validated['package_tier'] = 'premium';
+        } else {
+            $validated['is_premium'] = false;
+            $validated['package_tier'] = $invitation->getPackageTier();
+        }
+
+        // Enforce music tier restriction in backend
+        $needsMusicUpgrade = false;
+        if (! empty($validated['music_id'])) {
+            $requestedMusic = Music::find($validated['music_id']);
+            if ($requestedMusic && ! $invitation->canAccessMusic($requestedMusic)) {
+                unset($validated['music_id']);
+                $needsMusicUpgrade = true;
             }
         }
 
+        $needsSlotPaymentForPublish = ! $user->hasLifetimePremium() && (
+            $invitation->getPaymentStatusKey() === 'unpaid'
+            || ($invitation->getPaymentStatusKey() === 'free' && $user->has_used_free_quota && $invitation->published_at === null)
+        );
+
         // Action check
         if ($request->input('action') === 'publish') {
-            if ($needsPremiumUpgrade) {
-                $validated['status'] = 'draft';
+            if ($needsPremiumUpgrade || $needsMusicUpgrade || $needsSlotPaymentForPublish) {
+                $validated['status'] = $invitation->isPublished() ? 'published' : 'draft';
             } else {
                 $validated['status'] = 'published';
                 if (! $invitation->published_at) {
@@ -855,6 +1127,10 @@ class InvitationController extends Controller
         }
 
         $invitation->update($validated);
+
+        if ($invitation->isPublished() && ! $user->hasLifetimePremium()) {
+            $user->markFreeQuotaUsed();
+        }
 
         if (! empty($validated['gift_bank_name']) && ! empty($validated['gift_account_number'])) {
             $invitation->giftAccounts()->updateOrCreate(
@@ -906,6 +1182,22 @@ class InvitationController extends Controller
                 ->with('show_upgrade_modal', true)
                 ->with('upgrade_invitation_id', $invitation->id)
                 ->with('info', 'Undangan bertema Premium berhasil disimpan sebagai draf! Silakan selesaikan pembayaran Duitku (Rp 59.000) untuk mempublikasikannya.');
+        }
+
+        if ($needsSlotPaymentForPublish && $request->input('action') === 'publish') {
+            return redirect()
+                ->route('dashboard.invitations.edit', $invitation)
+                ->with('show_slot_payment_modal', true)
+                ->with('upgrade_invitation_id', $invitation->id)
+                ->with('error', 'Kuota undangan gratis akun ini sudah terpakai. Silakan selesaikan pembayaran Rp 10.000 (Basic) atau upgrade Premium untuk mempublikasikan undangan ini.');
+        }
+
+        if ($needsMusicUpgrade && $request->input('action') === 'publish') {
+            return redirect()
+                ->route('dashboard.invitations.edit', $invitation)
+                ->with('show_upgrade_modal', true)
+                ->with('upgrade_invitation_id', $invitation->id)
+                ->with('info', 'Lagu yang dipilih memerlukan Add-On atau Paket Premium. Undangan tetap berstatus draf.');
         }
 
         $redirect = back()->with('success', $msg);
@@ -1015,11 +1307,38 @@ class InvitationController extends Controller
     public function publish(Invitation $invitation)
     {
         $this->authorize('update', $invitation);
+        $user = $invitation->user;
+
+        if (! $invitation->canBePublished()) {
+            $isPremiumThemeBlocked = $invitation->theme && $invitation->theme->isPremium() && ! $invitation->is_premium && ! ($user && $user->hasLifetimePremium());
+            $message = $isPremiumThemeBlocked
+                ? 'Tema Premium memerlukan aktivasi Paket Premium (Rp 59.000) pada undangan ini sebelum dipublikasikan.'
+                : 'Kuota undangan gratis akun Anda sudah terpakai. Silakan selesaikan pembayaran Rp 10.000 (Basic) atau upgrade ke Premium untuk mempublikasikan undangan ini.';
+
+            if (request()->wantsJson() || request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'requires_upgrade' => $isPremiumThemeBlocked,
+                    'requires_slot_purchase' => ! $isPremiumThemeBlocked,
+                    'invitation_id' => $invitation->id,
+                    'message' => $message,
+                ], 402);
+            }
+
+            return back()
+                ->with('error', $message)
+                ->with($isPremiumThemeBlocked ? 'show_upgrade_modal' : 'show_slot_payment_modal', true)
+                ->with('upgrade_invitation_id', $invitation->id);
+        }
 
         $invitation->update([
             'status' => 'published',
-            'published_at' => now(),
+            'published_at' => $invitation->published_at ?? now(),
         ]);
+
+        if ($user && ! $user->hasLifetimePremium()) {
+            $user->markFreeQuotaUsed();
+        }
 
         if (request()->wantsJson() || request()->ajax()) {
             return response()->json([
@@ -1100,7 +1419,7 @@ class InvitationController extends Controller
             return;
         }
 
-        $guestLimit = $invitation->getGuestLimit() ?? ($user?->hasLifetimePremium() ? null : 5);
+        $guestLimit = $invitation->getGuestLimit();
         $keptIds = [];
         $count = 0;
 

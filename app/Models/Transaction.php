@@ -27,6 +27,7 @@ class Transaction extends Model
         'payment_url',
         'response_payload',
         'paid_at',
+        'credited_at',
     ];
 
     /**
@@ -40,6 +41,7 @@ class Transaction extends Model
             'amount' => 'integer',
             'response_payload' => 'array',
             'paid_at' => 'datetime',
+            'credited_at' => 'datetime',
         ];
     }
 

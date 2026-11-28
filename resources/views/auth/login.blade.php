@@ -75,25 +75,27 @@ body {
 @endpush
 
 @section('content')
-<div class="min-h-screen flex items-center justify-center pt-24 pb-8 sm:pt-28 sm:pb-12 lg:pt-24 lg:pb-8 px-4 sm:px-6 lg:px-8 bg-[#0B132B] relative overflow-hidden" 
-     style="min-height: 100vh; background-image: url('{{ asset('images/hero-banner.png') }}'); background-size: cover; background-position: center 35%;">
+<div class="min-h-screen flex items-center justify-center pt-24 pb-8 sm:pt-28 sm:pb-12 lg:pt-24 lg:pb-8 px-4 sm:px-6 lg:px-8 relative overflow-hidden" 
+     style="min-height: 100vh; background-color: #0F172A;">
     
-    <!-- Multi-layer Dark Navy Gradient Overlay persis Banner Beranda -->
-    <div class="absolute inset-0 bg-gradient-to-br from-[#0B132B]/95 via-[#1E293B]/85 to-[#0F172A]/90 z-0 pointer-events-none"></div>
-
-    <!-- Ambient Glows -->
-    <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-[#0284C7]/20 blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-[#FF2E3A]/15 blur-3xl pointer-events-none"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#0B132B]/40 blur-3xl pointer-events-none"></div>
+    <!-- Foto Latar Login (Transparansi Navy Sama Seperti Banner Beranda) -->
+    <div class="absolute inset-0 z-0 pointer-events-none select-none"
+         style="background-image: url('{{ asset('images/auth-login-bg.jpg') }}?v=20261128_01'); background-size: cover; background-position: center center; opacity: 0.30;"
+         aria-hidden="true"></div>
+    <div class="absolute inset-0 z-0 pointer-events-none"
+         style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.80) 0%, rgba(15, 23, 42, 0.52) 52%, rgba(15, 23, 42, 0.38) 100%);"
+         aria-hidden="true"></div>
 
     <div class="auth-split-wrapper w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-8 lg:gap-12 relative z-10">
         
         <!-- Kolom Kiri: Headline & Gambar 3D Mockup Banner Beranda (Desktop) -->
         <div class="auth-left-col hidden lg:flex flex-col justify-center items-start animate-slide-up">
-            <!-- Badge Platform -->
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide text-[#7CD6F7] bg-[#0284C7]/20 border border-[#0284C7]/40 mb-3.5 shadow-sm">
-                <span class="w-2 h-2 rounded-full bg-[#38BDF8] animate-pulse"></span>
-                <span>Platform Undangan Digital Modern</span>
+            <!-- Badge Platform (Desain Persegi Tumpul & Border Putih Lembut seperti Banner Beranda) -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm backdrop-blur-md mb-3.5" style="background-color: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.24);">
+                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FF2E3A] shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z" />
+                </svg>
+                <span class="italic font-medium text-slate-100 tracking-wide">Platform Undangan Digital Modern</span>
             </div>
 
             <!-- Headline Utama (Gaya Banner Beranda / Satu Platform) -->

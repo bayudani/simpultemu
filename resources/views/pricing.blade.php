@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('title', 'Harga & Paket Undangan Pernikahan Digital Gratis hingga Premium - SimpulTemu')
-@section('description', 'Buat undangan pernikahan online gratis selamanya dengan 10 tema Basic, atau tambah kuota tamu dan lagu lewat Add-On terjangkau serta Paket Premium Rp 59.000 sekali bayar tanpa biaya bulanan.')
+@section('description', 'Buat undangan pernikahan digital gratis khusus undangan pertama dengan 10 tema Basic (5 tamu & 5 lagu). Undangan kedua dan seterusnya Rp10.000/undangan, Add-On mulai Rp17.000, atau Premium Rp59.000 per undangan.')
 @section('keywords', 'harga undangan pernikahan digital, undangan pernikahan online gratis, paket undangan digital murah, undangan nikah sekali bayar, buat undangan online gratis, simpultemu')
 
 @section('content')
-<div class="relative pt-24 sm:pt-32 pb-10 sm:pb-16 md:pb-20 bg-[#FAF8F5]/60 min-h-screen overflow-hidden">
-    @include('partials.side-diamond-ornament')
+<div class="relative pt-24 sm:pt-32 pb-10 sm:pb-16 md:pb-20 min-h-screen overflow-hidden" style="background-color: #F2FBFF;">
+    @include('partials.light-blue-square-grid')
 
     <div class="relative z-10 max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         
@@ -21,7 +21,7 @@
             </div>
             
             <!-- Headline Title -->
-            <h1 class="font-heading text-3xl sm:text-5xl lg:text-5xl xl:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            <h1 class="font-heading text-3xl sm:text-5xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-tight" style="color: #162E54;">
                 Pilih Paket Yang Sesuai Dengan <span class="text-[#FF2E3A]">Kebutuhanmu</span>
             </h1>
             
@@ -52,12 +52,18 @@
                         <div class="mt-1.5 sm:mt-2.5">
                             <span class="font-serif text-xl sm:text-3xl lg:text-4xl font-extrabold text-[#FF2E3A]">Gratis</span>
                         </div>
-                        <p class="text-[10px] sm:text-xs text-slate-400 mt-0.5">Aktif selamanya</p>
+                        <p class="text-[10px] sm:text-xs font-semibold text-amber-700 mt-0.5">Khusus 1 undangan pertama per akun</p>
                     </div>
 
                     <!-- Features List -->
                     <div class="border-t border-slate-100 pt-3 sm:pt-4">
                         <ul class="space-y-2 sm:space-y-3 text-[11px] sm:text-xs lg:text-sm font-medium text-slate-700">
+                            <li class="flex items-start gap-1.5 sm:gap-2.5">
+                                <span class="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-[#FF2E3A] text-white flex items-center justify-center shrink-0 mt-0.5">
+                                    <svg class="w-2 h-2 sm:w-2.5 sm:h-2.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                </span>
+                                <span><strong>1 Undangan</strong> (Khusus Undangan Pertama)</span>
+                            </li>
                             <li class="flex items-start gap-1.5 sm:gap-2.5">
                                 <span class="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-[#FF2E3A] text-white flex items-center justify-center shrink-0 mt-0.5">
                                     <svg class="w-2 h-2 sm:w-2.5 sm:h-2.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
@@ -70,13 +76,16 @@
                                 </span>
                                 <span>5 Pilihan Lagu</span>
                             </li>
-                            <li class="flex items-start gap-1.5 sm:gap-2.5 text-slate-500">
+                            <li class="flex items-start gap-1.5 sm:gap-2.5 text-slate-600">
                                 <span class="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center shrink-0 mt-0.5">
                                     <svg class="w-2 h-2 sm:w-2.5 sm:h-2.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
                                 </span>
                                 <span>10 Tema Basic Estetik</span>
                             </li>
                         </ul>
+                        <p class="mt-3 p-2 rounded-xl bg-amber-50 border border-amber-200/80 text-[10px] sm:text-[11px] text-amber-900 leading-relaxed">
+                            Undangan ke-2 &amp; seterusnya: <strong>Rp10.000/undangan</strong>. Tidak ada gratis ulang meski undangan pertama dihapus.
+                        </p>
                     </div>
                 </div>
 
@@ -124,6 +133,12 @@
                                     <svg class="w-2 h-2 sm:w-2.5 sm:h-2.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
                                 </span>
                                 <span>Tambahan 5 Lagu<br><strong class="text-slate-900 font-bold">Total 10 Lagu</strong></span>
+                            </li>
+                            <li class="flex items-start gap-1.5 sm:gap-2.5 text-slate-500">
+                                <span class="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center shrink-0 mt-0.5">
+                                    <svg class="w-2 h-2 sm:w-2.5 sm:h-2.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                </span>
+                                <span>Berlaku untuk satu undangan</span>
                             </li>
                         </ul>
                     </div>
@@ -174,6 +189,12 @@
                                 </span>
                                 <span>Akses 20 Lagu<br><strong class="text-slate-900 font-bold">Total 20 Lagu</strong></span>
                             </li>
+                            <li class="flex items-start gap-1.5 sm:gap-2.5 text-slate-500">
+                                <span class="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center shrink-0 mt-0.5">
+                                    <svg class="w-2 h-2 sm:w-2.5 sm:h-2.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                                </span>
+                                <span>Berlaku untuk satu undangan</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -205,6 +226,7 @@
                         <div class="mt-1.5 sm:mt-2.5">
                             <span class="font-serif text-xl sm:text-3xl lg:text-4xl font-extrabold text-white">Rp59.000</span>
                         </div>
+                        <p class="text-[10px] sm:text-xs text-white/85 mt-0.5">Berlaku untuk satu undangan</p>
                     </div>
 
                     <!-- Features List -->
@@ -232,7 +254,7 @@
                                 <span class="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-white text-[#FF2E3A] flex items-center justify-center shrink-0 mt-0.5">
                                     <svg class="w-2 h-2 sm:w-2.5 sm:h-2.5" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
                                 </span>
-                                <span>Akses Tema Menarik</span>
+                                <span>Akses Seluruh Fitur Premium</span>
                             </li>
                         </ul>
                     </div>
@@ -247,6 +269,44 @@
                 </div>
             </div>
 
+        </div>
+
+        <!-- Info Banner: Pembuatan Undangan Kedua & Seterusnya (Rp10.000 / undangan) -->
+        <div class="mt-6 sm:mt-8 bg-white border border-[#BAEAF8] rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-[0_4px_20px_rgba(2,132,199,0.06)] flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+            <div class="space-y-2.5 max-w-3xl">
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="px-3 py-0.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-[#DBF6FF] text-[#0284C7] border border-[#BAEAF8]">
+                        Undangan Kedua &amp; Seterusnya
+                    </span>
+                    <span class="text-xs sm:text-sm font-extrabold text-[#FF2E3A]">Rp10.000 / undangan</span>
+                </div>
+                <h2 class="font-heading text-lg sm:text-2xl font-bold text-slate-900">
+                    Butuh Membuat Lebih dari 1 Undangan dalam Satu Akun?
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    Paket Basic gratis hanya berlaku untuk <strong>1 undangan pertama</strong> setiap akun (tidak ada gratis ulang meskipun undangan sebelumnya dihapus). Untuk pembuatan undangan kedua dan seterusnya, cukup bayar <strong>Rp10.000 per undangan</strong> untuk mendapatkan <strong>1 undangan baru</strong> dengan fasilitas <strong>5 Nama Tamu</strong>, <strong>5 Pilihan Lagu</strong>, dan akses <strong>10 Tema Basic</strong>.
+                </p>
+                <p class="text-[11px] sm:text-xs text-slate-500">
+                    Catatan: Paket Add-On dan Premium berlaku khusus untuk undangan yang dibeli saja, tidak berlaku untuk undangan lainnya.
+                </p>
+            </div>
+            <div class="shrink-0">
+                @auth
+                    @if(auth()->user()->canStartNewInvitation())
+                        <a href="{{ route('dashboard.invitations.create') }}" class="inline-flex items-center justify-center w-full lg:w-auto px-6 py-3 rounded-xl bg-[#FF2E3A] hover:bg-[#E01E2A] text-white font-bold text-xs sm:text-sm shadow-sm transition">
+                            Buat Undangan Sekarang &rarr;
+                        </a>
+                    @else
+                        <button type="button" onclick="openNewInvitationModal()" class="inline-flex items-center justify-center w-full lg:w-auto px-6 py-3 rounded-xl bg-[#FF2E3A] hover:bg-[#E01E2A] text-white font-bold text-xs sm:text-sm shadow-sm transition cursor-pointer">
+                            Beli Slot Undangan Baru (Rp10.000) &rarr;
+                        </button>
+                    @endif
+                @else
+                    <a href="{{ route('register') }}" class="inline-flex items-center justify-center w-full lg:w-auto px-6 py-3 rounded-xl bg-[#FF2E3A] hover:bg-[#E01E2A] text-white font-bold text-xs sm:text-sm shadow-sm transition">
+                        Daftar &amp; Buat Undangan &rarr;
+                    </a>
+                @endauth
+            </div>
         </div>
 
         <!-- Login Prompt & FAQ Footer -->
@@ -264,4 +324,5 @@
 </div>
 
 @include('partials.upgrade-modal')
+@include('partials.new-invitation-modal')
 @endsection

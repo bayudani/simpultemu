@@ -7,9 +7,12 @@ use App\Models\Music;
 use App\Models\Theme;
 use App\Models\Transaction;
 use App\Models\User;
+use Database\Seeders\MusicSeeder;
 use Database\Seeders\ThemeSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class DuitkuAndGuestLimitTest extends TestCase
@@ -436,5 +439,302 @@ class DuitkuAndGuestLimitTest extends TestCase
         $response->assertSessionHas('upgrade_invitation_id', $invitation->id);
         $this->assertEquals('draft', $invitation->fresh()->status);
         $this->assertFalse((bool) $invitation->fresh()->is_premium);
+    }
+
+    public function test_first_basic_invitation_publish_consumes_free_quota_permanently_even_after_deletion(): void
+    {
+        $user = User::factory()->create([
+            'package_tier' => 'basic',
+            'is_premium' => false,
+            'has_used_free_quota' => false,
+        ]);
+        $basicTheme = Theme::where('tier', 'basic')->first();
+
+        $this->assertTrue($user->canUseFreeQuota());
+        $this->assertTrue($user->canStartNewInvitation());
+
+        $storeResponse = $this->actingAs($user)->post(route('dashboard.invitations.store'), [
+            'theme_id' => $basicTheme->id,
+            'title' => 'Undangan Gratis Pertama',
+            'groom_name' => 'Andi Wijaya',
+            'groom_nickname' => 'Andi',
+            'bride_name' => 'Siti Nurhaliza',
+            'bride_nickname' => 'Siti',
+            'event_date' => now()->addMonth()->format('Y-m-d'),
+            'event_time' => '09:00',
+            'venue' => 'Gedung Melati',
+            'action' => 'publish',
+        ]);
+
+        $storeResponse->assertRedirect();
+        $invitation = Invitation::where('user_id', $user->id)->first();
+        $this->assertNotNull($invitation);
+        $this->assertEquals('published', $invitation->status);
+        $this->assertEquals('free', $invitation->payment_status);
+
+        $user->refresh();
+        $this->assertTrue((bool) $user->has_used_free_quota);
+        $this->assertNotNull($user->free_quota_used_at);
+        $this->assertFalse($user->canUseFreeQuota());
+        $this->assertFalse($user->canStartNewInvitation());
+
+        // Halaman create harus menampilkan gerbang kuota Rp10.000
+        $gateResponse = $this->actingAs($user)->get(route('dashboard.invitations.create'));
+        $gateResponse->assertStatus(200);
+        $gateResponse->assertSee('Rp10.000');
+
+        // Hapus undangan pertama -> kuota gratis TIDAK boleh kembali
+        $deleteResponse = $this->actingAs($user)->delete(route('dashboard.undangan.destroy', $invitation->id));
+        $deleteResponse->assertRedirect();
+
+        $user->refresh();
+        $this->assertTrue((bool) $user->has_used_free_quota);
+        $this->assertFalse($user->canUseFreeQuota());
+
+        // Coba buat undangan kedua gratis via saveDraft -> harus ditolak (402)
+        $draftAttempt = $this->actingAs($user)->postJson(route('dashboard.invitations.saveDraft'), [
+            'theme_id' => $basicTheme->id,
+            'title' => 'Percobaan Gratis Kedua',
+        ]);
+        $draftAttempt->assertStatus(402);
+        $draftAttempt->assertJson(['requires_slot_purchase' => true]);
+
+        // Coba buat undangan kedua gratis via store -> harus ditolak & redirect ke gate modal
+        $storeAttempt = $this->actingAs($user)->post(route('dashboard.invitations.store'), [
+            'theme_id' => $basicTheme->id,
+            'title' => 'Percobaan Store Kedua',
+            'groom_name' => 'Budi',
+            'groom_nickname' => 'Budi',
+            'bride_name' => 'Ayu',
+            'bride_nickname' => 'Ayu',
+            'event_date' => now()->addMonth()->format('Y-m-d'),
+            'event_time' => '10:00',
+            'venue' => 'Gedung Serbaguna',
+            'action' => 'publish',
+        ]);
+        $storeAttempt->assertRedirect(route('dashboard.invitations.create'));
+        $storeAttempt->assertSessionHas('show_slot_payment_modal', true);
+        $this->assertEquals(0, Invitation::where('user_id', $user->id)->count());
+    }
+
+    public function test_purchasing_basic_slot_grants_one_paid_invitation_and_is_idempotent(): void
+    {
+        $user = User::factory()->create([
+            'package_tier' => 'basic',
+            'is_premium' => false,
+            'has_used_free_quota' => true,
+            'free_quota_used_at' => now(),
+            'basic_invitation_credits' => 0,
+        ]);
+        $basicTheme = Theme::where('tier', 'basic')->first();
+
+        Http::fake([
+            'https://api-sandbox.duitku.com/*' => Http::response([
+                'statusCode' => '00',
+                'statusMessage' => 'SUCCESS',
+                'reference' => 'REF-SLOT-001',
+                'paymentUrl' => 'https://sandbox.duitku.com/payment/REF-SLOT-001',
+            ], 200),
+        ]);
+
+        $invoiceResponse = $this->actingAs($user)->postJson(route('dashboard.upgrade.package'), [
+            'package_tier' => 'basic_slot',
+        ]);
+        $invoiceResponse->assertStatus(200);
+        $merchantOrderId = $invoiceResponse->json('merchant_order_id');
+        $this->assertNotNull($merchantOrderId);
+
+        // Konfirmasi pertama harus menambah tepat 1 kredit slot Basic
+        $confirm1 = $this->actingAs($user)->postJson(route('dashboard.upgrade.confirm'), [
+            'package_tier' => 'basic_slot',
+            'merchant_order_id' => $merchantOrderId,
+        ]);
+        $confirm1->assertStatus(200);
+        $this->assertEquals(1, $user->fresh()->basic_invitation_credits);
+
+        // Konfirmasi duplikat + webhook callback untuk order sama tidak boleh menggandakan kredit
+        $this->actingAs($user)->postJson(route('dashboard.upgrade.confirm'), [
+            'package_tier' => 'basic_slot',
+            'merchant_order_id' => $merchantOrderId,
+        ])->assertStatus(200);
+
+        config(['services.duitku.api_key' => 'test-key', 'services.duitku.merchant_code' => 'D9999']);
+        $signature = md5('D999910000'.$merchantOrderId.'test-key');
+        $this->postJson(route('api.duitku.callback'), [
+            'merchantCode' => 'D9999',
+            'amount' => '10000',
+            'merchantOrderId' => $merchantOrderId,
+            'resultCode' => '00',
+            'signature' => $signature,
+        ])->assertStatus(200);
+
+        $this->assertEquals(1, $user->fresh()->basic_invitation_credits);
+        $user->refresh();
+
+        // Gunakan kredit tersebut untuk membuat undangan ke-2
+        $storeResponse = $this->actingAs($user)->post(route('dashboard.invitations.store'), [
+            'theme_id' => $basicTheme->id,
+            'title' => 'Undangan Berbayar Kedua',
+            'groom_name' => 'Dimas Pratama',
+            'groom_nickname' => 'Dimas',
+            'bride_name' => 'Nadia Putri',
+            'bride_nickname' => 'Nadia',
+            'event_date' => now()->addMonth()->format('Y-m-d'),
+            'event_time' => '11:00',
+            'venue' => 'Gedung Anggrek',
+            'action' => 'publish',
+        ]);
+
+        $storeResponse->assertRedirect();
+        $invitation = Invitation::where('user_id', $user->id)->first();
+        $this->assertNotNull($invitation);
+        $this->assertEquals('paid', $invitation->payment_status);
+        $this->assertEquals(10000, $invitation->paid_amount);
+        $this->assertEquals('basic', $invitation->package_tier);
+        $this->assertEquals(0, $user->fresh()->basic_invitation_credits);
+        $this->assertFalse($user->fresh()->canStartNewInvitation());
+    }
+
+    public function test_addons_and_premium_are_isolated_per_invitation_and_premium_has_unlimited_guests(): void
+    {
+        $user = User::factory()->create([
+            'package_tier' => 'basic',
+            'is_premium' => false,
+            'has_used_free_quota' => true,
+        ]);
+        $basicTheme = Theme::where('tier', 'basic')->first();
+
+        $invA = $this->createTestInvitation($user, $basicTheme, [
+            'package_tier' => 'basic',
+            'is_premium' => false,
+            'payment_status' => 'paid',
+            'paid_amount' => 10000,
+        ]);
+        $invB = $this->createTestInvitation($user, $basicTheme, [
+            'package_tier' => 'basic',
+            'is_premium' => false,
+            'payment_status' => 'free',
+        ]);
+
+        // Upgrade hanya Undangan A ke Premium
+        $this->actingAs($user)->postJson(route('dashboard.invitations.upgrade.confirm', $invA), [
+            'package_tier' => 'premium',
+            'merchant_order_id' => 'PREM-'.$invA->id.'-'.time(),
+        ])->assertStatus(200);
+
+        $invA->refresh();
+        $invB->refresh();
+
+        $this->assertTrue((bool) $invA->is_premium);
+        $this->assertEquals('premium', $invA->package_tier);
+        $this->assertEquals('paid', $invA->payment_status);
+        $this->assertNull($invA->getGuestLimit());
+
+        // Undangan B tetap Basic & tidak terpengaruh oleh upgrade Undangan A
+        $this->assertFalse((bool) $invB->is_premium);
+        $this->assertEquals('basic', $invB->package_tier);
+        $this->assertEquals(5, $invB->getGuestLimit());
+
+        // Undangan A (Premium per undangan) bisa tambah lebih dari 5 tamu
+        for ($i = 1; $i <= 7; $i++) {
+            $res = $this->actingAs($user)->postJson(route('dashboard.guests.store', $invA), [
+                'name' => "Tamu VIP {$i}",
+            ]);
+            $res->assertStatus(200);
+        }
+        $this->assertEquals(7, $invA->guests()->count());
+
+        // Upgrade Undangan B ke Add-On Basic 1 (12 tamu, 10 lagu) - tidak mengubah Undangan A
+        $this->actingAs($user)->postJson(route('dashboard.invitations.upgrade.confirm', $invB), [
+            'package_tier' => 'basic_addon_1',
+            'merchant_order_id' => 'ADDON1-'.$invB->id.'-'.time(),
+        ])->assertStatus(200);
+
+        $invB->refresh();
+        $this->assertEquals('basic_addon_1', $invB->package_tier);
+        $this->assertEquals('paid', $invB->payment_status);
+        $this->assertEquals(12, $invB->getGuestLimit());
+        $this->assertEquals(10, $invB->getSongLimit());
+    }
+
+    public function test_backend_enforces_music_tier_and_custom_music_upload_by_invitation_package(): void
+    {
+        $this->seed(MusicSeeder::class);
+        Theme::clearMusicCache();
+        Storage::fake('public');
+
+        $user = User::factory()->create(['package_tier' => 'basic', 'is_premium' => false]);
+        $basicTheme = Theme::where('tier', 'basic')->first();
+        $basicMusic = Music::where('tier', 'basic')->first();
+        $premiumMusic = Music::where('tier', '!=', 'basic')->orderByDesc('id')->first();
+
+        $invitation = $this->createTestInvitation($user, $basicTheme, [
+            'package_tier' => 'basic',
+            'is_premium' => false,
+            'payment_status' => 'free',
+            'music_id' => $basicMusic->id,
+        ]);
+
+        // Coba ganti musik ke lagu non-basic & unggah MP3 kustom pada undangan Basic
+        $this->actingAs($user)->put(route('dashboard.invitations.update', $invitation), [
+            'theme_id' => $basicTheme->id,
+            'title' => 'Update Lagu Terbatas',
+            'groom_name' => 'Rian Hidayat',
+            'groom_nickname' => 'Rian',
+            'bride_name' => 'Maya Pertiwi',
+            'bride_nickname' => 'Maya',
+            'event_date' => now()->addMonth()->format('Y-m-d'),
+            'event_time' => '09:00',
+            'venue' => 'Grand Ballroom',
+            'music_id' => $premiumMusic->id,
+            'custom_music' => UploadedFile::fake()->create('blocked.mp3', 120, 'audio/mpeg'),
+            'action' => 'draft',
+        ])->assertRedirect();
+
+        $invitation->refresh();
+        $this->assertNotEquals($premiumMusic->id, $invitation->music_id);
+        $this->assertNull($invitation->custom_music);
+    }
+
+    public function test_pricing_and_dashboard_display_quota_package_and_payment_status_separately(): void
+    {
+        $user = User::factory()->create([
+            'package_tier' => 'basic',
+            'is_premium' => false,
+            'has_used_free_quota' => true,
+        ]);
+        $basicTheme = Theme::where('tier', 'basic')->first();
+        $this->createTestInvitation($user, $basicTheme, [
+            'title' => 'Undangan Satu',
+            'package_tier' => 'basic',
+            'payment_status' => 'free',
+            'status' => 'published',
+        ]);
+        $this->createTestInvitation($user, $basicTheme, [
+            'title' => 'Undangan Dua',
+            'package_tier' => 'basic_addon_1',
+            'payment_status' => 'paid',
+            'paid_amount' => 17000,
+            'status' => 'published',
+        ]);
+
+        $pricingResponse = $this->get(route('pricing'));
+        $pricingResponse->assertStatus(200);
+        $pricingResponse->assertSee('Khusus 1 undangan pertama per akun');
+        $pricingResponse->assertSee('Rp10.000');
+        $pricingResponse->assertSee('Berlaku untuk satu undangan');
+
+        $dashboardResponse = $this->actingAs($user)->get(route('dashboard'));
+        $dashboardResponse->assertStatus(200);
+        $dashboardResponse->assertSee('Paket:');
+        $dashboardResponse->assertSee('Pembayaran:');
+        $dashboardResponse->assertSee('Gratis');
+        $dashboardResponse->assertSee('Lunas');
+
+        $invListResponse = $this->actingAs($user)->get(route('dashboard.invitations.index'));
+        $invListResponse->assertStatus(200);
+        $invListResponse->assertSee('Paket');
+        $invListResponse->assertSee('Pembayaran');
+        $invListResponse->assertSee('Add-On Basic 1');
     }
 }

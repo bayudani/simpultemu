@@ -5,24 +5,60 @@
 @section('keywords', 'undangan pernikahan digital, undangan pernikahan online, buat undangan pernikahan gratis, website undangan nikah, template undangan pernikahan modern, undangan digital whatsapp, undangan rsvp online, amplop digital, simpultemu')
 
 @section('content')
-    <!-- Hero Section - Landscape Couple & Smartphone Mockup -->
-    <section
-        id="beranda"
-        class="relative overflow-hidden pt-16 pb-14 sm:pt-20 sm:pb-20 md:pt-20 md:pb-24 lg:pt-20 lg:pb-28 xl:pt-24 xl:pb-32 bg-[#0B132B] bg-cover min-h-[480px] sm:min-h-[540px] lg:min-h-[600px] xl:min-h-[640px] flex items-center w-full"
-        style="background-image: url('{{ asset('images/hero-couple.jpg') }}'); background-size: cover; background-position: center 85%;"
-    >
-        <!-- Enhanced Navy Atmosphere Overlay (Rona Navy Khas SimpulTemu: Kanan Agak Pekat Pas) -->
-        <div class="absolute inset-0 bg-[#0B132B]/50 z-0 pointer-events-none"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-[#0B132B]/80 via-[#0B132B]/40 to-[#0B132B]/55 z-0 pointer-events-none"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-[#0B132B]/50 via-transparent to-[#0B132B]/40 z-0 pointer-events-none"></div>
+    <style>
+        @media (min-width: 768px) {
+            #beranda-stage {
+                height: calc(100vh + 320px);
+            }
+            #beranda {
+                position: sticky;
+                top: 0;
+                height: 100vh;
+            }
+            #tema-pilihan-stage {
+                height: calc(100vh + 680px);
+            }
+            #tema-pilihan {
+                position: sticky;
+                top: 0;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+        }
+    </style>
+
+    <!-- Hero Scroll Stage (Banner Sticky Sementara Teks & HP Naik Memudar Sebelum Masuk Section Tema) -->
+    <div id="beranda-stage" class="relative w-full">
+        <!-- Hero Section - Landscape Couple & Smartphone Mockup -->
+        <section
+            id="beranda"
+            class="relative overflow-hidden pt-16 pb-14 sm:pt-20 sm:pb-20 md:pt-20 md:pb-24 lg:pt-20 lg:pb-28 xl:pt-24 xl:pb-32 min-h-[480px] sm:min-h-[540px] lg:min-h-[600px] xl:min-h-[640px] flex items-center w-full"
+            style="background-color: #0F172A;"
+        >
+        <!-- Foto Latar Banner (Full Pengantin Terlihat Jelas di Atas Navy + Parallax Scroll) -->
+        <div
+            id="hero-parallax-bg"
+            class="absolute inset-x-0 z-0 pointer-events-none select-none will-change-transform"
+            style="top: -4%; height: 106%; background-image: url('{{ asset('images/hero-banner-mint.jpg') }}?v=20261128_03'); background-size: cover; background-position: center 90%; opacity: 0.30;"
+            aria-hidden="true"
+        ></div>
+
+        <!-- Soft Readability Vignette (nuansa navy ditingkatkan agar teks lebih kontras) -->
+        <div
+            class="absolute inset-0 z-0 pointer-events-none"
+            style="background: linear-gradient(90deg, rgba(15, 23, 42, 0.80) 0%, rgba(15, 23, 42, 0.52) 52%, rgba(15, 23, 42, 0.38) 100%);"
+            aria-hidden="true"
+        ></div>
 
         <div class="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 xl:gap-8 items-center">
-                <!-- Left Column: Slogan, Typewriter, Description, CTAs -->
-                <div class="lg:col-span-7 text-center lg:text-left space-y-4 sm:space-y-5 z-10 lg:pr-2 xl:pr-4">
+                <!-- Left Column: Slogan, Typewriter, Description, CTAs (Naik & Memudar Saat Scroll) -->
+                <div id="hero-parallax-text" class="lg:col-span-7 text-center lg:text-left space-y-4 sm:space-y-5 z-10 lg:pr-2 xl:pr-4" style="will-change: transform, opacity;">
                     <!-- Slogan Badge: Bersama Dalam Setiap Momen (Italic & Kapital di Awal Kata) -->
                     <div class="reveal-init reveal-down delay-100">
-                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-[#FF2E3A]/10 border border-[#FF2E3A]/40 text-white text-xs sm:text-sm shadow-[0_0_18px_rgba(255,46,58,0.2)] backdrop-blur-md">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm backdrop-blur-md" style="background-color: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.24);">
                             <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FF2E3A] shrink-0" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z" />
                             </svg>
@@ -32,7 +68,7 @@
 
                     <!-- Main Heading: Solusi Undangan Digital Modern & Praktis Untuk Hari Pernikahanmu (3 Baris) -->
                     <h1 class="reveal-init reveal-up delay-250 text-white font-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[38px] xl:text-[44px] 2xl:text-[48px] leading-[1.18] tracking-tight">
-                        <span class="block">Solusi Undangan Digital</span>
+                        <span class="block">Platform Undangan Digital</span>
                         <span class="block text-[#FF2E3A]">Modern &amp; Praktis</span>
                         <span class="block">Untuk Hari Pernikahanmu</span>
                     </h1>
@@ -94,32 +130,27 @@
                     </div>
                 </div>
 
-                <!-- Right Column: 3D Dual-Phone Mockup (Official User Asset) - Balanced Center Position -->
-                <div class="lg:col-span-5 relative w-full flex items-center justify-center lg:justify-center z-20 mt-6 lg:mt-0 pt-2 sm:pt-4">
-                    <div class="reveal-init reveal-scale delay-200 relative w-full max-w-[350px] sm:max-w-[450px] md:max-w-[520px] lg:max-w-[550px] xl:max-w-[600px] 2xl:max-w-[650px] group">
-                        <!-- Soft Ambient Radial Glow Behind Phones -->
-                        <div class="absolute inset-0 bg-gradient-to-tr from-[#FF2E3A]/25 via-[#DBF6FF]/15 to-amber-500/10 rounded-full blur-3xl -z-10 transform scale-95 pointer-events-none"></div>
+                <!-- Right Column: 3D Dual-Phone Mockup (Naik & Memudar Saat Scroll) -->
+                <div id="hero-parallax-phones" class="lg:col-span-5 relative w-full flex items-center justify-center lg:justify-center z-20 mt-6 lg:mt-0 pt-2 sm:pt-4" style="will-change: transform, opacity;">
+                    <div class="reveal-init reveal-scale delay-200 relative w-full max-w-xs sm:max-w-sm lg:max-w-[390px] xl:max-w-[430px] group">
+                        <!-- Soft Ambient Radial Glow Behind Phones (dikurangi agar tidak ada bayangan putih berlebih) -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-[#FF2E3A]/10 via-[#DBF6FF]/5 to-transparent rounded-full blur-3xl -z-10 transform scale-95 pointer-events-none opacity-40"></div>
 
                         <!-- Floating 3D Phones Graphic -->
                         <div class="relative animate-float transition-all duration-700 ease-out group-hover:scale-[1.03] group-hover:-translate-y-2">
-                            <a
-                                href="{{ route('themes.demo', ['theme' => 1]) }}"
-                                class="block cursor-pointer focus:outline-none"
-                                title="Buka Demo Undangan SimpulTemu"
-                            >
-                                <img
-                                    src="{{ asset('images/hero-3d-phones.png') }}?v=20261124_04"
-                                    alt="Model 3D Undangan Digital SimpulTemu"
-                                    class="w-full h-auto max-h-[470px] sm:max-h-[540px] lg:max-h-[580px] xl:max-h-[630px] 2xl:max-h-[680px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.6)] select-none"
-                                    loading="eager"
-                                />
-                            </a>
+                            <img
+                                src="{{ asset('images/hero-3d-phones.png') }}?v=20261128_01"
+                                alt="Model 3D Undangan Digital SimpulTemu"
+                                class="w-full h-auto mx-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.6)] select-none"
+                                style="max-height: clamp(300px, 48vh, 430px);"
+                                loading="eager"
+                            />
 
-                            <!-- Interactive Live Demo Floating Badge -->
-                            <div class="absolute -bottom-2 sm:-bottom-2.5 right-1 sm:right-3 md:right-4 z-30 pointer-events-auto">
+                            <!-- Interactive Live Demo Floating Button -->
+                            <div class="absolute -bottom-2 sm:-bottom-2.5 right-0 sm:-right-2 md:-right-4 z-30 pointer-events-auto">
                                 <a
                                     href="{{ route('themes.demo', ['theme' => 1]) }}"
-                                    class="inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#FF2E3A] hover:bg-[#E01E2A] text-white text-xs sm:text-sm font-bold shadow-[0_8px_20px_rgba(255,46,58,0.45)] hover:shadow-[0_12px_28px_rgba(255,46,58,0.6)] transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer whitespace-nowrap"
+                                    class="inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-[#FF2E3A] hover:bg-[#E01E2A] text-white text-xs sm:text-sm font-bold shadow-[0_8px_20px_rgba(255,46,58,0.45)] hover:shadow-[0_12px_28px_rgba(255,46,58,0.6)] transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer whitespace-nowrap"
                                 >
                                     <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M8 5v14l11-7z" />
@@ -140,22 +171,34 @@
                 <path d="M0,245 C360,260 540,210 720,150 C900,90 1180,45 1440,42 L1440,300 L0,300 Z" fill="#DBF6FF" opacity="0.30"></path>
                 <!-- Layer 2: Pita Tengah (Luminous Pastel Ice-Blue) membingkai di antara pita atas dan putih dasar -->
                 <path d="M0,248 C380,262 580,225 760,175 C940,125 1220,108 1440,115 L1440,300 L0,300 Z" fill="#DBF6FF" opacity="0.60"></path>
-                <!-- Layer 3: Gelombang Putih Solid (Crest di bawah HP pada 165/300, lalu melengkung lembut turun ke kanan 215/300) -->
-                <path d="M0,235 C280,268 560,235 850,185 C1140,135 1300,175 1440,215 L1440,300 L0,300 Z" fill="#FFFFFF"></path>
+                <!-- Layer 3: Gelombang Solid Mint/Biru Muda Lembut (Menyatu dengan #tema-pilihan) -->
+                <path d="M0,235 C280,268 560,235 850,185 C1140,135 1300,175 1440,215 L1440,300 L0,300 Z" fill="#F2FBFF"></path>
             </svg>
         </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- Featured Themes Section -->
-    <section id="tema-pilihan" class="relative pt-8 sm:pt-12 md:pt-14 pb-20 sm:pb-24 bg-white border-b border-slate-200 overflow-hidden">
-        @include('partials.side-geometric-mesh', ['hasTopWave' => true])
+    <!-- Featured Themes Scroll Stage (Pin di Tengah Layar & Geser Horizontal 5 Kartu ke Kanan Saat Scroll) -->
+    <div id="tema-pilihan-stage" class="relative w-full" style="background-color: #F2FBFF;">
+    <section id="tema-pilihan" class="relative pt-14 sm:pt-16 pb-10 sm:pb-12 border-b border-slate-200 overflow-hidden w-full" style="background-color: #F2FBFF;">
+        <!-- Latar Jaring Kotak-Kotak Biru Muda -->
+        <div
+            class="absolute inset-0 z-0 pointer-events-none select-none"
+            style="background-image: linear-gradient(to right, rgba(56, 189, 248, 0.16) 1px, transparent 1px), linear-gradient(to bottom, rgba(56, 189, 248, 0.16) 1px, transparent 1px); background-size: 40px 40px;"
+            aria-hidden="true"
+        ></div>
+        <div
+            class="absolute inset-x-0 top-0 h-14 z-0 pointer-events-none"
+            style="background: linear-gradient(to bottom, #F2FBFF 0%, rgba(242, 251, 255, 0) 100%);"
+            aria-hidden="true"
+        ></div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10 sm:mb-12 space-y-3">
+            <div class="text-center mb-5 sm:mb-7 space-y-2">
                 <span class="reveal-init reveal-down delay-100 inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#DBF6FF] text-[#0284C7] border border-[#BAEAF8]">
                     Koleksi Desain Pernikahan
                 </span>
-                <h2 class="reveal-init reveal-up delay-250 font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900">
+                <h2 class="reveal-init reveal-up delay-250 font-heading text-3xl sm:text-4xl md:text-5xl font-bold" style="color: #162E54;">
                     Pilihan Tema <span class="text-[#FF2E3A]">Eksklusif</span>
                 </h2>
                 <p class="reveal-init reveal-up delay-400 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-normal">
@@ -163,87 +206,111 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-3.5 lg:gap-4 xl:gap-5">
-                @foreach($themes as $index => $theme)
-                    @php
-                        $delayClass = 'delay-' . (100 + ($index % 4) * 150);
-                        $isPremium = !empty($theme['is_premium']) || ($theme['tier'] ?? '') === 'premium';
-                        $priceFormatted = ($theme['price'] ?? 0) > 0 ? 'Rp ' . number_format($theme['price'], 0, ',', '.') : 'Gratis';
-                    @endphp
-                    <div class="reveal-init reveal-up {{ $delayClass }} bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-xs hover:shadow-xl border border-slate-200 transform hover:-translate-y-1.5 flex flex-col justify-between group">
-                        <!-- Top Section with Phone Mockup -->
-                        <div class="p-2 sm:p-2.5 md:p-2.5 lg:p-3 bg-gradient-to-b from-[#F7F4EE] to-[#EBE4D8] flex flex-col items-center justify-center relative overflow-hidden">
-                            <!-- Pill badges inside card matching Katalog Tema -->
-                            <div class="w-full flex items-center justify-between mb-1.5 sm:mb-2 z-10">
-                                <span class="px-1.5 sm:px-2 py-0.5 rounded-full text-[8px] sm:text-[9.5px] font-semibold uppercase tracking-wider bg-white/90 backdrop-blur-md text-stone-700 border border-stone-200 shadow-2xs">
-                                    {{ $isPremium ? 'Premium' : 'Basic' }}
-                                </span>
-                                <span class="px-1.5 sm:px-2 py-0.5 rounded-full text-[8px] sm:text-[9.5px] font-semibold uppercase tracking-wider shadow-2xs {{ $isPremium ? 'bg-amber-500 text-stone-950 font-bold' : 'bg-emerald-600 text-white' }}">
-                                    {{ $priceFormatted }}
-                                </span>
-                            </div>
+            <!-- Horizontal Scroll Track (5 Kartu Tema - Pin & Geser ke Kanan Saat Scroll) -->
+            <div id="featured-themes-marquee" class="relative overflow-x-auto md:overflow-hidden py-3 -mx-2 sm:mx-0">
+                <!-- Soft Left & Right Fade Edges -->
+                <div class="hidden sm:block absolute inset-y-0 left-0 w-10 sm:w-16 z-20 pointer-events-none" style="background: linear-gradient(to right, #F2FBFF, transparent);"></div>
+                <div class="hidden sm:block absolute inset-y-0 right-0 w-10 sm:w-16 z-20 pointer-events-none" style="background: linear-gradient(to left, #F2FBFF, transparent);"></div>
 
-                            <!-- Smartphone Mockup View inside card -->
-                            {!! $theme['mockup_html'] !!}
-                        </div>
-
-                        <!-- Details & Actions -->
-                        <div class="p-2.5 sm:p-3 md:p-3 lg:p-3.5 flex-1 flex flex-col justify-between space-y-2 sm:space-y-2.5 bg-white">
-                            <div>
-                                <div class="flex items-center justify-between gap-1">
-                                    <h3 class="font-heading font-serif text-xs sm:text-sm lg:text-[15px] font-bold text-stone-900 group-hover:text-[#FF2E3A] transition-colors truncate">
-                                        {{ $theme['name'] }}
-                                    </h3>
-                                    @if(!empty($theme['layout']))
-                                        <span class="text-[7.5px] sm:text-[8.5px] uppercase font-mono px-1.5 py-0.5 rounded bg-stone-100 text-stone-500 shrink-0">
-                                            {{ $theme['layout'] }}
-                                        </span>
-                                    @endif
+                <div id="featured-themes-track" class="flex items-stretch will-change-transform px-2 md:px-0" style="gap: 1rem; width: max-content;">
+                    @foreach($themes->take(8) as $theme)
+                        @php
+                            $isPremium = !empty($theme['is_premium']) || ($theme['tier'] ?? '') === 'premium';
+                            $priceFormatted = ($theme['price'] ?? 0) > 0 ? 'Rp ' . number_format($theme['price'], 0, ',', '.') : 'Gratis';
+                        @endphp
+                        <div class="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-xs hover:shadow-xl border border-slate-200 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group shrink-0" style="width: clamp(185px, 17vw, 225px);">
+                            <!-- Top Section with Phone Mockup -->
+                            <div class="p-1.5 sm:p-2 bg-gradient-to-b from-[#F7F4EE] to-[#EBE4D8] flex flex-col items-center justify-center relative overflow-hidden">
+                                <!-- Pill badges inside card matching Katalog Tema -->
+                                <div class="w-full flex items-center justify-between mb-0.5 z-10">
+                                    <span class="px-1.5 py-0.5 rounded-full text-[8px] font-semibold uppercase tracking-wider bg-white/90 backdrop-blur-md text-stone-700 border border-stone-200 shadow-2xs">
+                                        {{ $isPremium ? 'Premium' : 'Basic' }}
+                                    </span>
+                                    <span class="px-1.5 py-0.5 rounded-full text-[8px] font-semibold uppercase tracking-wider shadow-2xs {{ $isPremium ? 'bg-amber-500 text-stone-950 font-bold' : 'bg-emerald-600 text-white' }}">
+                                        {{ $priceFormatted }}
+                                    </span>
                                 </div>
-                                <p class="text-[10px] sm:text-xs text-slate-600 line-clamp-2 mt-1 leading-relaxed">
-                                    {{ $theme['description'] }}
-                                </p>
+
+                                <!-- Smartphone Mockup View inside card -->
+                                <div style="transform: scale(0.78); transform-origin: center; margin-top: -1.45rem; margin-bottom: -1.45rem;">
+                                    {!! $theme['mockup_html'] !!}
+                                </div>
                             </div>
 
-                            <div class="pt-2 sm:pt-2.5 border-t border-slate-100 flex items-center justify-between gap-1">
-                                <span class="text-xs sm:text-sm lg:text-base font-bold text-[#FF2E3A]">
-                                    {{ $priceFormatted }}
-                                </span>
-                                <a
-                                    href="{{ route('themes.show', $theme['id']) }}"
-                                    class="text-[9.5px] sm:text-xs font-semibold px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg text-[#FF2E3A] bg-[#DBF6FF] hover:bg-[#FF2E3A] hover:text-white border border-[#BAEAF8] transition-all duration-300 cursor-pointer whitespace-nowrap"
-                                >
-                                    <span class="sm:hidden">Detail &rarr;</span>
-                                    <span class="hidden sm:inline">Lihat Detail &rarr;</span>
-                                </a>
+                            <!-- Details & Actions -->
+                            <div class="p-2 sm:p-2.5 flex-1 flex flex-col justify-between space-y-1.5 bg-white">
+                                <div>
+                                    <div class="flex items-center justify-between gap-1">
+                                        <h3 class="font-heading font-serif text-xs sm:text-[13px] font-bold text-stone-900 group-hover:text-[#FF2E3A] transition-colors truncate">
+                                            {{ $theme['name'] }}
+                                        </h3>
+                                        @if(!empty($theme['layout']))
+                                            <span class="text-[7.5px] sm:text-[8.5px] uppercase font-mono px-1.5 py-0.5 rounded bg-stone-100 text-stone-500 shrink-0">
+                                                {{ $theme['layout'] }}
+                                            </span>
+                                        @endif
+                                    </div>
+                                    <p class="text-[10px] sm:text-xs text-slate-600 line-clamp-2 mt-1 leading-relaxed">
+                                        {{ $theme['description'] }}
+                                    </p>
+                                </div>
+
+                                <div class="pt-2 sm:pt-2.5 border-t border-slate-100 flex items-center justify-between gap-1">
+                                    <span class="text-xs sm:text-sm lg:text-base font-bold text-[#FF2E3A]">
+                                        {{ $priceFormatted }}
+                                    </span>
+                                    <a
+                                        href="{{ route('themes.show', $theme['id']) }}"
+                                        class="text-[9.5px] sm:text-xs font-semibold px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg text-[#FF2E3A] bg-[#DBF6FF] hover:bg-[#FF2E3A] hover:text-white border border-[#BAEAF8] transition-all duration-300 cursor-pointer whitespace-nowrap"
+                                    >
+                                        <span class="sm:hidden">Detail &rarr;</span>
+                                        <span class="hidden sm:inline">Lihat Detail &rarr;</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
 
-            <div class="mt-14 text-center">
+            <div class="mt-7 sm:mt-8 text-center">
                 <a
                     href="{{ route('themes.index') }}"
-                    class="reveal-init reveal-scale delay-200 inline-block px-10 py-4 rounded-full text-white font-semibold bg-[#FF2E3A] hover:bg-[#E01E2A] shadow-[0_4px_14px_rgba(255,46,58,0.25)] hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+                    class="reveal-init reveal-scale delay-200 inline-block px-8 py-3 rounded-full text-sm sm:text-base text-white font-semibold bg-[#FF2E3A] hover:bg-[#E01E2A] shadow-[0_4px_14px_rgba(255,46,58,0.25)] hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
                 >
                     Jelajahi Semua 20 Tema
                 </a>
             </div>
         </div>
     </section>
+    </div>
 
-    <!-- Features Section -->
-    <section id="fitur" class="py-12 sm:py-24 bg-[#F8FAFC] border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-8 sm:mb-16 space-y-2 sm:space-y-3">
-                <span class="reveal-init reveal-down delay-100 inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-semibold tracking-wider uppercase bg-[#DBF6FF] text-[#0284C7] border border-[#BAEAF8]">
+    <!-- Features Section (Parallax Background + Navy Transparency Overlay) -->
+    <section id="fitur" class="relative py-10 sm:py-14 border-b border-slate-800 overflow-hidden" style="background-color: #0F172A;">
+        <!-- Parallax Background Photo Layer (bergerak lebih santai saat scroll) -->
+        <div
+            id="fitur-parallax-bg"
+            class="absolute inset-x-0 z-0 pointer-events-none select-none will-change-transform"
+            style="top: -35%; height: 170%; background-image: url('{{ asset('images/features-arch-mint.jpg') }}?v=20261128_01'); background-size: cover; background-position: center center; opacity: 0.36;"
+            aria-hidden="true"
+        ></div>
+
+        <!-- Navy Transparency Overlay (selaras dengan banner beranda) -->
+        <div
+            class="absolute inset-0 z-0 pointer-events-none"
+            style="background: linear-gradient(180deg, rgba(15, 23, 42, 0.72) 0%, rgba(15, 23, 42, 0.50) 50%, rgba(15, 23, 42, 0.76) 100%);"
+            aria-hidden="true"
+        ></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-6 sm:mb-10 space-y-2 sm:space-y-3">
+                <span class="reveal-init reveal-down delay-100 inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-semibold tracking-wider uppercase backdrop-blur-md" style="background-color: rgba(219, 246, 255, 0.14); color: #DBF6FF; border: 1px solid rgba(219, 246, 255, 0.3);">
                     Fitur Terlengkap
                 </span>
-                <h2 class="reveal-init reveal-up delay-250 font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900">
+                <h2 class="reveal-init reveal-up delay-250 font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-white">
                     Semua Kebutuhan Acara dalam <span class="text-[#FF2E3A]">Satu Tautan</span>
                 </h2>
-                <p class="reveal-init reveal-up delay-400 text-xs sm:text-lg text-slate-600 max-w-2xl mx-auto font-normal">
+                <p class="reveal-init reveal-up delay-400 text-xs sm:text-lg text-slate-300 max-w-2xl mx-auto font-normal">
                     Dilengkapi beragam fitur modern yang membuat undangan digital Anda terasa interaktif, personal, dan berkesan bagi para tamu.
                 </p>
             </div>
@@ -306,15 +373,15 @@
     </section>
 
     <!-- Why Choose Us Section -->
-    <section id="tentang" class="relative py-12 sm:py-24 bg-white border-b border-slate-200 overflow-hidden">
-        @include('partials.side-geometric-mesh', ['hasTopWave' => false])
+    <section id="tentang" class="relative py-12 sm:py-24 border-b border-slate-200 overflow-hidden" style="background-color: #F2FBFF;">
+        @include('partials.light-blue-square-grid')
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-8 sm:mb-16 space-y-2 sm:space-y-3">
                 <span class="reveal-init reveal-down delay-100 inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-semibold tracking-wider uppercase bg-[#DBF6FF] text-[#0284C7] border border-[#BAEAF8]">
                     Keunggulan SimpulTemu
                 </span>
-                <h2 class="reveal-init reveal-up delay-250 font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900">
+                <h2 class="reveal-init reveal-up delay-250 font-heading text-2xl sm:text-4xl md:text-5xl font-bold" style="color: #162E54;">
                     Mengapa <span class="text-[#FF2E3A]">Memilih</span> Kami?
                 </h2>
             </div>
@@ -361,12 +428,12 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-14 sm:py-24 bg-gradient-to-b from-[#F8FAFC] to-[#DBF6FF]/30 overflow-hidden">
+    <section class="py-14 sm:py-24 overflow-hidden" style="background: linear-gradient(180deg, #EAF7FF 0%, #DCF2FF 100%);">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4 sm:space-y-7">
             <span class="reveal-init reveal-down delay-100 inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-semibold tracking-wider uppercase bg-[#DBF6FF] text-[#0284C7] border border-[#BAEAF8]">
                 Wujudkan Hari Istimewa
             </span>
-            <h2 class="reveal-init reveal-up delay-250 font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
+            <h2 class="reveal-init reveal-up delay-250 font-heading text-2xl sm:text-4xl md:text-5xl font-bold leading-tight" style="color: #162E54;">
                 Siap Membagikan Kebahagiaan Anda dengan <span class="text-[#FF2E3A]">Undangan Sempurna?</span>
             </h2>
             <p class="reveal-init reveal-up delay-400 text-xs sm:text-lg text-slate-600 font-normal max-w-2xl mx-auto">
@@ -392,4 +459,152 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const stage = document.getElementById('tema-pilihan-stage');
+    const section = document.getElementById('tema-pilihan');
+    const marquee = document.getElementById('featured-themes-marquee');
+    const track = document.getElementById('featured-themes-track');
+    if (!stage || !section || !marquee || !track) {
+        return;
+    }
+
+    let ticking = false;
+    const updateHorizontalSlide = function() {
+        const stageRange = stage.offsetHeight - section.offsetHeight;
+
+        if (window.innerWidth < 768 || stageRange <= 40) {
+            track.style.transform = 'translate3d(0, 0, 0)';
+            ticking = false;
+            return;
+        }
+
+        const stageRect = stage.getBoundingClientRect();
+        const scrolledInside = -stageRect.top;
+        const progress = Math.min(1, Math.max(0, scrolledInside / stageRange));
+
+        const containerWidth = marquee.clientWidth;
+        const trackWidth = track.scrollWidth;
+        // Mulai dari posisi kartu ke-8 di kanan (deretan tergeser ke kiri), lalu saat scroll turun bergeser ke kanan hingga kartu ke-1 tampil penuh di kiri
+        const maxShift = Math.max(260, trackWidth - containerWidth);
+        const startX = -maxShift;
+        const endX = Math.max(0, (containerWidth - trackWidth) / 2);
+        const currentX = startX + ((endX - startX) * progress);
+
+        track.style.transform = `translate3d(${currentX.toFixed(2)}px, 0, 0)`;
+        ticking = false;
+    };
+
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(updateHorizontalSlide);
+        }
+    }, { passive: true });
+
+    window.addEventListener('resize', updateHorizontalSlide, { passive: true });
+    updateHorizontalSlide();
+});
+
+// Efek Parallax halus pada latar belakang section Fitur
+document.addEventListener('DOMContentLoaded', function() {
+    const fiturSection = document.getElementById('fitur');
+    const fiturBg = document.getElementById('fitur-parallax-bg');
+    if (!fiturSection || !fiturBg) {
+        return;
+    }
+
+    let parallaxTicking = false;
+    const updateParallax = function() {
+        const rect = fiturSection.getBoundingClientRect();
+        const viewportH = window.innerHeight || 800;
+        if (rect.bottom >= 0 && rect.top <= viewportH) {
+            const centerOffset = (viewportH * 0.5) - (rect.top + rect.height * 0.5);
+            const translateY = Math.max(-180, Math.min(180, centerOffset * 0.55));
+            fiturBg.style.transform = `translate3d(0, ${translateY}px, 0)`;
+        }
+        parallaxTicking = false;
+    };
+
+    window.addEventListener('scroll', function() {
+        if (!parallaxTicking) {
+            parallaxTicking = true;
+            requestAnimationFrame(updateParallax);
+        }
+    }, { passive: true });
+
+    window.addEventListener('resize', updateParallax, { passive: true });
+    updateParallax();
+});
+
+// Efek Sticky Hero Parallax & Fade (Teks + HP naik & memudar dulu sebelum masuk section Tema)
+document.addEventListener('DOMContentLoaded', function() {
+    const heroStage = document.getElementById('beranda-stage');
+    const heroSection = document.getElementById('beranda');
+    const heroBg = document.getElementById('hero-parallax-bg');
+    const heroText = document.getElementById('hero-parallax-text');
+    const heroPhones = document.getElementById('hero-parallax-phones');
+    if (!heroStage || !heroSection || !heroBg || !heroText) {
+        return;
+    }
+
+    let heroTicking = false;
+    const updateHeroParallax = function() {
+        const scrollY = Math.max(0, window.scrollY || window.pageYOffset || 0);
+        const stageRange = heroStage.offsetHeight - heroSection.offsetHeight;
+
+        if (stageRange > 40) {
+            const progress = Math.min(1, Math.max(0, scrollY / stageRange));
+            const bgShiftY = progress * 24;
+            const textShiftY = -(progress * 115);
+            const phonesShiftY = -(progress * 95);
+            const contentOpacity = Math.max(0, 1 - (progress * 1.12));
+
+            heroBg.style.transform = `translate3d(0, ${bgShiftY}px, 0)`;
+
+            heroText.style.transform = `translate3d(0, ${textShiftY}px, 0)`;
+            heroText.style.opacity = contentOpacity.toFixed(3);
+            heroText.style.pointerEvents = contentOpacity <= 0.05 ? 'none' : '';
+
+            if (heroPhones) {
+                heroPhones.style.transform = `translate3d(0, ${phonesShiftY}px, 0)`;
+                heroPhones.style.opacity = contentOpacity.toFixed(3);
+                heroPhones.style.pointerEvents = contentOpacity <= 0.05 ? 'none' : '';
+            }
+        } else {
+            const heroHeight = heroSection.offsetHeight || 600;
+            const progress = Math.min(1, scrollY / (heroHeight * 0.65));
+            const bgShiftY = Math.min(heroHeight * 0.14, scrollY * 0.24);
+            const textShiftY = -(progress * 70);
+            const contentOpacity = Math.max(0, 1 - (progress * 1.15));
+
+            heroBg.style.transform = `translate3d(0, ${bgShiftY}px, 0)`;
+            heroText.style.transform = `translate3d(0, ${textShiftY}px, 0)`;
+            heroText.style.opacity = contentOpacity.toFixed(3);
+            heroText.style.pointerEvents = contentOpacity <= 0.05 ? 'none' : '';
+
+            if (heroPhones) {
+                heroPhones.style.transform = `translate3d(0, ${textShiftY * 0.8}px, 0)`;
+                heroPhones.style.opacity = contentOpacity.toFixed(3);
+                heroPhones.style.pointerEvents = contentOpacity <= 0.05 ? 'none' : '';
+            }
+        }
+
+        heroTicking = false;
+    };
+
+    window.addEventListener('scroll', function() {
+        if (!heroTicking) {
+            heroTicking = true;
+            requestAnimationFrame(updateHeroParallax);
+        }
+    }, { passive: true });
+
+    window.addEventListener('resize', updateHeroParallax, { passive: true });
+    updateHeroParallax();
+});
+</script>
+@endpush
 

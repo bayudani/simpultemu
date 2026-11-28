@@ -33,11 +33,21 @@
             transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Desktop: Collapsed Sidebar State (w-20 / 80px) */
+        /* Desktop: Compact Expanded & Collapsed Sidebar State */
+        @media (max-width: 767px) {
+            #dashboard-sidebar {
+                width: 14.5rem !important; /* 232px compact mobile drawer */
+            }
+        }
+
         @media (min-width: 768px) {
+            #dashboard-sidebar {
+                width: 13.75rem; /* 220px compact desktop sidebar */
+            }
+
             html.sidebar-is-collapsed #dashboard-sidebar,
             #dashboard-sidebar.is-collapsed {
-                width: 5rem !important; /* 80px */
+                width: 4.25rem !important; /* 68px */
             }
 
             /* Sembunyikan elemen teks saat sidebar menyusut */
@@ -78,6 +88,11 @@
             #dashboard-sidebar.is-collapsed .sidebar-nav-item svg {
                 margin-right: 0 !important;
             }
+        }
+
+        /* Jarak ikon & teks menu saat sidebar terbuka (berlaku di desktop & mobile) */
+        #dashboard-sidebar .sidebar-nav-item svg {
+            margin-right: 0.625rem;
         }
 
         /* Prevent any horizontal scrollbar on sidebar or its nav in all states */
@@ -122,6 +137,16 @@
             background-position: top left, top right, 0 0;
             background-attachment: local, local, local;
         }
+
+        /* User Dashboard Square Grid Background (Biru Muda Lembut + Jaring Kotak) */
+        .user-square-grid-canvas {
+            background-color: #F2FBFF;
+            background-image:
+                linear-gradient(to right, rgba(56, 189, 248, 0.16) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(56, 189, 248, 0.16) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-attachment: local;
+        }
     </style>
 </head>
 <body class="bg-[#F8FAFC] text-slate-800 font-sans antialiased min-h-screen selection:bg-[#DBF6FF] selection:text-[#FF2E3A]">
@@ -151,13 +176,13 @@
 
     <div class="min-h-screen flex flex-col md:flex-row">
         <!-- Sidebar Kiri (Desktop Sticky & Mobile Drawer) -->
-        <aside id="dashboard-sidebar" class="fixed md:sticky top-0 inset-y-0 left-0 z-50 md:z-30 w-72 md:w-64 lg:w-72 h-screen bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 shadow-2xl md:shadow-none -translate-x-full md:translate-x-0 transition-all duration-300 ease-in-out">
+        <aside id="dashboard-sidebar" class="fixed md:sticky top-0 inset-y-0 left-0 z-50 md:z-30 w-56 h-screen bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 shadow-2xl md:shadow-none -translate-x-full md:translate-x-0 transition-all duration-300 ease-in-out">
             <div class="flex flex-col flex-1 min-h-0 overflow-hidden">
                 <!-- Sidebar Header: Logo & Tombol Tutup/Buka Sidebar di dalam Sidebar (Seperti Google) -->
-                <div class="sidebar-header-box p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between gap-2 min-h-[72px]">
+                <div class="sidebar-header-box px-3.5 py-3 border-b border-slate-100 flex items-center justify-between gap-2 min-h-[58px]">
                     <!-- 1. Full Brand Logo (Saat Expanded di Desktop & Mobile) -->
                     <a href="{{ route('home') }}" class="sidebar-logo-full flex items-center gap-2 focus:outline-none transition-transform hover:scale-[1.02] overflow-hidden" aria-label="SimpulTemu Beranda">
-                        <img src="{{ asset('images/logo/logo-simpultemu.png') }}" alt="SimpulTemu" class="h-9 sm:h-10 w-auto object-contain shrink-0">
+                        <img src="{{ asset('images/logo/logo-simpultemu.png') }}" alt="SimpulTemu" class="h-7 sm:h-8 w-auto object-contain shrink-0">
                     </a>
 
                     <!-- 2. Tombol Tutup Sidebar di Dalam Sidebar (Desktop, Saat Expanded) - Seperti Contoh Google [|<] -->
@@ -203,26 +228,26 @@
                 </div>
 
                 <!-- Navigation Menu -->
-                <nav class="p-3 sm:p-4 space-y-1.5 overflow-y-auto overflow-x-hidden flex-1">
+                <nav class="p-2.5 sm:p-3 space-y-0.5 overflow-y-auto overflow-x-hidden flex-1">
                     <!-- 1. Menu: Dashboard -->
-                    <a href="{{ route('dashboard') }}" data-sidebar-tooltip="Dashboard" class="sidebar-nav-item group relative flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 {{ request()->routeIs('dashboard') && !request()->routeIs('dashboard.*') ? 'bg-[#DBF6FF] text-[#FF2E3A] font-semibold border-r-2 border-[#FF2E3A] shadow-xs' : 'text-slate-600 hover:text-slate-900 hover:bg-[#DBF6FF]/20' }}">
-                        <svg class="w-5 h-5 mr-3 shrink-0 {{ request()->routeIs('dashboard') && !request()->routeIs('dashboard.*') ? 'text-[#FF2E3A]' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <a href="{{ route('dashboard') }}" data-sidebar-tooltip="Dashboard" class="sidebar-nav-item group relative flex items-center px-3 py-2 text-[13px] font-medium rounded-lg transition-all duration-200 {{ request()->routeIs('dashboard') && !request()->routeIs('dashboard.*') ? 'bg-[#DBF6FF] text-[#FF2E3A] font-semibold border-r-2 border-[#FF2E3A] shadow-xs' : 'text-slate-600 hover:text-slate-900 hover:bg-[#DBF6FF]/20' }}">
+                        <svg class="w-4 h-4 mr-2.5 shrink-0 {{ request()->routeIs('dashboard') && !request()->routeIs('dashboard.*') ? 'text-[#FF2E3A]' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                         </svg>
                         <span class="sidebar-text truncate">Dashboard</span>
                     </a>
 
                     <!-- 2. Menu: Undangan Saya -->
-                    <a href="{{ route('dashboard.invitations.index') }}" data-sidebar-tooltip="Undangan Saya" class="sidebar-nav-item group relative flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 {{ request()->routeIs('dashboard.invitations.*') || request()->routeIs('dashboard.editor') ? 'bg-[#DBF6FF] text-[#FF2E3A] font-semibold border-r-2 border-[#FF2E3A] shadow-xs' : 'text-slate-600 hover:text-slate-900 hover:bg-[#DBF6FF]/20' }}">
-                        <svg class="w-5 h-5 mr-3 shrink-0 {{ request()->routeIs('dashboard.invitations.*') || request()->routeIs('dashboard.editor') ? 'text-[#FF2E3A]' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <a href="{{ route('dashboard.invitations.index') }}" data-sidebar-tooltip="Undangan Saya" class="sidebar-nav-item group relative flex items-center px-3 py-2 text-[13px] font-medium rounded-lg transition-all duration-200 {{ request()->routeIs('dashboard.invitations.*') || request()->routeIs('dashboard.editor') ? 'bg-[#DBF6FF] text-[#FF2E3A] font-semibold border-r-2 border-[#FF2E3A] shadow-xs' : 'text-slate-600 hover:text-slate-900 hover:bg-[#DBF6FF]/20' }}">
+                        <svg class="w-4 h-4 mr-2.5 shrink-0 {{ request()->routeIs('dashboard.invitations.*') || request()->routeIs('dashboard.editor') ? 'text-[#FF2E3A]' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                         </svg>
                         <span class="sidebar-text truncate">Undangan Saya</span>
                     </a>
 
                     <!-- 3. Menu: Pesan & RSVP Masuk -->
-                    <a href="{{ route('dashboard.messages') }}" data-sidebar-tooltip="Pesan &amp; RSVP Masuk" class="sidebar-nav-item group relative flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 {{ request()->routeIs('dashboard.messages') ? 'bg-[#DBF6FF] text-[#FF2E3A] font-semibold border-r-2 border-[#FF2E3A] shadow-xs' : 'text-slate-600 hover:text-slate-900 hover:bg-[#DBF6FF]/20' }}">
-                        <svg class="w-5 h-5 mr-3 shrink-0 {{ request()->routeIs('dashboard.messages') ? 'text-[#FF2E3A]' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <a href="{{ route('dashboard.messages') }}" data-sidebar-tooltip="Pesan &amp; RSVP Masuk" class="sidebar-nav-item group relative flex items-center px-3 py-2 text-[13px] font-medium rounded-lg transition-all duration-200 {{ request()->routeIs('dashboard.messages') ? 'bg-[#DBF6FF] text-[#FF2E3A] font-semibold border-r-2 border-[#FF2E3A] shadow-xs' : 'text-slate-600 hover:text-slate-900 hover:bg-[#DBF6FF]/20' }}">
+                        <svg class="w-4 h-4 mr-2.5 shrink-0 {{ request()->routeIs('dashboard.messages') ? 'text-[#FF2E3A]' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
                         </svg>
                         <span class="sidebar-text truncate">Pesan &amp; RSVP Masuk</span>
@@ -236,8 +261,8 @@
                     </div>
 
                     <!-- Admin Overview -->
-                    <a href="{{ route('admin.index') }}" data-sidebar-tooltip="Admin Overview" class="sidebar-nav-item group relative flex items-center px-4 py-2.5 sm:py-3 text-sm font-medium rounded-xl transition-all duration-200 {{ request()->routeIs('admin.index') ? 'bg-[#DBF6FF] text-[#FF2E3A] font-semibold border-r-2 border-[#FF2E3A] shadow-xs' : 'text-slate-600 hover:text-slate-900 hover:bg-[#DBF6FF]/20' }}">
-                        <svg class="w-5 h-5 mr-3 shrink-0 {{ request()->routeIs('admin.index') ? 'text-[#FF2E3A]' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <a href="{{ route('admin.index') }}" data-sidebar-tooltip="Admin Overview" class="sidebar-nav-item group relative flex items-center px-3 py-2 text-[13px] font-medium rounded-lg transition-all duration-200 {{ request()->routeIs('admin.index') ? 'bg-[#DBF6FF] text-[#FF2E3A] font-semibold border-r-2 border-[#FF2E3A] shadow-xs' : 'text-slate-600 hover:text-slate-900 hover:bg-[#DBF6FF]/20' }}">
+                        <svg class="w-4 h-4 mr-2.5 shrink-0 {{ request()->routeIs('admin.index') ? 'text-[#FF2E3A]' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
@@ -245,40 +270,40 @@
                     </a>
 
                     <!-- Manage Users -->
-                    <a href="{{ route('admin.users.index') }}" data-sidebar-tooltip="Kelola Pengguna (Manage Users)" class="sidebar-nav-item group relative flex items-center px-4 py-2.5 sm:py-3 text-sm font-medium rounded-xl transition-all duration-200 {{ request()->routeIs('admin.users.*') ? 'bg-[#DBF6FF] text-[#FF2E3A] font-semibold border-r-2 border-[#FF2E3A] shadow-xs' : 'text-slate-600 hover:text-slate-900 hover:bg-[#DBF6FF]/20' }}">
-                        <svg class="w-5 h-5 mr-3 shrink-0 {{ request()->routeIs('admin.users.*') ? 'text-[#FF2E3A]' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <a href="{{ route('admin.users.index') }}" data-sidebar-tooltip="Kelola Pengguna (Manage Users)" class="sidebar-nav-item group relative flex items-center px-3 py-2 text-[13px] font-medium rounded-lg transition-all duration-200 {{ request()->routeIs('admin.users.*') ? 'bg-[#DBF6FF] text-[#FF2E3A] font-semibold border-r-2 border-[#FF2E3A] shadow-xs' : 'text-slate-600 hover:text-slate-900 hover:bg-[#DBF6FF]/20' }}">
+                        <svg class="w-4 h-4 mr-2.5 shrink-0 {{ request()->routeIs('admin.users.*') ? 'text-[#FF2E3A]' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
                         </svg>
                         <span class="sidebar-text truncate">Manage Users</span>
                     </a>
 
                     <!-- Manage Themes -->
-                    <a href="{{ route('admin.themes.index') }}" data-sidebar-tooltip="Kelola Tema (Manage Themes)" class="sidebar-nav-item group relative flex items-center px-4 py-2.5 sm:py-3 text-sm font-medium rounded-xl transition-all duration-200 {{ request()->routeIs('admin.themes.*') ? 'bg-[#DBF6FF] text-[#FF2E3A] font-semibold border-r-2 border-[#FF2E3A] shadow-xs' : 'text-slate-600 hover:text-slate-900 hover:bg-[#DBF6FF]/20' }}">
-                        <svg class="w-5 h-5 mr-3 shrink-0 {{ request()->routeIs('admin.themes.*') ? 'text-[#FF2E3A]' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <a href="{{ route('admin.themes.index') }}" data-sidebar-tooltip="Kelola Tema (Manage Themes)" class="sidebar-nav-item group relative flex items-center px-3 py-2 text-[13px] font-medium rounded-lg transition-all duration-200 {{ request()->routeIs('admin.themes.*') ? 'bg-[#DBF6FF] text-[#FF2E3A] font-semibold border-r-2 border-[#FF2E3A] shadow-xs' : 'text-slate-600 hover:text-slate-900 hover:bg-[#DBF6FF]/20' }}">
+                        <svg class="w-4 h-4 mr-2.5 shrink-0 {{ request()->routeIs('admin.themes.*') ? 'text-[#FF2E3A]' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
                         </svg>
                         <span class="sidebar-text truncate">Manage Themes</span>
                     </a>
 
                     <!-- Moderate Comments -->
-                    <a href="{{ route('admin.comments.index') }}" data-sidebar-tooltip="Moderasi Komentar (Moderate Comments)" class="sidebar-nav-item group relative flex items-center px-4 py-2.5 sm:py-3 text-sm font-medium rounded-xl transition-all duration-200 {{ request()->routeIs('admin.comments.*') ? 'bg-[#DBF6FF] text-[#FF2E3A] font-semibold border-r-2 border-[#FF2E3A] shadow-xs' : 'text-slate-600 hover:text-slate-900 hover:bg-[#DBF6FF]/20' }}">
-                        <svg class="w-5 h-5 mr-3 shrink-0 {{ request()->routeIs('admin.comments.*') ? 'text-[#FF2E3A]' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <a href="{{ route('admin.comments.index') }}" data-sidebar-tooltip="Moderasi Komentar (Moderate Comments)" class="sidebar-nav-item group relative flex items-center px-3 py-2 text-[13px] font-medium rounded-lg transition-all duration-200 {{ request()->routeIs('admin.comments.*') ? 'bg-[#DBF6FF] text-[#FF2E3A] font-semibold border-r-2 border-[#FF2E3A] shadow-xs' : 'text-slate-600 hover:text-slate-900 hover:bg-[#DBF6FF]/20' }}">
+                        <svg class="w-4 h-4 mr-2.5 shrink-0 {{ request()->routeIs('admin.comments.*') ? 'text-[#FF2E3A]' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
                         </svg>
                         <span class="sidebar-text truncate">Moderate Comments</span>
                     </a>
 
                     <!-- Manage Invitations -->
-                    <a href="{{ route('admin.invitations.index') }}" data-sidebar-tooltip="Kelola Undangan (Manage Invitations)" class="sidebar-nav-item group relative flex items-center px-4 py-2.5 sm:py-3 text-sm font-medium rounded-xl transition-all duration-200 {{ request()->routeIs('admin.invitations.*') ? 'bg-[#DBF6FF] text-[#FF2E3A] font-semibold border-r-2 border-[#FF2E3A] shadow-xs' : 'text-slate-600 hover:text-slate-900 hover:bg-[#DBF6FF]/20' }}">
-                        <svg class="w-5 h-5 mr-3 shrink-0 {{ request()->routeIs('admin.invitations.*') ? 'text-[#FF2E3A]' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <a href="{{ route('admin.invitations.index') }}" data-sidebar-tooltip="Kelola Undangan (Manage Invitations)" class="sidebar-nav-item group relative flex items-center px-3 py-2 text-[13px] font-medium rounded-lg transition-all duration-200 {{ request()->routeIs('admin.invitations.*') ? 'bg-[#DBF6FF] text-[#FF2E3A] font-semibold border-r-2 border-[#FF2E3A] shadow-xs' : 'text-slate-600 hover:text-slate-900 hover:bg-[#DBF6FF]/20' }}">
+                        <svg class="w-4 h-4 mr-2.5 shrink-0 {{ request()->routeIs('admin.invitations.*') ? 'text-[#FF2E3A]' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                         </svg>
                         <span class="sidebar-text truncate">Manage Invitations</span>
                     </a>
 
                     <!-- Manage Music -->
-                    <a href="{{ route('admin.music.index') }}" data-sidebar-tooltip="Pustaka Musik (Manage Music)" class="sidebar-nav-item group relative flex items-center px-4 py-2.5 sm:py-3 text-sm font-medium rounded-xl transition-all duration-200 {{ request()->routeIs('admin.music.*') ? 'bg-[#DBF6FF] text-[#FF2E3A] font-semibold border-r-2 border-[#FF2E3A] shadow-xs' : 'text-slate-600 hover:text-slate-900 hover:bg-[#DBF6FF]/20' }}">
-                        <svg class="w-5 h-5 mr-3 shrink-0 {{ request()->routeIs('admin.music.*') ? 'text-[#FF2E3A]' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <a href="{{ route('admin.music.index') }}" data-sidebar-tooltip="Pustaka Musik (Manage Music)" class="sidebar-nav-item group relative flex items-center px-3 py-2 text-[13px] font-medium rounded-lg transition-all duration-200 {{ request()->routeIs('admin.music.*') ? 'bg-[#DBF6FF] text-[#FF2E3A] font-semibold border-r-2 border-[#FF2E3A] shadow-xs' : 'text-slate-600 hover:text-slate-900 hover:bg-[#DBF6FF]/20' }}">
+                        <svg class="w-4 h-4 mr-2.5 shrink-0 {{ request()->routeIs('admin.music.*') ? 'text-[#FF2E3A]' : 'text-slate-400 group-hover:text-slate-700' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
                         </svg>
                         <span class="sidebar-text truncate">Manage Music</span>
@@ -288,15 +313,15 @@
             </div>
 
             <!-- Bagian Bawah: Profil Pengguna & Logout -->
-            <div class="p-3 sm:p-4 border-t border-slate-200 bg-slate-50/50">
+            <div class="p-2.5 sm:p-3 border-t border-slate-200 bg-slate-50/50">
                 <!-- 1. Full Profile (Saat Expanded) -->
-                <div class="sidebar-profile-full flex items-center justify-between gap-3">
-                    <div class="flex items-center gap-3 min-w-0">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FF2E3A] to-[#C71722] text-white flex items-center justify-center font-bold text-sm shadow-sm shrink-0">
+                <div class="sidebar-profile-full flex items-center justify-between gap-2">
+                    <div class="flex items-center gap-2.5 min-w-0">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#FF2E3A] to-[#C71722] text-white flex items-center justify-center font-bold text-xs shadow-sm shrink-0">
                             {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
                         </div>
                         <div class="min-w-0">
-                            <p class="text-sm font-semibold text-slate-900 truncate">{{ auth()->user()->name }}</p>
+                            <p class="text-xs sm:text-[13px] font-semibold text-slate-900 truncate">{{ auth()->user()->name }}</p>
                             <div class="flex items-center gap-1.5 mt-0.5">
                                 @if(auth()->user()->isAdmin())
                                     <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-rose-50 text-rose-600 border border-rose-200">
@@ -344,7 +369,7 @@
         </aside>
 
         <!-- Main Content Area -->
-        <main id="dashboard-main" class="flex-1 overflow-y-auto min-w-0 {{ request()->routeIs('admin.*') ? 'admin-geometric-canvas' : 'bg-[#F8FAFC]' }}">
+        <main id="dashboard-main" class="flex-1 overflow-y-auto min-w-0 {{ request()->routeIs('admin.*') ? 'admin-geometric-canvas' : 'user-square-grid-canvas' }}">
             <!-- Desktop Top Bar -->
             <div class="hidden md:flex items-center justify-between px-6 lg:px-10 py-3.5 bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-20">
                 <div class="flex items-center gap-3">
@@ -558,6 +583,7 @@
     </script>
 
     @include('partials.upgrade-modal')
+    @include('partials.new-invitation-modal')
     @stack('scripts')
 </body>
 </html>

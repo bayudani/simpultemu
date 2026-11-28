@@ -76,47 +76,28 @@
 @endpush
 
 @section('content')
-<!-- SVG ClipPath Definition for the Curved Banner (Smooth Crescent Arc) -->
-<svg width="0" height="0" class="absolute pointer-events-none" style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
-    <defs>
-        <clipPath id="katalog-banner-curve" clipPathUnits="objectBoundingBox">
-            <path d="M 0,0 L 1,0 L 1,0.88 C 0.72,0.98 0.28,0.98 0,0.88 Z" />
-        </clipPath>
-    </defs>
-</svg>
+<div class="relative min-h-screen overflow-hidden" style="background-color: #F2FBFF;">
+    <!-- Latar Jaring Kotak-Kotak Biru Muda -->
+    @include('partials.light-blue-square-grid')
 
-<div class="relative bg-[#F8FAFC] min-h-screen overflow-hidden">
-    <!-- Side Diagonal Trellis Ornaments on Flanks across the full page -->
-    @include('partials.side-diagonal-ornament')
-
-    <!-- Top Curved Hero Banner (Matches Beranda dark atmosphere with custom smooth crescent curve boundary) -->
-    <section class="relative z-10 pt-24 sm:pt-28 md:pt-32 pb-24 sm:pb-28 md:pb-32 min-h-[460px] sm:min-h-[500px] md:min-h-[540px] flex flex-col justify-center text-center overflow-hidden">
-        <!-- Clipped Dark Hero Background with Couple Photo & Navy Atmosphere -->
-        <div class="absolute inset-0 pointer-events-none -z-10" style="clip-path: url(#katalog-banner-curve); -webkit-clip-path: url(#katalog-banner-curve);">
-            <div class="absolute inset-0 bg-[#0B132B] bg-cover" style="background-image: url('{{ asset('images/catalog-couple.jpg') }}'); background-position: center 88%;"></div>
-            <!-- Enhanced Dark Navy Atmosphere Overlay -->
-            <div class="absolute inset-0 bg-[#0B132B]/50"></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-[#0B132B]/65 via-[#0B132B]/35 to-[#0B132B]/60"></div>
+    <!-- Top Hero Banner with Flowing Multi-Layer Wave Divider -->
+    <section class="relative z-10 pt-24 sm:pt-28 md:pt-32 pb-28 sm:pb-32 md:pb-36 min-h-[460px] sm:min-h-[500px] md:min-h-[540px] flex flex-col justify-center text-center overflow-hidden">
+        <!-- Dark Navy Background with Couple Photo & Navy Atmosphere -->
+        <div class="absolute inset-0 pointer-events-none -z-10" style="background-color: #0F172A;">
+            <div class="absolute inset-0 bg-cover" style="background-image: url('{{ asset('images/themes-banner-mint.jpg') }}?v=20261128_01'); background-position: center 82%; opacity: 0.30;"></div>
+            <!-- Enhanced Dark Navy Atmosphere Overlay (sama seperti banner beranda) -->
+            <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(15, 23, 42, 0.72) 0%, rgba(15, 23, 42, 0.45) 50%, rgba(15, 23, 42, 0.68) 100%);"></div>
         </div>
 
-        <!-- Glowing Decorative Curved Border Lines along the exact boundary (Crescent Arc) -->
-        <div class="absolute inset-0 pointer-events-none z-10" aria-hidden="true">
-            <svg class="w-full h-full block" viewBox="0 0 1000 1000" preserveAspectRatio="none">
-                <defs>
-                    <filter id="cyan-banner-glow" x="-20%" y="-20%" width="140%" height="140%">
-                        <feGaussianBlur stdDeviation="4" result="blur" />
-                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                    </filter>
-                    <filter id="white-curve-soften" x="-20%" y="-40%" width="140%" height="180%">
-                        <feGaussianBlur stdDeviation="8" />
-                    </filter>
-                </defs>
-                <!-- Soft White Ambient Glow Underneath Curve to blend smoothly with white blur gradient -->
-                <path d="M 0,884 C 280,984 720,984 1000,884" fill="none" stroke="#FFFFFF" stroke-width="14" filter="url(#white-curve-soften)" opacity="0.65" />
-                <!-- Subtle Soft Cyan Accent Underline -->
-                <path d="M 0,892 C 280,992 720,992 1000,892" fill="none" stroke="#DBF6FF" stroke-width="2.5" opacity="0.4" />
-                <!-- Primary Glowing Blue Boundary Line -->
-                <path d="M 0,880 C 280,980 720,980 1000,880" fill="none" stroke="#0284C7" stroke-width="3" filter="url(#cyan-banner-glow)" opacity="0.95" />
+        <!-- Multi-Layer Sweeping Wave Divider (Menyatu dengan latar #F2FBFF di bawah) -->
+        <div class="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none z-10 pointer-events-none">
+            <svg class="relative block w-full" style="height: clamp(58px, 8.5vw, 120px);" viewBox="0 0 1440 220" preserveAspectRatio="none">
+                <!-- Layer 1: Pita Atas (Ice-Blue Transparan) -->
+                <path d="M0,165 C280,198 540,122 840,142 C1120,162 1290,115 1440,98 L1440,220 L0,220 Z" fill="#DBF6FF" opacity="0.28"></path>
+                <!-- Layer 2: Pita Tengah (Pastel Ice-Blue) -->
+                <path d="M0,178 C310,204 580,142 880,160 C1150,176 1310,138 1440,128 L1440,220 L0,220 Z" fill="#DBF6FF" opacity="0.55"></path>
+                <!-- Layer 3: Gelombang Solid (#F2FBFF menyatu mulus dengan section tema di bawah) -->
+                <path d="M0,188 C340,210 620,156 920,172 C1180,186 1330,158 1440,154 L1440,220 L0,220 Z" fill="#F2FBFF"></path>
             </svg>
         </div>
 
@@ -124,8 +105,8 @@
         <div class="relative z-20 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-5">
             <!-- Badge Pill -->
             <div>
-                <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-sky-950/70 text-sky-300 border border-sky-400/40 shadow-[0_0_18px_rgba(2,132,199,0.3)] backdrop-blur-md">
-                    <svg class="w-3.5 h-3.5 text-sky-400 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs font-semibold tracking-widest uppercase text-slate-100 backdrop-blur-md" style="background-color: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.24);">
+                    <svg class="w-3.5 h-3.5 text-[#FF2E3A] shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
                     </svg>
                     <span>Dynamic Multi-Theme Engine</span>
@@ -167,10 +148,10 @@
                     <h2 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900 flex items-center gap-3">
                         <span>Tema Basic Harmony</span>
                         <span class="px-3 py-1 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 font-sans">
-                            100% Gratis
+                            Gratis Undangan Pertama
                         </span>
                     </h2>
-                    <p class="text-sm text-stone-500 font-light mt-1">Desain esensial, anggun, dan responsif tanpa biaya tambahan</p>
+                    <p class="text-sm text-stone-500 font-light mt-1">Gratis untuk 1 undangan pertama per akun; undangan berikutnya Rp10.000/undangan</p>
                 </div>
                 <span class="text-xs sm:text-sm font-medium text-stone-500 font-mono">{{ $themes->where('tier', 'basic')->count() }} Desain Tersedia</span>
             </div>

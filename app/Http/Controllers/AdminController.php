@@ -112,6 +112,7 @@ class AdminController extends Controller
             $user->invitations()->update([
                 'package_tier' => 'premium',
                 'is_premium' => true,
+                'payment_status' => 'paid',
             ]);
             $status = 'Premium Selamanya (Bebas Buat Undangan)';
         } else {
@@ -139,6 +140,7 @@ class AdminController extends Controller
             $user->invitations()->update([
                 'package_tier' => 'premium',
                 'is_premium' => true,
+                'payment_status' => 'paid',
             ]);
         } else {
             foreach ($user->invitations as $invitation) {

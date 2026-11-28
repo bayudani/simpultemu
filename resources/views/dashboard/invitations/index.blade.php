@@ -3,20 +3,51 @@
 @section('title', 'Undangan Saya')
 
 @section('content')
+@php
+    $invUser = auth()->user();
+@endphp
 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-4 sm:mb-8">
     <div>
         <span class="inline-block px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold tracking-wider uppercase text-[#0284C7] bg-[#DBF6FF] border border-[#BAEAF8] mb-1 sm:mb-2">
             Manajemen Undangan
         </span>
         <h1 class="font-heading text-xl sm:text-3xl font-bold text-slate-900">Undangan Saya</h1>
-        <p class="text-slate-500 text-xs sm:text-sm mt-0.5 sm:mt-1">Kelola, edit, bagikan, dan pantau status publikasi undangan Anda.</p>
+        <p class="text-slate-500 text-xs sm:text-sm mt-0.5 sm:mt-1">Kelola, edit, bagikan, dan pantau status publikasi setiap undangan Anda.</p>
+        <div class="mt-2 flex flex-wrap items-center gap-2">
+            @if($invUser->hasLifetimePremium())
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-lg text-[11px] font-bold bg-amber-100 text-amber-900 border border-amber-300">
+                    Akun VIP: Undangan Premium Tanpa Batas
+                </span>
+            @elseif($invUser->availablePaidSlotsCount() > 0)
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-lg text-[11px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                    Slot Tersedia: {{ $invUser->basic_invitation_credits > 0 ? $invUser->basic_invitation_credits . ' Basic ' : '' }}{{ $invUser->premium_invitation_credits > 0 ? $invUser->premium_invitation_credits . ' Premium' : '' }}
+                </span>
+            @elseif($invUser->canUseFreeQuota())
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-lg text-[11px] font-semibold bg-[#DBF6FF]/80 text-[#0284C7] border border-[#BAEAF8]">
+                    Kuota Gratis Pertama Tersedia (1 Undangan Basic)
+                </span>
+            @else
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-lg text-[11px] font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+                    Kuota gratis terpakai &bull; Undangan berikutnya Rp10.000/undangan
+                </span>
+            @endif
+        </div>
     </div>
-    <a href="{{ route('dashboard.invitations.create') }}" class="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-xl font-semibold text-xs sm:text-sm text-white bg-[#FF2E3A] hover:bg-[#E01E2A] active:bg-[#C71722] shadow-[0_4px_14px_rgba(255,46,58,0.25)] hover:scale-[1.01] transition-all">
-        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-        </svg>
-        <span>Buat Undangan Baru</span>
-    </a>
+    @if($invUser->canStartNewInvitation())
+        <a href="{{ route('dashboard.invitations.create') }}" class="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-xl font-semibold text-xs sm:text-sm text-white bg-[#FF2E3A] hover:bg-[#E01E2A] active:bg-[#C71722] shadow-[0_4px_14px_rgba(255,46,58,0.25)] hover:scale-[1.01] transition-all">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            <span>Buat Undangan Baru</span>
+        </a>
+    @else
+        <button type="button" onclick="openNewInvitationModal()" class="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-xl font-semibold text-xs sm:text-sm text-white bg-[#FF2E3A] hover:bg-[#E01E2A] active:bg-[#C71722] shadow-[0_4px_14px_rgba(255,46,58,0.25)] hover:scale-[1.01] transition-all cursor-pointer">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            <span>Buat Undangan Baru (Rp10.000)</span>
+        </button>
+    @endif
 </div>
 
 @if($invitations->isEmpty())
@@ -42,26 +73,10 @@
         <div id="invitation-card-{{ $invitation->id }}" class="bg-white rounded-xl sm:rounded-2xl border border-slate-200 shadow-xs hover:border-[#FF2E3A]/40 hover:shadow-lg transition-all duration-300 flex flex-col justify-between overflow-hidden group">
             <div class="p-2.5 sm:p-6 flex-1 flex flex-col justify-between">
                 <div>
-                    <div class="flex items-center justify-between gap-1 mb-2 sm:mb-4 flex-wrap">
-                        <div class="flex items-center gap-1">
-                            <span class="px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[9px] sm:text-[11px] font-semibold uppercase tracking-wider bg-[#DBF6FF] text-[#0284C7] border border-[#BAEAF8] truncate max-w-[85px] sm:max-w-none" title="{{ $invitation->theme->name ?? 'Tema' }}">
-                                {{ $invitation->theme->name ?? 'Tema' }}
-                            </span>
-                            @if($invitation->is_premium)
-                                <span class="px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-300 shrink-0">
-                                    ⭐ Premium
-                                </span>
-                            @elseif($invitation->theme && $invitation->theme->isPremium())
-                                <button type="button" onclick="openUpgradeModal({{ $invitation->id }})" class="px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-300 hover:bg-amber-100 transition cursor-pointer shrink-0 flex items-center gap-1" title="Bayar Tema Premium (Rp 59.000)">
-                                    <svg class="w-2.5 h-2.5 text-amber-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                    <span>Bayar Premium (Rp 59k)</span>
-                                </button>
-                            @else
-                                <span class="px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-semibold bg-slate-100 text-slate-600 border border-slate-200 shrink-0">
-                                    Basic
-                                </span>
-                            @endif
-                        </div>
+                    <div class="flex items-center justify-between gap-1 mb-2 sm:mb-3 flex-wrap">
+                        <span class="px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[9px] sm:text-[11px] font-semibold uppercase tracking-wider bg-[#DBF6FF] text-[#0284C7] border border-[#BAEAF8] truncate max-w-[110px] sm:max-w-none" title="{{ $invitation->theme->name ?? 'Tema' }}">
+                            {{ $invitation->theme->name ?? 'Tema' }}
+                        </span>
                         @if($invitation->isPublished())
                             <span class="px-1.5 py-0.5 sm:px-2.5 sm:py-0.5 rounded-full text-[9px] sm:text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200 shrink-0">
                                 Published
@@ -76,6 +91,40 @@
                     <h3 class="font-heading text-xs sm:text-xl font-bold text-slate-900 group-hover:text-[#FF2E3A] transition-colors truncate" title="{{ $invitation->groom_nickname }} & {{ $invitation->bride_nickname }}">
                         {{ $invitation->groom_nickname }} & {{ $invitation->bride_nickname }}
                     </h3>
+
+                    <!-- Paket & Status Pembayaran Terpisah -->
+                    @php
+                        $cardPkgTier = $invitation->getPackageTier();
+                        $cardPayKey = $invitation->getPaymentStatusKey();
+                    @endphp
+                    <div class="mt-2 p-2 sm:p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1 text-[10px] sm:text-xs">
+                        <div class="flex items-center justify-between gap-1.5">
+                            <span class="text-slate-500 font-medium">Paket</span>
+                            <span class="px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold {{ $cardPkgTier === 'premium' ? 'bg-amber-100 text-amber-900 border border-amber-300' : (in_array($cardPkgTier, ['basic_addon_1', 'basic_addon_2'], true) ? 'bg-sky-100 text-sky-800 border border-sky-200' : 'bg-white text-slate-700 border border-slate-200') }}">
+                                {{ $invitation->getPackageShortName() }}
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between gap-1.5">
+                            <span class="text-slate-500 font-medium">Pembayaran</span>
+                            <span class="px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold {{ $cardPayKey === 'paid' ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : ($cardPayKey === 'unpaid' ? 'bg-rose-100 text-rose-700 border border-rose-200' : 'bg-sky-50 text-sky-700 border border-sky-200') }}">
+                                {{ $invitation->getPaymentStatusLabel() }}@if($cardPayKey === 'paid' && $invitation->paid_amount > 0) (Rp{{ number_format($invitation->paid_amount, 0, ',', '.') }})@endif
+                            </span>
+                        </div>
+                        @if($cardPayKey === 'unpaid')
+                            <button type="button" onclick="openNewInvitationModal({{ $invitation->id }}, 'Selesaikan pembayaran Rp10.000 (Basic) atau Rp59.000 (Premium) untuk mengaktifkan undangan ini.')" class="w-full mt-1 py-1 px-2 rounded-lg bg-[#FF2E3A] hover:bg-[#E01E2A] text-white text-[10px] font-bold transition cursor-pointer text-center">
+                                Bayar Sekarang (Rp10k / Rp59k)
+                            </button>
+                        @elseif($invitation->theme && $invitation->theme->isPremium() && !$invitation->is_premium)
+                            <button type="button" onclick="openUpgradeModal({{ $invitation->id }})" class="w-full mt-1 py-1 px-2 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 text-[10px] font-bold transition cursor-pointer flex items-center justify-center gap-1" title="Bayar Tema Premium (Rp 59.000)">
+                                <svg class="w-2.5 h-2.5 text-amber-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <span>Aktifkan Tema Premium (Rp59k)</span>
+                            </button>
+                        @elseif($cardPkgTier !== 'premium')
+                            <button type="button" onclick="openUpgradeModal({{ $invitation->id }}, 'Tambah kuota tamu/lagu atau upgrade undangan ini ke Premium.')" class="w-full mt-1 py-1 px-2 rounded-lg bg-white hover:bg-rose-50 text-[#FF2E3A] border border-rose-200 text-[10px] font-semibold transition cursor-pointer text-center">
+                                Upgrade / Add-On
+                            </button>
+                        @endif
+                    </div>
                     
                     <p class="text-[10px] sm:text-xs text-slate-500 mt-1 flex items-center gap-1 sm:gap-1.5 truncate">
                         <svg class="w-3 h-3 sm:w-4 sm:h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">

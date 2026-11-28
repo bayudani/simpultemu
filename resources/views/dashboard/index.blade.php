@@ -3,24 +3,83 @@
 @section('title', 'Ringkasan Dashboard')
 
 @section('content')
-<!-- Header & Welcome Banner -->
-<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-5 sm:mb-8">
-    <div>
-        <span class="inline-block px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold tracking-wider uppercase text-[#0284C7] bg-[#DBF6FF] border border-[#BAEAF8] mb-1.5 sm:mb-2">
+<!-- Header & Welcome Banner Card -->
+<div
+    class="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-[#BAEAF8] shadow-xs mb-5 sm:mb-8 sm:min-h-[245px] lg:min-h-[275px] flex flex-col justify-between sm:justify-center"
+    style="background: linear-gradient(180deg, #87CEFA 0%, #BCE7FE 68%, #E1E7F9 86%, #D8DCF5 100%);"
+>
+    <!-- Desktop/Tablet Panoramic Background Image (Full Height, Uncropped Floor & Couple on Right) -->
+    <img
+        src="{{ asset('images/dashboard-welcome-banner.jpg') }}"
+        alt="Banner Selamat Datang SimpulTemu"
+        class="hidden sm:block absolute inset-y-0 right-0 h-full w-auto max-w-none object-contain object-right-bottom pointer-events-none select-none"
+        style="-webkit-mask-image: linear-gradient(to right, transparent 0%, black 16%); mask-image: linear-gradient(to right, transparent 0%, black 16%);"
+    >
+
+    <!-- Desktop/Tablet Readability Scrim (Hanya di sisi kiri agar sisi kanan & lantai tetap cerah utuh) -->
+    <div
+        class="hidden sm:block absolute inset-0 pointer-events-none"
+        style="background: linear-gradient(90deg, rgba(240, 249, 255, 0.90) 0%, rgba(224, 242, 254, 0.74) 38%, rgba(224, 242, 254, 0.25) 54%, rgba(224, 242, 254, 0) 68%);"
+    ></div>
+
+    <div class="relative z-10 p-5 pb-3 sm:p-7 lg:p-9 sm:max-w-[54%] lg:max-w-[52%]">
+        <span class="inline-block px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold tracking-wider uppercase text-[#0284C7] bg-[#DBF6FF]/95 border border-[#BAEAF8] mb-2 sm:mb-2.5 shadow-2xs">
             Ringkasan Akun
         </span>
-        <h1 class="font-heading text-xl sm:text-3xl font-bold text-slate-900">
+        <h1 class="font-heading text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 leading-tight">
             Selamat Datang, <span class="text-[#FF2E3A]">{{ auth()->user()->name }}</span>
         </h1>
-        <p class="text-slate-500 text-xs sm:text-sm mt-0.5 sm:mt-1">Kelola dan pantau seluruh undangan pernikahan digital Anda di satu tempat.</p>
+        <p class="text-slate-700 text-xs sm:text-sm mt-1 sm:mt-1.5 leading-relaxed max-w-md">
+            Kelola dan pantau seluruh undangan pernikahan digital Anda di satu tempat.
+        </p>
+        @php
+            $dashUser = auth()->user();
+        @endphp
+        <div class="mt-2.5 flex flex-wrap items-center gap-2">
+            @if($dashUser->hasLifetimePremium())
+                <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-bold bg-amber-100/95 text-amber-900 border border-amber-300 shadow-2xs">
+                    Akun VIP: Undangan Premium Tanpa Batas
+                </span>
+            @elseif($dashUser->availablePaidSlotsCount() > 0)
+                <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-100/95 text-emerald-900 border border-emerald-300 shadow-2xs">
+                    Kredit Tersedia: {{ $dashUser->basic_invitation_credits > 0 ? $dashUser->basic_invitation_credits . ' Slot Basic ' : '' }}{{ $dashUser->premium_invitation_credits > 0 ? $dashUser->premium_invitation_credits . ' Slot Premium' : '' }}
+                </span>
+            @elseif($dashUser->canUseFreeQuota())
+                <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white/90 text-sky-900 border border-[#BAEAF8] shadow-2xs">
+                    Kuota Gratis Pertama Tersedia (1 Undangan Basic)
+                </span>
+            @else
+                <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-white/90 text-slate-700 border border-slate-200 shadow-2xs">
+                    Kuota gratis terpakai &bull; Undangan berikutnya Rp10.000/undangan
+                </span>
+            @endif
+        </div>
+        <div class="mt-3.5 sm:mt-4">
+            @if($dashUser->canStartNewInvitation())
+                <a href="{{ route('dashboard.invitations.create') }}" class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl font-semibold text-xs sm:text-sm text-white bg-[#FF2E3A] hover:bg-[#E01E2A] active:bg-[#C71722] shadow-[0_4px_14px_rgba(255,46,58,0.25)] hover:shadow-[0_6px_20px_rgba(255,46,58,0.35)] hover:scale-[1.01] active:scale-[0.99] transition-all duration-200">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                    Buat Undangan Baru
+                </a>
+            @else
+                <button type="button" onclick="openNewInvitationModal()" class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl font-semibold text-xs sm:text-sm text-white bg-[#FF2E3A] hover:bg-[#E01E2A] active:bg-[#C71722] shadow-[0_4px_14px_rgba(255,46,58,0.25)] hover:shadow-[0_6px_20px_rgba(255,46,58,0.35)] hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 cursor-pointer">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                    Buat Undangan Baru (Rp10.000)
+                </button>
+            @endif
+        </div>
     </div>
-    <div>
-        <a href="{{ route('dashboard.invitations.create') }}" class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl font-semibold text-xs sm:text-sm text-white bg-[#FF2E3A] hover:bg-[#E01E2A] active:bg-[#C71722] shadow-[0_4px_14px_rgba(255,46,58,0.25)] hover:shadow-[0_6px_20px_rgba(255,46,58,0.35)] hover:scale-[1.01] active:scale-[0.99] transition-all duration-200">
-            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
-            Buat Undangan Baru
-        </a>
+
+    <!-- Mobile Panoramic Image (Tampil utuh tanpa crop di bawah teks) -->
+    <div class="sm:hidden relative z-10 w-full mt-1">
+        <img
+            src="{{ asset('images/dashboard-welcome-banner.jpg') }}"
+            alt="Banner Selamat Datang SimpulTemu"
+            class="w-full h-auto block object-cover pointer-events-none select-none"
+        >
     </div>
 </div>
 
@@ -115,6 +174,19 @@
                                 Draft
                             </span>
                         @endif
+                    </div>
+                    <!-- Paket & Status Pembayaran Terpisah Per Undangan -->
+                    @php
+                        $rowPkgTier = $invitation->getPackageTier();
+                        $rowPayStatus = $invitation->getPaymentStatusKey();
+                    @endphp
+                    <div class="flex flex-wrap items-center gap-1.5 mt-1.5 text-[10px] sm:text-[11px]">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded-md font-bold {{ $rowPkgTier === 'premium' ? 'bg-amber-100 text-amber-900 border border-amber-300' : (in_array($rowPkgTier, ['basic_addon_1', 'basic_addon_2'], true) ? 'bg-sky-50 text-sky-800 border border-sky-200' : 'bg-slate-100 text-slate-700 border border-slate-200') }}">
+                            Paket: {{ $invitation->getPackageShortName() }}
+                        </span>
+                        <span class="inline-flex items-center px-2 py-0.5 rounded-md font-semibold {{ $rowPayStatus === 'paid' ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : ($rowPayStatus === 'unpaid' ? 'bg-rose-50 text-rose-700 border border-rose-200' : 'bg-sky-50 text-sky-700 border border-sky-200') }}">
+                            Pembayaran: {{ $invitation->getPaymentStatusLabel() }}@if($rowPayStatus === 'paid' && $invitation->paid_amount > 0) (Rp{{ number_format($invitation->paid_amount, 0, ',', '.') }})@endif
+                        </span>
                     </div>
                 </div>
             </div>

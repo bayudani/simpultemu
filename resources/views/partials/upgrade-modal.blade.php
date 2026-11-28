@@ -1,5 +1,5 @@
 <!-- ================= UNIVERSAL UPGRADE & ADD-ON MODAL (DUITKU INTEGRATED) ================= -->
-<div id="universal-upgrade-modal" class="fixed inset-0 z-[100] bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-2.5 sm:p-4 lg:p-6 hidden">
+<div id="universal-upgrade-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-2.5 sm:p-4 lg:p-6 hidden" style="z-index: 9999;">
     <div class="relative w-full max-w-4xl lg:max-w-5xl bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200 flex flex-col max-h-[96vh] sm:max-h-[92vh] lg:max-h-[88vh] overflow-hidden animate-scale-up">
         
         <!-- Header -->
@@ -15,7 +15,7 @@
                         Pilih Paket Yang Sesuai Dengan Kebutuhanmu
                     </h3>
                     <p id="upgrade-modal-subtitle" class="text-[10px] sm:text-xs text-slate-500 mt-0.5 leading-snug truncate">
-                        Tingkatkan kuota nama tamu &amp; buka akses lebih banyak lagu pilihan pernikahan impian Anda.
+                        Paket Add-On &amp; Premium berlaku khusus untuk 1 undangan ini saja (tidak berlaku untuk undangan lainnya).
                     </p>
                 </div>
             </div>

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @php
         $seoTitle = trim($__env->yieldContent('title', 'SimpulTemu - Buat Undangan Pernikahan Digital Online Gratis & Modern'));
         $seoDescription = trim($__env->yieldContent('description', 'Wujudkan undangan pernikahan digital impian dalam hitungan menit. Lengkap dengan fitur nama tamu personal, RSVP, musik latar, galeri foto, peta lokasi Google Maps, dan amplop digital. Mulai gratis di SimpulTemu.'));
@@ -55,47 +56,98 @@
     <link rel="icon" type="image/png" href="{{ asset('images/logo/logo-icon.png') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
+    <style>
+        /* Proporsi tampilan desktop setara ~110% zoom agar penuh & nyaman di 100% browser zoom */
+        @media (min-width: 1024px) {
+            html {
+                font-size: 17.5px;
+            }
+        }
+
+        /* Transparent Navbar State (Hero Gelap: Beranda & Katalog Tema) */
+        #main-navbar.navbar-transparent,
+        #main-navbar.navbar-transparent-light {
+            background-color: transparent !important;
+            border-color: transparent !important;
+            box-shadow: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+        #main-navbar.navbar-transparent .nav-logo-light {
+            display: none !important;
+        }
+        #main-navbar.navbar-transparent .nav-logo-dark {
+            display: block !important;
+        }
+        #main-navbar.navbar-transparent .nav-link-item {
+            color: rgba(241, 245, 249, 0.92) !important;
+        }
+        #main-navbar.navbar-transparent .nav-link-item:hover {
+            color: #FFFFFF !important;
+            background-color: rgba(255, 255, 255, 0.12) !important;
+        }
+        #main-navbar.navbar-transparent .nav-link-item.is-active {
+            color: #FFFFFF !important;
+            background-color: rgba(255, 46, 58, 0.24) !important;
+            box-shadow: inset 0 0 0 1px rgba(255, 46, 58, 0.45);
+        }
+        #main-navbar.navbar-transparent .nav-auth-link,
+        #main-navbar.navbar-transparent .mobile-menu-button {
+            color: rgba(241, 245, 249, 0.95) !important;
+        }
+        #main-navbar.navbar-transparent .nav-auth-link:hover,
+        #main-navbar.navbar-transparent .mobile-menu-button:hover {
+            color: #FFFFFF !important;
+            background-color: rgba(255, 255, 255, 0.12) !important;
+        }
+    </style>
 </head>
 <body class="antialiased bg-[#F8FAFC] text-slate-800 font-sans selection:bg-[#DBF6FF] selection:text-[#FF2E3A] min-h-screen flex flex-col justify-between">
-    <!-- Floating Glassmorphism Navbar (Compact & Sleek) -->
+    <!-- Floating Glassmorphism Navbar (Transparan di atas Hero, Kapsul Putih saat Scroll) -->
+    @php
+        $isDarkHeroNav = request()->routeIs('home', 'themes.*');
+        $isLightHeroNav = request()->routeIs('pricing', 'how-it-works', 'faq', 'about');
+        $transparentNavClass = $isDarkHeroNav ? 'navbar-transparent' : ($isLightHeroNav ? 'navbar-transparent-light' : '');
+    @endphp
     <header class="fixed top-2 sm:top-3 inset-x-0 z-50 px-3 sm:px-6 lg:px-8 pointer-events-none transition-all duration-300">
-        <nav class="max-w-7xl mx-auto pointer-events-auto bg-white/90 backdrop-blur-xl border border-white/70 shadow-[0_8px_30px_rgba(15,23,42,0.08),0_1px_3px_rgba(0,0,0,0.04)] rounded-2xl sm:rounded-full px-3.5 sm:px-5 py-1.5 transition-all duration-300">
-            <div class="flex justify-between items-center h-8 sm:h-9">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
-                        <a href="{{ route('home') }}" class="flex items-center focus:outline-none transition-transform duration-300 hover:scale-[1.02]" aria-label="SimpulTemu Beranda">
-                            <img src="{{ asset('images/logo/logo-simpultemu.png') }}" alt="SimpulTemu" class="h-6.5 sm:h-7.5 w-auto object-contain">
-                        </a>
-                    </div>
-                    <div class="hidden md:ml-6 lg:ml-8 md:flex items-center space-x-1 lg:space-x-1.5">
-                        <a href="{{ route('home') }}" class="inline-flex items-center px-2.5 lg:px-3 py-1 rounded-full text-xs lg:text-[13px] font-medium transition-all duration-200 {{ request()->routeIs('home') ? 'text-[#FF2E3A] bg-[#FF2E3A]/10 font-semibold shadow-2xs' : 'text-slate-700 hover:text-[#FF2E3A] hover:bg-slate-100/70' }}">
-                            Beranda
-                        </a>
-                        <a href="{{ route('themes.index') }}" class="inline-flex items-center px-2.5 lg:px-3 py-1 rounded-full text-xs lg:text-[13px] font-medium transition-all duration-200 {{ request()->routeIs('themes.*') ? 'text-[#FF2E3A] bg-[#FF2E3A]/10 font-semibold shadow-2xs' : 'text-slate-700 hover:text-[#FF2E3A] hover:bg-slate-100/70' }}">
-                            Katalog Tema
-                        </a>
-                        <a href="{{ route('pricing') }}" class="inline-flex items-center px-2.5 lg:px-3 py-1 rounded-full text-xs lg:text-[13px] font-medium transition-all duration-200 {{ request()->routeIs('pricing') ? 'text-[#FF2E3A] bg-[#FF2E3A]/10 font-semibold shadow-2xs' : 'text-slate-700 hover:text-[#FF2E3A] hover:bg-slate-100/70' }}">
-                            Harga
-                        </a>
-                        <a href="{{ route('how-it-works') }}" class="inline-flex items-center px-2.5 lg:px-3 py-1 rounded-full text-xs lg:text-[13px] font-medium transition-all duration-200 {{ request()->routeIs('how-it-works') ? 'text-[#FF2E3A] bg-[#FF2E3A]/10 font-semibold shadow-2xs' : 'text-slate-700 hover:text-[#FF2E3A] hover:bg-slate-100/70' }}">
-                            Cara Kerja
-                        </a>
-                        <a href="{{ route('faq') }}" class="inline-flex items-center px-2.5 lg:px-3 py-1 rounded-full text-xs lg:text-[13px] font-medium transition-all duration-200 {{ request()->routeIs('faq') ? 'text-[#FF2E3A] bg-[#FF2E3A]/10 font-semibold shadow-2xs' : 'text-slate-700 hover:text-[#FF2E3A] hover:bg-slate-100/70' }}">
-                            FAQ
-                        </a>
-                    </div>
+        <nav id="main-navbar" data-transparent-class="{{ $transparentNavClass }}" class="max-w-7xl mx-auto pointer-events-auto bg-white/95 backdrop-blur-xl border border-white/70 shadow-[0_8px_30px_rgba(15,23,42,0.08),0_1px_3px_rgba(0,0,0,0.04)] rounded-2xl sm:rounded-full px-3.5 sm:px-5 py-1.5 transition-all duration-300 {{ $transparentNavClass }}">
+            <div class="flex justify-between items-center h-8 sm:h-9 gap-3">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="{{ route('home') }}" class="flex items-center focus:outline-none transition-transform duration-300 hover:scale-[1.02]" aria-label="SimpulTemu Beranda">
+                        <img src="{{ asset('images/logo/logo-simpultemu.png') }}" alt="SimpulTemu" class="nav-logo-light h-6.5 sm:h-7.5 w-auto object-contain">
+                        <img src="{{ asset('images/logo/logo-simpultemu-dark.png') }}" alt="SimpulTemu" class="nav-logo-dark hidden h-6.5 sm:h-7.5 w-auto object-contain">
+                    </a>
                 </div>
-                <div class="hidden md:flex items-center space-x-2.5 lg:space-x-3.5">
+                <div class="hidden md:flex items-center justify-center space-x-1 lg:space-x-2">
+                    <a href="{{ route('home') }}" class="nav-link-item inline-flex items-center px-2.5 lg:px-3.5 py-1 rounded-full text-xs lg:text-[13px] font-medium transition-all duration-200 {{ request()->routeIs('home') ? 'is-active text-[#FF2E3A] bg-[#FF2E3A]/10 font-semibold shadow-2xs' : 'text-slate-700 hover:text-[#FF2E3A] hover:bg-slate-100/70' }}">
+                        Beranda
+                    </a>
+                    <a href="{{ route('themes.index') }}" class="nav-link-item inline-flex items-center px-2.5 lg:px-3.5 py-1 rounded-full text-xs lg:text-[13px] font-medium transition-all duration-200 {{ request()->routeIs('themes.*') ? 'is-active text-[#FF2E3A] bg-[#FF2E3A]/10 font-semibold shadow-2xs' : 'text-slate-700 hover:text-[#FF2E3A] hover:bg-slate-100/70' }}">
+                        Katalog Tema
+                    </a>
+                    <a href="{{ route('pricing') }}" class="nav-link-item inline-flex items-center px-2.5 lg:px-3.5 py-1 rounded-full text-xs lg:text-[13px] font-medium transition-all duration-200 {{ request()->routeIs('pricing') ? 'is-active text-[#FF2E3A] bg-[#FF2E3A]/10 font-semibold shadow-2xs' : 'text-slate-700 hover:text-[#FF2E3A] hover:bg-slate-100/70' }}">
+                        Harga
+                    </a>
+                    <a href="{{ route('how-it-works') }}" class="nav-link-item inline-flex items-center px-2.5 lg:px-3.5 py-1 rounded-full text-xs lg:text-[13px] font-medium transition-all duration-200 {{ request()->routeIs('how-it-works') ? 'is-active text-[#FF2E3A] bg-[#FF2E3A]/10 font-semibold shadow-2xs' : 'text-slate-700 hover:text-[#FF2E3A] hover:bg-slate-100/70' }}">
+                        Cara Kerja
+                    </a>
+                    <a href="{{ route('faq') }}" class="nav-link-item inline-flex items-center px-2.5 lg:px-3.5 py-1 rounded-full text-xs lg:text-[13px] font-medium transition-all duration-200 {{ request()->routeIs('faq') ? 'is-active text-[#FF2E3A] bg-[#FF2E3A]/10 font-semibold shadow-2xs' : 'text-slate-700 hover:text-[#FF2E3A] hover:bg-slate-100/70' }}">
+                        FAQ
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-2.5 lg:space-x-3.5 shrink-0">
                     @auth
                         <form method="POST" action="{{ route('logout') }}" class="inline">
                             @csrf
-                            <button type="submit" class="text-slate-600 hover:text-[#FF2E3A] text-xs lg:text-[13px] font-medium px-2.5 py-1 rounded-full hover:bg-slate-100/70 transition-all duration-200 cursor-pointer">Logout</button>
+                            <button type="submit" class="nav-auth-link text-slate-600 hover:text-[#FF2E3A] text-xs lg:text-[13px] font-medium px-2.5 py-1 rounded-full hover:bg-slate-100/70 transition-all duration-200 cursor-pointer">Logout</button>
                         </form>
                         <a href="{{ route('dashboard') }}" class="px-4 lg:px-4.5 py-1.5 rounded-full text-white text-xs lg:text-[13px] font-semibold transition-all duration-300 bg-[#FF2E3A] hover:bg-[#E01E2A] shadow-[0_4px_14px_rgba(255,46,58,0.25)] hover:shadow-[0_6px_20px_rgba(255,46,58,0.35)] transform hover:-translate-y-0.5">
                             Dashboard
                         </a>
                     @else
-                        <a href="{{ route('login') }}" class="text-slate-600 hover:text-[#FF2E3A] text-xs lg:text-[13px] font-medium px-2.5 py-1 rounded-full hover:bg-slate-100/70 transition-all duration-200">Login</a>
+                        <a href="{{ route('login') }}" class="nav-auth-link text-slate-600 hover:text-[#FF2E3A] text-xs lg:text-[13px] font-medium px-2.5 py-1 rounded-full hover:bg-slate-100/70 transition-all duration-200">Login</a>
                         <a href="{{ route('register') }}" class="px-4 lg:px-4.5 py-1.5 rounded-full text-white text-xs lg:text-[13px] font-semibold transition-all duration-300 bg-[#FF2E3A] hover:bg-[#E01E2A] shadow-[0_4px_14px_rgba(255,46,58,0.25)] hover:shadow-[0_6px_20px_rgba(255,46,58,0.35)] transform hover:-translate-y-0.5">
                             Daftar Sekarang
                         </a>
@@ -236,6 +288,26 @@
             hamburgerIcon?.classList.toggle('hidden');
             closeIcon?.classList.toggle('hidden');
         });
+
+        // Navbar transparan di awal (Beranda, Katalog Tema, Harga, Cara Kerja, FAQ), berubah menjadi kapsul putih saat di-scroll
+        (function() {
+            const mainNavbar = document.getElementById('main-navbar');
+            const transparentClass = mainNavbar ? mainNavbar.dataset.transparentClass : '';
+            if (!mainNavbar || !transparentClass) {
+                return;
+            }
+
+            const syncNavbarState = function() {
+                if (window.scrollY > 24) {
+                    mainNavbar.classList.remove(transparentClass);
+                } else {
+                    mainNavbar.classList.add(transparentClass);
+                }
+            };
+
+            syncNavbarState();
+            window.addEventListener('scroll', syncNavbarState, { passive: true });
+        })();
 
         // Universal Scroll Reveal Engine (Silky Smooth)
         document.addEventListener('DOMContentLoaded', function() {

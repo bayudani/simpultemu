@@ -8,11 +8,11 @@
 $faqs = [
     [
         'q' => 'Apakah SimpulTemu benar-benar gratis?',
-        'a' => 'Ya, SimpulTemu 100% gratis untuk seluruh 10 pilihan tema Basic! Anda langsung mendapatkan kuota gratis hingga 5 nama tamu khusus dan 5 pilihan lagu latar romantis, lengkap dengan fitur esensial seperti RSVP, ucapan doa, hitung mundur acara, navigasi Google Maps, dan amplop digital tanpa biaya apa pun selamanya. Jika Anda membutuhkan kuota nama tamu atau pilihan lagu lebih banyak untuk tema Basic, tersedia opsi paket Add-On terjangkau (mulai Rp 17.000).'
+        'a' => 'Ya, paket Basic Gratis berlaku untuk undangan pertama setiap akun dengan 10 pilihan tema Basic, kuota 5 nama tamu, dan 5 pilihan lagu beserta fitur lengkap RSVP, ucapan doa, hitung mundur, Google Maps, dan amplop digital. Setelah undangan pertama selesai dibuat dan diterbitkan, pembuatan undangan kedua dan seterusnya dikenakan biaya Rp 10.000 per undangan (penghapusan undangan sebelumnya tidak mengembalikan kuota gratis).'
     ],
     [
         'q' => 'Apa perbedaan paket Basic, Add-On, dan Premium?',
-        'a' => 'Paket Basic (Gratis) memberikan 10 tema estetik dengan kuota bawaan 5 nama tamu dan 5 lagu. Paket Add-On dirancang khusus untuk pengguna tema Basic yang ingin menambah kuota tanpa harus beralih tema (Add-On 1: total 12 tamu & 10 lagu seharga Rp 17.000; Add-On 2: total 17 tamu & akses 20 lagu seharga Rp 25.000). Sedangkan Paket Premium (Rp 59.000 / undangan) membuka seluruh 20 tema eksklusif luxury, tamu undangan tak terbatas, lagu tak terbatas termasuk upload musik sendiri, serta galeri foto & cerita cinta tanpa batas.'
+        'a' => 'Paket Basic (Gratis untuk 1 undangan pertama, lalu Rp 10.000/undangan untuk undangan kedua dst) memberikan 10 tema estetik dengan kuota 5 nama tamu dan 5 pilihan lagu. Paket Add-On berlaku per satu undangan tema Basic untuk menambah kuota (Add-On 1: total 12 tamu & 10 lagu seharga Rp 17.000; Add-On 2: total 17 tamu & 20 lagu seharga Rp 25.000). Paket Premium (Rp 59.000 per undangan) membuka seluruh 20 tema eksklusif, nama tamu tak terbatas, lagu tak terbatas termasuk upload musik sendiri, dan seluruh fitur Premium untuk undangan tersebut.'
     ],
     [
         'q' => 'Bagaimana cara mengirimkan undangan ke para tamu?',
@@ -67,8 +67,8 @@ $faqSchema = [
 @endpush
 
 @section('content')
-<div class="relative pt-24 sm:pt-32 pb-16 sm:pb-24 bg-[#F8FAFC] min-h-screen overflow-hidden">
-    @include('partials.side-diamond-ornament')
+<div class="relative pt-24 sm:pt-32 pb-16 sm:pb-24 min-h-screen overflow-hidden" style="background-color: #F2FBFF;">
+    @include('partials.light-blue-square-grid')
 
     <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header -->
@@ -76,7 +76,7 @@ $faqSchema = [
             <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-[#DBF6FF] text-[#0284C7] border border-[#BAEAF8]">
                 Pusat Bantuan & Edukasi
             </span>
-            <h1 class="font-serif text-3xl sm:text-5xl font-bold text-slate-900 tracking-tight">
+            <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight" style="color: #162E54;">
                 Pertanyaan yang <span class="italic text-[#FF2E3A]">Sering Diajukan</span>
             </h1>
             <p class="font-sans text-slate-600 text-base sm:text-lg font-light leading-relaxed max-w-2xl mx-auto">
